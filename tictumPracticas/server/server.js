@@ -53,6 +53,33 @@ app.get('/api/users/read', function(req, res) {
     });
 });
 
+app.get('/api/users/readbyId/:id', function(req, res, next) {
+    User.findById(req.params.id, function (err, user) {
+		if(err){
+            res.send(err);
+        }
+        res.send(user);
+	});
+});
+
+app.get('/api/users/readbyEmail/:email', function(req, res, next) {
+    User.find({email:req.params.email}, function (err, user) {
+		if(err){
+            res.send(err);
+        }
+        res.send(user);
+	});
+});
+
+app.get('/api/users/readbyDNI/:dni', function(req, res, next) {
+    User.find({dni:req.params.dni}, function (err, user) {
+		if(err){
+            res.send(err);
+        }
+        res.send(user);
+	});
+});
+
 app.put('/api/users/update', function(req, res) {
     User.findById(req.body._id, function (err, user) {  
     if (err) {
