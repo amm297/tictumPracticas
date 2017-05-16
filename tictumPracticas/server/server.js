@@ -16,18 +16,24 @@ app.use(bodyParser.urlencoded({ extended: false })); // Parses urlencoded bodies
 app.use(bodyParser.json()); // Send JSON responses
 app.use(cors());
 
+//Models
 var User = mongoose.model('User',{
-	name: String,
-	lastname: String,
+    name: String,
+    lastname: String,
     email: String,
-	password: String,
+    password: String,
     role: String,
-	dni: String,
-	address: String,
-	country: String,
-	phone: String
+    dni: String,
+    address: String,
+    country: String,
+    phone: String
 });
 
+var Role = mongoose.model('Role',{
+    rolename: String
+});
+
+//User API
 app.post('/api/users/create', function(req, res) {
     var user = new User(req.body);
     user.save(function(err,addedUser){
@@ -75,8 +81,55 @@ app.delete('/api/users/delete', function(req, res) {
     console.log(req.query);
     User.findByIdAndRemove(req.query._id, function (err, user) {  
     var response = {
-        message: "El usuario ha sido eliminado correctamente",
+        message: "User deleted",
         _id: user._id
+    };
+    res.send(response);
+    });
+});
+
+//Role API
+app.get('/api/roles/read', function(req, res) {
+    Role.find({},function(err,roles){
+        if(err){
+            res.send(err);
+        }
+        res.send(roles);
+    });
+});
+
+app.post('/api/roles/create', function(req, res) {
+    var role = new Role(req.body);
+    role.save(function(err,addedRole){
+        if(err){
+            res.send(err);
+        }
+        res.send(addedRole);
+    });
+});
+
+app.put('/api/roles/update', function(req, res) {
+    User.findById(req.body._id, function (err, role) {  
+    if (err) {
+        res.status(500).send(err);
+    } else {
+        role.rolename = req.body.rolename || role.rolename;
+        role.save(function (err, role) {
+            if (err) {
+                res.status(500).send(err)
+            }
+            res.send(role);
+        });
+    }
+    });
+});
+
+app.delete('/api/roles/delete', function(req, res) {
+    console.log(req.query);
+    User.findByIdAndRemove(req.query._id, function (err, role) {  
+    var response = {
+        message: "Role deleted",
+        _id: role._id
     };
     res.send(response);
     });
