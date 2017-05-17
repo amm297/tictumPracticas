@@ -14,7 +14,7 @@ export class Users {
     return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      this.http.post(this.server+'/api/users/register', JSON.stringify(data), {headers: headers})
+      this.http.post(this.server+'/api/tableusers-old/register', JSON.stringify(data), {headers: headers})
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -26,7 +26,7 @@ export class Users {
     return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      this.http.post(this.server+'/api/users/login', JSON.stringify(data), {headers: headers})
+      this.http.post(this.server+'/api/tableusers-old/login', JSON.stringify(data), {headers: headers})
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
