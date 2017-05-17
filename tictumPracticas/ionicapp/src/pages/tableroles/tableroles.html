@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Roles
+    </ion-title>
+<!--
+    <ion-buttons end>
+      <button (click)="addContact()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>My Roles</ion-list-header>
+    <ion-item-sliding *ngFor="let role of roles | async">
+      <ion-item>
+        <ion-icon name="role" danger item-left></ion-icon>
+        <h2>ROLE:</h2>
+        <h3>{{role.rolename}}</h3>
+      </ion-item>
+<!--
+      <ion-item-options>
+        <button ion-button color="primary" icon-left (click)="editContact(contact)">
+          <ion-icon name="ios-create"></ion-icon>
+          Edit
+        </button>
+        <button ion-button color="danger" icon-left (click)="deleteContact(contact)">
+          <ion-icon name="ios-trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+-->
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
