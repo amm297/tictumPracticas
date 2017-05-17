@@ -6,11 +6,12 @@ $colors: (
 	primary: $base,
 	secondary: $second);
 
+$toolbar-ios-background:($interf);
+$toolbar-md-background:($interf);
+$toolbar-wp-background:($interf);
+
 ion-content{
 	background-image: url("../img/bckgrnd_02.png");
-}
-ion-navbar{
-	background-color:$interf;
 }
 
 .logo{
