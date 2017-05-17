@@ -12,7 +12,7 @@
         <ion-icon name="at"></ion-icon>
         Email
       </ion-label>
-      <ion-input [(ngModel)]="user.email" type="email" formControlName="email"></ion-input>
+      <ion-input [(ngModel)]="user.input" type="email" formControlName="email"></ion-input>
     </ion-item>
     <ion-item *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.touched">
       <p style="color:red;">Introduce a valid email</p>

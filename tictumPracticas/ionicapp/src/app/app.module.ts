@@ -11,6 +11,8 @@ import {AdminPage} from "../pages/admin/admin";
 import {TableusersPage} from "../pages/tableusers/tableusers";
 import {UserformPage} from "../pages/userform/userform";
 import {Users} from "../providers/users";
+import {TablerolesPage} from "../pages/tableroles/tableroles";
+import {Roles} from "../providers/roles";
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import {Users} from "../providers/users";
     HomePage,
     AdminPage,
     TableusersPage,
-    UserformPage
+    UserformPage,
+    TablerolesPage
   ],
   imports: [
     BrowserModule,
@@ -32,13 +35,15 @@ import {Users} from "../providers/users";
     HomePage,
     AdminPage,
     TableusersPage,
-    UserformPage
+    UserformPage,
+    TablerolesPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Users
+    Users,
+    Roles
   ]
 })
 export class AppModule {}

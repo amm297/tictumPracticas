@@ -12,7 +12,7 @@ import {AdminPage} from "../admin/admin";
 export class HomePage {
 
   user = {
-    email: '',
+    input: '',
     password: ''
   };
   loginForm;
@@ -29,7 +29,6 @@ export class HomePage {
   }
 
   userLogin() {
-    console.log("userlogin");
     if (this.loginForm.valid) {
       this.usersService.loginUser(this.user).then((data) => {
         if (data.hasOwnProperty('errmsg')) {
