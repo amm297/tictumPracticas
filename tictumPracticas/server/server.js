@@ -46,7 +46,7 @@ app.post('/api/users/create', function(req, res) {
 });
 
 
-app.post('/api/users/login', function(req, res) {
+/**app.post('/api/users/login', function(req, res) {
     var user = new User(req.body);
     user.save(function(err,addedUser){
         if(err){
@@ -54,7 +54,7 @@ app.post('/api/users/login', function(req, res) {
         }
         res.send(addedUser);
     });
-});
+})**/
 
 
 app.get('/api/users/read', function(req, res) {
@@ -130,12 +130,18 @@ app.delete('/api/users/delete', function(req, res) {
 
 //server
 app.post('/api/users/login', function(req, res) {
- 
-    User.find({password:req.body.password,email:req.body.email}, function (err, user) {
-    if(err){
+	console.log(req.body);
+    User.findOne({email:req.body.email}, function (err, user) {
+		if(err){
             res.send(err);
         }
-        res.send(user);
+		if(!user){
+			res.send({errmsg:"Email no valido"});
+		}else if(user.password != req.body.password){
+			res.send({errmsg:"Password no valido"});
+		}else{
+			res.send(user);
+		}
   });
 });
 

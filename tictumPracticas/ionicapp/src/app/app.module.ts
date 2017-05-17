@@ -7,15 +7,18 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { TablerolesPage } from '../pages/tableroles/tableroles';
 //import { RegisterPage } from '../pages/register-page/register-page';
 //import { MainPage } from '../pages/main-page/main-page';
 import { Users } from '../providers/users';
+import { Roles } from '../providers/roles';
 //import {HttpClient} from "./HttpClient";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+	TablerolesPage
     //RegisterPage,
     //MainPage
   ],
@@ -28,6 +31,7 @@ import { Users } from '../providers/users';
   entryComponents: [
     MyApp,
     HomePage,
+	TablerolesPage
     //RegisterPage,
     //MainPage
   ],
@@ -36,6 +40,7 @@ import { Users } from '../providers/users';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Users,
+	Roles
     //HttpClient
   ]
 })
