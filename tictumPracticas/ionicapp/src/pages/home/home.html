@@ -6,7 +6,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <form [formGroup]="loginForm">
+  <form [formGroup]="loginForm" (ngSubmit)="userLogin()">
     <ion-item>
       <ion-label floating>
         <ion-icon name="at"></ion-icon>
@@ -28,5 +28,5 @@
       <p style="color:red;">Introduce a valid password</p>
     </ion-item>
   </form>
-  <button ion-button margin-top="10px" (click)="onSubmit()" full>Login</button>
+  <button ion-button margin-top="10px" type="submit" full>Login</button>
 </ion-content>
