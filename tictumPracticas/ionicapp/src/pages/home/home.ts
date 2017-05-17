@@ -19,13 +19,9 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public alertCtrl: AlertController, private usersService: Users) {
     this.loginForm = formBuilder.group({
-      input: ['',Validators.required],
+      input: ['', Validators.required],
       password: ['', Validators.required],
     });
-  }
-
-  AAA(){
-     console.log("hoasdapsd");
   }
 
   userLogin() {
@@ -34,20 +30,11 @@ export class HomePage {
         if (data.hasOwnProperty('errmsg')) {
           let alert = this.alertCtrl.create({
             title: 'Oops!',
-            subTitle: 'Invalid Email or Dni.',
+            subTitle: data['errmsg'],
             buttons: ['Ok']
           });
           alert.present();
-        } 
-        else if (data.hasOwnProperty('errmsg2')) {
-          let alert = this.alertCtrl.create({
-            title: 'Oops!',
-            subTitle: 'Invalid Password',
-            buttons: ['Ok']
-          });
-          alert.present();
-        } 
-
+        }
         else {
           console.log("Login OK");
           this.navCtrl.push(AdminPage);
