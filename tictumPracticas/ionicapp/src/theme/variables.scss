@@ -1,0 +1,18 @@
+$base:#8ddbe0;
+$second:#d3ffe1;
+$interf:#4b5043;
+
+$colors: (
+	primary: $base,
+	secondary: $second);
+
+ion-content{
+	background-image: url("../img/bckgrnd_02.png");
+}
+ion-navbar{
+	background-color:$interf;
+}
+
+.logo{
+	background-color:rgba(0,0,0,0.0);
+}
