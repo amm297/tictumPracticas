@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Admin</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-card>
+  <ion-card-header>
+    Vista Administrador
+  </ion-card-header>
+
+  <ion-list>
+    <button ion-item (click)="onclickusers()">
+      <ion-icon name="users" item-left></ion-icon>
+      Mostrar Usuarios
+    </button>
+    <users-comp></users-comp>
+
+    <button ion-item (click)="onclickroles()">
+      <ion-icon name="medical" item-left></ion-icon>
+      Hospital
+    </button>
+
+    <button ion-item>
+      <ion-icon name="cafe" item-left></ion-icon>
+      Cafe
+    </button>
+
+    <button ion-item>
+      <ion-icon name="paw" item-left></ion-icon>
+      Dog Park
+    </button>
+
+    <button ion-item>
+      <ion-icon name="beer" item-left></ion-icon>
+      Pub
+    </button>
+
+    <button ion-item>
+      <ion-icon name="planet" item-left></ion-icon>
+      Space
+    </button>
+
+  </ion-list>
+</ion-card>
