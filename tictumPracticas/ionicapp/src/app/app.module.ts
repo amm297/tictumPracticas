@@ -7,17 +7,17 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { RegisterPage } from '../pages/register-page/register-page';
-import { MainPage } from '../pages/main-page/main-page';
+//import { RegisterPage } from '../pages/register-page/register-page';
+//import { MainPage } from '../pages/main-page/main-page';
 import { Users } from '../providers/users';
-import {HttpClient} from "./HttpClient";
+//import {HttpClient} from "./HttpClient";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    RegisterPage,
-    MainPage
+    //RegisterPage,
+    //MainPage
   ],
   imports: [
     BrowserModule,
@@ -28,15 +28,15 @@ import {HttpClient} from "./HttpClient";
   entryComponents: [
     MyApp,
     HomePage,
-    RegisterPage,
-    MainPage
+    //RegisterPage,
+    //MainPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Users,
-    HttpClient
+    //HttpClient
   ]
 })
 export class AppModule {}
