@@ -7,7 +7,6 @@
 </ion-header>
 <ion-content padding>
 <ion-img width="152" height="152" src="../img/logoex2_03.png" class="logo"></ion-img>
-  <form (ngSubmit)="userLogin()" [formGroup]="loginForm">
   <form [formGroup]="loginForm" (ngSubmit)="userLogin()">
     <ion-item>
       <ion-label floating>
