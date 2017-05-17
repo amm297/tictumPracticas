@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 
 // Configuration
-mongoose.connect('mongodb://127.0.0.1/tictum');
+mongoose.connect('mongodb://172.16.112.40/tictum');
 
 app.use(bodyParser.urlencoded({ extended: false })); // Parses urlencoded bodies
 app.use(bodyParser.json()); // Send JSON responses
@@ -33,7 +33,6 @@ var Role = mongoose.model('Role',{
     rolename: String
 });
 
-//User API
 app.post('/api/users/create', function(req, res) {
     var user = new User(req.body);
     user.save(function(err,addedUser){
@@ -43,6 +42,18 @@ app.post('/api/users/create', function(req, res) {
         res.send(addedUser);
     });
 });
+
+
+app.post('/api/users/login', function(req, res) {
+    var user = new User(req.body);
+    user.save(function(err,addedUser){
+        if(err){
+            res.send(err);
+        }
+        res.send(addedUser);
+    });
+});
+
 
 app.get('/api/users/read', function(req, res) {
     User.find({},function(err,users){
@@ -165,3 +176,19 @@ app.delete('/api/roles/delete', function(req, res) {
 // listen
 app.listen(8080);
 console.log("App listening on port 8080");
+
+
+
+
+
+
+//server
+app.post('/api/users/login', function(req, res) {
+ 
+    User.find({password:req.body.password,email:req.body.email}, function (err, user) {
+    if(err){
+            res.send(err);
+        }
+        res.send(user);
+  });
+});
