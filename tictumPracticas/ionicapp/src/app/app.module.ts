@@ -10,6 +10,7 @@ import { HomePage } from '../pages/home/home';
 import {AdminPage} from "../pages/admin/admin";
 import {TableusersPage} from "../pages/tableusers/tableusers";
 import {UserformPage} from "../pages/userform/userform";
+import {Users} from "../providers/users";
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {UserformPage} from "../pages/userform/userform";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Users
   ]
 })
 export class AppModule {}
