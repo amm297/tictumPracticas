@@ -11,14 +11,14 @@ import {Users} from '../../providers/users';
 export class HomePage {
 
   user = {
-    email: '',
+    input: '',
     password: ''
   };
   loginForm;
 
   constructor(public nav: NavController, public usersService: Users, public formBuilder: FormBuilder,public alertCtrl: AlertController) {
     this.loginForm = formBuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.email])],
+      input: ['',Validators.required],
       password: ['', Validators.required],
     });
   }
@@ -27,14 +27,24 @@ export class HomePage {
     if (this.loginForm.valid) {
       this.usersService.loginUser(this.user).then((data) => {
         console.log(data);
-        if (data.hasOwnProperty('errmsg')) {
+        if (data.hasOwnProperty('errmsg1')) {
           let alert = this.alertCtrl.create({
             title: 'Oops!',
-            subTitle: 'Invalid email or password.',
+            subTitle: 'Invalid Email or Dni.',
             buttons: ['Ok']
           });
           alert.present();
-        } else {
+        } 
+        else if (data.hasOwnProperty('errmsg2')) {
+          let alert = this.alertCtrl.create({
+            title: 'Oops!',
+            subTitle: 'Invalid Password',
+            buttons: ['Ok']
+          });
+          alert.present();
+        } 
+
+        else {
           console.log("Login OK");
         }
       });
