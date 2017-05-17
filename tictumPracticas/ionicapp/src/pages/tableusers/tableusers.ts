@@ -1,18 +1,23 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Users} from "../../providers/users";
 
 @IonicPage()
 @Component({
   selector: 'page-tableusers',
   templateUrl: 'tableusers.html',
 })
-export class TableusersPage {
+export class TableusersPage implements OnInit {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  users: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private usersService: Users) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TableusersPage');
+  ngOnInit() {
+    this.usersService.getAllUsers().then((data) => {
+      this.users = data;
+      console.log(this.users);
+    });
   }
-
 }
