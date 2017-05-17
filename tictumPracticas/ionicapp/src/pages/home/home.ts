@@ -24,10 +24,13 @@ export class HomePage {
     });
   }
 
+  AAA(){
+     console.log("hoasdapsd");
+  }
+
   userLogin() {
     console.log("userlogin");
     if (this.loginForm.valid) {
-
       this.usersService.loginUser(this.user).then((data) => {
         if (data.hasOwnProperty('errmsg')) {
           let alert = this.alertCtrl.create({
@@ -41,16 +44,6 @@ export class HomePage {
           this.navCtrl.push(AdminPage);
         }
         console.log(data);
-        if (data.hasOwnProperty('errmsg')) {
-          let alert = this.alertCtrl.create({
-            title: 'Oops!',
-            subTitle: 'Invalid email or password.',
-            buttons: ['Ok']
-          });
-          alert.present();
-        } else {
-          console.log("Login OK");
-        }
       });
     }
 
