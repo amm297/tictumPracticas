@@ -185,7 +185,7 @@ console.log("App listening on port 8080");
 //server
 app.post('/api/users/login', function(req, res) {
  
-    User.find({password:req.body.password,email:req.body.email}, function (err, user) {
+    User.findOne({password:req.body.password,email:req.body.email}, function (err, user) {
     if(err){
             res.send(err);
         }

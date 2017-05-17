@@ -12,6 +12,10 @@ import { HomePage } from '../pages/home/home';
 import { Users } from '../providers/users';
 //import {HttpClient} from "./HttpClient";
 
+
+
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -35,7 +39,7 @@ import { Users } from '../providers/users';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Users,
+    Users
     //HttpClient
   ]
 })
