@@ -125,6 +125,15 @@ app.get('/api/roles/read', function(req, res) {
     });
 });
 
+app.get('/api/roles/readbyId/:id', function(req, res, next) {
+    Role.findById(req.params.id, function (err, role) {
+		if(err){
+            res.send(err);
+        }
+        res.send(role);
+	});
+});
+
 app.post('/api/roles/create', function(req, res) {
     var role = new Role(req.body);
     role.save(function(err,addedRole){
