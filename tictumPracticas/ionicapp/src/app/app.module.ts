@@ -7,6 +7,99 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { TablerolesPage } from '../pages/tableroles/tableroles';
+//import { RegisterPage } from '../pages/register-page/register-page';
+//import { MainPage } from '../pages/main-page/main-page';
+import { Users } from '../providers/users';
+import { Roles } from '../providers/roles';
+//import {HttpClient} from "./HttpClient";
+
+
+
+
+
+@NgModule({
+  declarations: [
+    MyApp,
+    HomePage,
+	TablerolesPage
+    //RegisterPage,
+    //MainPage
+  ],
+  imports: [
+    BrowserModule,
+    HttpModule,
+    IonicModule.forRoot(MyApp)
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+    MyApp,
+    HomePage,
+	TablerolesPage
+    //RegisterPage,
+    //MainPage
+  ],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Users
+    //HttpClient
+  ]
+})
+export class AppModule {}
+
+import { MyApp } from './app.component';
+import { HomePage } from '../pages/home/home';
+import { TablerolesPage } from '../pages/tableroles/tableroles';
+//import { RegisterPage } from '../pages/register-page/register-page';
+//import { MainPage } from '../pages/main-page/main-page';
+import { Users } from '../providers/users';
+import { Roles } from '../providers/roles';
+//import {HttpClient} from "./HttpClient";
+
+
+
+
+
+@NgModule({
+  declarations: [
+    MyApp,
+    HomePage,
+	TablerolesPage
+    //RegisterPage,
+    //MainPage
+  ],
+  imports: [
+    BrowserModule,
+    HttpModule,
+    IonicModule.forRoot(MyApp)
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+    MyApp,
+    HomePage,
+	TablerolesPage
+    //RegisterPage,
+    //MainPage
+  ],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+<<<<<<< Temporary merge branch 1
+    Users,
+	Roles
+=======
+    Users
+>>>>>>> Temporary merge branch 2
+    //HttpClient
+  ]
+})
+export class AppModule {}
+
+import { MyApp } from './app.component';
+import { HomePage } from '../pages/home/home';
 import {AdminPage} from "../pages/admin/admin";
 import {TableusersPage} from "../pages/tableusers/tableusers";
 import {UserformPage} from "../pages/userform/userform";

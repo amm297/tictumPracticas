@@ -19,7 +19,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public alertCtrl: AlertController, private usersService: Users) {
     this.loginForm = formBuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.email])],
+      input: ['',Validators.required],
       password: ['', Validators.required],
     });
   }
@@ -34,11 +34,21 @@ export class HomePage {
         if (data.hasOwnProperty('errmsg')) {
           let alert = this.alertCtrl.create({
             title: 'Oops!',
-            subTitle: 'Invalid email or password.',
+            subTitle: 'Invalid Email or Dni.',
             buttons: ['Ok']
           });
           alert.present();
-        } else {
+        } 
+        else if (data.hasOwnProperty('errmsg2')) {
+          let alert = this.alertCtrl.create({
+            title: 'Oops!',
+            subTitle: 'Invalid Password',
+            buttons: ['Ok']
+          });
+          alert.present();
+        } 
+
+        else {
           console.log("Login OK");
           this.navCtrl.push(AdminPage);
         }
