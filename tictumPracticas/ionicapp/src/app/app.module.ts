@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import {AdminPage} from "../pages/admin/admin";
 import {TableusersPage} from "../pages/tableusers/tableusers";
+import {UserformPage} from "../pages/userform/userform";
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {TableusersPage} from "../pages/tableusers/tableusers";
     MyApp,
     HomePage,
     AdminPage,
-    TableusersPage
+    TableusersPage,
+    UserformPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import {TableusersPage} from "../pages/tableusers/tableusers";
     MyApp,
     HomePage,
     AdminPage,
-    TableusersPage
+    TableusersPage,
+    UserformPage
   ],
   providers: [
     StatusBar,

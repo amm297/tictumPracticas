@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TableusersPage} from "../tableusers/tableusers";
+import {UserformPage} from "../userform/userform";
 
 @IonicPage()
 @Component({
@@ -18,6 +19,10 @@ export class AdminPage {
 
   onClickRoles(){
 
+  }
+
+  onClickAddUser(){
+    this.navCtrl.push(UserformPage);
   }
 
 }

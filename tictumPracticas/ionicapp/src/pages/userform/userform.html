@@ -1,0 +1,69 @@
+<!--
+  Generated template for the UserformPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>userform</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-item>
+      <ion-label floating>DNI</ion-label>
+      <ion-input [(ngModel)]="user.DNI" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Nombre</ion-label>
+      <ion-input [(ngModel)]="user.name" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Apellido</ion-label>
+      <ion-input [(ngModel)]="user.lastname" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Dirección</ion-label>
+      <ion-input [(ngModel)]="user.address" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>País</ion-label>
+      <ion-input [(ngModel)]="user.country" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Teléfono</ion-label>
+      <ion-input [(ngModel)]="user.phone" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input [(ngModel)]="user.email" type="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Contraseña</ion-label>
+      <ion-input [(ngModel)]="user.password" type="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Confirmar Contraseña</ion-label>
+      <ion-input [(ngModel)]="confirmpassword" type="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Rol</ion-label>
+      <ion-input [(ngModel)]="user.role" type="text"></ion-input>
+    </ion-item>
+
+  <button ion-button (click)="registerUser()">Registrar Usuario</button>
+</ion-content>
