@@ -33,6 +33,8 @@ var Role = mongoose.model('Role',{
     rolename: String
 });
 
+
+//User API
 app.post('/api/users/create', function(req, res) {
     var user = new User(req.body);
     user.save(function(err,addedUser){
@@ -126,6 +128,17 @@ app.delete('/api/users/delete', function(req, res) {
     });
 });
 
+//server
+app.post('/api/users/login', function(req, res) {
+ 
+    User.find({password:req.body.password,email:req.body.email}, function (err, user) {
+    if(err){
+            res.send(err);
+        }
+        res.send(user);
+  });
+});
+
 //Role API
 app.get('/api/roles/read', function(req, res) {
     Role.find({},function(err,roles){
@@ -185,19 +198,3 @@ app.delete('/api/roles/delete', function(req, res) {
 // listen
 app.listen(8080);
 console.log("App listening on port 8080");
-
-
-
-
-
-
-//server
-app.post('/api/users/login', function(req, res) {
- 
-    User.find({password:req.body.password,email:req.body.email}, function (err, user) {
-    if(err){
-            res.send(err);
-        }
-        res.send(user);
-  });
-});

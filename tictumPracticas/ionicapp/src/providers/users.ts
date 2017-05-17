@@ -8,7 +8,8 @@ export class Users {
   constructor(public http: Http) {}
 
   //server = 'http://localhost:8080';
-  server = 'http://192.168.1.39:8080';
+  //server = 'http://192.168.1.39:8080';
+  server = 'http://172.16.112.40:8080';
 
   registerUser(data) {
     return new Promise(resolve => {
