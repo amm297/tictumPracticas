@@ -1,22 +1,23 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      MEIN
+      Login
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
 <ion-img width="152" height="152" src="../img/logoex2_03.png" class="logo"></ion-img>
   <form (ngSubmit)="userLogin()" [formGroup]="loginForm">
+  <form [formGroup]="loginForm" (ngSubmit)="userLogin()">
     <ion-item>
       <ion-label floating>
         <ion-icon name="at"></ion-icon>
-        Email
+        Email o Dni
       </ion-label>
-      <ion-input [(ngModel)]="user.email" type="email" formControlName="email"></ion-input>
+      <ion-input [(ngModel)]="user.input" type="text" formControlName="input"></ion-input>
     </ion-item>
-    <ion-item *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.touched">
-      <p style="color:red;">Introduce a valid email</p>
+    <ion-item *ngIf="!loginForm.controls.input.valid && loginForm.controls.input.touched">
+      <p style="color:red;">Introduce a valid email or Dni</p>
     </ion-item>
     <ion-item>
       <ion-label floating>
@@ -30,5 +31,4 @@
     </ion-item>
     <button ion-button margin-top="10px" type="submit" full>Login</button>
   </form>
-  <button (click)="userRegister()" margin-top="10px" ion-button full>Register</button>
 </ion-content>
