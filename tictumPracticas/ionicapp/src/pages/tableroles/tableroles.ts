@@ -13,7 +13,7 @@ export class TablerolesPage {
   displayInput: boolean = false;
   displayButton: string = '';
   role:{rolename:string} = {rolename:''};
-  
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public rolesService: Roles) {
   }
@@ -27,25 +27,26 @@ export class TablerolesPage {
       this.roles = data;
     });
   }
-  
+
   showInput(){
     this.displayButton = 'add';
     this.displayInput = true;
   }
   closeInput(){
+    this.role.rolename ='';
     this.displayInput = false;
     this.getAllRoles();
   }
 
   addRole(){
     if(this.role.rolename !== ''){
-      this.rolesService.addRole(this.role).then(()=>{ 
+      this.rolesService.addRole(this.role).then(()=>{
       this.closeInput();
       this.role.rolename ='';
-      this.getAllRoles(); 
+      this.getAllRoles();
       });
     }
-     
+
   }
 
   editRole(role){
@@ -56,16 +57,16 @@ export class TablerolesPage {
 
   updateRole(){
      if(this.role.rolename !== ''){
-      this.rolesService.updateRole(this.role).then(()=>{ 
+      this.rolesService.updateRole(this.role).then(()=>{
         this.closeInput();
-        this.role.rolename='';     
-        this.getAllRoles(); 
+        this.role.rolename='';
+        this.getAllRoles();
       });
     }
   }
   deleteRole(role){
-   this.rolesService.removeRole(role).then(()=>{ 
-      this.getAllRoles(); 
+   this.rolesService.removeRole(role).then(()=>{
+      this.getAllRoles();
     });
   }
 
