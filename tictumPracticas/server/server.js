@@ -7,18 +7,12 @@
 
 
  */
-
-
-
 // Set up
+var express = require('express');
 
 
 
-var express  = require('express');
-
-
-
-var app      = express();
+var app = express();
 
 
 
@@ -39,9 +33,6 @@ var cors = require('cors');
 
 
 
-
-
-
 // Configuration
 
 
@@ -51,10 +42,9 @@ mongoose.connect('mongodb://172.16.112.40/tictum');
 
 
 
-
-
-
-app.use(bodyParser.urlencoded({ extended: false })); // Parses urlencoded bodies
+app.use(bodyParser.urlencoded({
+    extended: false
+})); // Parses urlencoded bodies
 
 
 
@@ -67,14 +57,11 @@ app.use(cors());
 
 
 
-
-
-
 //Models
 
 
 
-var User = mongoose.model('User',{
+var User = mongoose.model('User', {
 
 
 
@@ -119,10 +106,7 @@ var User = mongoose.model('User',{
 
 
 
-
-
-
-var Role = mongoose.model('Role',{
+var Role = mongoose.model('Role', {
 
 
 
@@ -135,18 +119,11 @@ var Role = mongoose.model('Role',{
 
 
 
-
-
-
-
-
-
-
 //User API
 
 
 
-app.post('/api/users/create', function(req, res) {
+app.post('/api/users/create', function (req, res) {
 
 
 
@@ -154,11 +131,11 @@ app.post('/api/users/create', function(req, res) {
 
 
 
-    user.save(function(err,addedUser){
+    user.save(function (err, addedUser) {
 
 
 
-        if(err){
+        if (err) {
 
 
 
@@ -179,13 +156,6 @@ app.post('/api/users/create', function(req, res) {
 
 
 });
-
-
-
-
-
-
-
 
 
 
@@ -227,22 +197,15 @@ app.post('/api/users/create', function(req, res) {
 
 
 
+app.get('/api/users/read', function (req, res) {
 
 
 
+    User.find({}, function (err, users) {
 
 
 
-
-app.get('/api/users/read', function(req, res) {
-
-
-
-    User.find({},function(err,users){
-
-
-
-        if(err){
+        if (err) {
 
 
 
@@ -267,10 +230,7 @@ app.get('/api/users/read', function(req, res) {
 
 
 
-
-
-
-app.get('/api/users/readbyId/:id', function(req, res, next) {
+app.get('/api/users/readbyId/:id', function (req, res, next) {
 
 
 
@@ -278,7 +238,7 @@ app.get('/api/users/readbyId/:id', function(req, res, next) {
 
 
 
-		if(err){
+        if (err) {
 
 
 
@@ -291,174 +251,6 @@ app.get('/api/users/readbyId/:id', function(req, res, next) {
 
 
         res.send(user);
-
-
-
-	});
-
-
-
-});
-
-
-
-
-
-
-
-app.get('/api/users/readbyEmail/:email', function(req, res, next) {
-
-
-
-    User.find({email:req.params.email}, function (err, user) {
-
-
-
-		if(err){
-
-
-
-            res.send(err);
-
-
-
-        }
-
-
-
-        res.send(user);
-
-
-
-	});
-
-
-
-});
-
-
-
-
-
-
-
-app.get('/api/users/readbyDNI/:dni', function(req, res, next) {
-
-
-
-    User.find({dni:req.params.dni}, function (err, user) {
-
-
-
-		if(err){
-
-
-
-            res.send(err);
-
-
-
-        }
-
-
-
-        res.send(user);
-
-
-
-	});
-
-
-
-});
-
-
-
-
-
-
-
-app.put('/api/users/update', function(req, res) {
-
-
-
-    User.findById(req.body._id, function (err, user) {  
-
-
-
-    if (err) {
-
-
-
-        res.status(500).send(err);
-
-
-
-    } else {
-
-
-
-        user.name = req.body.name || user.name;
-
-
-
-        user.lastname = req.body.lastname || user.lastname;
-
-
-
-        user.email = req.body.email || user.email;
-
-
-
-        user.password = req.body.password || user.password;
-
-
-
-        user.role = req.body.role || user.role;
-
-
-
-        user.dni = req.body.dni || user.dni;
-
-
-
-        user.address = req.body.address || user.address;
-
-
-
-        user.country = req.body.country || user.country;
-
-
-
-        user.phone = req.body.phone || user.phone;
-
-
-
-        user.save(function (err, user) {
-
-
-
-            if (err) {
-
-
-
-                res.status(500).send(err)
-
-
-
-            }
-
-
-
-            res.send(user);
-
-
-
-        });
-
-
-
-    }
 
 
 
@@ -471,10 +263,170 @@ app.put('/api/users/update', function(req, res) {
 
 
 
+app.get('/api/users/readbyEmail/:email', function (req, res, next) {
 
 
 
-app.delete('/api/users/delete', function(req, res) {
+    User.find({
+        email: req.params.email
+    }, function (err, user) {
+
+
+
+        if (err) {
+
+
+
+            res.send(err);
+
+
+
+        }
+
+
+
+        res.send(user);
+
+
+
+    });
+
+
+
+});
+
+
+
+
+app.get('/api/users/readbyDNI/:dni', function (req, res, next) {
+
+
+
+    User.find({
+        dni: req.params.dni
+    }, function (err, user) {
+
+
+
+        if (err) {
+
+
+
+            res.send(err);
+
+
+
+        }
+
+
+
+        res.send(user);
+
+
+
+    });
+
+
+
+});
+
+
+
+
+app.put('/api/users/update', function (req, res) {
+
+
+
+    User.findById(req.body._id, function (err, user) {
+
+
+
+        if (err) {
+
+
+
+            res.status(500).send(err);
+
+
+
+        } else {
+
+
+
+            user.name = req.body.name || user.name;
+
+
+
+            user.lastname = req.body.lastname || user.lastname;
+
+
+
+            user.email = req.body.email || user.email;
+
+
+
+            user.password = req.body.password || user.password;
+
+
+
+            user.role = req.body.role || user.role;
+
+
+
+            user.dni = req.body.dni || user.dni;
+
+
+
+            user.address = req.body.address || user.address;
+
+
+
+            user.country = req.body.country || user.country;
+
+
+
+            user.phone = req.body.phone || user.phone;
+
+
+
+            user.save(function (err, user) {
+
+
+
+                if (err) {
+
+
+
+                    res.status(500).send(err)
+
+
+
+                }
+
+
+
+                res.send(user);
+
+
+
+            });
+
+
+
+        }
+
+
+
+    });
+
+
+
+});
+
+
+
+
+app.delete('/api/users/delete', function (req, res) {
 
 
 
@@ -482,27 +434,27 @@ app.delete('/api/users/delete', function(req, res) {
 
 
 
-    User.findByIdAndRemove(req.query._id, function (err, user) {  
+    User.findByIdAndRemove(req.query._id, function (err, user) {
 
 
 
-    var response = {
+        var response = {
 
 
 
-        message: "User deleted",
+            message: "User deleted",
 
 
 
-        _id: user._id
+            _id: user._id
 
 
 
-    };
+        };
 
 
 
-    res.send(response);
+        res.send(response);
 
 
 
@@ -511,9 +463,6 @@ app.delete('/api/users/delete', function(req, res) {
 
 
 });
-
-
-
 
 
 
@@ -522,25 +471,25 @@ app.delete('/api/users/delete', function(req, res) {
 
 
 
-app.post('/api/users/login', function(req, res) {
+app.post('/api/users/login', function (req, res) {
 
 
 
-	console.log(req.body);
+    console.log(req.body);
 
-    query={};
+    query = {};
 
-    if(req.body.input.length>9) 
+    if (req.body.input.length > 9) {
 
-    {
+        query = {
+            email: req.body.input
+        };
 
-        query={email:req.body.input};
+    } else {
 
-    }
-
-    else{
-
-        query={dni:req.body.input};
+        query = {
+            dni: req.body.input
+        };
 
     }
 
@@ -550,7 +499,7 @@ app.post('/api/users/login', function(req, res) {
 
 
 
-		if(err){
+        if (err) {
 
 
 
@@ -562,35 +511,39 @@ app.post('/api/users/login', function(req, res) {
 
 
 
-		if(!user){
+        if (!user) {
 
 
 
-			res.send({errmsg:"Email o dni no existe"});
+            res.send({
+                errmsg: "Email o dni no existe"
+            });
 
 
 
-		}else if(user.password != req.body.password){
+        } else if (user.password != req.body.password) {
 
 
 
-			res.send({errmsg:"Password no valido"});
+            res.send({
+                errmsg: "Password no valido"
+            });
 
 
 
-		}else{
+        } else {
 
 
 
-			res.send(user);
+            res.send(user);
 
 
 
-		}
+        }
 
 
 
-  });
+    });
 
 
 
@@ -599,22 +552,19 @@ app.post('/api/users/login', function(req, res) {
 
 
 
-
-
-
 //Role API
 
 
 
-app.get('/api/roles/read', function(req, res) {
+app.get('/api/roles/read', function (req, res) {
 
 
 
-    Role.find({},function(err,roles){
+    Role.find({}, function (err, roles) {
 
 
 
-        if(err){
+        if (err) {
 
 
 
@@ -639,10 +589,7 @@ app.get('/api/roles/read', function(req, res) {
 
 
 
-
-
-
-app.get('/api/roles/readbyId/:id', function(req, res, next) {
+app.get('/api/roles/readbyId/:id', function (req, res, next) {
 
 
 
@@ -650,7 +597,7 @@ app.get('/api/roles/readbyId/:id', function(req, res, next) {
 
 
 
-		if(err){
+        if (err) {
 
 
 
@@ -666,7 +613,7 @@ app.get('/api/roles/readbyId/:id', function(req, res, next) {
 
 
 
-	});
+    });
 
 
 
@@ -675,10 +622,7 @@ app.get('/api/roles/readbyId/:id', function(req, res, next) {
 
 
 
-
-
-
-app.post('/api/roles/create', function(req, res) {
+app.post('/api/roles/create', function (req, res) {
 
 
 
@@ -686,11 +630,11 @@ app.post('/api/roles/create', function(req, res) {
 
 
 
-    role.save(function(err,addedRole){
+    role.save(function (err, addedRole) {
 
 
 
-        if(err){
+        if (err) {
 
 
 
@@ -715,58 +659,55 @@ app.post('/api/roles/create', function(req, res) {
 
 
 
+app.put('/api/roles/update', function (req, res) {
 
 
 
-app.put('/api/roles/update', function(req, res) {
+    User.findById(req.body._id, function (err, role) {
 
 
 
-    User.findById(req.body._id, function (err, role) {  
+        if (err) {
 
 
 
-    if (err) {
+            res.status(500).send(err);
 
 
 
-        res.status(500).send(err);
+        } else {
 
 
 
-    } else {
+            role.rolename = req.body.rolename || role.rolename;
 
 
 
-        role.rolename = req.body.rolename || role.rolename;
+            role.save(function (err, role) {
 
 
 
-        role.save(function (err, role) {
+                if (err) {
 
 
 
-            if (err) {
+                    res.status(500).send(err)
 
 
 
-                res.status(500).send(err)
+                }
 
 
 
-            }
+                res.send(role);
 
 
 
-            res.send(role);
+            });
 
 
 
-        });
-
-
-
-    }
+        }
 
 
 
@@ -779,52 +720,16 @@ app.put('/api/roles/update', function(req, res) {
 
 
 
-
-
-
-app.delete('/api/roles/delete', function(req, res) {
-
-
-
+app.delete('/api/roles/delete', function (req, res) {
     console.log(req.query);
-
-
-
-    User.findByIdAndRemove(req.query._id, function (err, role) {  
-
-
-
-    var response = {
-
-
-
-        message: "Role deleted",
-
-
-
-        _id: role._id
-
-
-
-    };
-
-
-
-    res.send(response);
-
-
-
+    User.findByIdAndRemove(req.query._id, function (err, role) {
+        var response = {
+            message: "Role deleted",
+            _id: role._id
+        };
+        res.send(response);
     });
-
-
-
 });
-
-
-
-
-
-
 
 // listen
 
