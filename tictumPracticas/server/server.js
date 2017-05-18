@@ -11,7 +11,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 
 // Configuration
-mongoose.connect('mongodb://172.16.112.40/tictum');
+mongoose.connect('mongodb://172.116.12.40/tictum');
 app.use(bodyParser.urlencoded({ extended: false })); // Parses urlencoded bodies
 app.use(bodyParser.json()); // Send JSON responses
 app.use(cors());
