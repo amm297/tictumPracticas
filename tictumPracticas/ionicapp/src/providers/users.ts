@@ -9,7 +9,7 @@ export class Users {
   constructor(public http: Http) {
   }
 
-  server = 'http://172.16.112.40:8080';
+  server = 'http://localhost:8080';
 
   registerUser(data) {
     return new Promise(resolve => {
@@ -46,5 +46,30 @@ export class Users {
         });
     });
   }
+
+  deleteUser(deleteUserId: String) {
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.delete(this.server + '/api/users/delete/'+deleteUserId, {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
+  modifyUser(user) {
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.put(this.server + '/api/users/update', user, {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
 }
 

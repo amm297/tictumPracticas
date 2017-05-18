@@ -33,6 +33,23 @@ export class UserformPage {
   registerUser() {
     if(this.userForm.valid){
       console.log("Registrar!");
+      if(this.user.password==this.confirmpassword) {
+        console.log("Registrando!");
+        let worker = {
+          DNI: this.user.DNI,
+          name:this.user.name,
+          lastname:this.user.lastname,
+          address:this.user.address,
+          country:this.user.country,
+          phone:this.user.phone,
+          email:this.user.email,
+          password:this.user.password,
+          role:this.user.role
+        }  
+        this.usersService.registerUser(worker);
+      }else{
+        console.log("No registrando!");
+      }
     }else{
       console.log("Formulario incorrecto!");
     }

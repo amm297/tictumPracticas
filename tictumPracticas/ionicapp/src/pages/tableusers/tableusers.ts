@@ -20,4 +20,13 @@ export class TableusersPage implements OnInit {
       console.log(this.users);
     });
   }
+
+  deleteUser(userId: String) {
+    this.usersService.deleteUser(userId);
+  }
+
+  modifyUser(user) {
+    this.usersService.modifyUser(user);
+  }
+  
 }

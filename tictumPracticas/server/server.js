@@ -46,7 +46,7 @@ var cors = require('cors');
 
 
 
-mongoose.connect('mongodb://172.16.112.40/tictum');
+mongoose.connect('mongodb://localhost/tictum');
 
 
 
@@ -98,7 +98,7 @@ var User = mongoose.model('User',{
 
 
 
-    dni: String,
+    DNI: String,
 
 
 
@@ -145,7 +145,7 @@ var Role = mongoose.model('Role',{
 //User API
 
 
-
+// CREAR EMPLEADO
 app.post('/api/users/create', function(req, res) {
 
 
@@ -181,10 +181,168 @@ app.post('/api/users/create', function(req, res) {
 });
 
 
+// VER EMPLEADOS
+app.get('/api/users/read', function(req, res) {
 
 
 
+    User.find({},function(err,users){
 
+
+
+        if(err){
+
+
+
+            res.send(err);
+
+
+
+        }
+
+
+
+        res.send(users);
+
+
+
+    });
+
+
+
+});
+
+
+// ELIMINAR EMPLEADO
+app.delete('/api/users/delete/:id', function(req, res) {
+
+
+
+    console.log(req.params);
+
+
+
+    User.findByIdAndRemove(req.params.id, req.body, function (err, user) {  
+
+
+
+    var response = {
+
+
+
+        message: "User deleted",
+
+
+
+        _id: user._id
+
+
+
+    };
+
+
+
+    res.send(response);
+
+
+
+    });
+
+
+
+});
+
+
+// MODIFICAR EMPLEADO
+app.put('/api/users/update', function(req, res) {
+
+
+
+    User.findById(req.body._id, function (err, user) {  
+
+
+
+    if (err) {
+
+
+
+        res.status(500).send(err);
+
+
+
+    } else {
+
+
+
+        user.name = req.body.name || user.name;
+
+
+
+        user.lastname = req.body.lastname || user.lastname;
+
+
+
+        user.email = req.body.email || user.email;
+
+
+
+        user.password = req.body.password || user.password;
+
+
+
+        user.role = req.body.role || user.role;
+
+
+
+        user.dni = req.body.dni || user.dni;
+
+
+
+        user.address = req.body.address || user.address;
+
+
+
+        user.country = req.body.country || user.country;
+
+
+
+        user.phone = req.body.phone || user.phone;
+
+
+
+        user.save(function (err, user) {
+
+
+
+            if (err) {
+
+
+
+                res.status(500).send(err)
+
+
+
+            }
+
+
+
+            res.send(user);
+
+
+
+        });
+
+
+
+    }
+
+
+
+    });
+
+
+
+});
 
 
 
@@ -234,35 +392,7 @@ app.post('/api/users/create', function(req, res) {
 
 
 
-app.get('/api/users/read', function(req, res) {
 
-
-
-    User.find({},function(err,users){
-
-
-
-        if(err){
-
-
-
-            res.send(err);
-
-
-
-        }
-
-
-
-        res.send(users);
-
-
-
-    });
-
-
-
-});
 
 
 
@@ -378,139 +508,15 @@ app.get('/api/users/readbyDNI/:dni', function(req, res, next) {
 
 
 
-app.put('/api/users/update', function(req, res) {
 
 
 
-    User.findById(req.body._id, function (err, user) {  
 
 
 
-    if (err) {
 
 
 
-        res.status(500).send(err);
-
-
-
-    } else {
-
-
-
-        user.name = req.body.name || user.name;
-
-
-
-        user.lastname = req.body.lastname || user.lastname;
-
-
-
-        user.email = req.body.email || user.email;
-
-
-
-        user.password = req.body.password || user.password;
-
-
-
-        user.role = req.body.role || user.role;
-
-
-
-        user.dni = req.body.dni || user.dni;
-
-
-
-        user.address = req.body.address || user.address;
-
-
-
-        user.country = req.body.country || user.country;
-
-
-
-        user.phone = req.body.phone || user.phone;
-
-
-
-        user.save(function (err, user) {
-
-
-
-            if (err) {
-
-
-
-                res.status(500).send(err)
-
-
-
-            }
-
-
-
-            res.send(user);
-
-
-
-        });
-
-
-
-    }
-
-
-
-    });
-
-
-
-});
-
-
-
-
-
-
-
-app.delete('/api/users/delete', function(req, res) {
-
-
-
-    console.log(req.query);
-
-
-
-    User.findByIdAndRemove(req.query._id, function (err, user) {  
-
-
-
-    var response = {
-
-
-
-        message: "User deleted",
-
-
-
-        _id: user._id
-
-
-
-    };
-
-
-
-    res.send(response);
-
-
-
-    });
-
-
-
-});
 
 
 
