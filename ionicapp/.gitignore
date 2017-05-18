@@ -28,7 +28,8 @@ plugins/android.json
 plugins/ios.json
 www/
 $RECYCLE.BIN/
-
+tictumPracticas/server/node_modules/ 
+tictumPracticas/ionicapp/node_modules/ 
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
