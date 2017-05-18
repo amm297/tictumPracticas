@@ -5,14 +5,12 @@ const hasValidFormat = (value: string): boolean => {
 }
 
 const isValidDNI = (value: string): boolean => {
-  console.log(value);
+  
   if(value){
     if (value.length == 9){
       var dniNumber: number = parseInt(value.substring(0,8));
       var validLetter: string = getValidLetterByDNINumber(dniNumber);
       var currentLetter = value.substring(8,value.length).toUpperCase();
-
-      console.log("CurrentLetter: " + currentLetter + ", ValidLetter: " + validLetter);
       return currentLetter === validLetter;
     }
   }
@@ -21,7 +19,7 @@ const isValidDNI = (value: string): boolean => {
 };
 
 var getValidLetterByDNINumber = (dniNumber: number) : string => {
-  console.log(dniNumber);
+  
   var letterIndex = dniNumber % 23;
   var validLetters = 'TRWAGMYFPDXBNJZSQVHLCKET';
 

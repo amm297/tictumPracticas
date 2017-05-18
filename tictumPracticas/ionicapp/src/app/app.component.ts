@@ -9,7 +9,7 @@ import { HomePage } from '../pages/home/home';
 })
 export class MyApp {
   // set the rootPage to the first page we want displayed
-  public rootPage: any = UserformPage;
+  public rootPage: any = HomePage;
 
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

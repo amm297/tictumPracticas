@@ -13,7 +13,7 @@
       <ion-label floating>dni</ion-label>
       <ion-input [(ngModel)]="user.dni" type="text" formControlName="dni"></ion-input>
     </ion-item>
-    <ion-item *ngIf="!userForm.controls.DNI.valid  && (userForm.controls.DNI.dirty || submitAttempt)">
+    <ion-item *ngIf="!userForm.controls.dni.valid  && (userForm.controls.dni.dirty || submitAttempt)">
       <p style="color:red;">Please enter a valid DNI.</p>
     </ion-item>
 
