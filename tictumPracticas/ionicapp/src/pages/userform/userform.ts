@@ -17,7 +17,7 @@ export class UserformPage {
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private usersService: Users, private formBuilder: FormBuilder) {
     this.userForm = formBuilder.group({
-      DNI: ['', Validators.required],
+      dni: ['', Validators.required],
       name: ['', Validators.required],
       lastname: ['', Validators.required],
       address: ['', Validators.required],
@@ -32,7 +32,9 @@ export class UserformPage {
 
   registerUser() {
     if(this.userForm.valid){
-      console.log("Registrar!");
+      this.usersService.registerUser(this.user).then((data)=>{
+        this.navCtrl.pop();
+      });
     }else{
       console.log("Formulario incorrecto!");
     }

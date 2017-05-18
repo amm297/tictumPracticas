@@ -1,6 +1,7 @@
 import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
 import {AdminPage} from "../pages/admin/admin";
+import {UserPage} from "../pages/user/user";
 import {TableusersPage} from "../pages/tableusers/tableusers";
 import {UserformPage} from "../pages/userform/userform";
 import {Users} from "../providers/users";
@@ -24,7 +25,8 @@ import {SplashScreen} from "@ionic-native/splash-screen";
     TableusersPage,
     UserformPage,
     TablerolesPage,
-    ResetPassword
+    ResetPassword,
+    UserPage
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ import {SplashScreen} from "@ionic-native/splash-screen";
     TableusersPage,
     UserformPage,
     TablerolesPage,
-    ResetPassword
+    ResetPassword,
+    UserPage
   ],
   providers: [
     StatusBar,
