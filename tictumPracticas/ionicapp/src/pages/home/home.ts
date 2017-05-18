@@ -19,9 +19,13 @@ export class HomePage {
     password: ''
   };
   loginForm;
+  remember;
 
   constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public alertCtrl: AlertController, private usersService: Users) {
     //console.log('Paso constructor');
+    this.user.input = localStorage.getItem("email");
+    this.user.password = localStorage.getItem("pwd");
+    
     this.loginForm = formBuilder.group({
       input: [''  , Validators.required],
       password: ['', Validators.required],
@@ -31,15 +35,7 @@ export class HomePage {
   }
 
    ionViewDidLoad() {
-     this.checkStorage();
-  }
-
-  checkStorage(){
-    if(localStorage.getItem("email") != null && localStorage.getItem("pwd") != null){
-      this.user.input = localStorage.getItem("email");
-      this.user.password = localStorage.getItem("pwd");
-      this.userLogin();
-    }
+     this.userLogin();
   }
 
 
@@ -59,8 +55,10 @@ export class HomePage {
         else {
           console.log("Login OK");
           let logUser : User = new User(data);
-          localStorage.setItem("email", logUser.email);
-          localStorage.setItem("pwd",logUser.password);
+          if(this.remember){
+            localStorage.setItem("email", logUser.email);
+            localStorage.setItem("pwd",logUser.password);
+          }
           if(logUser.isAdmin()) this.navCtrl.push(AdminPage) ;
           else this.navCtrl.push(UserPage) ;
         }
