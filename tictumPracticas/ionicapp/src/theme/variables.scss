@@ -1,27 +1,33 @@
 $font-path: "../assets/fonts";
 
 @import "ionic.globals";
-@import "ionic.theme.default";
+@import "ionic.theme.dark";
 @import "ionic.ionicons";
 @import "roboto";
 @import "noto-sans";
 
 $base:#8ddbe0;
-$second:#d3ffe1;
+$second:#d3ffe9;
 $interf:#4b5043;
-
+$danger: #FF0000;
 
 
 $colors: (
 	primary: $base,
-	secondary: $second);
+	secondary: $second,
+	danger: $danger);
+
+/*.background, .background .pane, .background .item, .background .item-complex .item-content {
+    background-color: black;
+}*/
 
 $toolbar-ios-background:($interf);
 $toolbar-md-background:($interf);
 $toolbar-wp-background:($interf);
 
 ion-content{
-	background-image: url("../img/bckgrnd_02.png");
+	background-image: url("../img/bckgrnd_02_grayscale.png");
+	background-size: 100%;
 }
 
 .logo{
