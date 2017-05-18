@@ -33,5 +33,25 @@
             </button>
           </ion-item-options>
     -->
+    <table border="3" align="center"> 
+    <tr>
+      <td>id_nombre<td>
+      <td>
+       <select name="role" id="role"  >
+              <option value="Admin">Admin</option>
+              <option value="Role_1">role_1</option>
+              <option value="Role_2">role_2</option>
+              <option value="Role_3">role_3</option>
+         </select></td>
+    </tr>
+    <tr *ngFor="let rol of roles">
+      <td>{{rol.name}}</td>
+      <td>
+       
+      </td>
+      </tr>
+    </table>  
+
+
   </ion-list>
 </ion-content>

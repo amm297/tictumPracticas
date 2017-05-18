@@ -9,7 +9,9 @@ export class Users {
   constructor(public http: Http) {
   }
 
-  server = 'http://172.16.112.40:8080';
+  server = 'http://192.168.5.26:8080';
+
+  currentUser: string;
 
   registerUser(data) {
     return new Promise(resolve => {
@@ -30,6 +32,7 @@ export class Users {
       this.http.post(this.server + '/api/users/login', JSON.stringify(data), {headers: headers})
         .map(res => res.json())
         .subscribe(data => {
+        this.currentUser=data.nombre;
           resolve(data);
         });
     });

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>verempleados</ion-title>
+    <ion-title>{{employee}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,7 +15,7 @@
 
 
 <ion-content>
-        <table border="2">
+        <table border="2" aling="center">
         <tr>
           <td>Name</td>
           <td>Lastname</td>
@@ -29,17 +29,17 @@
           
           </tr>
        
-        <tr *ngFor="let empleado of empleados">
+        <tr *ngFor="let user of users">
           
-          <td>{{empleado.name}}</td>
-          <td>{{empleado.lastname}}</td>
-          <td>{{empleado.email}}</td>
-          <td>{{empleado.password}}</td>
-          <td>{{empleado.role}}</td>
-          <td>{{empleado.dni}}</td>
-          <td>{{empleado.address}}</td>
-          <td>{{empleado.country}}</td>
-          <td>{{empleado.phone}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.lastname}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.password}}</td>
+          <td>{{user.role}}</td>
+          <td>{{user.dni}}</td>
+          <td>{{user.address}}</td>
+          <td>{{user.country}}</td>
+          <td>{{user.phone}}</td>
           
           
           </tr>

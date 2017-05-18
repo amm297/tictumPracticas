@@ -13,6 +13,9 @@ import {IonicApp, IonicErrorHandler, IonicModule} from "ionic-angular";
 import {StatusBar} from "@ionic-native/status-bar";
 import {SplashScreen} from "@ionic-native/splash-screen";
 
+//importar el verusuarios 
+import { Employee } from '../pages/employee/employee';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import {SplashScreen} from "@ionic-native/splash-screen";
     AdminPage,
     TableusersPage,
     UserformPage,
-    TablerolesPage
+    TablerolesPage,
+    Employee
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,8 @@ import {SplashScreen} from "@ionic-native/splash-screen";
     AdminPage,
     TableusersPage,
     UserformPage,
-    TablerolesPage
+    TablerolesPage,
+    Employee
   ],
   providers: [
     StatusBar,
