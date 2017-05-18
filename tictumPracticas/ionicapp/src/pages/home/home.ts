@@ -25,6 +25,7 @@ export class HomePage {
   }
 
   userLogin() {
+    console.log("Comprobando Login");
     if (this.loginForm.valid) {
       this.usersService.loginUser(this.user).then((data) => {
         if (data.hasOwnProperty('errmsg')) {

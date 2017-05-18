@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {User} from "../models/user";
+import { User } from "../models/user";
 
 @Injectable()
 export class Users {
@@ -9,7 +9,7 @@ export class Users {
   constructor(public http: Http) {
   }
 
-  server = 'http://172.16.112.40:8080';
+  server = 'http://192.168.5.26:8080';
 
   registerUser(data) {
     return new Promise(resolve => {

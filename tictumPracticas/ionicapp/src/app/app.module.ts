@@ -6,6 +6,8 @@ import {UserformPage} from "../pages/userform/userform";
 import {Users} from "../providers/users";
 import {TablerolesPage} from "../pages/tableroles/tableroles";
 import {Roles} from "../providers/roles";
+import {ResetPassword} from "../pages/reset-password/reset-password";
+
 import {ErrorHandler, NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {HttpModule} from "@angular/http";

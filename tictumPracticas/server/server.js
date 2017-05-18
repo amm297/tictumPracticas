@@ -46,7 +46,7 @@ var cors = require('cors');
 
 
 
-mongoose.connect('mongodb://172.16.112.40/tictum');
+mongoose.connect('mongodb://192.168.5.26/tictum');
 
 
 
