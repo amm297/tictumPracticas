@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {NavController,AlertController} from 'ionic-angular';
+import {NavController, AlertController} from 'ionic-angular';
 import {Validators, FormBuilder} from '@angular/forms';
-import {Users} from '../../providers/users';
+import {Users} from "../../providers/users";
+import {AdminPage} from "../admin/admin";
 
 
 @Component({
@@ -11,14 +12,14 @@ import {Users} from '../../providers/users';
 export class HomePage {
 
   user = {
-    email: '',
+    input: '',
     password: ''
   };
   loginForm;
 
-  constructor(public nav: NavController, public usersService: Users, public formBuilder: FormBuilder,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public alertCtrl: AlertController, private usersService: Users) {
     this.loginForm = formBuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.email])],
+      input: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
@@ -29,15 +30,19 @@ export class HomePage {
         if (data.hasOwnProperty('errmsg')) {
           let alert = this.alertCtrl.create({
             title: 'Oops!',
-            subTitle: 'Invalid email or password.',
+            subTitle: data['errmsg'],
             buttons: ['Ok']
           });
           alert.present();
-        } else {
-          console.log("Login OK");
         }
+        else {
+          console.log("Login OK");
+          this.navCtrl.push(AdminPage);
+        }
+        console.log(data);
       });
     }
+
   }
 
 }
