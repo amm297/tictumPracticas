@@ -6,7 +6,8 @@ import {Users} from "../../providers/users";
 
 import {PasswordValidator} from  './passwordValidator';
 
-import { UUID } from 'angular2-uuid';
+
+import {DniValidator} from  './dniValidator';
 
 @IonicPage()
 @Component({
@@ -25,9 +26,9 @@ export class UserformPage {
     
 
     this.userForm = formBuilder.group({
-      DNI: ['', Validators.compose([Validators.required])],
       name: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'),Validators.required])],
       lastname: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'),Validators.required])],
+      DNI: ['', Validators.compose([Validators.required, DniValidator.isValid, DniValidator.hasValidFormat])],
       address: ['', Validators.required],
       country: ['', Validators.required],
       phone: ['',Validators.compose([Validators.minLength(8),Validators.pattern('[0-9()+-]*'),Validators.required])],

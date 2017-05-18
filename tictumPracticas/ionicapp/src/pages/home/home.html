@@ -8,11 +8,12 @@
 <ion-content padding>
   <form [formGroup]="loginForm" (ngSubmit)="userLogin()">
     <ion-item>
-      <ion-label floating>
         <ion-icon name="at"></ion-icon>
-        Email o Dni
-      </ion-label>
-      <ion-input [(ngModel)]="user.input" type="text" formControlName="input"></ion-input>
+        <!-- <ion-label color="primary" stacked>Email or DNI (12354678X): -->
+        <ion-label floating>
+        Email or DNI (12354678X):
+        </ion-label>
+      <ion-input [(ngModel)]="user.input" type="text" formControlName="input"></ion-input> <!-- placeholder="12354678X" -->
     </ion-item>
     <ion-item *ngIf="!loginForm.controls.input.valid && loginForm.controls.input.touched">
       <p style="color:red;">Introduce a valid email or Dni</p>
