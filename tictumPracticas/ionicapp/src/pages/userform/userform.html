@@ -54,11 +54,12 @@
       <ion-input [(ngModel)]="confirmpassword" type="password" formControlName="confirmpassword"></ion-input>
     </ion-item>
 
+
     <ion-item>
       <ion-label floating>Rol</ion-label>
       <ion-input [(ngModel)]="user.role" type="text" formControlName="role"></ion-input>
     </ion-item>
 
-    <button ion-button type="submit">Registrar Usuario</button>
+    <button ion-button type="submit" [disabled]="!this.userForm.valid">Registrar Usuario</button>
   </form>
 </ion-content>
