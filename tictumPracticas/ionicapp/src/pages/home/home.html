@@ -5,28 +5,28 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
-<ion-img width="152" height="152" src="../img/logoex2_03.png" class="logo"></ion-img>
+<ion-content padding class="homecent">
   <form [formGroup]="loginForm" (ngSubmit)="userLogin()">
-    <ion-item>
-      <ion-label floating>
+  <ion-img width="152" height="152" src="../img/logoex2_03.png" class="logo"></ion-img>
+    <ion-item class="ioninput">
+      <ion-label>
         <ion-icon name="at"></ion-icon>
         Email o Dni
       </ion-label>
       <ion-input [(ngModel)]="user.input" type="text" formControlName="input"></ion-input>
     </ion-item>
-    <ion-item *ngIf="!loginForm.controls.input.valid && loginForm.controls.input.touched">
-      <p style="color:red;">Introduce a valid email or Dni</p>
+    <ion-item *ngIf="!loginForm.controls.input.valid && loginForm.controls.input.touched" class="validator">
+      <p>Introduce a valid email or Dni</p>
     </ion-item>
-    <ion-item>
-      <ion-label floating>
+    <ion-item class="ioninput">
+      <ion-label>
         <ion-icon name="key"></ion-icon>
         Password
       </ion-label>
       <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>
     </ion-item>
-    <ion-item *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched">
-      <p style="color:red;">Introduce a valid password</p>
+    <ion-item *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched" class="validator">
+      <p>Introduce a valid password</p>
     </ion-item>
     <button ion-button margin-top="10px" type="submit" full>Login</button>
   </form>

@@ -7,19 +7,20 @@ $font-path: "../assets/fonts";
 @import "noto-sans";
 
 $base:#8ddbe0;
-$second:#d3ffe9;
+$second:#9bc4bc;
 $interf:#4b5043;
 $danger: #FF0000;
+$light: #d3ffe9;
+$dark: #090909;
 
 
 $colors: (
 	primary: $base,
 	secondary: $second,
-	danger: $danger);
+	danger: $danger,
+	light: $light,
+	dark: $dark);
 
-/*.background, .background .pane, .background .item, .background .item-complex .item-content {
-    background-color: black;
-}*/
 
 $toolbar-ios-background:($interf);
 $toolbar-md-background:($interf);
@@ -34,4 +35,14 @@ ion-content{
 	background-color:rgba(0,0,0,0.0);
 	margin: 0 auto;
 	display:block;
+}
+.scroll-content{
+  display: table !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+.scroll {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
 }
