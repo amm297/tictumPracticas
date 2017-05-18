@@ -31,7 +31,7 @@ export class UserformPage {
       address: ['', Validators.required],
       country: ['', Validators.required],
       phone: ['',Validators.compose([Validators.minLength(8),Validators.pattern('[0-9()+-]*'),Validators.required])],
-      email: ['', Validators.required],
+      email: ['',Validators.compose([Validators.minLength(8),Validators.email,Validators.required])],
       password: ['', Validators.compose([Validators.minLength(8),Validators.required])],
       confirmpassword: ['', PasswordValidator.isEqual],
  
