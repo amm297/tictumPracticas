@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Login
+      Bienvenido
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -28,6 +28,6 @@
     <ion-item *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched" class="validator">
       <p>Introduce a valid password</p>
     </ion-item>
-    <button ion-button margin-top="10px" type="submit" full>Login</button>
+    <button ion-button margin-top="10px" type="submit" block>Login</button>
   </form>
 </ion-content>
