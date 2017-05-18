@@ -10,18 +10,62 @@ import {Roles} from '../../providers/roles';
 export class TablerolesPage {
 
   roles: any;
+  displayInput: boolean = false;
+  displayButton: string = '';
+  role:{rolename:string} = {rolename:''};
+  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private rolesService: Roles) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public rolesService: Roles) {
   }
 
   ngOnInit() {
-    this.getRoleList();
+    this.getAllRoles();
   }
 
-  getRoleList() {
+  getAllRoles() {
     this.rolesService.getAllRoles().then((data) => {
       this.roles = data;
-      console.log(this.roles);
+    });
+  }
+  
+  showInput(){
+    this.displayButton = 'add';
+    this.displayInput = true;
+  }
+  closeInput(){
+    this.displayInput = false;
+    this.getAllRoles();
+  }
+
+  addRole(){
+    if(this.role.rolename !== ''){
+      this.rolesService.addRole(this.role).then(()=>{ 
+      this.closeInput();
+      this.role.rolename ='';
+      this.getAllRoles(); 
+      });
+    }
+     
+  }
+
+  editRole(role){
+    this.role = role;
+    this.displayButton = 'edit';
+    this.displayInput = true;
+  }
+
+  updateRole(){
+     if(this.role.rolename !== ''){
+      this.rolesService.updateRole(this.role).then(()=>{ 
+        this.closeInput();
+        this.role.rolename='';     
+        this.getAllRoles(); 
+      });
+    }
+  }
+  deleteRole(role){
+   this.rolesService.removeRole(role).then(()=>{ 
+      this.getAllRoles(); 
     });
   }
 
