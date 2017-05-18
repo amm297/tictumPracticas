@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
 import {NavController, AlertController} from 'ionic-angular';
 import {Validators, FormBuilder} from '@angular/forms';
+
 import {Users} from "../../providers/users";
 import {AdminPage} from "../admin/admin";
-
+import {ResetPassword} from "../reset-password/reset-password";
 
 @Component({
   selector: 'home-page',
@@ -25,8 +26,10 @@ export class HomePage {
   }
 
   userLogin() {
+    console.log("Comprobando Login");
     if (this.loginForm.valid) {
       this.usersService.loginUser(this.user).then((data) => {
+        console.log(data);
         if (data.hasOwnProperty('errmsg')) {
           let alert = this.alertCtrl.create({
             title: 'Oops!',
@@ -43,6 +46,11 @@ export class HomePage {
       });
     }
 
+  }
+
+  goToResetPassword() {
+    console.log("Cambiar contraseña del email "+this.user.input);
+    this.navCtrl.push(ResetPassword);
   }
 
 }
