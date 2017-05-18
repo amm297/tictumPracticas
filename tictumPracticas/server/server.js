@@ -380,7 +380,7 @@ app.get('/api/users/readbyDNI/:dni', function(req, res, next) {
 
 app.put('/api/users/update', function(req, res) {
 
-
+    
 
     User.findById(req.body._id, function (err, user) {  
 
@@ -596,8 +596,91 @@ app.post('/api/users/login', function(req, res) {
 
 });
 
+//Reset password API
+app.put('/api/users/resetpassw', function(req, res) {
 
 
+console.log("HOLA");
+    console.log(req.body);
+
+    query={};
+
+    if(req.body.input.length >9) 
+
+    {
+
+        query={email:req.body.input};
+
+    }
+
+    else{
+
+        query={dni:req.body.input};
+
+    }
+
+
+
+    User.findOne(query, function (err, user) {
+
+
+
+        if(err){
+
+
+
+            res.send(err);
+
+
+
+        }
+
+
+
+        if(!user){
+
+
+
+            res.send({errmsg:"Email o dni no existe"});
+
+
+
+        }else {
+
+            user.password = req.body.password || user.password;
+
+            user.save(function (err, user) {
+
+
+
+                if (err) {
+
+
+
+                    res.status(500).send(err)
+
+
+
+                }
+
+
+
+            res.send(user);
+
+
+
+            });
+
+
+        }
+
+
+
+  });
+
+
+
+});
 
 
 

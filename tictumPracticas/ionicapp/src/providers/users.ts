@@ -35,6 +35,22 @@ export class Users {
     });
   }
 
+ /*Funcion para cambiar la contraseña, comprobamos que el email/dni existe en la base de datos y después le añadimos la nueva contraseña.*/
+  newPassword(data){
+    console.log(data);
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.put(this.server + '/api/users/resetpassw', JSON.stringify(data), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          console.log("5");
+          resolve(data);
+        });
+    });
+  }
+
+
   getAllUsers() {
     return new Promise(resolve => {
       let headers = new Headers();

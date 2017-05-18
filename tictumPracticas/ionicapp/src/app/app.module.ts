@@ -23,7 +23,8 @@ import {SplashScreen} from "@ionic-native/splash-screen";
     AdminPage,
     TableusersPage,
     UserformPage,
-    TablerolesPage
+    TablerolesPage,
+    ResetPassword
   ],
   imports: [
     BrowserModule,
@@ -37,7 +38,8 @@ import {SplashScreen} from "@ionic-native/splash-screen";
     AdminPage,
     TableusersPage,
     UserformPage,
-    TablerolesPage
+    TablerolesPage,
+    ResetPassword
   ],
   providers: [
     StatusBar,
