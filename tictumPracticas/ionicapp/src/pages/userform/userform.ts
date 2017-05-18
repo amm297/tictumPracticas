@@ -17,7 +17,8 @@ import {DniValidator} from  './dniValidator';
 export class UserformPage {
 
 
-  static uuid = UUID.UUID();
+
+
   user: User = new User();
   confirmpassword: string;
   userForm;
