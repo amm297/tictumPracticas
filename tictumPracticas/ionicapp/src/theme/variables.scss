@@ -1,41 +1,41 @@
-$font-path: "../assets/fonts";
-
-@import "ionic.globals";
-@import "ionic.theme.default";
-
-
-// Ionicons
-// --------------------------------------------------
-// The premium icon font for Ionic. For more info, please see:
-// http://ionicframework.com/docs/v2/ionicons/
-
-@import "ionic.ionicons";
-
-
-// Fonts
-// --------------------------------------------------
-
-@import "roboto";
-@import "noto-sans";
-
-$base:#8ddbe0;
-$second:#d3ffe1;
-$interf:#4b5043;
-
-$colors: (
-	primary: $base,
-	secondary: $second);
-
-$toolbar-ios-background:($interf);
-$toolbar-md-background:($interf);
-$toolbar-wp-background:($interf);
-
-ion-content{
-	background-image: url("../img/bckgrnd_02.png");
-}
-
-.logo{
-	background-color:rgba(0,0,0,0.0);
-	margin: 0 auto;
-	display:block;
+$font-path: "../assets/fonts";
+
+@import "ionic.globals";
+@import "ionic.theme.default";
+
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/v2/ionicons/
+
+@import "ionic.ionicons";
+
+
+// Fonts
+// --------------------------------------------------
+
+@import "roboto";
+@import "noto-sans";
+
+$base:#8ddbe0;
+$second:#d3ffe1;
+$interf:#4b5043;
+
+$colors: (
+	primary: $base,
+	secondary: $second);
+
+$toolbar-ios-background:($interf);
+$toolbar-md-background:($interf);
+$toolbar-wp-background:($interf);
+
+ion-content{
+	background-image: url("../img/bckgrnd_02.png");
+}
+
+.logo{
+	background-color:rgba(0,0,0,0.0);
+	margin: 0 auto;
+	display:block;
 }
