@@ -4,6 +4,8 @@ import {Validators, FormBuilder} from '@angular/forms';
 import {User} from "../../models/user";
 import {Users} from "../../providers/users";
 
+import {DniValidator} from  './dniValidator';
+
 @IonicPage()
 @Component({
   selector: 'page-userform',
@@ -17,13 +19,13 @@ export class UserformPage {
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private usersService: Users, private formBuilder: FormBuilder) {
     this.userForm = formBuilder.group({
-      DNI: ['', Validators.required],
+      DNI: ['', Validators.compose([Validators.required, DniValidator.isValid, DniValidator.hasValidFormat])],
       name: ['', Validators.required],
       lastname: ['', Validators.required],
       address: ['', Validators.required],
       country: ['', Validators.required],
       phone: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', Validators.required, Validators.email],
       password: ['', Validators.required],
       confirmpassword: ['', Validators.required],
       role: ['', Validators.required]
