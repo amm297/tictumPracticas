@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TableusersPage} from "../tableusers/tableusers";
 import {UserformPage} from "../userform/userform";
 import {TablerolesPage} from "../tableroles/tableroles";
+import {hollidaysPage} from "../hollidays/hollidays";
+
+
 
 @IonicPage()
 @Component({
@@ -24,6 +27,11 @@ export class AdminPage {
 
   onClickAddUser(){
     this.navCtrl.push(UserformPage);
+  }
+
+
+  onClickCalendario(){
+    this.navCtrl.push(hollidaysPage);
   }
 
 }
