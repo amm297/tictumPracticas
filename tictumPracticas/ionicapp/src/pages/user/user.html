@@ -1,0 +1,26 @@
+<ion-header>
+<ion-navbar>
+    <ion-title>
+      Usuario
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="logout()">
+        <ion-icon name="lock"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+<!-- Modificado Alma en proceso -->
+	<ion-card-content>
+			<ion-list>
+				<ion-item><input type="text" name="dni" [(ngModel)]="user.dni"></ion-item>
+				<ion-item><input type="email" name="email" [(ngModel)]="user.email"></ion-item>
+				<ion-item><input type="text" name="country" [(ngModel)]="user.country"></ion-item>
+				<ion-item><input type="text" name="address" [(ngModel)]="user.address"></ion-item>
+				<ion-item><input type="number" name="phone" [(ngModel)]="user.phone"></ion-item>
+			</ion-list>
+	</ion-card-content>
+</ion-content>

@@ -1,37 +1,32 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Users
+      Table Users
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
 
-	<table>
-		<tr>
-			<td>DNI</td>
-			<td>Nombre</td>
-			<td>Apellidos</td>
-			<td>Dirección</td>
-			<td>Localidad</td>
-			<td>Teléfono</td>
-			<td>E-mail</td>
-			<td>Password</td>
-			<td>Rol</td>
-		</tr>
-		<tr *ngFor="let user of users">
-			<td><input type="text" name="DNI" [(ngModel)]="user.DNI"></td>
-			<td><input type="text" name="name" [(ngModel)]="user.name"></td>
-			<td><input type="text" name="lastname" [(ngModel)]="user.lastname"></td>
-			<td><input type="text" name="address" [(ngModel)]="user.address"></td>
-			<td><input type="text" name="country" [(ngModel)]="user.country"></td>
-			<td><input type="number" name="phone" [(ngModel)]="user.phone"></td>
-			<td><input type="email" name="email" [(ngModel)]="user.email"></td>
-			<td><input type="password" name="password" [(ngModel)]="user.password"></td>
-			<td><input type="text" name="role" [(ngModel)]="user.role"></td>
-			<td><button ion-button (click)="modifyUser(user)"><ion-icon name="users" item-left></ion-icon>Modificar empleado</button></td>
-			<td><button ion-button (click)="deleteUser(user._id)"><ion-icon name="users" item-left></ion-icon>Eliminar empleado</button></td>
-		</tr>
-	</table>
+	<ion-card *ngFor="let user of users">
+		<ion-card-header>
+			{{user.name }} {{user.lastname}} <span  class="item-note">{{user.role  }}</span>
+		</ion-card-header>
+		<ion-card-content>
+			<ion-list>
+				<ion-item>{{user.dni}}</ion-item>
+				<ion-item>{{user.email}}</ion-item>
+				<ion-item>{{user.country}}</ion-item>
+				<ion-item>{{user.address}}</ion-item>
+				<ion-item>{{user.phone}}</ion-item>
+			</ion-list>
+			
+
+		</ion-card-content>
+		
+			<button ion-button clear icon-only color="warning"> <ion-icon name="create"></ion-icon> </button>
+			<button ion-button clear icon-only color="danger"> <ion-icon name="trash"></ion-icon> </button>
+		
+
+	</ion-card>
 
 </ion-content>

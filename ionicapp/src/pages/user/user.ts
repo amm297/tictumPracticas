@@ -1,7 +1,12 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {User} from "../../models/user";
-import {Users} from "../../providers/users";
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+/**
+ * Generated class for the UserPage page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
 @IonicPage()
 @Component({
   selector: 'page-user',
@@ -9,16 +14,11 @@ import {Users} from "../../providers/users";
 })
 export class UserPage {
 
-	user:any;
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-getUser() {
-    if(this.user.valid){
-      console.log("operario!");
-    }else{
-      console.log("Formulario incorrecto!");
-    }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad UserPage');
   }
+
 }

@@ -9,7 +9,7 @@ import {Users} from "../../providers/users";
 })
 export class TableusersPage implements OnInit {
 
-  users: any;
+  users:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private usersService: Users) {
   }
@@ -20,12 +20,4 @@ export class TableusersPage implements OnInit {
       console.log(this.users);
     });
   }
-deleteUser(userId: String) {
-    this.usersService.deleteUser(userId);
-  }
-
-  modifyUser(user) {
-    this.usersService.modifyUser(user);
-  }
-  
 }

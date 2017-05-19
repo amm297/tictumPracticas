@@ -1,10 +1,40 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Table Users
+      Gestión de Usuarios
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
+<!-- Gonzalo -->
+	<ion-card *ngFor="let user of users">
+		<ion-card-header>
+			<input type="text" name="name" [(ngModel)]="user.name"> <input type="text" name="lastname" [(ngModel)]="user.lastname"> 
+			<span  class="item-note">
+				<ion-item>
+					<ion-select [(ngModel)]="user.role">
+    					<ion-option *ngFor="let role of roles" value="{{role.rolename}}">{{role.rolename}}</ion-option>
+  					</ion-select>
+  				</ion-item>
+			</span>
+		</ion-card-header>
+<!-- Gonzalo -->
+		<ion-card-content>
+			<ion-list>
+				<ion-item><input type="text" name="dni" [(ngModel)]="user.dni"></ion-item>
+				<ion-item><input type="email" name="email" [(ngModel)]="user.email"></ion-item>
+				<ion-item><input type="text" name="country" [(ngModel)]="user.country"></ion-item>
+				<ion-item><input type="text" name="address" [(ngModel)]="user.address"></ion-item>
+				<ion-item><input type="number" name="phone" [(ngModel)]="user.phone"></ion-item>
+			</ion-list>
+			
+
+		</ion-card-content>
+		
+			<button ion-button clear icon-only color="warning" (click)="modifyUser(user)"> <ion-icon name="create"></ion-icon> </button>
+			<button ion-button clear icon-only color="danger" (click)="deleteUser(user._id)"> <ion-icon name="trash"></ion-icon> </button>
+		
+
+	</ion-card>
 
 </ion-content>
