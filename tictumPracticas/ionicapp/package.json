@@ -1,7 +1,7 @@
 {
   "name": "ionic-app-base",
   "version": "0.0.0",
-  "author": "Javier Celada",
+  "author": "Grupo Prácticas",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",

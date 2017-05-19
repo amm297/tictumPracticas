@@ -16,34 +16,32 @@ import {DniValidator} from  './dniValidator';
 })
 export class UserformPage {
 
-
-
-
   user: User = new User();
   confirmpassword: string;
   userForm;
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private usersService: Users, private formBuilder: FormBuilder) {
-    
+     
 
     this.userForm = formBuilder.group({
       name: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'),Validators.required])],
       lastname: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'),Validators.required])],
-      DNI: ['', Validators.compose([Validators.required, DniValidator.isValid, DniValidator.hasValidFormat])],
+      dni: ['', Validators.compose([Validators.required, DniValidator.isValid, DniValidator.hasValidFormat])],
       address: ['', Validators.required],
       country: ['', Validators.required],
       phone: ['',Validators.compose([Validators.minLength(8),Validators.pattern('[0-9()+-]*'),Validators.required])],
       email: ['',Validators.compose([Validators.minLength(8),Validators.email,Validators.required])],
       password: ['', Validators.compose([Validators.minLength(8),Validators.required])],
-      confirmpassword: ['', PasswordValidator.isEqual],
- 
+      confirmpassword: ['', PasswordValidator.isEqual], 
       role: ['', Validators.required]
     });
   }
 
   registerUser() {
     if(this.userForm.valid){
-      console.log("Registrar!");
+     this.usersService.registerUser(this.user).then((data)=>{
+        this.navCtrl.pop();
+      });
     }else{
       console.log("Formulario incorrecto!");
     }
