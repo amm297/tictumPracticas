@@ -11,7 +11,10 @@ import {UserformPage} from '../userform/userform'
 export class TableusersPage implements OnInit {
 
   users: any;
+<<<<<<< HEAD
   search:any;
+=======
+>>>>>>> alberto
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -51,6 +54,7 @@ export class TableusersPage implements OnInit {
   modifyUser(user) {
     this.navCtrl.push(UserformPage, {user: user});
   }
+<<<<<<< HEAD
 
   onInput(event) {
     let input = event.target.value;
@@ -66,6 +70,8 @@ export class TableusersPage implements OnInit {
       this.search = this.users;
     }
   }
+=======
+>>>>>>> alberto
 
 
 }
