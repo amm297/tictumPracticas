@@ -11,6 +11,7 @@ import {UserformPage} from '../userform/userform'
 export class TableusersPage implements OnInit {
 
   users: any;
+  search:any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -21,6 +22,7 @@ export class TableusersPage implements OnInit {
   ngOnInit() {
     this.usersService.getAllUsers().then((data) => {
       this.users = data;
+      this.search = data;
       console.log(this.users);
     });
   }
@@ -48,6 +50,21 @@ export class TableusersPage implements OnInit {
 
   modifyUser(user) {
     this.navCtrl.push(UserformPage, {user: user});
+  }
+
+  onInput(event) {
+    let input = event.target.value;
+    if(input && input.trim()!=''){
+      this.search = this.users.filter(user=>{
+        return (
+          user.name.toLowerCase().indexOf(input.toLowerCase())!= -1 ||
+          user.dni.indexOf(input)> -1 ||
+          user.email.toLowerCase().indexOf(input.toLowerCase())> -1 ||
+          user.role.toLowerCase().indexOf(input.toLowerCase())> -1 )
+      });
+    }else{
+      this.search = this.users;
+    }
   }
 
 
