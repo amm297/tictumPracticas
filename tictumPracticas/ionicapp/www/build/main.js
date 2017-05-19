@@ -36006,6 +36006,9 @@ var Users = (function () {
             });
         });
     };
+    Users.prototype.logoutUser = function (data) {
+        localStorage.clear();
+    };
     /*Funcion para cambiar la contraseña, comprobamos que el email/dni existe en la base de datos y después le añadimos la nueva contraseña.*/
     Users.prototype.newPassword = function (data) {
         var _this = this;
@@ -44810,6 +44813,10 @@ var AdminPage = (function () {
     };
     AdminPage.prototype.onClickAddUser = function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__userform_userform__["a" /* UserformPage */]);
+    };
+    AdminPage.prototype.logout = function () {
+        localStorage.clear();
+        this.navCtrl.popToRoot();
     };
     return AdminPage;
 }());
