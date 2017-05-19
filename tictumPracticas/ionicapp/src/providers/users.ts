@@ -39,6 +39,11 @@ export class Users {
     });
   }
 
+  logoutUser(data) {
+    localStorage.clear();
+    
+  }
+
  /*Funcion para cambiar la contraseña, comprobamos que el email/dni existe en la base de datos y después le añadimos la nueva contraseña.*/
   newPassword(data){
     console.log(data);
