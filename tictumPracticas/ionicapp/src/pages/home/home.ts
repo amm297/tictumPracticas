@@ -1,9 +1,11 @@
 import {Component} from '@angular/core';
 import {NavController, AlertController} from 'ionic-angular';
 import {Validators, FormBuilder} from '@angular/forms';
+import {User} from '../../models/user'
 
 import {Users} from "../../providers/users";
 import {AdminPage} from "../admin/admin";
+import {UserPage} from "../user/user";
 import {ResetPassword} from "../reset-password/reset-password";
 
 @Component({
@@ -17,18 +19,31 @@ export class HomePage {
     password: ''
   };
   loginForm;
+  remember;
 
   constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public alertCtrl: AlertController, private usersService: Users) {
+    //console.log('Paso constructor');
+    this.user.input = localStorage.getItem("email");
+    this.user.password = localStorage.getItem("pwd");
+    
     this.loginForm = formBuilder.group({
-      input: ['', Validators.required],
+      input: [''  , Validators.required],
       password: ['', Validators.required],
     });
+   
+
   }
 
+   ionViewDidLoad() {
+     this.userLogin();
+  }
+
+
   userLogin() {
-    console.log("Comprobando Login");
+    console.log("Comprobando Login" + this.loginForm.valid);
     if (this.loginForm.valid) {
       this.usersService.loginUser(this.user).then((data) => {
+        console.log(data);
         if (data.hasOwnProperty('errmsg')) {
           let alert = this.alertCtrl.create({
             title: 'Oops!',
@@ -39,7 +54,13 @@ export class HomePage {
         }
         else {
           console.log("Login OK");
-          this.navCtrl.push(AdminPage);
+          let logUser : User = new User(data);
+          if(this.remember){
+            localStorage.setItem("email", logUser.email);
+            localStorage.setItem("pwd",logUser.password);
+          }
+          if(logUser.isAdmin()) this.navCtrl.push(AdminPage) ;
+          else this.navCtrl.push(UserPage) ;
         }
         console.log(data);
       });
