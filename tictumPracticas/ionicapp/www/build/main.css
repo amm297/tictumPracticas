@@ -24708,3 +24708,51 @@ form {
 .validator .item-inner p {
   color: red;
 }
+
+.checkboxremem {
+  background-color: transparent;
+}
+
+.checkboxremem ion-label {
+  color: black;
+}
+
+.iforgot a {
+  color: #242424;
+  font-weight: bold;
+}
+
+.validator {
+  background-color: transparent;
+}
+
+.validator .item-inner {
+  border-bottom: 0px !important;
+}
+
+.validator .item-inner p {
+  color: red;
+}
+
+.ioninput, .button-default {
+  border-radius: 10px;
+}
+
+.cabec p {
+  color: #8ddbe0;
+  float: left;
+  margin-top: 10px;
+  font-size: 1.2em;
+}
+
+.btnn {
+  float: right;
+}
+
+.btnn ion-icon {
+  padding: 0;
+}
+
+.btnn ion-icon:last-child {
+  margin-left: 0.3em;
+}

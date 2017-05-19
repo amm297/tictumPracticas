@@ -41,13 +41,15 @@
 <ion-footer *ngIf="this.displayInput">
     
   <ion-item>
-       <button item-right ion-button clear icon-only (click)="closeInput()">
-        <ion-icon name="close"></ion-icon>
-      </button>
+       
       
       <ion-label fixed>Role name</ion-label>
      <ion-input type="text" [(ngModel)]="role.rolename" name="rolename"></ion-input>
+     <button *ngIf="this.displayButton == 'add'" ion-button (click)="addRole()" item-right>Añadir</button>
+     <button  *ngIf="this.displayButton == 'edit'" ion-button (click)="updateRole()" item-right>Editar</button>
+
+     <button item-right ion-button clear icon-only (click)="closeInput()">
+        <ion-icon name="close"></ion-icon>
+      </button>
   </ion-item>
-     <button *ngIf="this.displayButton == 'add'" ion-button (click)="addRole()">Añadir</button>
-     <button  *ngIf="this.displayButton == 'edit'" ion-button (click)="updateRole()">Editar</button>
 </ion-footer>
