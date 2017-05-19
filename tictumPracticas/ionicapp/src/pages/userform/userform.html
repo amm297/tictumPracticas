@@ -1,0 +1,68 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>userform</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="userForm" (ngSubmit)="registerUser()">
+    <ion-item>
+      <ion-label floating>dni</ion-label>
+      <ion-input [(ngModel)]="user.dni" type="text" formControlName="dni"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!userForm.controls.dni.valid  && (userForm.controls.dni.dirty || submitAttempt)">
+      <p style="color:red;">Please enter a valid DNI.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Nombre</ion-label>
+      <ion-input [(ngModel)]="user.name" type="text" formControlName="name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Apellido</ion-label>
+      <ion-input [(ngModel)]="user.lastname" type="text" formControlName="lastname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Dirección</ion-label>
+      <ion-input [(ngModel)]="user.address" type="text" formControlName="address"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>País</ion-label>
+      <ion-input [(ngModel)]="user.country" type="text" formControlName="country"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Teléfono</ion-label>
+      <ion-input [(ngModel)]="user.phone" type="text" formControlName="phone"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input [(ngModel)]="user.email" type="email" formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Contraseña</ion-label>
+      <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Confirmar Contraseña</ion-label>
+      <ion-input [(ngModel)]="confirmpassword" type="password" formControlName="confirmpassword"></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label floating>Rol</ion-label>
+      <ion-input [(ngModel)]="user.role" type="text" formControlName="role"></ion-input>
+    </ion-item>
+
+    <button ion-button type="submit" [disabled]="!this.userForm.valid">Registrar Usuario</button>
+  </form>
+</ion-content>
