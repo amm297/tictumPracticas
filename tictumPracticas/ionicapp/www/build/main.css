@@ -24677,6 +24677,11 @@ ion-navbar.toolbar {
   }
 }
 
+.btadmin {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
 .scroll-content {
   display: table !important;
   width: 100% !important;
@@ -24745,16 +24750,41 @@ form {
   font-size: 1.2em;
 }
 
+.cabec p span.item-note {
+  text-decoration: underline;
+}
+
 .btnn {
   float: right;
+}
+
+@media screen and (max-device-width: 640px) {
+  .btnn {
+    float: left;
+    display: block;
+    margin: 0 auto;
+  }
 }
 
 .btnn ion-icon {
   padding: 0;
 }
 
+@media screen and (max-device-width: 640px) {
+  .btnn ion-icon {
+    font-size: 36pt;
+    text-align: center;
+  }
+}
+
 .btnn ion-icon:last-child {
   margin-left: 0.3em;
+}
+
+@media screen and (max-device-width: 640px) {
+  .btnn ion-icon:last-child {
+    margin-left: 1.2em !important;
+  }
 }
 
 .scrll {
@@ -24772,4 +24802,9 @@ form {
 
 .validator .item-inner p {
   color: red;
+}
+
+.scrll {
+  overflow-x: scroll;
+  overflow-y: scroll;
 }
