@@ -5,8 +5,6 @@ import {User} from "../../models/user";
 import {Users} from "../../providers/users";
 
 import {PasswordValidator} from  './passwordValidator';
-
-
 import {DniValidator} from  './dniValidator';
 
 @IonicPage()

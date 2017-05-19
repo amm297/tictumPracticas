@@ -10,7 +10,7 @@
 <ion-content padding>
   <form [formGroup]="userForm" (ngSubmit)="registerUser()">
     <ion-item>
-      <ion-label floating>dni</ion-label>
+      <ion-label floating>DNI</ion-label>
       <ion-input [(ngModel)]="user.dni" type="text" formControlName="dni"></ion-input>
     </ion-item>
     <ion-item *ngIf="!userForm.controls.dni.valid  && (userForm.controls.dni.dirty || submitAttempt)">

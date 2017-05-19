@@ -43,7 +43,6 @@ export class HomePage {
     console.log("Comprobando Login" + this.loginForm.valid);
     if (this.loginForm.valid) {
       this.usersService.loginUser(this.user).then((data) => {
-        console.log(data);
         if (data.hasOwnProperty('errmsg')) {
           let alert = this.alertCtrl.create({
             title: 'Oops!',
@@ -70,7 +69,7 @@ export class HomePage {
 
   goToResetPassword() {
     console.log("Cambiar contraseña del email "+this.user.input);
-    this.navCtrl.push(ResetPassword);
+    this.navCtrl.push(ResetPassword,this.user.input);
   }
 
 }
