@@ -26,4 +26,9 @@ export class AdminPage {
     this.navCtrl.push(UserformPage);
   }
 
+
+  logout(){
+    localStorage.clear();
+    this.navCtrl.popToRoot();
+  }
 }
