@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -11,19 +11,56 @@ export class Roles {
   }
 
   server = 'http://192.168.5.26:8080';
+  //server = 'http://172.16.112.40:8080';
 
 
   getAllRoles() {
-    if (this.data) {
-      return Promise.resolve(this.data);
-    }
-
     return new Promise(resolve => {
-      this.http.get(this.server + '/api/roles/read').map(res => res.json())
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.get(this.server + '/api/roles/read', {headers: headers})
+        .map(res => res.json())
         .subscribe(data => {
-          this.data = data;
-          resolve(this.data);
+          resolve(data);
         });
     });
   }
+
+  removeRole(role){
+        return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.delete(this.server + '/api/roles/delete?_id=' + role._id, {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          console.log(data);
+          resolve(data);
+        });
+    });
+  }
+
+  addRole(role){
+     return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.post(this.server + '/api/roles/create', JSON.stringify(role), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
+  updateRole(role){
+     return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.put(this.server + '/api/roles/update', JSON.stringify(role), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
 }
