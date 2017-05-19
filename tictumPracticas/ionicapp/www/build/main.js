@@ -44845,6 +44845,7 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_users__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__passwordValidator__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dniValidator__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_roles__ = __webpack_require__(109);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserformPage; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -44862,11 +44863,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var UserformPage = (function () {
-    function UserformPage(navCtrl, navParams, usersService, formBuilder, alertCtrl) {
+    function UserformPage(navCtrl, navParams, usersService, rolesService, formBuilder, alertCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.usersService = usersService;
+        this.rolesService = rolesService;
         this.formBuilder = formBuilder;
         this.alertCtrl = alertCtrl;
         this.user = new __WEBPACK_IMPORTED_MODULE_3__models_user__["a" /* User */]();
@@ -44885,6 +44888,12 @@ var UserformPage = (function () {
             role: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].required]
         });
     }
+    UserformPage.prototype.ionViewWillLoad = function () {
+        var _this = this;
+        this.rolesService.getAllRoles().then(function (data) {
+            _this.roles = data;
+        });
+    };
     UserformPage.prototype.registerUser = function () {
         var _this = this;
         if (this.userForm.valid) {
@@ -44895,12 +44904,12 @@ var UserformPage = (function () {
                         msg = "DNI ya en uso: " + _this.user.dni;
                     else
                         msg = "Email ya en uso: " + _this.user.email;
-                    var alert_1 = _this.alertCtrl.create({
+                    var alert = _this.alertCtrl.create({
                         title: 'Oops!',
                         subTitle: msg,
                         buttons: ['Ok']
                     });
-                    alert_1.present();
+                    alert.present();
                 }
                 else {
                     _this.navCtrl.pop();
@@ -44916,15 +44925,12 @@ var UserformPage = (function () {
 UserformPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-userform',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\userform\userform.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>userform</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <form [formGroup]="userForm" (ngSubmit)="registerUser()">\n\n    <ion-item>\n\n      <ion-label floating>dni</ion-label>\n\n      <ion-input [(ngModel)]="user.dni" type="text" formControlName="dni"></ion-input>\n\n    </ion-item>\n\n    <ion-item *ngIf="!userForm.controls.dni.valid  && (userForm.controls.dni.dirty || submitAttempt)">\n\n      <p style="color:red;">Please enter a valid DNI.</p>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Nombre</ion-label>\n\n      <ion-input [(ngModel)]="user.name" type="text" formControlName="name"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Apellido</ion-label>\n\n      <ion-input [(ngModel)]="user.lastname" type="text" formControlName="lastname"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Dirección</ion-label>\n\n      <ion-input [(ngModel)]="user.address" type="text" formControlName="address"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>País</ion-label>\n\n      <ion-input [(ngModel)]="user.country" type="text" formControlName="country"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Teléfono</ion-label>\n\n      <ion-input [(ngModel)]="user.phone" type="text" formControlName="phone"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Email</ion-label>\n\n      <ion-input [(ngModel)]="user.email" type="email" formControlName="email"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Contraseña</ion-label>\n\n      <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Confirmar Contraseña</ion-label>\n\n      <ion-input [(ngModel)]="confirmpassword" type="password" formControlName="confirmpassword"></ion-input>\n\n    </ion-item>\n\n\n\n\n\n    <ion-item>\n\n      <ion-label floating>Rol</ion-label>\n\n      <ion-input [(ngModel)]="user.role" type="text" formControlName="role"></ion-input>\n\n    </ion-item>\n\n\n\n    <button ion-button type="submit" [disabled]="!this.userForm.valid">Registrar Usuario</button>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\userform\userform.html"*/,
+        selector: 'page-userform',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\userform\userform.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>userform</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form [formGroup]="userForm" (ngSubmit)="registerUser()">\n    <ion-item>\n      <ion-label floating>dni</ion-label>\n      <ion-input [(ngModel)]="user.dni" type="text" formControlName="dni"></ion-input>\n    </ion-item>\n    <ion-item *ngIf="!userForm.controls.dni.valid  && (userForm.controls.dni.dirty || submitAttempt)">\n      <p style="color:red;">Please enter a valid DNI.</p>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Nombre</ion-label>\n      <ion-input [(ngModel)]="user.name" type="text" formControlName="name"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Apellido</ion-label>\n      <ion-input [(ngModel)]="user.lastname" type="text" formControlName="lastname"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Dirección</ion-label>\n      <ion-input [(ngModel)]="user.address" type="text" formControlName="address"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>País</ion-label>\n      <ion-input [(ngModel)]="user.country" type="text" formControlName="country"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Teléfono</ion-label>\n      <ion-input [(ngModel)]="user.phone" type="text" formControlName="phone"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input [(ngModel)]="user.email" type="email" formControlName="email"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Contraseña</ion-label>\n      <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Confirmar Contraseña</ion-label>\n      <ion-input [(ngModel)]="confirmpassword" type="password" formControlName="confirmpassword"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Rol</ion-label>\n      <ion-select [(ngModel)]="user.role" formControlName="role">\n        <ion-option *ngFor="let role of roles">{{role.rolename}}</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <button ion-button type="submit" [disabled]="!this.userForm.valid">Registrar Usuario</button>\n  </form>\n</ion-content>\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\userform\userform.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_4__providers_users__["a" /* Users */],
-        __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* AlertController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__providers_users__["a" /* Users */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_users__["a" /* Users */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__providers_roles__["a" /* Roles */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__providers_roles__["a" /* Roles */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* AlertController */]) === "function" && _f || Object])
 ], UserformPage);
 
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=userform.js.map
 
 /***/ }),
@@ -58233,7 +58239,7 @@ var TablerolesPage = (function () {
 TablerolesPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-tableroles',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableroles\tableroles.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Roles\n\n    </ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button (click)="showInput()">\n\n        <ion-icon name="add-circle"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <ion-list>\n\n    <ion-list-header>My Roles</ion-list-header>\n\n    <ion-item *ngFor="let role of roles">\n\n      <ion-icon item-left name="contact" *ngIf="role.rolename == \'admin\'"></ion-icon>        \n\n      <ion-icon item-left name="person" *ngIf="role.rolename == \'user\'"></ion-icon>        \n\n      <ion-icon item-left name="ionitron" *ngIf="role.rolename != \'admin\' && role.rolename != \'user\' "></ion-icon>        \n\n      <h2>{{role.rolename}}</h2>\n\n      <button ion-button item-right (click)="editRole(role)"><ion-icon name="create"></ion-icon></button>\n\n      <button ion-button color="danger" item-right (click)="deleteRole(role)"><ion-icon name="trash"></ion-icon></button>\n\n      \n\n    </ion-item>\n\n    <!--\n\n          <ion-item-options>\n\n            <button ion-button color="primary" icon-left (click)="editContact(contact)">\n\n              <ion-icon name="ios-create"></ion-icon>\n\n              Edit\n\n            </button>\n\n            <button ion-button color="danger" icon-left (click)="deleteContact(contact)">\n\n              <ion-icon name="ios-trash"></ion-icon>\n\n              Delete\n\n            </button>\n\n          </ion-item-options>\n\n    -->\n\n  </ion-list>\n\n</ion-content>\n\n<ion-footer *ngIf="this.displayInput">\n\n    \n\n  <ion-item>\n\n       <button item-right ion-button clear icon-only (click)="closeInput()">\n\n        <ion-icon name="close"></ion-icon>\n\n      </button>\n\n      \n\n      <ion-label fixed>Role name</ion-label>\n\n     <ion-input type="text" [(ngModel)]="role.rolename" name="rolename"></ion-input>\n\n  </ion-item>\n\n     <button *ngIf="this.displayButton == \'add\'" ion-button (click)="addRole()">Añadir</button>\n\n     <button  *ngIf="this.displayButton == \'edit\'" ion-button (click)="updateRole()">Editar</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableroles\tableroles.html"*/,
+        selector: 'page-tableroles',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableroles\tableroles.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>\n      Roles\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button (click)="showInput()">\n        <ion-icon name="add-circle"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-list-header>My Roles</ion-list-header>\n    <ion-item *ngFor="let role of roles">\n      <ion-icon item-left name="contact" *ngIf="role.rolename == \'admin\'"></ion-icon>\n      <ion-icon item-left name="person" *ngIf="role.rolename == \'user\'"></ion-icon>\n      <ion-icon item-left name="ionitron" *ngIf="role.rolename != \'admin\' && role.rolename != \'user\' "></ion-icon>\n      <h2>{{role.rolename}}</h2>\n      <button ion-button item-right (click)="editRole(role)"><ion-icon name="create"></ion-icon></button>\n      <button ion-button color="danger" item-right (click)="deleteRole(role)"><ion-icon name="trash"></ion-icon></button>\n\n    </ion-item>\n    <!--\n          <ion-item-options>\n            <button ion-button color="primary" icon-left (click)="editContact(contact)">\n              <ion-icon name="ios-create"></ion-icon>\n              Edit\n            </button>\n            <button ion-button color="danger" icon-left (click)="deleteContact(contact)">\n              <ion-icon name="ios-trash"></ion-icon>\n              Delete\n            </button>\n          </ion-item-options>\n    -->\n  </ion-list>\n</ion-content>\n<ion-footer *ngIf="this.displayInput">\n\n  <ion-item>\n       <button item-right ion-button clear icon-only (click)="closeInput()">\n        <ion-icon name="close"></ion-icon>\n      </button>\n\n      <ion-label fixed>Role name</ion-label>\n     <ion-input type="text" [(ngModel)]="role.rolename" name="rolename"></ion-input>\n  </ion-item>\n     <button *ngIf="this.displayButton == \'add\'" ion-button (click)="addRole()">Añadir</button>\n     <button  *ngIf="this.displayButton == \'edit\'" ion-button (click)="updateRole()">Editar</button>\n</ion-footer>\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableroles\tableroles.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_roles__["a" /* Roles */]])
 ], TablerolesPage);
@@ -58263,7 +58269,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TableusersPage = TableusersPage_1 = (function () {
+var TableusersPage = (function () {
     function TableusersPage(navCtrl, navParams, usersService, alertCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -58277,18 +58283,17 @@ var TableusersPage = TableusersPage_1 = (function () {
             console.log(_this.users);
         });
     };
-    TableusersPage.prototype.deleteUser = function (userId) {
+    TableusersPage.prototype.deleteUser = function (userId, index) {
         var _this = this;
         var confirm = this.alertCtrl.create({
-            title: 'Attention!',
-            message: 'Do you really want to delete this user?',
+            title: 'Cuidado!',
+            message: '¿Estas seguro de eliminar el usuario?',
             buttons: [
                 {
-                    text: 'Yes',
+                    text: 'Si',
                     handler: function () {
                         _this.usersService.deleteUser(userId);
-                        _this.navCtrl.pop();
-                        _this.navCtrl.push(TableusersPage_1);
+                        _this.users.splice(index, 1);
                     }
                 },
                 {
@@ -58303,18 +58308,15 @@ var TableusersPage = TableusersPage_1 = (function () {
     };
     return TableusersPage;
 }());
-TableusersPage = TableusersPage_1 = __decorate([
+TableusersPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-tableusers',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableusers\tableusers.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Table Users\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n\n\n	<ion-card *ngFor="let user of users">\n\n		<ion-card-header>\n\n			{{user.name }} {{user.lastname}} <span  class="item-note">{{user.role  }}</span>\n\n		</ion-card-header>\n\n		<ion-card-content>\n\n			<ion-list>\n\n				<ion-item>{{user.dni}}</ion-item>\n\n				<ion-item>{{user.email}}</ion-item>\n\n				<ion-item>{{user.country}}</ion-item>\n\n				<ion-item>{{user.address}}</ion-item>\n\n				<ion-item>{{user.phone}}</ion-item>\n\n			</ion-list>\n\n			\n\n\n\n		</ion-card-content>\n\n		\n\n			<button ion-button clear icon-only color="warning" (click)="modifyUser(user)"> <ion-icon name="create"></ion-icon> </button>\n\n			<button ion-button clear icon-only color="danger" (click)="deleteUser(user._id)"> <ion-icon name="trash"></ion-icon> </button>\n\n		\n\n\n\n	</ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableusers\tableusers.html"*/,
+        selector: 'page-tableusers',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableusers\tableusers.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Table Users\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n\n	<ion-card *ngFor="let user of users; let index = index">\n		<ion-card-header>\n			{{user.name }} {{user.lastname}} <span  class="item-note">{{user.role  }}</span>\n		</ion-card-header>\n		<ion-card-content>\n			<ion-list>\n				<ion-item>{{user.dni}}</ion-item>\n				<ion-item>{{user.email}}</ion-item>\n				<ion-item>{{user.country}}</ion-item>\n				<ion-item>{{user.address}}</ion-item>\n				<ion-item>{{user.phone}}</ion-item>\n			</ion-list>\n\n\n		</ion-card-content>\n\n			<button ion-button clear icon-only color="warning" (click)="modifyUser(user)"> <ion-icon name="create"></ion-icon> </button>\n			<button ion-button clear icon-only color="danger" (click)="deleteUser(user._id,index)"> <ion-icon name="trash"></ion-icon> </button>\n\n\n	</ion-card>\n\n</ion-content>\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableusers\tableusers.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_users__["a" /* Users */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* AlertController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_users__["a" /* Users */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_users__["a" /* Users */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* AlertController */]) === "function" && _d || Object])
 ], TableusersPage);
 
-var TableusersPage_1;
+var _a, _b, _c, _d;
 //# sourceMappingURL=tableusers.js.map
 
 /***/ }),
@@ -58491,7 +58493,7 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'home-page',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Login\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n  <form [formGroup]="loginForm" (ngSubmit)="userLogin()">\n\n    <ion-item>\n\n      <ion-icon name="at"></ion-icon>\n\n      <!-- <ion-label color="primary" stacked>Email or DNI (12354678X): -->\n\n      <ion-label floating>\n\n        Email or DNI (12354678X):\n\n      </ion-label>\n\n      <ion-input [(ngModel)]="user.input" type="text" formControlName="input"></ion-input> <!-- placeholder="12354678X" -->\n\n    </ion-item>\n\n\n\n    <ion-item *ngIf="!loginForm.controls.input.valid && loginForm.controls.input.touched">\n\n      <p style="color:red;">Introduce a valid email or Dni</p>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>\n\n      <ion-icon name="key"></ion-icon>\n\n       Password\n\n      </ion-label>\n\n      <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched">\n\n      <p style="color:red;">Introduce a valid password</p>\n\n    </ion-item>\n\n\n\n    \n\n\n\n    <button ion-button margin-top="10px" type="submit" full>Login</button>\n\n\n\n    <ion-item  no-lines>\n\n      <ion-label >Remenber Me</ion-label>\n\n      <ion-checkbox  [(ngModel)]="remember" [ngModelOptions]="{standalone: true}" id="checkBox"></ion-checkbox>\n\n    </ion-item>\n\n\n\n    <div text-center>\n\n      <a block clear (click)="goToResetPassword()">I forgot my password</a>\n\n  </div>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\home\home.html"*/
+        selector: 'home-page',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Login\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n  <form [formGroup]="loginForm" (ngSubmit)="userLogin()">\n    <ion-item>\n      <ion-icon name="at"></ion-icon>\n      <!-- <ion-label color="primary" stacked>Email or DNI (12354678X): -->\n      <ion-label floating>\n        Email or DNI (12354678X):\n      </ion-label>\n      <ion-input [(ngModel)]="user.input" type="text" formControlName="input"></ion-input> <!-- placeholder="12354678X" -->\n    </ion-item>\n\n    <ion-item *ngIf="!loginForm.controls.input.valid && loginForm.controls.input.touched">\n      <p style="color:red;">Introduce un email o un DNI válido</p>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>\n      <ion-icon name="key"></ion-icon>\n       Contraseña\n      </ion-label>\n      <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>\n    </ion-item>\n\n    <ion-item *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched">\n      <p style="color:red;">Introduce una contraseña</p>\n    </ion-item>\n\n\n\n    <button ion-button margin-top="10px" type="submit" full>Login</button>\n\n    <ion-item  no-lines>\n      <ion-label >Remenber Me</ion-label>\n      <ion-checkbox  [(ngModel)]="remember" [ngModelOptions]="{standalone: true}" id="checkBox"></ion-checkbox>\n    </ion-item>\n\n    <div text-center>\n      <a block clear (click)="goToResetPassword()">I forgot my password</a>\n  </div>\n  </form>\n</ion-content>\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\home\home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* AlertController */], __WEBPACK_IMPORTED_MODULE_4__providers_users__["a" /* Users */]])
 ], HomePage);
