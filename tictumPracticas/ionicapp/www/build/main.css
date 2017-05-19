@@ -24756,3 +24756,20 @@ form {
 .btnn ion-icon:last-child {
   margin-left: 0.3em;
 }
+
+.scrll {
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+
+.validator {
+  background-color: transparent;
+}
+
+.validator .item-inner {
+  border-bottom: 0px !important;
+}
+
+.validator .item-inner p {
+  color: red;
+}
