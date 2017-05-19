@@ -23,8 +23,8 @@
 
 		</ion-card-content>
 		
-			<button ion-button clear icon-only color="warning"> <ion-icon name="create"></ion-icon> </button>
-			<button ion-button clear icon-only color="danger"> <ion-icon name="trash"></ion-icon> </button>
+			<button ion-button clear icon-only color="warning" (click)="modifyUser(user)"> <ion-icon name="create"></ion-icon> </button>
+			<button ion-button clear icon-only color="danger" (click)="deleteUser(user._id)"> <ion-icon name="trash"></ion-icon> </button>
 		
 
 	</ion-card>

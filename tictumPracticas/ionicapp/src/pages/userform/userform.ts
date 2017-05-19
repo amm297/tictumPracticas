@@ -21,7 +21,7 @@ export class UserformPage {
   userForm;
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private usersService: Users, private formBuilder: FormBuilder) {
-     
+     this.user = this.navParams.get('user');
 
     this.userForm = formBuilder.group({
       name: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'),Validators.required])],
