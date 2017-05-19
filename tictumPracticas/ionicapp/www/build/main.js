@@ -58382,13 +58382,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var UserformPage = (function () {
-    function UserformPage(navCtrl, navParams, usersService, formBuilder) {
+    function UserformPage(navCtrl, navParams, usersService, formBuilder, alertCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.usersService = usersService;
         this.formBuilder = formBuilder;
+        this.alertCtrl = alertCtrl;
         this.user = new __WEBPACK_IMPORTED_MODULE_3__models_user__["a" /* User */]();
-        this.user = this.navParams.get('user');
+        if (this.navParams.get('user'))
+            this.user = this.navParams.get('user');
         this.userForm = formBuilder.group({
             name: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].pattern('[a-zA-Z ]*'), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].required])],
             lastname: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].pattern('[a-zA-Z ]*'), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].required])],
@@ -58406,7 +58408,22 @@ var UserformPage = (function () {
         var _this = this;
         if (this.userForm.valid) {
             this.usersService.registerUser(this.user).then(function (data) {
-                _this.navCtrl.pop();
+                if (data.hasOwnProperty('errmsg')) {
+                    var msg = '';
+                    if (data['errmsg'].indexOf('dni') > 0)
+                        msg = "DNI ya en uso: " + _this.user.dni;
+                    else
+                        msg = "Email ya en uso: " + _this.user.email;
+                    var alert = _this.alertCtrl.create({
+                        title: 'Oops!',
+                        subTitle: msg,
+                        buttons: ['Ok']
+                    });
+                    alert.present();
+                }
+                else {
+                    _this.navCtrl.pop();
+                }
             });
         }
         else {
@@ -58420,9 +58437,10 @@ UserformPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
         selector: 'page-userform',template:/*ion-inline-start:"C:\Users\Alberto\Documents\tictumPracticas\tictumPracticas\ionicapp\src\pages\userform\userform.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>userform</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <form [formGroup]="userForm" (ngSubmit)="registerUser()">\n\n    <ion-item>\n\n      <ion-label floating>dni</ion-label>\n\n      <ion-input [(ngModel)]="user.dni" type="text" formControlName="dni"></ion-input>\n\n    </ion-item>\n\n    <ion-item *ngIf="!userForm.controls.dni.valid  && (userForm.controls.dni.dirty || submitAttempt)">\n\n      <p style="color:red;">Please enter a valid DNI.</p>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Nombre</ion-label>\n\n      <ion-input [(ngModel)]="user.name" type="text" formControlName="name"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Apellido</ion-label>\n\n      <ion-input [(ngModel)]="user.lastname" type="text" formControlName="lastname"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Dirección</ion-label>\n\n      <ion-input [(ngModel)]="user.address" type="text" formControlName="address"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>País</ion-label>\n\n      <ion-input [(ngModel)]="user.country" type="text" formControlName="country"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Teléfono</ion-label>\n\n      <ion-input [(ngModel)]="user.phone" type="text" formControlName="phone"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Email</ion-label>\n\n      <ion-input [(ngModel)]="user.email" type="email" formControlName="email"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Contraseña</ion-label>\n\n      <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Confirmar Contraseña</ion-label>\n\n      <ion-input [(ngModel)]="confirmpassword" type="password" formControlName="confirmpassword"></ion-input>\n\n    </ion-item>\n\n\n\n\n\n    <ion-item>\n\n      <ion-label floating>Rol</ion-label>\n\n      <ion-input [(ngModel)]="user.role" type="text" formControlName="role"></ion-input>\n\n    </ion-item>\n\n\n\n    <button ion-button type="submit" [disabled]="!this.userForm.valid">Registrar Usuario</button>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Alberto\Documents\tictumPracticas\tictumPracticas\ionicapp\src\pages\userform\userform.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4__providers_users__["a" /* Users */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__providers_users__["a" /* Users */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_users__["a" /* Users */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* AlertController */]) === "function" && _e || Object])
 ], UserformPage);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=userform.js.map
 
 /***/ }),

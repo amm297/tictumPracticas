@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController, NavParams,AlertController} from 'ionic-angular';
 import {Validators, FormBuilder} from '@angular/forms';
 import {User} from "../../models/user";
 import {Users} from "../../providers/users";
@@ -20,8 +20,12 @@ export class UserformPage {
   confirmpassword: string;
   userForm;
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, private usersService: Users, private formBuilder: FormBuilder) {
-     this.user = this.navParams.get('user');
+  constructor(private navCtrl: NavController, 
+              private navParams: NavParams, 
+              private usersService: Users, 
+              private formBuilder: FormBuilder,
+              private alertCtrl:AlertController) {
+     if(this.navParams.get('user'))this.user = this.navParams.get('user');
 
     this.userForm = formBuilder.group({
       name: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'),Validators.required])],
@@ -40,7 +44,20 @@ export class UserformPage {
   registerUser() {
     if(this.userForm.valid){
      this.usersService.registerUser(this.user).then((data)=>{
-        this.navCtrl.pop();
+       if (data.hasOwnProperty('errmsg')) {
+           let msg = '';
+           if(data['errmsg'].indexOf('dni') > 0) msg="DNI ya en uso: "+this.user.dni;
+           else  msg="Email ya en uso: " + this.user.email; 
+
+          let alert = this.alertCtrl.create({
+            title: 'Oops!',
+            subTitle: msg,
+            buttons: ['Ok']
+          });
+          alert.present();
+       }else{
+          this.navCtrl.pop();
+        }
       });
     }else{
       console.log("Formulario incorrecto!");
