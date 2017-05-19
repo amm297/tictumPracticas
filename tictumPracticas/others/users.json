@@ -1,3 +1,0 @@
-{"_id":{"$oid":"591b23d2537afb914de957f1"},"name":"Juan","lastname":"Sanchez","email":"juan@gmail.com","password":"4321","role":"user","dni":"45788963F","address":"C/ Arenal, 12","country":"Madrid","phone":6.45789632e+08}
-{"_id":{"$oid":"591b23ec537afb914de957f2"},"name":"Pepe","lastname":"Perez","email":"pepe@gmail.com","password":"1234","role":"admin","dni":"14577896G","address":"C/ Explanada, 8","country":"Madrid","phone":6.14789658e+08}
-{"_id":{"$oid":"591b27ff537afb914de957f5"},"name":"Lara","lastname":"Sanchez","email":"lara@gmail.com","password":"4321","role":"user","dni":"01477852H","address":"C/ Arenal, 12","country":"Madrid","phone":6.45789632e+08}
