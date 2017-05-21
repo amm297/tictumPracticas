@@ -10,7 +10,8 @@ export class Users {
   }
 
   //server = 'http://192.168.5.26:8080';
-  server = 'http://172.16.112.163:8080';
+  //server = 'http://172.16.112.163:8080';
+  server = 'http://localhost:8080';
 
   registerUser(data) {
     console.log(data.dni);
