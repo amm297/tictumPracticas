@@ -26,15 +26,22 @@ import {DniValidator} from  '../userform/dniValidator';
 })
 export class ResetPassword {
   
-  user: User = new User();
+  //user: User = new User();
   confirmpassword: string;
   resetPasswForm;
+  user = { 
+    email: '', 
+    dni:'', 
+    password: '' 
+  }; 
 
   constructor(public navCtrl: NavController, private navParams: NavParams, public formBuilder: FormBuilder, public alertCtrl: AlertController, private usersService: Users) {
-    if (this.navParams.get('user')) this.user = this.navParams.get('user');
+    if (this.navParams.get('user')){
+        this.user.email = this.navParams.get('user').email;
+        this.user.dni = this.navParams.get('user').dni;
+    } 
+
     this.resetPasswForm = formBuilder.group({
-      email: ['',Validators.compose([Validators.minLength(8),Validators.email,Validators.required])],
-      dni: ['', Validators.compose([Validators.required, DniValidator.isValid, DniValidator.hasValidFormat])],
       password: ['', Validators.compose([Validators.minLength(8),Validators.required])],
       confirmpassword: ['', PasswordValidator.isEqual], 
     });
@@ -76,7 +83,7 @@ export class ResetPassword {
                 
                 localStorage.setItem("email", this.user.email);
                 localStorage.setItem("pwd", this.user.password);
-                this.navCtrl.push(HomePage) ;
+                this.navCtrl.setRoot(HomePage) ;
               
               }              
             });

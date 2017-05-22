@@ -61,7 +61,7 @@ export class GenericPasswordPage {
               buttons: ['Accept']
             });
             alert.present();
-            this.navCtrl.push(HomePage) ;
+            this.navCtrl.setRoot(HomePage) ;
           };
 	      });
     };

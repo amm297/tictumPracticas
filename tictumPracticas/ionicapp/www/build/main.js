@@ -35615,7 +35615,8 @@ function BaseInput_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_users__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__admin_admin__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__user_user__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__generic_password_generic_password__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__reset_password_reset_password__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__generic_password_generic_password__ = __webpack_require__(209);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -35626,6 +35627,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -35679,10 +35681,14 @@ var HomePage = (function () {
                         localStorage.setItem("email", logUser.email);
                         localStorage.setItem("pwd", logUser.password);
                     }
-                    if (logUser.isAdmin())
-                        _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__admin_admin__["a" /* AdminPage */]);
-                    else
-                        _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__user_user__["a" /* UserPage */]);
+                    if (logUser.password == "1234cambio")
+                        _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_7__reset_password_reset_password__["a" /* ResetPassword */], { user: logUser });
+                    else {
+                        if (logUser.isAdmin())
+                            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__admin_admin__["a" /* AdminPage */]);
+                        else
+                            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__user_user__["a" /* UserPage */]);
+                    }
                 }
                 console.log(data);
             });
@@ -35690,7 +35696,7 @@ var HomePage = (function () {
     };
     HomePage.prototype.goToResetPassword = function () {
         console.log("Cambiar contraseña del email " + this.user.input);
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__generic_password_generic_password__["a" /* GenericPasswordPage */], this.user.input);
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_8__generic_password_generic_password__["a" /* GenericPasswordPage */], this.user.input);
     };
     return HomePage;
 }());
@@ -58370,10 +58376,8 @@ AdminPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_user__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_users__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__userform_passwordValidator__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__userform_dniValidator__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_users__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__userform_passwordValidator__ = __webpack_require__(111);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResetPassword; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -58384,8 +58388,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
-
 
 
 
@@ -58405,14 +58407,18 @@ var ResetPassword = (function () {
         this.formBuilder = formBuilder;
         this.alertCtrl = alertCtrl;
         this.usersService = usersService;
-        this.user = new __WEBPACK_IMPORTED_MODULE_4__models_user__["a" /* User */]();
-        if (this.navParams.get('user'))
-            this.user = this.navParams.get('user');
+        this.user = {
+            email: '',
+            dni: '',
+            password: ''
+        };
+        if (this.navParams.get('user')) {
+            this.user.email = this.navParams.get('user').email;
+            this.user.dni = this.navParams.get('user').dni;
+        }
         this.resetPasswForm = formBuilder.group({
-            email: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].minLength(8), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].email, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].required])],
-            dni: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_7__userform_dniValidator__["a" /* DniValidator */].isValid, __WEBPACK_IMPORTED_MODULE_7__userform_dniValidator__["a" /* DniValidator */].hasValidFormat])],
             password: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].minLength(8), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* Validators */].required])],
-            confirmpassword: ['', __WEBPACK_IMPORTED_MODULE_6__userform_passwordValidator__["a" /* PasswordValidator */].isEqual],
+            confirmpassword: ['', __WEBPACK_IMPORTED_MODULE_5__userform_passwordValidator__["a" /* PasswordValidator */].isEqual],
         });
     }
     ResetPassword.prototype.ionViewDidLoad = function () {
@@ -58432,24 +58438,24 @@ var ResetPassword = (function () {
                 this.usersService.newPassword(cambio).then(function (data) {
                     /*Comprobamos que el cambio de contraseña se ha realizado correctamente, si no es así mostramos un error por pantalla.*/
                     if (data.hasOwnProperty('errmsg')) {
-                        var alert_1 = _this.alertCtrl.create({
+                        var alert = _this.alertCtrl.create({
                             title: 'Error!',
                             subTitle: data['errmsg'],
                             buttons: ['Ok']
                         });
-                        alert_1.present();
+                        alert.present();
                     }
                     else {
-                        var alert_2 = _this.alertCtrl.create({
+                        var alert = _this.alertCtrl.create({
                             title: 'OK!',
                             subTitle: data['msgok'],
                             buttons: ['Acept']
                         });
-                        alert_2.present();
+                        alert.present();
                         //Código para que despues de cambiar la contraseña se redireccione al Login de nuevo.
                         localStorage.setItem("email", _this.user.email);
                         localStorage.setItem("pwd", _this.user.password);
-                        _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
+                        _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
                     }
                 });
             }
@@ -58461,11 +58467,12 @@ var ResetPassword = (function () {
 ResetPassword = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-reset-password',template:/*ion-inline-start:"C:\Users\Alberto\Documents\tictumPracticas\tictumPracticas\ionicapp\src\pages\reset-password\reset-password.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Recuperar Contraseña</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <form [formGroup]="resetPasswForm" (ngSubmit)="resetPassword()">\n\n    <ion-item>\n\n      <ion-icon name="at"></ion-icon>\n\n      <ion-label floating>Email</ion-label>\n\n      <ion-input [(ngModel)]="user.email" readonly type="email" formControlName="email"></ion-input>\n\n    </ion-item>\n\n<!--     <ion-item *ngIf="!resetPasswForm.controls.email.valid && resetPasswForm.controls.email.touched">\n\n      <p style="color:red;">Introduce a valid email</p>\n\n    </ion-item> -->\n\n\n\n    <ion-item>\n\n      <ion-icon name="at"></ion-icon>\n\n      <ion-label floating>DNI</ion-label>\n\n      <ion-input [(ngModel)]="user.dni" readonly type="text" formControlName="dni"></ion-input>\n\n    </ion-item>\n\n<!--     <ion-item *ngIf="!resetPasswForm.controls.dni.valid  && (resetPasswForm.controls.dni.dirty || submitAttempt)">\n\n      <p style="color:red;">Please enter a valid DNI.</p>\n\n    </ion-item> -->\n\n\n\n    <ion-item>\n\n      <ion-label floating>\n\n        <ion-icon name="key"></ion-icon>\n\n        New Password\n\n      </ion-label>\n\n      <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>\n\n    </ion-item>\n\n    <ion-item *ngIf="!resetPasswForm.controls.password.valid && resetPasswForm.controls.password.touched">\n\n      <p style="color:red;">Introduce a valid password</p>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>\n\n        <ion-icon name="key"></ion-icon>\n\n        Confirm Password\n\n      </ion-label>\n\n      <ion-input [(ngModel)]="confirmpassword" type="password" formControlName="confirmpassword"></ion-input>\n\n    </ion-item>\n\n    <button ion-button type="submit" [disabled]="!this.resetPasswForm.valid">Reset Password</button>\n\n\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Alberto\Documents\tictumPracticas\tictumPracticas\ionicapp\src\pages\reset-password\reset-password.html"*/
+        selector: 'page-reset-password',template:/*ion-inline-start:"C:\Users\Alberto\Documents\tictumPracticas\tictumPracticas\ionicapp\src\pages\reset-password\reset-password.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Recuperar Contraseña</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <form [formGroup]="resetPasswForm" (ngSubmit)="resetPassword()">\n\n    <ion-item>\n\n      <ion-label floating>\n\n        <ion-icon name="key"></ion-icon>\n\n        New Password\n\n      </ion-label>\n\n      <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>\n\n    </ion-item>\n\n    <ion-item *ngIf="!resetPasswForm.controls.password.valid && resetPasswForm.controls.password.touched">\n\n      <p style="color:red;">Introduce a valid password</p>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>\n\n        <ion-icon name="key"></ion-icon>\n\n        Confirm Password\n\n      </ion-label>\n\n      <ion-input [(ngModel)]="confirmpassword" type="password" formControlName="confirmpassword"></ion-input>\n\n    </ion-item>\n\n    <button ion-button type="submit" [disabled]="!this.resetPasswForm.valid">Reset Password</button>\n\n\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Alberto\Documents\tictumPracticas\tictumPracticas\ionicapp\src\pages\reset-password\reset-password.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */], __WEBPACK_IMPORTED_MODULE_5__providers_users__["a" /* Users */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_users__["a" /* Users */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_users__["a" /* Users */]) === "function" && _e || Object])
 ], ResetPassword);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=reset-password.js.map
 
 /***/ }),
@@ -77657,21 +77664,21 @@ var GenericPasswordPage = (function () {
             this.usersService.newPasswdAuto(userData).then(function (data) {
                 /*Creamos una contraseña genérica para cada usuario*/
                 if (data.hasOwnProperty('errmsg')) {
-                    var alert_1 = _this.alertCtrl.create({
+                    var alert = _this.alertCtrl.create({
                         title: 'Error!',
                         subTitle: data['errmsg'],
                         buttons: ['Ok']
                     });
-                    alert_1.present();
+                    alert.present();
                 }
                 else {
-                    var alert_2 = _this.alertCtrl.create({
+                    var alert = _this.alertCtrl.create({
                         title: 'OK!',
                         subTitle: data['msgok'],
                         buttons: ['Accept']
                     });
-                    alert_2.present();
-                    _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
+                    alert.present();
+                    _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
                 }
                 ;
             });
@@ -77685,9 +77692,10 @@ GenericPasswordPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
         selector: 'page-generic-password',template:/*ion-inline-start:"C:\Users\Alberto\Documents\tictumPracticas\tictumPracticas\ionicapp\src\pages\generic-password\generic-password.html"*/'<!--\n\n  Generated template for the GenericPasswordPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Remember password</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <form [formGroup]="genericPasswForm" (ngSubmit)="genericPassword()">\n\n    <ion-item>\n\n      <ion-label floating>\n\n        <ion-icon name="at"></ion-icon>\n\n        Email\n\n      </ion-label>\n\n      <ion-input [(ngModel)]="user.email" type="text" formControlName="email"></ion-input>\n\n    </ion-item>\n\n    <ion-item *ngIf="!genericPasswForm.controls.email.valid && genericPasswForm.controls.email.touched">\n\n      <p style="color:red;">Introduce a valid email</p>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>\n\n        <ion-icon name="at"></ion-icon>\n\n        DNI\n\n      </ion-label>\n\n      <ion-input [(ngModel)]="user.dni" type="text" formControlName="dni"></ion-input>\n\n    </ion-item>\n\n    <ion-item *ngIf="!genericPasswForm.controls.dni.valid  && (genericPasswForm.controls.dni.dirty || submitAttempt)">\n\n      <p style="color:red;">Please enter a valid DNI.</p>\n\n    </ion-item>\n\n\n\n    <button ion-button type="submit" [disabled]="!this.genericPasswForm.valid">Update Password</button>\n\n\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Alberto\Documents\tictumPracticas\tictumPracticas\ionicapp\src\pages\generic-password\generic-password.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */], __WEBPACK_IMPORTED_MODULE_4__providers_users__["a" /* Users */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__providers_users__["a" /* Users */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_users__["a" /* Users */]) === "function" && _d || Object])
 ], GenericPasswordPage);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=generic-password.js.map
 
 /***/ }),
