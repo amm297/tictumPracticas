@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TableusersPage} from "../tableusers/tableusers";
 import {UserformPage} from "../userform/userform";
 import {TablerolesPage} from "../tableroles/tableroles";
-import {hollidaysPage} from "../hollidays/hollidays";
+import {HomePage} from "../home/home";
 
 
 
@@ -30,8 +30,8 @@ export class AdminPage {
   }
 
 
-  onClickCalendario(){
-    this.navCtrl.push(hollidaysPage);
+  logout(){
+    localStorage.clear();
+    this.navCtrl.setRoot(HomePage);
   }
-
 }
