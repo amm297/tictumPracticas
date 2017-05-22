@@ -10,9 +10,14 @@ export class Roles {
     this.data = null;
   }
 
-  //server = 'http://192.168.5.26:8080';
-  server = 'http://172.16.112.163:8080';
+  //WI-Fi
+  //server = 'http://192.168.4.45:8080';
 
+  //server = 'http://192.168.5.26:8080';
+
+  //Portatil Celada
+  server = 'http://172.16.112.163:8080';
+  //server = 'http://localhost:8080';
 
   getAllRoles() {
     return new Promise(resolve => {

@@ -8,6 +8,7 @@ import {Users} from "../providers/users";
 import {TablerolesPage} from "../pages/tableroles/tableroles";
 import {Roles} from "../providers/roles";
 import {ResetPassword} from "../pages/reset-password/reset-password";
+import {GenericPasswordPage} from "../pages/generic-password/generic-password";
 
 import {ErrorHandler, NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
@@ -26,7 +27,8 @@ import {SplashScreen} from "@ionic-native/splash-screen";
     UserformPage,
     TablerolesPage,
     ResetPassword,
-    UserPage
+    UserPage,
+    GenericPasswordPage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import {SplashScreen} from "@ionic-native/splash-screen";
     UserformPage,
     TablerolesPage,
     ResetPassword,
-    UserPage
+    UserPage,
+    GenericPasswordPage
   ],
   providers: [
     StatusBar,

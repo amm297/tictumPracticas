@@ -1,41 +1,45 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Bienvenido
+      Entrar
     </ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding class="homecent">
-  <form [formGroup]="loginForm" (ngSubmit)="userLogin()">
-  <ion-img src="../img/logoex2_03.png" class="logo"></ion-img>
-    <ion-item class="ioninput">
+<ion-content padding>
+  <form [formGroup]="loginForm" (ngSubmit)="userLogin(user)">
+    <ion-item>
+      <ion-icon name="at"></ion-icon>
       <ion-label>
-        <ion-icon name="at"></ion-icon>
-        Email o DNI
+        Email or DNI:
       </ion-label>
-      <ion-input [(ngModel)]="user.input" type="text" formControlName="input" placeholder="Ejemplo:12354678X"></ion-input>
+      <ion-input [(ngModel)]="user.input" type="text" formControlName="input" placeholder="Ej:12354678X"></ion-input> <!-- placeholder="12354678X" -->
     </ion-item>
-    <ion-item *ngIf="!loginForm.controls.input.valid && loginForm.controls.input.touched" class="validator">
-      <p>Introduce a valid email or Dni</p>
+
+    <ion-item *ngIf="!loginForm.controls.input.valid && loginForm.controls.input.touched">
+      <p style="color:red;">Introduce un email o un DNI válido</p>
     </ion-item>
-    <ion-item class="ioninput">
+
+    <ion-item>
       <ion-label>
-        <ion-icon name="key"></ion-icon>
-        Password
+      <ion-icon name="key"></ion-icon>
+       Contraseña
       </ion-label>
       <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>
     </ion-item>
-    <ion-item *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched" class="validator">
-      <p>Introduce a valid password</p>
+
+    <ion-item *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched">
+      <p style="color:red;">Introduce una contraseña</p>
     </ion-item>
-    <button ion-button margin-top="10px" type="submit" block>Login</button>
-    <ion-item  no-lines class="checkboxremem">
-      <ion-label>Recordar datos</ion-label>
+
+    <button ion-button margin-top="10px" type="submit" full>Login</button>
+
+    <ion-item  no-lines>
+      <ion-label >Remenber Me</ion-label>
       <ion-checkbox  [(ngModel)]="remember" [ngModelOptions]="{standalone: true}" id="checkBox"></ion-checkbox>
     </ion-item>
 
-    <div text-center class="iforgot">
-      <a block clear (click)="goToResetPassword()">Olvidé mi contraseña</a>
+    <div text-center>
+      <a block clear (click)="goToResetPassword()">I forgot my password</a>
   </div>
   </form>
 </ion-content>

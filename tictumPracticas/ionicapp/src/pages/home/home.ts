@@ -7,6 +7,7 @@ import {Users} from "../../providers/users";
 import {AdminPage} from "../admin/admin";
 import {UserPage} from "../user/user";
 import {ResetPassword} from "../reset-password/reset-password";
+import {GenericPasswordPage} from "../generic-password/generic-password";
 
 @Component({
   selector: 'home-page',
@@ -46,7 +47,6 @@ export class HomePage {
         this.user.input = this.user.input.toLowerCase();
       }
       this.usersService.loginUser(this.user).then((data) => {
-        console.log(data);
         if (data.hasOwnProperty('errmsg')) {
           let alert = this.alertCtrl.create({
             title: 'Oops!',
@@ -57,13 +57,19 @@ export class HomePage {
         }
         else {
           console.log("Login OK");
+          console.log(this.navCtrl.last().component.name);
           let logUser: User = new User(data);
+
           if (this.remember) {
             localStorage.setItem("email", logUser.email);
             localStorage.setItem("pwd", logUser.password);
           }
-          if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
-          else this.navCtrl.setRoot(UserPage);
+
+          if(logUser.password == "1234cambio") this.navCtrl.setRoot(ResetPassword,{user:logUser});
+          else{
+            if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
+            else this.navCtrl.setRoot(UserPage);
+          }
         }
         console.log(data);
       });
@@ -71,8 +77,8 @@ export class HomePage {
   }
 
   goToResetPassword() {
-    console.log("Cambiar contraseña del email " + this.user.input);
-    this.navCtrl.push(ResetPassword);
+    console.log("Cambiar contraseña del email "+this.user.input);
+    this.navCtrl.setRoot(GenericPasswordPage,this.user.input);
   }
 
 }
