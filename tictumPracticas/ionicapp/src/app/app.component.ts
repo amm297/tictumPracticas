@@ -4,18 +4,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-<<<<<<< HEAD
+import {hollidaysPage} from "../pages/hollidays/hollidays";
 
-//import { UserformPage } from '../pages/userform/userform';
 
-=======
->>>>>>> celada
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   // set the rootPage to the first page we want displayed
-  public rootPage: any = HomePage;
+  public rootPage: any = hollidaysPage;
 
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

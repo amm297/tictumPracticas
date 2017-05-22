@@ -9,12 +9,10 @@ export class Users {
   constructor(public http: Http) {
   }
 
-<<<<<<< HEAD
-  server = 'http://localhost:8080';
-=======
+
   //server = 'http://192.168.5.26:8080';
-  server = 'http://172.16.112.40:8080';
->>>>>>> celada
+  server = 'http://172.16.112.35:8080';
+
 
   registerUser(data) {
     console.log(data.dni);

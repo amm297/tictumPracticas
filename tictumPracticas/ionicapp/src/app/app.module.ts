@@ -26,14 +26,11 @@ import {hollidaysPage} from "../pages/hollidays/hollidays";
     AdminPage,
     TableusersPage,
     UserformPage,
-<<<<<<< HEAD
     hollidaysPage,
-    TablerolesPage
-=======
+  
     TablerolesPage,
     ResetPassword,
     UserPage
->>>>>>> celada
   ],
   imports: [
     BrowserModule,
@@ -48,14 +45,12 @@ import {hollidaysPage} from "../pages/hollidays/hollidays";
     AdminPage,
     TableusersPage,
     UserformPage,
-<<<<<<< HEAD
     hollidaysPage,
-    TablerolesPage
-=======
+  
     TablerolesPage,
     ResetPassword,
     UserPage
->>>>>>> celada
+
   ],
   providers: [
     StatusBar,

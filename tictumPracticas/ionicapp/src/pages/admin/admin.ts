@@ -5,6 +5,8 @@ import {UserformPage} from "../userform/userform";
 import {TablerolesPage} from "../tableroles/tableroles";
 import {HomePage} from "../home/home";
 
+import {hollidaysPage} from "../hollidays/hollidays";
+
 
 
 @IonicPage()
@@ -27,6 +29,11 @@ export class AdminPage {
 
   onClickAddUser(){
     this.navCtrl.push(UserformPage);
+  }
+
+
+onClickCalendario(){
+    this.navCtrl.push(hollidaysPage);
   }
 
 

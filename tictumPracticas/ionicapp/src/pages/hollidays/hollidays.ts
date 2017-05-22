@@ -23,13 +23,16 @@ export class hollidaysPage {
   }
 
 
-eventSource;
+    eventSource;
     viewTitle;
     isToday: boolean;
     calendar = {
         mode: 'month',
         currentDate: new Date()
     }; // these are the variable used by the calendar.
+
+
+
     loadEvents() {
         this.eventSource = this.createRandomEvents();
     }
