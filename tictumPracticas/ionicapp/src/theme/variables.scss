@@ -1,82 +1,44 @@
 $font-path: "../assets/fonts";
 
-
-
 @import "ionic.globals";
-
 @import "ionic.theme.dark";
-
 @import "ionic.ionicons";
-
 @import "roboto";
-
 @import "noto-sans";
 
-
-
 $base:#8ddbe0;
-
 $second:#9bc4bc;
-
 $interf:#4b5043;
-
 $danger: #FF0000;
-
 $warning: #FF7400;
-
 $light: #d3ffe9;
-
 $dark: #090909;
 
-
-
-
-
 $colors: (
-
 	primary: $base,
-
 	secondary: $second,
-
 	danger: $danger,
-
 	light: $light,
-
 	dark: $dark,
-
 	warning:$warning);
 
-
-
-
-
 $toolbar-ios-background:($interf);
-
 $toolbar-md-background:($interf);
-
 $toolbar-wp-background:($interf);
 
 
 
 ion-content{
-
 	background-image: url("../img/bckgrnd_02_grayscale.png");
-
 	background-size: 100%;
-
 }
-
-
 
 .logo{
-
 	background-color:rgba(0,0,0,0.0);
-
 	margin: 0 auto;
-
 	display:block;
-
 }
+
 .validator{
 	background-color: rgba(0,0,0,0.0);
 	.item-inner{
@@ -86,10 +48,12 @@ ion-content{
 		}
 	}
 }
+
 .scrll{
 	overflow-x:scroll;
 	overflow-y:scroll;
 }
+
 .ioninput{
 	border-radius:10px;
 }

@@ -5,12 +5,11 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content padding>
-  <ion-searchbar [showCancelButton]="shouldShowCancel"
-                 (ionInput)="onInput($event)"></ion-searchbar>
+  <ion-searchbar [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let user of search; let i=index" text-wrap (click)="toggleGroup(i)"
-              [ngClass]="{active: isGroupShown(i)}">
+    <ion-item *ngFor="let user of search; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
       <h2>
         <ion-row>
           <ion-col col-10>
@@ -22,10 +21,8 @@
           </ion-col>
         </ion-row>
       </h2>
-
       <div *ngIf="isGroupShown(i)">
         <ion-card color="light">
-
           <ion-list no-lines>
             <ion-item color="light">{{user.dni}}</ion-item>
             <ion-item color="light">{{user.email}}</ion-item>
@@ -47,5 +44,4 @@
       </div>
     </ion-item>
   </ion-list>
-
 </ion-content>

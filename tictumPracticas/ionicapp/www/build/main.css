@@ -27008,12 +27008,13 @@ ion-navbar.toolbar {
 }
 
 .logo {
-  width: 152px;
-  height: 152px;
+  width: 5em;
+  height: 5em;
+  margin-bottom: 25px;
 }
 
 form {
-  padding-top: 100px;
+  padding-top: 25px;
 }
 
 .checkboxremem {
