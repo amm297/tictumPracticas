@@ -1,5 +1,5 @@
 /**
- * Created by Javier on 17/05/2017.
+ * Created by Grupo Practicas on 17/05/2017.
  */
 export class User {
 	dni: string;
@@ -23,9 +23,5 @@ export class User {
 	isUser(){
 		return (this.role == 'user') ? true : false;
 	}
-
-
-
-
-
+	
 }

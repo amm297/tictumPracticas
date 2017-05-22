@@ -1,10 +1,10 @@
 import {FormControl} from '@angular/forms';
-import { hasValidFormat, isValidDNI } from './dniValidation';
 
 export class DniValidator {
 
   static hasValidFormat(dniFormControl: FormControl): any {
-    return hasValidFormat(dniFormControl.value) ?
+    const dniRegex = /^[0-9]{8}[a-z, A-Z]$/;
+    return dniRegex.test(dniFormControl.value) ?
       null :
       {
         "dni.hasValidFormat": {
@@ -14,12 +14,23 @@ export class DniValidator {
   }
 
   static isValid(dniFormControl: FormControl) {
-    return isValidDNI(dniFormControl.value) ?
-      null :
-      {
-        "dni.isValid": {
-          valid: false
-        }
+    let value = dniFormControl.value;
+    let validLetters = 'TRWAGMYFPDXBNJZSQVHLCKET';
+    if (value) {
+      if (value.length == 9) {
+        let dniNumber: number = parseInt(value.substring(0, 8));
+        let validLetter: string = validLetters.charAt(dniNumber % 23);
+        let currentLetter = value.substring(8, value.length).toUpperCase();
+        return currentLetter === validLetter ?
+          null: {
+          "dni.isValid":{
+            valid : false
+          }
+        };
       }
+    }
+    return false;
   }
+
+
 }

@@ -4,6 +4,7 @@ import {TableusersPage} from "../tableusers/tableusers";
 import {UserformPage} from "../userform/userform";
 import {TablerolesPage} from "../tableroles/tableroles";
 import {HomePage} from "../home/home";
+import {LocationPage} from "../location/location";
 
 @IonicPage()
 @Component({
@@ -25,6 +26,9 @@ export class AdminPage {
 
   onClickAddUser(){
     this.navCtrl.push(UserformPage);
+  }
+  onLocation(){
+    this.navCtrl.push(LocationPage);
   }
 
 

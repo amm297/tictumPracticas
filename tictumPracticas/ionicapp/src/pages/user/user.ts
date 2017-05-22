@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {HomePage} from "../home/home";
+import {CheckingPage} from "../checking/checking";
 
 @IonicPage()
 @Component({
@@ -15,6 +16,9 @@ export class UserPage {
   logout(){
     localStorage.clear();
     this.navCtrl.setRoot(HomePage);
+  }
+  onChecking(){
+    this.navCtrl.push(CheckingPage);
   }
 
 }
