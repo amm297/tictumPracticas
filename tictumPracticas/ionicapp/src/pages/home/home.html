@@ -17,22 +17,22 @@
     </ion-item>
 
     <ion-item *ngIf="!loginForm.controls.input.valid && loginForm.controls.input.touched">
-      <p style="color:red;">Introduce a valid email or Dni</p>
+      <p style="color:red;">Introduce un email o un DNI válido</p>
     </ion-item>
 
     <ion-item>
       <ion-label floating>
       <ion-icon name="key"></ion-icon>
-       Password
+       Contraseña
       </ion-label>
       <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>
     </ion-item>
 
     <ion-item *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched">
-      <p style="color:red;">Introduce a valid password</p>
+      <p style="color:red;">Introduce una contraseña</p>
     </ion-item>
 
-    
+
 
     <button ion-button margin-top="10px" type="submit" full>Login</button>
 

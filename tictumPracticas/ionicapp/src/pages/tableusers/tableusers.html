@@ -7,7 +7,7 @@
 </ion-header>
 <ion-content padding>
 
-	<ion-card *ngFor="let user of users">
+	<ion-card *ngFor="let user of users; let index = index">
 		<ion-card-header>
 			{{user.name }} {{user.lastname}} <span  class="item-note">{{user.role  }}</span>
 		</ion-card-header>
@@ -19,13 +19,13 @@
 				<ion-item>{{user.address}}</ion-item>
 				<ion-item>{{user.phone}}</ion-item>
 			</ion-list>
-			
+
 
 		</ion-card-content>
-		
-			<button ion-button clear icon-only color="warning"> <ion-icon name="create"></ion-icon> </button>
-			<button ion-button clear icon-only color="danger"> <ion-icon name="trash"></ion-icon> </button>
-		
+
+			<button ion-button clear icon-only color="warning" (click)="modifyUser(user)"> <ion-icon name="create"></ion-icon> </button>
+			<button ion-button clear icon-only color="danger" (click)="deleteUser(user._id,index)"> <ion-icon name="trash"></ion-icon> </button>
+
 
 	</ion-card>
 
