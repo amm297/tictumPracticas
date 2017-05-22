@@ -17,20 +17,6 @@ $darktheme:#242424;
 form{
 	padding-top:100px;
 }
-.ioninput, .button-default{
-	border-radius:10px;
-}
-
-.validator{
-	background-color: rgba(0,0,0,0.0);
-	.item-inner{
-		border-bottom:0px !important;
-		p{
-		color:red;
-		}
-	}
-}
-
 .checkboxremem{
 	background-color: rgba(0,0,0,0.0);
 	ion-label{

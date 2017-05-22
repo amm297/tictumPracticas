@@ -3822,6 +3822,27 @@ ion-content {
   display: block;
 }
 
+.validator {
+  background-color: transparent;
+}
+
+.validator .item-inner {
+  border-bottom: 0px !important;
+}
+
+.validator .item-inner p {
+  color: red;
+}
+
+.scrll {
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+
+.ioninput {
+  border-radius: 10px;
+}
+
 ion-action-sheet {
   position: absolute;
   top: 0;
@@ -26970,11 +26991,6 @@ ion-navbar.toolbar {
   }
 }
 
-.btadmin {
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
 .lgt {
   font-size: 2em;
 }
@@ -26998,22 +27014,6 @@ ion-navbar.toolbar {
 
 form {
   padding-top: 100px;
-}
-
-.ioninput, .button-default {
-  border-radius: 10px;
-}
-
-.validator {
-  background-color: transparent;
-}
-
-.validator .item-inner {
-  border-bottom: 0px !important;
-}
-
-.validator .item-inner p {
-  color: red;
 }
 
 .checkboxremem {
@@ -27087,26 +27087,4 @@ form {
   .btnn ion-icon:last-child {
     margin-left: 1.2em !important;
   }
-}
-
-.scrll {
-  overflow-x: scroll;
-  overflow-y: scroll;
-}
-
-.validator {
-  background-color: transparent;
-}
-
-.validator .item-inner {
-  border-bottom: 0px !important;
-}
-
-.validator .item-inner p {
-  color: red;
-}
-
-.scrll {
-  overflow-x: scroll;
-  overflow-y: scroll;
 }
