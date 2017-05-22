@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Registro de Usuario</ion-title>
+    <ion-title>{{btnValue}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -53,9 +53,9 @@
       <ion-label floating>Teléfono</ion-label>
       <ion-input [(ngModel)]="user.phone" type="text" formControlName="phone"></ion-input>
     </ion-item>
-    <ion-item *ngIf="!userForm.controls.phone.valid  && (userForm.controls.phone.dirty || submitAttempt)"> 
-      <p style="color:red;">Teléfono debe tener al menos {{8-user.phone.length}} caracteres numéricos.</p> 
-    </ion-item> 
+    <ion-item *ngIf="!userForm.controls.phone.valid  && (userForm.controls.phone.dirty || submitAttempt)">
+      <p style="color:red;">Teléfono debe tener al menos {{8-user.phone.length}} caracteres numéricos.</p>
+    </ion-item>
 
     <ion-item>
       <ion-label floating>Email</ion-label>

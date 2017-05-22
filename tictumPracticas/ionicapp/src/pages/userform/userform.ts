@@ -30,7 +30,7 @@ export class UserformPage {
               private alertCtrl: AlertController) {
 
     if (this.navParams.get('user')) {
-        this.user = this.navParams.get('user'); 
+        this.user = this.navParams.get('user');
         this.btnValue = "Editar usuario";
         this.edit = true;
     }
@@ -79,7 +79,7 @@ export class UserformPage {
           }
         });
       }
-      
+
     } else {
       console.log("Formulario incorrecto!");
     }
