@@ -26,11 +26,11 @@ export class Roles {
     });
   }
 
-  removeRole(role){
+  removeRole(roleId){
         return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      this.http.delete(this.server + '/api/roles/delete?_id=' + role._id, {headers: headers})
+      this.http.delete(this.server + '/api/roles/delete?_id=' + roleId, {headers: headers})
         .map(res => res.json())
         .subscribe(data => {
           console.log(data);
