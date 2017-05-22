@@ -3810,6 +3810,7 @@ ion-icon {
   font-weight: 700;
   src: local("Noto Sans Bold"), local("Noto-Sans-Bold"), url("../assets/fonts/noto-sans-bold.woff") format("woff"), url("../assets/fonts/noto-sans-bold.ttf") format("truetype");
 }
+<<<<<<< HEAD
 
 ion-action-sheet {
   position: absolute;
@@ -26958,3 +26959,5 @@ ion-navbar.toolbar {
     padding-top: calc(16px + 20px);
   }
 }
+=======
+>>>>>>> alma
