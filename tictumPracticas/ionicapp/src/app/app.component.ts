@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { TablerolesPage } from '../pages/tableroles/tableroles';
 =======
 <<<<<<< HEAD
@@ -13,6 +14,10 @@ import { TablerolesPage } from '../pages/tableroles/tableroles';
 
 =======
 >>>>>>> celada
+>>>>>>> paula
+=======
+
+//import { UserformPage } from '../pages/userform/userform';
 >>>>>>> paula
 @Component({
   templateUrl: 'app.html'

@@ -11,7 +11,8 @@ import {UserformPage} from '../userform/userform'
 export class TableusersPage implements OnInit {
 
   users: any;
-  search:any;
+  search: any;
+  shownGroup;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -22,11 +23,10 @@ export class TableusersPage implements OnInit {
   ngOnInit() {
     this.usersService.getAllUsers().then((data) => {
       this.users = data;
-      this.search = data;
+      this.search = this.users;
       console.log(this.users);
     });
   }
-
 
   deleteUser(userId: String, index: number) {
     let confirm = this.alertCtrl.create({
@@ -54,18 +54,29 @@ export class TableusersPage implements OnInit {
 
   onInput(event) {
     let input = event.target.value;
-    if(input && input.trim()!=''){
-      this.search = this.users.filter(user=>{
+    if (input && input.trim() != '') {
+      this.search = this.users.filter(user => {
         return (
-          user.name.toLowerCase().indexOf(input.toLowerCase())!= -1 ||
-          user.dni.indexOf(input)> -1 ||
-          user.email.toLowerCase().indexOf(input.toLowerCase())> -1 ||
-          user.role.toLowerCase().indexOf(input.toLowerCase())> -1 )
+        user.name.toLowerCase().indexOf(input.toLowerCase()) != -1 ||
+        user.dni.indexOf(input) > -1 ||
+        user.email.toLowerCase().indexOf(input.toLowerCase()) > -1 ||
+        user.role.toLowerCase().indexOf(input.toLowerCase()) > -1 )
       });
-    }else{
+    } else {
       this.search = this.users;
     }
   }
 
+//Display users
+  toggleGroup(group) {
+    if (this.isGroupShown(group)) {
+      this.shownGroup = null;
+    } else {
+      this.shownGroup = group;
+    }
+  };
 
+  isGroupShown(group) {
+    return this.shownGroup === group;
+  };
 }
