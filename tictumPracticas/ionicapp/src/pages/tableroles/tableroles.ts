@@ -10,9 +10,10 @@ import {Roles} from '../../providers/roles';
 export class TablerolesPage {
 
   roles: any;
+  search: any;
   displayInput: boolean = false;
   displayButton: string = '';
-  role:{rolename:string} = {rolename:''};
+  role: { rolename: string } = {rolename: ''};
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public rolesService: Roles) {
@@ -25,49 +26,64 @@ export class TablerolesPage {
   getAllRoles() {
     this.rolesService.getAllRoles().then((data) => {
       this.roles = data;
+      this.search = this.roles;
     });
   }
 
-  showInput(){
+  showInput() {
     this.displayButton = 'add';
     this.displayInput = true;
   }
-  closeInput(){
-    this.role.rolename ='';
+
+  closeInput() {
+    this.role.rolename = '';
     this.displayInput = false;
     this.getAllRoles();
   }
 
-  addRole(){
-    if(this.role.rolename !== ''){
-      this.rolesService.addRole(this.role).then(()=>{
-      this.closeInput();
-      this.role.rolename ='';
-      this.getAllRoles();
+  addRole() {
+    if (this.role.rolename !== '') {
+      this.rolesService.addRole(this.role).then(() => {
+        this.closeInput();
+        this.role.rolename = '';
+        this.getAllRoles();
       });
     }
 
   }
 
-  editRole(role){
+  editRole(role) {
     this.role = role;
     this.displayButton = 'edit';
     this.displayInput = true;
   }
 
-  updateRole(){
-     if(this.role.rolename !== ''){
-      this.rolesService.updateRole(this.role).then(()=>{
+  updateRole() {
+    if (this.role.rolename !== '') {
+      this.rolesService.updateRole(this.role).then(() => {
         this.closeInput();
-        this.role.rolename='';
+        this.role.rolename = '';
         this.getAllRoles();
       });
     }
   }
-  deleteRole(role){
-   this.rolesService.removeRole(role).then(()=>{
+
+  deleteRole(role) {
+    this.rolesService.removeRole(role).then(() => {
       this.getAllRoles();
     });
+  }
+
+  onInput(event) {
+    let input = event.target.value;
+    if (input && input.trim() != '') {
+      this.search = this.roles.filter(role => {
+        return (
+        role.rolename.toLowerCase().indexOf(input.toLowerCase()) > -1 )
+      });
+    } else {
+      this.search = this.roles;
+    }
   }
 
 }

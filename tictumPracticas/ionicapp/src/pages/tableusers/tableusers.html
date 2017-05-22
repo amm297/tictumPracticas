@@ -1,31 +1,51 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Mostrar Usuarios
+      Lista de Usuarios
     </ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding class="scrll">
-<!--<ion-content padding overflow-scroll="true">-->
+<ion-content padding>
+  <ion-searchbar [showCancelButton]="shouldShowCancel"
+                 (ionInput)="onInput($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let user of search; let i=index" text-wrap (click)="toggleGroup(i)"
+              [ngClass]="{active: isGroupShown(i)}">
+      <h2>
+        <ion-row>
+          <ion-col col-10>
+            <span class="item-note" text-uppercase>{{user.role}}</span>:
+            {{user.name}} {{user.lastname}}
+          </ion-col>
+          <ion-col text-right>
+            <ion-icon color="success" [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </h2>
 
-	<ion-card *ngFor="let user of users">
-		<ion-card-header class="cabec">
-			<p>{{user.name }} {{user.lastname}}&nbsp;&nbsp;&nbsp;&nbsp;<span class="item-note">{{user.role}}</span></p>
-			<button ion-button clear icon-only color="danger" class="btnn"> <ion-icon name="trash" class="icnn"></ion-icon> </button>
-			<button ion-button clear icon-only color="warning" class="btnn"> <ion-icon name="create" class="icnn"></ion-icon> </button>
-		</ion-card-header>
-		<ion-card-content>
-			<ion-list>
-				<ion-item>{{user.dni}}</ion-item>
-				<ion-item>{{user.email}}</ion-item>
-				<ion-item>{{user.country}}</ion-item>
-				<ion-item>{{user.address}}</ion-item>
-				<ion-item>{{user.phone}}</ion-item>
-			</ion-list>
-			
+      <div *ngIf="isGroupShown(i)">
+        <ion-card>
 
-		</ion-card-content>
-
-  </ion-card>
+          <ion-list no-lines>
+            <ion-item>{{user.dni}}</ion-item>
+            <ion-item>{{user.email}}</ion-item>
+            <ion-item>{{user.country}}</ion-item>
+            <ion-item>{{user.address}}</ion-item>
+            <ion-item>{{user.phone}}</ion-item>
+          </ion-list>
+          <ion-row>
+            <ion-col text-right>
+              <button ion-button color="warning" icon-only clear (click)="modifyUser(user)">
+                <ion-icon name="create"></ion-icon>
+              </button>
+              <button ion-button color="danger" icon-only clear (click)="deleteUser(user._id,i)">
+                <ion-icon name="trash"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </div>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
