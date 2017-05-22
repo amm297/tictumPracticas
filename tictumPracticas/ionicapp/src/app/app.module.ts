@@ -15,6 +15,8 @@ import {HttpModule} from "@angular/http";
 import {IonicApp, IonicErrorHandler, IonicModule} from "ionic-angular";
 import {StatusBar} from "@ionic-native/status-bar";
 import {SplashScreen} from "@ionic-native/splash-screen";
+import { NgCalendarModule  } from 'ionic2-calendar';
+import {hollidaysPage} from "../pages/hollidays/hollidays";
 
 
 @NgModule({
@@ -24,12 +26,18 @@ import {SplashScreen} from "@ionic-native/splash-screen";
     AdminPage,
     TableusersPage,
     UserformPage,
+<<<<<<< HEAD
+    hollidaysPage,
+    TablerolesPage
+=======
     TablerolesPage,
     ResetPassword,
     UserPage
+>>>>>>> celada
   ],
   imports: [
     BrowserModule,
+    NgCalendarModule,
     HttpModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -40,9 +48,14 @@ import {SplashScreen} from "@ionic-native/splash-screen";
     AdminPage,
     TableusersPage,
     UserformPage,
+<<<<<<< HEAD
+    hollidaysPage,
+    TablerolesPage
+=======
     TablerolesPage,
     ResetPassword,
     UserPage
+>>>>>>> celada
   ],
   providers: [
     StatusBar,
