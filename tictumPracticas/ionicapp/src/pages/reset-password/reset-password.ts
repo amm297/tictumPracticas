@@ -26,14 +26,10 @@ import {DniValidator} from  '../userform/dniValidator';
 })
 export class ResetPassword {
   
-  //user: User = new User();
+  user: User = new User();
   confirmpassword: string;
   resetPasswForm;
-  user = { 
-    email: '', 
-    dni:'', 
-    password: '' 
-  }; 
+
   constructor(public navCtrl: NavController, private navParams: NavParams, public formBuilder: FormBuilder, public alertCtrl: AlertController, private usersService: Users) {
     if (this.navParams.get('user')) this.user = this.navParams.get('user');
     this.resetPasswForm = formBuilder.group({
