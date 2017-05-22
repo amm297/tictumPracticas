@@ -7,6 +7,7 @@ import {Users} from "../../providers/users";
 import {AdminPage} from "../admin/admin";
 import {UserPage} from "../user/user";
 import {ResetPassword} from "../reset-password/reset-password";
+import {GenericPasswordPage} from "../generic-password/generic-password";
 
 @Component({
   selector: 'home-page',
@@ -71,7 +72,7 @@ export class HomePage {
 
   goToResetPassword() {
     console.log("Cambiar contraseña del email "+this.user.input);
-    this.navCtrl.push(ResetPassword,this.user.input);
+    this.navCtrl.push(GenericPasswordPage,this.user.input);
   }
 
 }
