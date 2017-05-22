@@ -25,23 +25,26 @@ export class HomePage {
     //console.log('Paso constructor');
     this.user.input = localStorage.getItem("email");
     this.user.password = localStorage.getItem("pwd");
-    
+
     this.loginForm = formBuilder.group({
-      input: [''  , Validators.required],
+      input: ['', Validators.required],
       password: ['', Validators.required],
     });
-   
+
 
   }
 
-   ionViewDidLoad() {
-     this.userLogin();
+  ionViewDidLoad() {
+    this.userLogin();
   }
 
 
   userLogin() {
     console.log("Comprobando Login" + this.loginForm.valid);
     if (this.loginForm.valid) {
+      if (this.user.input.includes('@')) {
+        this.user.input = this.user.input.toLowerCase();
+      }
       this.usersService.loginUser(this.user).then((data) => {
         if (data.hasOwnProperty('errmsg')) {
           let alert = this.alertCtrl.create({
@@ -53,18 +56,17 @@ export class HomePage {
         }
         else {
           console.log("Login OK");
-          let logUser : User = new User(data);
-          if(this.remember){
+          let logUser: User = new User(data);
+          if (this.remember) {
             localStorage.setItem("email", logUser.email);
-            localStorage.setItem("pwd",logUser.password);
+            localStorage.setItem("pwd", logUser.password);
           }
-          if(logUser.isAdmin()) this.navCtrl.push(AdminPage) ;
-          else this.navCtrl.push(UserPage) ;
+          if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
+          else this.navCtrl.setRoot(UserPage);
         }
         console.log(data);
       });
     }
-
   }
 
   goToResetPassword() {
