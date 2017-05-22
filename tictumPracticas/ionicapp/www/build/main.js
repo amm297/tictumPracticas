@@ -35673,6 +35673,7 @@ var HomePage = (function () {
                 }
                 else {
                     console.log("Login OK");
+                    console.log(_this.navCtrl.last().component.name);
                     var logUser = new __WEBPACK_IMPORTED_MODULE_3__models_user__["a" /* User */](data);
                     if (_this.remember) {
                         localStorage.setItem("email", logUser.email);

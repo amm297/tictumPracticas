@@ -57,6 +57,7 @@ export class HomePage {
         }
         else {
           console.log("Login OK");
+          console.log(this.navCtrl.last().component.name);
           let logUser: User = new User(data);
           if (this.remember) {
             localStorage.setItem("email", logUser.email);
