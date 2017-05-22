@@ -9,11 +9,10 @@
   <form [formGroup]="loginForm" (ngSubmit)="userLogin(user)">
     <ion-item>
       <ion-icon name="at"></ion-icon>
-      <!-- <ion-label color="primary" stacked>Email or DNI (12354678X): -->
-      <ion-label floating>
-        Email or DNI (12354678X):
+      <ion-label>
+        Email or DNI:
       </ion-label>
-      <ion-input [(ngModel)]="user.input" type="text" formControlName="input"></ion-input> <!-- placeholder="12354678X" -->
+      <ion-input [(ngModel)]="user.input" type="text" formControlName="input" placeholder="Ej:12354678X"></ion-input> <!-- placeholder="12354678X" -->
     </ion-item>
 
     <ion-item *ngIf="!loginForm.controls.input.valid && loginForm.controls.input.touched">
@@ -21,7 +20,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-label floating>
+      <ion-label>
       <ion-icon name="key"></ion-icon>
        Contraseña
       </ion-label>
@@ -31,8 +30,6 @@
     <ion-item *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched">
       <p style="color:red;">Introduce una contraseña</p>
     </ion-item>
-
-
 
     <button ion-button margin-top="10px" type="submit" full>Login</button>
 
