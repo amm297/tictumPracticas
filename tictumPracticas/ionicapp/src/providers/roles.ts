@@ -17,7 +17,7 @@ export class Roles {
 
   //Portatil Celada
   server = 'http://172.16.112.163:8080';
-
+  //server = 'http://localhost:8080';
 
   getAllRoles() {
     return new Promise(resolve => {

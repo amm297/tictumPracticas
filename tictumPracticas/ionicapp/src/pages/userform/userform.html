@@ -10,7 +10,7 @@
 <ion-content padding>
   <form [formGroup]="userForm" (ngSubmit)="registerUser()">
     <ion-item>
-      <ion-label floating>dni</ion-label>
+      <ion-label floating>DNI</ion-label>
       <ion-input [(ngModel)]="user.dni" type="text" formControlName="dni"></ion-input>
     </ion-item>
     <ion-item *ngIf="!userForm.controls.dni.valid  && (userForm.controls.dni.dirty || submitAttempt)">
@@ -53,9 +53,9 @@
       <ion-label floating>Teléfono</ion-label>
       <ion-input [(ngModel)]="user.phone" type="text" formControlName="phone"></ion-input>
     </ion-item>
-    <ion-item *ngIf="!userForm.controls.phone.valid  && (userForm.controls.phone.dirty || submitAttempt)">
-      <p style="color:red;">Teléfono debe tener al menos 8 caracteres numéricos.</p>
-    </ion-item>
+    <ion-item *ngIf="!userForm.controls.phone.valid  && (userForm.controls.phone.dirty || submitAttempt)"> 
+      <p style="color:red;">Teléfono debe tener al menos {{8-user.phone.length}} caracteres numéricos.</p> 
+    </ion-item> 
 
     <ion-item>
       <ion-label floating>Email</ion-label>
@@ -88,6 +88,6 @@
       </ion-select>
     </ion-item>
 
-    <button ion-button type="submit" [disabled]="!this.userForm.valid">Registrar Usuario</button>
+    <button ion-button type="submit" [disabled]="!this.userForm.valid">{{btnValue}}</button>
   </form>
 </ion-content>

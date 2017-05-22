@@ -5,8 +5,6 @@ import {User} from "../../models/user";
 import {Users} from "../../providers/users";
 
 import {PasswordValidator} from  './passwordValidator';
-
-
 import {DniValidator} from  './dniValidator';
 import {Roles} from "../../providers/roles";
 
@@ -21,6 +19,8 @@ export class UserformPage {
   roles: any;
   confirmpassword: string;
   userForm;
+  btnValue : string = "Registrar usuario";
+  edit : boolean = false;
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
@@ -28,7 +28,12 @@ export class UserformPage {
               private rolesService: Roles,
               private formBuilder: FormBuilder,
               private alertCtrl: AlertController) {
-    if (this.navParams.get('user')) this.user = this.navParams.get('user');
+
+    if (this.navParams.get('user')) {
+        this.user = this.navParams.get('user'); 
+        this.btnValue = "Editar usuario";
+        this.edit = true;
+    }
 
     this.userForm = formBuilder.group({
       name: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
@@ -52,22 +57,29 @@ export class UserformPage {
 
   registerUser() {
     if (this.userForm.valid) {
-      this.usersService.registerUser(this.user).then((data) => {
-        if (data.hasOwnProperty('errmsg')) {
-          let msg = '';
-          if (data['errmsg'].indexOf('dni') > 0) msg = "DNI ya en uso: " + this.user.dni;
-          else  msg = "Email ya en uso: " + this.user.email;
+      if(this.edit){
+        this.usersService.modifyUser(this.user).then(data =>{
+          if(!data.hasOwnProperty('errmsg')) this.navCtrl.pop();
+        });
+      }else{
+        this.usersService.registerUser(this.user).then((data) => {
+          if (data.hasOwnProperty('errmsg')) {
+            let msg = '';
+            if (data['errmsg'].indexOf('dni') > 0) msg = "DNI ya en uso: " + this.user.dni;
+            else  msg = "Email ya en uso: " + this.user.email;
 
-          let alert = this.alertCtrl.create({
-            title: 'Oops!',
-            subTitle: msg,
-            buttons: ['Ok']
-          });
-          alert.present();
-        } else {
-          this.navCtrl.pop();
-        }
-      });
+            let alert = this.alertCtrl.create({
+              title: 'Oops!',
+              subTitle: msg,
+              buttons: ['Ok']
+            });
+            alert.present();
+          } else {
+            this.navCtrl.pop();
+          }
+        });
+      }
+      
     } else {
       console.log("Formulario incorrecto!");
     }

@@ -6,7 +6,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <form [formGroup]="loginForm" (ngSubmit)="userLogin()">
+  <form [formGroup]="loginForm" (ngSubmit)="userLogin(user)">
     <ion-item>
       <ion-icon name="at"></ion-icon>
       <!-- <ion-label color="primary" stacked>Email or DNI (12354678X): -->
@@ -31,6 +31,8 @@
     <ion-item *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched">
       <p style="color:red;">Introduce una contraseña</p>
     </ion-item>
+
+
 
     <button ion-button margin-top="10px" type="submit" full>Login</button>
 
