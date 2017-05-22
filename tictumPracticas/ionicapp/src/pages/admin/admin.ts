@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TableusersPage} from "../tableusers/tableusers";
 import {UserformPage} from "../userform/userform";
 import {TablerolesPage} from "../tableroles/tableroles";
+import {HomePage} from "../home/home";
+import {LocationPage} from "../pages/location/location";
 
 @IonicPage()
 @Component({
@@ -25,5 +27,13 @@ export class AdminPage {
   onClickAddUser(){
     this.navCtrl.push(UserformPage);
   }
+  
+  onLocation(){
+	 this.navCtrl.push(LocationPage);	
+  }
 
+  logout(){
+    localStorage.clear();
+    this.navCtrl.setRoot(HomePage);
+  }
 }

@@ -1,8 +1,14 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Admin</ion-title>
+    <ion-title>Administrador</ion-title>
+    <ion-buttons end>
+    <button ion-button (click)="logout()">
+      <ion-icon name="lock"></ion-icon>
+    </button>
+  </ion-buttons>
   </ion-navbar>
+
 
 </ion-header>
 
@@ -19,4 +25,9 @@
     <ion-icon name="medical" item-left padding-right="5px"></ion-icon>
     Mostrar Roles
   </button>
+  <button ion-button (click)="onLocation()">
+    <ion-icon name="person-add" item-left padding-right="5px"></ion-icon>
+    Location
+  </button>
+  
 </ion-content>

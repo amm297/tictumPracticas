@@ -9,6 +9,9 @@ import {TablerolesPage} from "../pages/tableroles/tableroles";
 import {Roles} from "../providers/roles";
 import {ResetPassword} from "../pages/reset-password/reset-password";
 
+import {LocationPage} from "../pages/location/location";
+
+
 import {ErrorHandler, NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {HttpModule} from "@angular/http";
@@ -16,6 +19,7 @@ import {IonicApp, IonicErrorHandler, IonicModule} from "ionic-angular";
 import {StatusBar} from "@ionic-native/status-bar";
 import {SplashScreen} from "@ionic-native/splash-screen";
 
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,8 @@ import {SplashScreen} from "@ionic-native/splash-screen";
     UserformPage,
     TablerolesPage,
     ResetPassword,
-    UserPage
+    UserPage,
+	  LocationPage
   ],
   imports: [
     BrowserModule,
@@ -42,14 +47,18 @@ import {SplashScreen} from "@ionic-native/splash-screen";
     UserformPage,
     TablerolesPage,
     ResetPassword,
-    UserPage
+    UserPage,
+	  LocationPage
   ],
   providers: [
+    Geolocation,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Users,
-    Roles
+    Roles,
+    
+
   ]
 })
 export class AppModule {
