@@ -1,7 +1,11 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Admin</ion-title>
+   <ion-navbar>
+    <ion-buttons end>
+    <button ion-button (click)="logout()">
+      <ion-icon name="lock"></ion-icon>
+    </button>
+  </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -20,33 +24,4 @@
     &nbsp;&nbsp;&nbsp;Mostrar Roles
   </button>
 </ion-content>
-
-  <ion-navbar>
-    <ion-title>Admin</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-<ion-content padding>
-  <button ion-button (click)="onClickAddUser()">
-    <ion-icon name="person-add" item-left padding-right="5px"></ion-icon>
-    Registrar Usuario
-  </button>
-  <button ion-button (click)="onClickUsers()">
-    <ion-icon name="people" item-left padding-right="5px"></ion-icon>
-    Mostrar Usuarios
-  </button>
-  <button ion-button (click)="onClickRoles()">
-    <ion-icon name="medical" item-left padding-right="5px"></ion-icon>
-    Mostrar Roles
-  </button>
-</ion-content>
-
-    <ion-title>Administrador</ion-title>
-  <ion-navbar>
-    <ion-buttons end>
-    <button ion-button (click)="logout()">
-      <ion-icon name="lock"></ion-icon>
-    </button>
-  </ion-buttons>
-  </ion-navbar>
+ 
