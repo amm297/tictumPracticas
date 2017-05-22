@@ -24682,6 +24682,10 @@ ion-navbar.toolbar {
   margin-bottom: 1em;
 }
 
+.lgt {
+  font-size: 2em;
+}
+
 .scroll-content {
   display: table !important;
   width: 100% !important;
@@ -24692,6 +24696,11 @@ ion-navbar.toolbar {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+}
+
+.logo {
+  width: 152px;
+  height: 152px;
 }
 
 form {
