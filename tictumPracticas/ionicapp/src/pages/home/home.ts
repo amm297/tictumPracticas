@@ -46,7 +46,6 @@ export class HomePage {
         this.user.input = this.user.input.toLowerCase();
       }
       this.usersService.loginUser(this.user).then((data) => {
-        console.log(data);
         if (data.hasOwnProperty('errmsg')) {
           let alert = this.alertCtrl.create({
             title: 'Oops!',
@@ -71,8 +70,8 @@ export class HomePage {
   }
 
   goToResetPassword() {
-    console.log("Cambiar contraseña del email " + this.user.input);
-    this.navCtrl.push(ResetPassword);
+    console.log("Cambiar contraseña del email "+this.user.input);
+    this.navCtrl.push(ResetPassword,this.user.input);
   }
 
 }

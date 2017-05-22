@@ -1,12 +1,12 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Login
+      Entrar
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <form [formGroup]="loginForm" (ngSubmit)="userLogin()">
+  <form [formGroup]="loginForm" (ngSubmit)="userLogin(user)">
     <ion-item>
       <ion-icon name="at"></ion-icon>
       <!-- <ion-label color="primary" stacked>Email or DNI (12354678X): -->

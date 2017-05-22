@@ -1,32 +1,36 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Table Users
+      Lista de Usuarios
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
+  <ion-searchbar [showCancelButton]="shouldShowCancel" 
+                 (ionInput)="onInput($event)" 
+                 (ionCancel)="onCancel($event)"></ion-searchbar> 
 
-	<ion-card *ngFor="let user of users; let index = index">
-		<ion-card-header>
-			{{user.name }} {{user.lastname}} <span  class="item-note">{{user.role  }}</span>
-		</ion-card-header>
-		<ion-card-content>
-			<ion-list>
-				<ion-item>{{user.dni}}</ion-item>
-				<ion-item>{{user.email}}</ion-item>
-				<ion-item>{{user.country}}</ion-item>
-				<ion-item>{{user.address}}</ion-item>
-				<ion-item>{{user.phone}}</ion-item>
-			</ion-list>
-
-
-		</ion-card-content>
-
-			<button ion-button clear icon-only color="warning" (click)="modifyUser(user)"> <ion-icon name="create"></ion-icon> </button>
-			<button ion-button clear icon-only color="danger" (click)="deleteUser(user._id,index)"> <ion-icon name="trash"></ion-icon> </button>
+  <ion-card *ngFor="let user of search; let index = index"> 
+    <ion-card-header> 
+      {{user.name }} {{user.lastname}} <span class="item-note">{{user.role  }}</span> 
+    </ion-card-header> 
+    <ion-card-content> 
+      <ion-list> 
+        <ion-item>{{user.dni}}</ion-item> 
+        <ion-item>{{user.email}}</ion-item> 
+        <ion-item>{{user.country}}</ion-item> 
+        <ion-item>{{user.address}}</ion-item> 
+        <ion-item>{{user.phone}}</ion-item> 
+      </ion-list> 
+    </ion-card-content>
 
 
-	</ion-card>
+     <button ion-button clear icon-only color="warning" (click)="modifyUser(user)"> 
+      <ion-icon name="create"></ion-icon> 
+    </button> 
+    <button ion-button clear icon-only color="danger" (click)="deleteUser(user._id,index)"> 
+      <ion-icon name="trash"></ion-icon> 
+    </button> 
+    </ion-card>
 
 </ion-content>

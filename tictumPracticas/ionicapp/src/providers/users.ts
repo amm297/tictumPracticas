@@ -13,6 +13,8 @@ export class Users {
   server = 'http://172.16.112.163:8080';
   //server = 'http://localhost:8080';
 
+
+
   registerUser(data) {
     console.log(data.dni);
     return new Promise(resolve => {
@@ -45,20 +47,34 @@ export class Users {
     
   }
 
+ /*-- Esperanza --*/
+
+  /*Función para generar contraseña AUTOMÁTICA*/
+	newPasswdAuto(data){
+	    return new Promise(resolve => {
+	      let headers = new Headers();
+	      headers.append('Content-Type', 'application/json');
+	      this.http.put(this.server + '/api/users/autopassw', JSON.stringify(data), {headers: headers})
+	        .map(res => res.json())
+	        .subscribe(data => {
+	          resolve(data);
+	        });
+	    });
+	}
  /*Funcion para cambiar la contraseña, comprobamos que el email/dni existe en la base de datos y después le añadimos la nueva contraseña.*/
   newPassword(data){
-    console.log(data);
     return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.put(this.server + '/api/users/resetpassw', JSON.stringify(data), {headers: headers})
         .map(res => res.json())
         .subscribe(data => {
-          console.log("5");
           resolve(data);
         });
     });
   }
+
+ //Esperanza
 
 
   getAllUsers() {
