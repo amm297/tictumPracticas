@@ -63,7 +63,7 @@ export class HomePage {
             localStorage.setItem("pwd", logUser.password);
           }
           if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
-          else this.navCtrl.setRoot(UserPage);
+          else this.navCtrl.setRoot(UserPage,{user:logUser});
         }
         console.log(data);
       });

@@ -5,7 +5,7 @@ import {UserformPage} from "../userform/userform";
 import {TablerolesPage} from "../tableroles/tableroles";
 import {HomePage} from "../home/home";
 
-import {hollidaysPage} from "../hollidays/hollidays";
+
 
 
 
@@ -32,9 +32,6 @@ export class AdminPage {
   }
 
 
-onClickCalendario(){
-    this.navCtrl.push(hollidaysPage);
-  }
 
 
   logout(){

@@ -29,6 +29,9 @@ export class UserformPage {
               private formBuilder: FormBuilder,
               private alertCtrl: AlertController) {
     if (this.navParams.get('user')) this.user = this.navParams.get('user');
+    else 
+      {this.user.daysh=30;
+      this.user.daysp=6;}
 
     this.userForm = formBuilder.group({
       name: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],

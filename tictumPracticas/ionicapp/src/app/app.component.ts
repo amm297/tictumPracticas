@@ -12,7 +12,7 @@ import {hollidaysPage} from "../pages/hollidays/hollidays";
 })
 export class MyApp {
   // set the rootPage to the first page we want displayed
-  public rootPage: any = hollidaysPage;
+  public rootPage: any = HomePage;
 
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

@@ -11,7 +11,7 @@ export class Users {
 
 
   //server = 'http://192.168.5.26:8080';
-  server = 'http://172.16.112.35:8080';
+  server = 'http://localhost:8080';
 
 
   registerUser(data) {
@@ -44,6 +44,34 @@ export class Users {
   logoutUser(data) {
     localStorage.clear();
     
+  }
+
+
+
+  addHollidays(data){
+    console.log(data);
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.put(this.server + '/api/users/addhollidays', JSON.stringify(data), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
+  addPersonalDays(data){
+    console.log(data);
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.put(this.server + '/api/users/addPersonalDays', JSON.stringify(data), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
   }
 
  /*Funcion para cambiar la contraseña, comprobamos que el email/dni existe en la base de datos y después le añadimos la nueva contraseña.*/
