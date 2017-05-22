@@ -35702,7 +35702,7 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'home-page',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Entrar\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n  <form [formGroup]="loginForm" (ngSubmit)="userLogin(user)">\n    <ion-item>\n      <ion-icon name="at"></ion-icon>\n      <ion-label>\n        Email or DNI:\n      </ion-label>\n      <ion-input [(ngModel)]="user.input" type="text" formControlName="input" placeholder="Ej:12354678X"></ion-input> <!-- placeholder="12354678X" -->\n    </ion-item>\n\n    <ion-item *ngIf="!loginForm.controls.input.valid && loginForm.controls.input.touched">\n      <p style="color:red;">Introduce un email o un DNI válido</p>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>\n      <ion-icon name="key"></ion-icon>\n       Contraseña\n      </ion-label>\n      <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>\n    </ion-item>\n\n    <ion-item *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched">\n      <p style="color:red;">Introduce una contraseña</p>\n    </ion-item>\n\n    <button ion-button margin-top="10px" type="submit" full>Login</button>\n\n    <ion-item  no-lines>\n      <ion-label >Remenber Me</ion-label>\n      <ion-checkbox  [(ngModel)]="remember" [ngModelOptions]="{standalone: true}" id="checkBox"></ion-checkbox>\n    </ion-item>\n\n    <div text-center>\n      <a block clear (click)="goToResetPassword()">I forgot my password</a>\n  </div>\n  </form>\n</ion-content>\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\home\home.html"*/
+        selector: 'home-page',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Entrar\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n  <form [formGroup]="loginForm" (ngSubmit)="userLogin(user)">\n    <ion-item>\n      <ion-icon name="at"></ion-icon>\n      <ion-label>\n        Email or DNI:\n      </ion-label>\n      <ion-input [(ngModel)]="user.input" type="text" formControlName="input" placeholder="Ej:12354678X"></ion-input> <!-- placeholder="12354678X" -->\n    </ion-item>\n\n    <ion-item *ngIf="!loginForm.controls.input.valid && loginForm.controls.input.touched">\n      <p style="color:red;">Introduce un email o un DNI válido</p>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>\n      <ion-icon name="key"></ion-icon>\n       Contraseña\n      </ion-label>\n      <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>\n    </ion-item>\n\n    <ion-item *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched">\n      <p style="color:red;">Introduce una contraseña</p>\n    </ion-item>\n\n    <button ion-button margin-top="10px" type="submit" block>Login</button>\n\n    <ion-item  no-lines>\n      <ion-label >Remenber Me</ion-label>\n      <ion-checkbox  [(ngModel)]="remember" [ngModelOptions]="{standalone: true}" id="checkBox"></ion-checkbox>\n    </ion-item>\n\n    <div text-center>\n      <a block clear (click)="goToResetPassword()">I forgot my password</a>\n  </div>\n  </form>\n</ion-content>\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\home\home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */], __WEBPACK_IMPORTED_MODULE_4__providers_users__["a" /* Users */]])
 ], HomePage);
@@ -58276,9 +58276,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var AdminPage = (function () {
-    function AdminPage(navCtrl, navParams) {
+    function AdminPage(navCtrl, navParams, alertCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.alertCtrl = alertCtrl;
     }
     AdminPage.prototype.onClickUsers = function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__tableusers_tableusers__["a" /* TableusersPage */]);
@@ -58289,6 +58290,25 @@ var AdminPage = (function () {
     AdminPage.prototype.onClickAddUser = function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__userform_userform__["a" /* UserformPage */]);
     };
+    AdminPage.prototype.showConfirm = function () {
+        var _this = this;
+        var confirm = this.alertCtrl.create({
+            title: 'Salir',
+            message: '¿Estas seguro de cerrar sesion?',
+            buttons: [
+                {
+                    text: 'Si',
+                    handler: function () {
+                        _this.logout();
+                    }
+                },
+                {
+                    text: 'No'
+                }
+            ]
+        });
+        confirm.present();
+    };
     AdminPage.prototype.logout = function () {
         localStorage.clear();
         this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__home_home__["a" /* HomePage */]);
@@ -58298,9 +58318,9 @@ var AdminPage = (function () {
 AdminPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-admin',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\admin\admin.html"*/'<ion-header>\n\n\n\n\n\n   <ion-navbar>\n\n\n    <ion-buttons end>\n\n\n    <button ion-button (click)="logout()">\n\n\n      <ion-icon name="lock" class="lgt"></ion-icon>\n\n\n    </button>\n\n\n  </ion-buttons>\n\n\n  </ion-navbar>\n\n\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n  <button ion-button large (click)="onClickAddUser()" full class="btadmin">\n\n\n    <ion-icon name="person-add" item-left></ion-icon>\n\n\n    &nbsp;&nbsp;Registrar Usuario\n\n\n  </button>\n\n\n  <button ion-button large (click)="onClickUsers()" full class="btadmin">\n\n\n    <ion-icon name="person" item-left></ion-icon>\n\n\n    &nbsp;&nbsp;Mostrar Usuarios\n\n\n  </button>\n\n\n  <button ion-button large (click)="onClickRoles()" full class="btadmin">\n\n\n    <ion-icon name="people" item-left></ion-icon>\n\n\n    &nbsp;&nbsp;&nbsp;Mostrar Roles\n\n\n  </button>\n\n\n</ion-content>\n\n\n '/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\admin\admin.html"*/,
+        selector: 'page-admin',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\admin\admin.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Administrador</ion-title>\n    <ion-buttons left>\n      <button ion-button (click)="showConfirm()">\n        <ion-icon name="log-out"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <button ion-button block (click)="onClickAddUser()">\n    <ion-icon name="person-add" item-left padding-right="5px"></ion-icon>\n    Registrar Usuario\n  </button>\n  <button ion-button block (click)="onClickUsers()">\n    <ion-icon name="people" item-left padding-right="5px"></ion-icon>\n    Mostrar Usuarios\n  </button>\n  <button ion-button block (click)="onClickRoles()">\n    <ion-icon name="medical" item-left padding-right="5px"></ion-icon>\n    Mostrar Roles\n  </button>\n</ion-content>\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\admin\admin.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */]])
 ], AdminPage);
 
 //# sourceMappingURL=admin.js.map
@@ -58500,7 +58520,7 @@ var ResetPassword = (function () {
 ResetPassword = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-reset-password',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\reset-password\reset-password.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Recuperar Contraseña</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <form [formGroup]="resetPasswForm" (ngSubmit)="resetPassword()">\n\n    <ion-item class="ioninput">\n\n      <ion-label floating>\n\n        <ion-icon name="key"></ion-icon>\n\n        New Password\n\n      </ion-label>\n\n      <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>\n\n    </ion-item>\n\n    <ion-item *ngIf="!resetPasswForm.controls.password.valid && resetPasswForm.controls.password.touched" class="validator">\n\n      <p>Introduce a valid password</p>\n\n    </ion-item>\n\n\n\n    <ion-item class="ioninput">\n\n      <ion-label floating>\n\n        <ion-icon name="key"></ion-icon>\n\n        Confirm Password\n\n      </ion-label>\n\n      <ion-input [(ngModel)]="confirmpassword" type="password" formControlName="confirmpassword" class="validator"></ion-input>\n\n    </ion-item>\n\n    <button ion-button type="submit" [disabled]="!this.resetPasswForm.valid">Reset Password</button>\n\n\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\reset-password\reset-password.html"*/
+        selector: 'page-reset-password',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\reset-password\reset-password.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Recuperar Contraseña</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <form [formGroup]="resetPasswForm" (ngSubmit)="resetPassword()">\n\n    <ion-item>\n\n      <ion-label floating>\n\n        <ion-icon name="key"></ion-icon>\n\n        New Password\n\n      </ion-label>\n\n      <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>\n\n    </ion-item>\n\n    <ion-item *ngIf="!resetPasswForm.controls.password.valid && resetPasswForm.controls.password.touched">\n\n      <p style="color:red;">Introduce a valid password</p>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>\n\n        <ion-icon name="key"></ion-icon>\n\n        Confirm Password\n\n      </ion-label>\n\n      <ion-input [(ngModel)]="confirmpassword" type="password" formControlName="confirmpassword"></ion-input>\n\n    </ion-item>\n\n    <button ion-button type="submit" [disabled]="!this.resetPasswForm.valid">Reset Password</button>\n\n\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\reset-password\reset-password.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */], __WEBPACK_IMPORTED_MODULE_4__providers_users__["a" /* Users */]])
 ], ResetPassword);
@@ -58603,7 +58623,7 @@ var TablerolesPage = (function () {
 TablerolesPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-tableroles',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableroles\tableroles.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Lista de Roles\n\n    </ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button (click)="showInput()">\n\n        <ion-icon name="add-circle"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-searchbar [showCancelButton]="shouldShowCancel"\n\n                 (ionInput)="onInput($event)"\n\n                  placeholder="Buscar roles">\n\n  </ion-searchbar>\n\n  <ion-list>\n\n    <ion-item *ngFor="let role of search">\n\n      <ion-icon item-left name="contact" *ngIf="role.rolename == \'admin\'"></ion-icon>\n\n      <ion-icon item-left name="person" *ngIf="role.rolename == \'user\'"></ion-icon>\n\n      <ion-icon item-left name="ionitron" *ngIf="role.rolename != \'admin\' && role.rolename != \'user\' "></ion-icon>\n\n      <h2>{{role.rolename}}</h2>\n\n      <button ion-button item-right color="warning" (click)="editRole(role)"><ion-icon name="create"></ion-icon></button>\n\n      <button ion-button color="danger" item-right (click)="deleteRole(role)"><ion-icon name="trash"></ion-icon></button>\n\n    </ion-item>\n\n    <!--\n\n          <ion-item-options>\n\n            <button ion-button color="primary" icon-left (click)="editContact(contact)">\n\n              <ion-icon name="ios-create"></ion-icon>\n\n              Edit\n\n            </button>\n\n            <button ion-button color="danger" icon-left (click)="deleteContact(contact)">\n\n              <ion-icon name="ios-trash"></ion-icon>\n\n              Delete\n\n            </button>\n\n          </ion-item-options>\n\n    -->\n\n  </ion-list>\n\n</ion-content>\n\n<ion-footer *ngIf="this.displayInput">\n\n\n\n  <ion-item>\n\n       <button item-right ion-button clear icon-only (click)="closeInput()">\n\n        <ion-icon name="close"></ion-icon>\n\n      </button>\n\n\n\n      <ion-label fixed>Role name</ion-label>\n\n     <ion-input type="text" [(ngModel)]="role.rolename" name="rolename"></ion-input>\n\n  </ion-item>\n\n     <button *ngIf="this.displayButton == \'add\'" ion-button (click)="addRole()">Añadir</button>\n\n     <button  *ngIf="this.displayButton == \'edit\'" ion-button (click)="updateRole()">Editar</button>\n\n</ion-footer>\n\n\n\n<ion-content padding>\n\n  <ion-searchbar [showCancelButton]="shouldShowCancel"\n\n                 (ionInput)="onInput($event)"\n\n                  placeholder="Buscar roles">\n\n  </ion-searchbar>\n\n  <ion-list>\n\n    <ion-item *ngFor="let role of search">\n\n      <ion-icon item-left name="contact" *ngIf="role.rolename == \'admin\'"></ion-icon>\n\n      <ion-icon item-left name="person" *ngIf="role.rolename == \'user\'"></ion-icon>\n\n      <ion-icon item-left name="ionitron" *ngIf="role.rolename != \'admin\' && role.rolename != \'user\' "></ion-icon>\n\n      <h2>{{role.rolename}}</h2>\n\n      <button ion-button item-right (click)="editRole(role)"><ion-icon name="create"></ion-icon></button>\n\n      <button ion-button color="danger" item-right (click)="deleteRole(role)"><ion-icon name="trash"></ion-icon></button>\n\n    </ion-item>\n\n    <!--\n\n          <ion-item-options>\n\n            <button ion-button color="primary" icon-left (click)="editContact(contact)">\n\n              <ion-icon name="ios-create"></ion-icon>\n\n              Edit\n\n            </button>\n\n            <button ion-button color="danger" icon-left (click)="deleteContact(contact)">\n\n              <ion-icon name="ios-trash"></ion-icon>\n\n              Delete\n\n            </button>\n\n          </ion-item-options>\n\n    -->\n\n  </ion-list>\n\n</ion-content>\n\n<ion-footer *ngIf="this.displayInput">\n\n\n\n  <ion-item>\n\n       <button item-right ion-button clear icon-only (click)="closeInput()">\n\n        <ion-icon name="close"></ion-icon>\n\n      </button>\n\n\n\n      <ion-label fixed>Role name</ion-label>\n\n     <ion-input type="text" [(ngModel)]="role.rolename" name="rolename"></ion-input>\n\n  </ion-item>\n\n     <button *ngIf="this.displayButton == \'add\'" ion-button (click)="addRole()">Añadir</button>\n\n     <button  *ngIf="this.displayButton == \'edit\'" ion-button (click)="updateRole()">Editar</button>\n\n</ion-footer>\n\n\n\n<ion-content padding>\n\n  <ion-searchbar [showCancelButton]="shouldShowCancel"\n\n                 (ionInput)="onInput($event)"\n\n                  placeholder="Buscar roles">\n\n  </ion-searchbar>\n\n  <ion-list>\n\n    <ion-item *ngFor="let role of search">\n\n      <ion-icon item-left name="contact" *ngIf="role.rolename == \'admin\'"></ion-icon>\n\n      <ion-icon item-left name="person" *ngIf="role.rolename == \'user\'"></ion-icon>\n\n      <ion-icon item-left name="ionitron" *ngIf="role.rolename != \'admin\' && role.rolename != \'user\' "></ion-icon>\n\n      <h2>{{role.rolename}}</h2>\n\n      <button ion-button item-right (click)="editRole(role)"><ion-icon name="create"></ion-icon></button>\n\n      <button ion-button color="danger" item-right (click)="deleteRole(role)"><ion-icon name="trash"></ion-icon></button>\n\n\n\n    </ion-item>\n\n    <!--\n\n          <ion-item-options>\n\n            <button ion-button color="primary" icon-left (click)="editContact(contact)">\n\n              <ion-icon name="ios-create"></ion-icon>\n\n              Edit\n\n            </button>\n\n            <button ion-button color="danger" icon-left (click)="deleteContact(contact)">\n\n              <ion-icon name="ios-trash"></ion-icon>\n\n              Delete\n\n            </button>\n\n          </ion-item-options>\n\n    -->\n\n  </ion-list>\n\n</ion-content>\n\n<ion-footer *ngIf="this.displayInput">\n\n\n\n  <ion-item>\n\n       <button item-right ion-button clear icon-only (click)="closeInput()">\n\n        <ion-icon name="close"></ion-icon>\n\n      </button>\n\n\n\n      <ion-label fixed>Role name</ion-label>\n\n     <ion-input type="text" [(ngModel)]="role.rolename" name="rolename"></ion-input>\n\n  </ion-item>\n\n     <button *ngIf="this.displayButton == \'add\'" ion-button (click)="addRole()">Añadir</button>\n\n     <button  *ngIf="this.displayButton == \'edit\'" ion-button (click)="updateRole()">Editar</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableroles\tableroles.html"*/,
+        selector: 'page-tableroles',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableroles\tableroles.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Lista de Roles\n\n    </ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button (click)="showInput()">\n\n        <ion-icon name="add-circle"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-searchbar [showCancelButton]="shouldShowCancel"\n\n                 (ionInput)="onInput($event)"\n\n                  placeholder="Buscar roles">\n\n  </ion-searchbar>\n\n  <ion-list>\n\n    <ion-item *ngFor="let role of search">\n\n      <ion-icon item-left name="contact" *ngIf="role.rolename == \'admin\'"></ion-icon>\n\n      <ion-icon item-left name="person" *ngIf="role.rolename == \'user\'"></ion-icon>\n\n      <ion-icon item-left name="ionitron" *ngIf="role.rolename != \'admin\' && role.rolename != \'user\' "></ion-icon>\n\n      <h2>{{role.rolename}}</h2>\n\n      <button ion-button item-right (click)="editRole(role)"><ion-icon name="create"></ion-icon></button>\n\n      <button ion-button color="danger" item-right (click)="deleteRole(role)"><ion-icon name="trash"></ion-icon></button>\n\n\n\n    </ion-item>\n\n    <!--\n\n          <ion-item-options>\n\n            <button ion-button color="primary" icon-left (click)="editContact(contact)">\n\n              <ion-icon name="ios-create"></ion-icon>\n\n              Edit\n\n            </button>\n\n            <button ion-button color="danger" icon-left (click)="deleteContact(contact)">\n\n              <ion-icon name="ios-trash"></ion-icon>\n\n              Delete\n\n            </button>\n\n          </ion-item-options>\n\n    -->\n\n  </ion-list>\n\n</ion-content>\n\n<ion-footer *ngIf="this.displayInput">\n\n\n\n  <ion-item>\n\n       <button item-right ion-button clear icon-only (click)="closeInput()">\n\n        <ion-icon name="close"></ion-icon>\n\n      </button>\n\n\n\n      <ion-label fixed>Role name</ion-label>\n\n     <ion-input type="text" [(ngModel)]="role.rolename" name="rolename"></ion-input>\n\n  </ion-item>\n\n     <button *ngIf="this.displayButton == \'add\'" ion-button (click)="addRole()">Añadir</button>\n\n     <button  *ngIf="this.displayButton == \'edit\'" ion-button (click)="updateRole()">Editar</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableroles\tableroles.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_roles__["a" /* Roles */]])
 ], TablerolesPage);
@@ -58704,7 +58724,7 @@ var TableusersPage = (function () {
 TableusersPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-tableusers',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableusers\tableusers.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Lista de Usuarios\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n  <ion-searchbar [showCancelButton]="shouldShowCancel"\n\n                 (ionInput)="onInput($event)"></ion-searchbar>\n\n  <ion-list>\n\n    <ion-item *ngFor="let user of search; let i=index" text-wrap (click)="toggleGroup(i)"\n\n              [ngClass]="{active: isGroupShown(i)}">\n\n      <h2>\n\n        <ion-row>\n\n          <ion-col col-10>\n\n            <span class="item-note" text-uppercase>{{user.role}}</span>:\n\n            {{user.name}} {{user.lastname}}\n\n          </ion-col>\n\n          <ion-col text-right>\n\n            <ion-icon color="success" [name]="isGroupShown(i) ? \'arrow-dropdown\' : \'arrow-dropright\'"></ion-icon>\n\n          </ion-col>\n\n        </ion-row>\n\n      </h2>\n\n\n\n      <div *ngIf="isGroupShown(i)">\n\n        <ion-card color="light">\n\n\n\n          <ion-list no-lines>\n\n            <ion-item color="light">{{user.dni}}</ion-item>\n\n            <ion-item color="light">{{user.email}}</ion-item>\n\n            <ion-item color="light">{{user.country}}</ion-item>\n\n            <ion-item color="light">{{user.address}}</ion-item>\n\n            <ion-item color="light">{{user.phone}}</ion-item>\n\n          </ion-list>\n\n          <ion-row>\n\n            <ion-col text-right>\n\n              <button ion-button color="warning" icon-only clear (click)="modifyUser(user)">\n\n                <ion-icon name="create"></ion-icon>\n\n              </button>\n\n              <button ion-button color="danger" icon-only clear (click)="deleteUser(user._id,i)">\n\n                <ion-icon name="trash"></ion-icon>\n\n              </button>\n\n            </ion-col>\n\n          </ion-row>\n\n        </ion-card>\n\n      </div>\n\n    </ion-item>\n\n  </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableusers\tableusers.html"*/,
+        selector: 'page-tableusers',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableusers\tableusers.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Lista de Usuarios\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n  <ion-searchbar [showCancelButton]="shouldShowCancel"\n\n                 (ionInput)="onInput($event)"></ion-searchbar>\n\n  <ion-list>\n\n    <ion-item *ngFor="let user of search; let i=index" text-wrap (click)="toggleGroup(i)"\n\n              [ngClass]="{active: isGroupShown(i)}">\n\n      <h2>\n\n        <ion-row>\n\n          <ion-col col-10>\n\n            <span class="item-note" text-uppercase>{{user.role}}</span>:\n\n            {{user.name}} {{user.lastname}}\n\n          </ion-col>\n\n          <ion-col text-right>\n\n            <ion-icon color="success" [name]="isGroupShown(i) ? \'arrow-dropdown\' : \'arrow-dropright\'"></ion-icon>\n\n          </ion-col>\n\n        </ion-row>\n\n      </h2>\n\n\n\n      <div *ngIf="isGroupShown(i)">\n\n        <ion-card>\n\n\n\n          <ion-list no-lines>\n\n            <ion-item>{{user.dni}}</ion-item>\n\n            <ion-item>{{user.email}}</ion-item>\n\n            <ion-item>{{user.country}}</ion-item>\n\n            <ion-item>{{user.address}}</ion-item>\n\n            <ion-item>{{user.phone}}</ion-item>\n\n          </ion-list>\n\n          <ion-row>\n\n            <ion-col text-right>\n\n              <button ion-button color="warning" icon-only clear (click)="modifyUser(user)">\n\n                <ion-icon name="create"></ion-icon>\n\n              </button>\n\n              <button ion-button color="danger" icon-only clear (click)="deleteUser(user._id,i)">\n\n                <ion-icon name="trash"></ion-icon>\n\n              </button>\n\n            </ion-col>\n\n          </ion-row>\n\n        </ion-card>\n\n      </div>\n\n    </ion-item>\n\n  </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableusers\tableusers.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
@@ -58736,10 +58756,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var UserPage = (function () {
-    function UserPage(navCtrl, navParams) {
+    function UserPage(navCtrl, navParams, alertCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.alertCtrl = alertCtrl;
     }
+    UserPage.prototype.showConfirm = function () {
+        var _this = this;
+        var confirm = this.alertCtrl.create({
+            title: 'Salir',
+            message: '¿Estas seguro de cerrar sesion?',
+            buttons: [
+                {
+                    text: 'Si',
+                    handler: function () {
+                        _this.logout();
+                    }
+                },
+                {
+                    text: 'No'
+                }
+            ]
+        });
+        confirm.present();
+    };
     UserPage.prototype.logout = function () {
         localStorage.clear();
         this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
@@ -58749,9 +58789,11 @@ var UserPage = (function () {
 UserPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-user',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\user\user.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Usuario</ion-title>\n    <ion-buttons left>\n    <button ion-button (click)="logout()">\n      <ion-icon name="lock"></ion-icon>\n    </button>\n  </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\user\user.html"*/,
+        selector: 'page-user',template:/*ion-inline-start:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\user\user.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Usuario</ion-title>\n    <ion-buttons left>\n    <button ion-button (click)="showConfirm()">\n      <ion-icon name="log-out"></ion-icon>\n    </button>\n  </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n  <button ion-button outline block>Reservar Vacaciones</button>\n  <button ion-button outline block>Fichar</button>\n</ion-content>\n'/*ion-inline-end:"C:\tictum\tictumPracticas\tictumPracticas\ionicapp\src\pages\user\user.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */]])
 ], UserPage);
 
 //# sourceMappingURL=user.js.map
@@ -77397,15 +77439,15 @@ module.exports = g;
 var map = {
 	"../pages/admin/admin.module": [
 		273,
-		6
+		5
 	],
 	"../pages/generic-password/generic-password.module": [
 		274,
-		5
+		4
 	],
 	"../pages/reset-password/reset-password.module": [
 		275,
-		4
+		1
 	],
 	"../pages/tableroles/tableroles.module": [
 		276,
@@ -77417,7 +77459,7 @@ var map = {
 	],
 	"../pages/user/user.module": [
 		278,
-		1
+		6
 	],
 	"../pages/userform/userform.module": [
 		279,
@@ -77510,10 +77552,10 @@ AppModule = __decorate([
                     { loadChildren: '../pages/userform/userform.module#UserformPageModule', name: 'UserformPage', segment: 'userform', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/tableusers/tableusers.module#TableusersPageModule', name: 'TableusersPage', segment: 'tableusers', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/tableroles/tableroles.module#TablerolesPageModule', name: 'TablerolesPage', segment: 'tableroles', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/admin/admin.module#AdminPageModule', name: 'AdminPage', segment: 'admin', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/user/user.module#UserPageModule', name: 'UserPage', segment: 'user', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/reset-password/reset-password.module#ResetPasswordModule', name: 'ResetPassword', segment: 'reset-password', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/generic-password/generic-password.module#GenericPasswordPageModule', name: 'GenericPasswordPage', segment: 'generic-password', priority: 'low', defaultHistory: [] }
+                    { loadChildren: '../pages/generic-password/generic-password.module#GenericPasswordPageModule', name: 'GenericPasswordPage', segment: 'generic-password', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/admin/admin.module#AdminPageModule', name: 'AdminPage', segment: 'admin', priority: 'low', defaultHistory: [] }
                 ]
             })
         ],
