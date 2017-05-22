@@ -8,6 +8,7 @@ import {AdminPage} from "../admin/admin";
 import {UserPage} from "../user/user";
 import {ResetPassword} from "../reset-password/reset-password";
 import {GenericPasswordPage} from "../generic-password/generic-password";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'home-page',
@@ -22,7 +23,11 @@ export class HomePage {
   loginForm;
   remember;
 
-  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public alertCtrl: AlertController, private usersService: Users) {
+  constructor(public navCtrl: NavController,
+              public formBuilder: FormBuilder,
+              public alertCtrl: AlertController,
+              private usersService: Users,
+              private translateService: TranslateService) {
     //console.log('Paso constructor');
     this.user.input = localStorage.getItem("email");
     this.user.password = localStorage.getItem("pwd");
@@ -65,8 +70,8 @@ export class HomePage {
             localStorage.setItem("pwd", logUser.password);
           }
 
-          if(logUser.password == "1234cambio") this.navCtrl.setRoot(ResetPassword,{user:logUser});
-          else{
+          if (logUser.password == "1234cambio") this.navCtrl.setRoot(ResetPassword, {user: logUser});
+          else {
             if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
             else this.navCtrl.setRoot(UserPage);
           }
@@ -77,8 +82,19 @@ export class HomePage {
   }
 
   goToResetPassword() {
-    console.log("Cambiar contraseña del email "+this.user.input);
-    this.navCtrl.setRoot(GenericPasswordPage,this.user.input);
+    console.log("Cambiar contraseña del email " + this.user.input);
+    this.navCtrl.setRoot(GenericPasswordPage, this.user.input);
+  }
+
+  onLanguage(event) {
+    switch (event.value) {
+      case 'spa':
+        this.translateService.use('spa')
+        break;
+      case 'eng':
+        this.translateService.use('eng')
+        break;
+    }
   }
 
 }

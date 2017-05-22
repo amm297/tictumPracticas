@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import {Component} from '@angular/core';
+import {Platform} from 'ionic-angular';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
+import {HomePage} from '../pages/home/home';
+import {TranslateService} from "@ngx-translate/core";
 //import { AdminPage } from '../pages/admin/admin';
 
 @Component({
@@ -14,11 +15,11 @@ export class MyApp {
   public rootPage: any = HomePage;
   //public rootPage: any = AdminPage;
 
-
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService) {
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
+      translate.setDefaultLang('spa');
     });
   }
 }
