@@ -30,7 +30,7 @@ export class TableusersPage implements OnInit {
 
   deleteUser(userId: String, index: number) {
     let confirm = this.alertCtrl.create({
-      title: 'Cuidado!',
+      title: '¡Cuidado!',
       message: '¿Estas seguro de eliminar el usuario?',
       buttons: [
         {

@@ -17,26 +17,14 @@
                   placeholder="Buscar roles">
   </ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let role of search">
+    <ion-item *ngFor="let role of search; let i=index">
       <ion-icon item-left name="contact" *ngIf="role.rolename == 'admin'"></ion-icon>
       <ion-icon item-left name="person" *ngIf="role.rolename == 'user'"></ion-icon>
       <ion-icon item-left name="ionitron" *ngIf="role.rolename != 'admin' && role.rolename != 'user' "></ion-icon>
       <h2>{{role.rolename}}</h2>
       <button ion-button item-right (click)="editRole(role)"><ion-icon name="create"></ion-icon></button>
-      <button ion-button color="danger" item-right (click)="deleteRole(role)"><ion-icon name="trash"></ion-icon></button>
+      <button ion-button color="danger" item-right (click)="deleteRole(role._id,i)"><ion-icon name="trash"></ion-icon></button>
     </ion-item>
-    <!--
-          <ion-item-options>
-            <button ion-button color="primary" icon-left (click)="editContact(contact)">
-              <ion-icon name="ios-create"></ion-icon>
-              Edit
-            </button>
-            <button ion-button color="danger" icon-left (click)="deleteContact(contact)">
-              <ion-icon name="ios-trash"></ion-icon>
-              Delete
-            </button>
-          </ion-item-options>
-    -->
   </ion-list>
 </ion-content>
 <ion-footer *ngIf="this.displayInput">

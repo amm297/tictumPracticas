@@ -99,10 +99,25 @@ export class TablerolesPage {
     }
   }
 
-  deleteRole(role) {
-    this.rolesService.removeRole(role).then(() => {
-      this.getAllRoles();
+
+ deleteRole(roleId: String, index: number) {
+    let confirm = this.alertCtrl.create({
+      title: '¡Cuidado!',
+      message: '¿Estas seguro de eliminar el rol?',
+      buttons: [
+        {
+          text: 'Si',
+          handler: () => {
+            this.rolesService.removeRole(roleId);
+            this.roles.splice(index, 1);
+          }
+        },
+        {
+          text: 'No'
+        }
+      ]
     });
+    confirm.present();
   }
 
   onInput(event) {

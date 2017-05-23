@@ -44136,6 +44136,7 @@ var NavControllerBase = (function (_super) {
             });
         }
     };
+<<<<<<< HEAD
     /**
      * @param {?} view
      * @param {?} index
@@ -44162,6 +44163,20 @@ var NavControllerBase = (function (_super) {
             // insert the entering view into the correct index in the stack
             this._views.splice(index, 0, view);
         }
+=======
+    Roles.prototype.removeRole = function (roleId) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
+            headers.append('Content-Type', 'application/json');
+            _this.http.delete(_this.server + '/api/roles/delete?_id=' + roleId, { headers: headers })
+                .map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                console.log(data);
+                resolve(data);
+            });
+        });
+>>>>>>> paula
     };
     /**
      * @param {?} view
@@ -56288,6 +56303,7 @@ function updateClasses(s) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SWIPER_EFFECTS; });
 
 
+<<<<<<< HEAD
 /*=========================
   Effects
   ===========================*/
@@ -56300,6 +56316,160 @@ var /** @type {?} */ SWIPER_EFFECTS = {
                 var /** @type {?} */ tx = -offset;
                 if (!s.virtualTranslate) {
                     tx = tx - s._translate;
+=======
+var TablerolesPage = (function () {
+    function TablerolesPage(navCtrl, navParams, rolesService, alertCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.rolesService = rolesService;
+        this.alertCtrl = alertCtrl;
+        this.displayInput = false;
+        this.displayButton = '';
+        this.role = { rolename: '' };
+    }
+    TablerolesPage.prototype.ngOnInit = function () {
+        this.getAllRoles();
+    };
+    TablerolesPage.prototype.getAllRoles = function () {
+        var _this = this;
+        this.rolesService.getAllRoles().then(function (data) {
+            _this.roles = data;
+            _this.search = _this.roles;
+        });
+    };
+    TablerolesPage.prototype.showInput = function () {
+        this.role = { rolename: '' };
+        this.displayButton = 'add';
+        this.displayInput = true;
+    };
+    TablerolesPage.prototype.closeInput = function () {
+        this.role.rolename = '';
+        this.displayInput = false;
+        this.getAllRoles();
+    };
+    TablerolesPage.prototype.addRole = function () {
+        var _this = this;
+        if (this.role.rolename !== '') {
+            this.rolesService.addRole(this.role).then(function () {
+                _this.closeInput();
+                _this.role.rolename = '';
+                _this.getAllRoles();
+            });
+        }
+    };
+    TablerolesPage.prototype.editRole = function (role) {
+        this.role = role;
+        this.displayButton = 'edit';
+        this.displayInput = true;
+    };
+    TablerolesPage.prototype.updateRole = function () {
+        var _this = this;
+        if (this.role.rolename !== '') {
+            this.rolesService.updateRole(this.role).then(function () {
+                _this.closeInput();
+                _this.role.rolename = '';
+                _this.getAllRoles();
+            });
+        }
+    };
+    TablerolesPage.prototype.deleteRole = function (roleId, index) {
+        var _this = this;
+        var confirm = this.alertCtrl.create({
+            title: '¡Cuidado!',
+            message: '¿Estas seguro de eliminar el rol?',
+            buttons: [
+                {
+                    text: 'Si',
+                    handler: function () {
+                        _this.rolesService.removeRole(roleId);
+                        _this.roles.splice(index, 1);
+                    }
+                },
+                {
+                    text: 'No'
+                }
+            ]
+        });
+        confirm.present();
+    };
+    TablerolesPage.prototype.onInput = function (event) {
+        var input = event.target.value;
+        if (input && input.trim() != '') {
+            this.search = this.roles.filter(function (role) {
+                return (role.rolename.toLowerCase().indexOf(input.toLowerCase()) > -1);
+            });
+        }
+        else {
+            this.search = this.roles;
+        }
+    };
+    return TablerolesPage;
+}());
+TablerolesPage = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
+        selector: 'page-tableroles',template:/*ion-inline-start:"C:\Users\tictum\Documents\tictumpracticas\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableroles\tableroles.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Lista de Roles\n\n    </ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button (click)="showInput()">\n\n        <ion-icon name="add-circle"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-searchbar [showCancelButton]="shouldShowCancel"\n\n                 (ionInput)="onInput($event)"\n\n                  placeholder="Buscar roles">\n\n  </ion-searchbar>\n\n  <ion-list>\n\n    <ion-item *ngFor="let role of search; let i=index">\n\n      <ion-icon item-left name="contact" *ngIf="role.rolename == \'admin\'"></ion-icon>\n\n      <ion-icon item-left name="person" *ngIf="role.rolename == \'user\'"></ion-icon>\n\n      <ion-icon item-left name="ionitron" *ngIf="role.rolename != \'admin\' && role.rolename != \'user\' "></ion-icon>\n\n      <h2>{{role.rolename}}</h2>\n\n      <button ion-button item-right (click)="editRole(role)"><ion-icon name="create"></ion-icon></button>\n\n      <button ion-button color="danger" item-right (click)="deleteRole(role._id,i)"><ion-icon name="trash"></ion-icon></button>\n\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n<ion-footer *ngIf="this.displayInput">\n\n\n\n  <ion-item>\n\n       <button item-right ion-button clear icon-only (click)="closeInput()">\n\n        <ion-icon name="close"></ion-icon>\n\n      </button>\n\n\n\n      <ion-label fixed>Role name</ion-label>\n\n     <ion-input type="text" [(ngModel)]="role.rolename" name="rolename"></ion-input>\n\n  </ion-item>\n\n     <button *ngIf="this.displayButton == \'add\'" ion-button (click)="addRole()">Añadir</button>\n\n     <button  *ngIf="this.displayButton == \'edit\'" ion-button (click)="updateRole()">Editar</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\tictum\Documents\tictumpracticas\tictumPracticas\tictumPracticas\ionicapp\src\pages\tableroles\tableroles.html"*/,
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_roles__["a" /* Roles */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_roles__["a" /* Roles */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* AlertController */]) === "function" && _d || Object])
+], TablerolesPage);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=tableroles.js.map
+
+/***/ }),
+/* 108 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_users__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__userform_userform__ = __webpack_require__(53);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TableusersPage; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var TableusersPage = (function () {
+    function TableusersPage(navCtrl, navParams, usersService, alertCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.usersService = usersService;
+        this.alertCtrl = alertCtrl;
+    }
+    TableusersPage.prototype.ngOnInit = function () {
+        var _this = this;
+        this.usersService.getAllUsers().then(function (data) {
+            _this.users = data;
+            _this.search = _this.users;
+            console.log(_this.users);
+        });
+    };
+    TableusersPage.prototype.deleteUser = function (userId, index) {
+        var _this = this;
+        var confirm = this.alertCtrl.create({
+            title: '¡Cuidado!',
+            message: '¿Estas seguro de eliminar el usuario?',
+            buttons: [
+                {
+                    text: 'Si',
+                    handler: function () {
+                        _this.usersService.deleteUser(userId);
+                        _this.users.splice(index, 1);
+                    }
+                },
+                {
+                    text: 'No'
+>>>>>>> paula
                 }
                 var /** @type {?} */ ty = 0;
                 if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__swiper_utils__["b" /* isHorizontal */])(s)) {
@@ -74098,6 +74268,7 @@ IonicGestureConfig.decorators = [
 /**
  * @nocollapse
  */
+<<<<<<< HEAD
 IonicGestureConfig.ctorParameters = function () { return []; };
 function IonicGestureConfig_tsickle_Closure_declarations() {
     /** @type {?} */
@@ -74109,6 +74280,58 @@ function IonicGestureConfig_tsickle_Closure_declarations() {
     IonicGestureConfig.ctorParameters;
 }
 //# sourceMappingURL=gesture-config.js.map
+=======
+// This file only reexports content of the `src` folder. Keep it that way.
+
+//# sourceMappingURL=platform-browser-dynamic.es5.js.map
+
+
+/***/ }),
+/* 208 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tableroles_tableroles__ = __webpack_require__(107);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+//import { UserformPage } from '../pages/userform/userform';
+var MyApp = (function () {
+    function MyApp(platform, statusBar, splashScreen) {
+        // set the rootPage to the first page we want displayed
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_tableroles_tableroles__["a" /* TablerolesPage */];
+        platform.ready().then(function () {
+            statusBar.styleDefault();
+            splashScreen.hide();
+        });
+    }
+    return MyApp;
+}());
+MyApp = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"C:\Users\tictum\Documents\tictumpracticas\tictumPracticas\tictumPracticas\ionicapp\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"C:\Users\tictum\Documents\tictumpracticas\tictumPracticas\tictumPracticas\ionicapp\src\app\app.html"*/
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _c || Object])
+], MyApp);
+
+var _a, _b, _c;
+//# sourceMappingURL=app.component.js.map
+>>>>>>> paula
 
 /***/ }),
 /* 180 */
