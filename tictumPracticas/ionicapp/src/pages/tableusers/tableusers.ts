@@ -53,7 +53,9 @@ export class TableusersPage implements OnInit {
   }
 
   changeRole(userId: string, role:string){
-    this.usersService.changeRole(userId,role);
+    this.usersService.changeRole(userId,role).then(data =>{
+        console.log(data);
+    });
   }
 
   onInput(event) {
