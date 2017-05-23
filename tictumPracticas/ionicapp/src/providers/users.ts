@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {User} from "../models/user";
+import { User } from "../models/user";
 
 @Injectable()
 export class Users {
@@ -9,12 +9,13 @@ export class Users {
   constructor(public http: Http) {
   }
 
-  //WI-Fi
+
+ //WI-Fi
   //server = 'http://192.168.4.45:8080';
 
   //server = 'http://192.168.5.26:8080';
   //server = 'http://172.16.112.163:8080';
-  server = 'http://localhost:8080';
+  server = 'http://172.16.112.35:8080';
 
 
 
@@ -93,6 +94,32 @@ export class Users {
   }
 
 
+  //Gestion de vacaciones
+   addHollidays(data){
+    console.log(data);
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.put(this.server + '/api/users/addhollidays', JSON.stringify(data), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
+  addPersonalDays(data){
+    console.log(data);
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.put(this.server + '/api/users/addPersonalDays', JSON.stringify(data), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
 
  //Esperanza
 
@@ -135,3 +162,5 @@ export class Users {
 
 }
 
+
+ 

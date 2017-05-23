@@ -28,6 +28,10 @@ export class UserformPage {
               private rolesService: Roles,
               private formBuilder: FormBuilder,
               private alertCtrl: AlertController) {
+    if (this.navParams.get('user')) this.user = this.navParams.get('user');
+    else 
+      {this.user.daysh=30;
+      this.user.daysp=6;}
 
     if (this.navParams.get('user')) {
         this.user = this.navParams.get('user');

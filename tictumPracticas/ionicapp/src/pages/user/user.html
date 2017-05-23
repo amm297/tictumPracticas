@@ -6,12 +6,19 @@
     <button ion-button (click)="showConfirm()">
       <ion-icon name="log-out"></ion-icon>
     </button>
+
+
   </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
-  <button ion-button outline block (click)="onClickHollidays()">Reservar Vacaciones</button>
-  <button ion-button outline block>Fichar</button>
+
+
+    <button ion-button (click)="onClickCalendario()">
+    <ion-icon name="medical" item-left></ion-icon>
+    Mostrar vacaciones calendario
+  </button>
+
 </ion-content>

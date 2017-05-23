@@ -80,7 +80,7 @@ export class HomePage {
             if(logUser.password == "1234cambio") this.navCtrl.setRoot(ResetPassword,{user:logUser});
             else{
               if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
-              else this.navCtrl.setRoot(UserPage);
+              else this.navCtrl.setRoot(UserPage,{user:logUser});
             }
            }
           

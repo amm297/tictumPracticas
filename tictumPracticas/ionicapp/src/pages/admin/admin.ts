@@ -1,9 +1,12 @@
-import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 import {TableusersPage} from "../tableusers/tableusers";
 import {UserformPage} from "../userform/userform";
 import {TablerolesPage} from "../tableroles/tableroles";
 import {HomePage} from "../home/home";
+
+import {hollidaysPage} from "../hollidays/hollidays";
+
 
 @IonicPage()
 @Component({

@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
-import {hollidaysPage} from '../hollidays/hollidays';
+import {hollidaysPage} from "../hollidays/hollidays";
+
+import {User} from "../../models/user";
 
 @IonicPage()
 @Component({
@@ -10,9 +12,13 @@ import {hollidaysPage} from '../hollidays/hollidays';
 })
 export class UserPage {
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private alertCtrl: AlertController) {
+user: User = new User();
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+
+    this.user = this.navParams.get("user");
+    console.log(this.user)
+
   }
 
   showConfirm(){
@@ -41,6 +47,16 @@ export class UserPage {
   logout() {
     localStorage.clear();
     this.navCtrl.setRoot(HomePage);
+  }
+
+
+
+
+onClickCalendario(){
+    this.navCtrl.push(hollidaysPage,{user:this.user});
+
+  
+
   }
 
 }
