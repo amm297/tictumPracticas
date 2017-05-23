@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 import {Users} from "../../providers/users";
 import {UserformPage} from '../userform/userform'
@@ -8,9 +8,10 @@ import {UserformPage} from '../userform/userform'
   selector: 'page-tableusers',
   templateUrl: 'tableusers.html',
 })
-export class TableusersPage implements OnInit {
+export class TableusersPage {
 
-  users: any;
+  private start: number = 0;
+  users: any = [];
   search: any;
   shownGroup;
 
@@ -18,13 +19,30 @@ export class TableusersPage implements OnInit {
               public navParams: NavParams,
               private usersService: Users,
               private alertCtrl: AlertController) {
+    this.loadUsers();
+    this.search = this.users;
   }
 
-  ngOnInit() {
-    this.usersService.getAllUsers().then((data) => {
-      this.users = data;
-      this.search = this.users;
-      console.log(this.users);
+  loadUsers() {
+    return new Promise(resolve => {
+      this.usersService.load(this.start)
+        .then(data => {
+          console.log(data);
+          for(let user of data['docs']) {
+            this.users.push(user);
+          }
+          console.log(this.users);
+          resolve(true);
+        });
+    })
+  }
+
+  doInfinite(inifiniteScroll: any) {
+    console.log('doInfinite, start is currently ' + this.start);
+    // Debe coincidir con el valor perpage del servicio users.ts
+    this.start += 2;
+    this.loadUsers().then(() => {
+      inifiniteScroll.complete();
     });
   }
 
