@@ -1,13 +1,16 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-import { User } from "../models/user";
+import {User} from "../models/user";
 
 @Injectable()
 export class Users {
 
   constructor(public http: Http) {
   }
+
+  //WI-Fi
+  //server = 'http://192.168.4.45:8080';
 
   //server = 'http://192.168.5.26:8080';
   //server = 'http://172.16.112.163:8080';
@@ -44,7 +47,7 @@ export class Users {
 
   logoutUser(data) {
     localStorage.clear();
-    
+
   }
 
   /*Descactivar usuario */
@@ -106,29 +109,29 @@ export class Users {
     });
   }
 
-  deleteUser(deleteUserId: String) { 
-    return new Promise(resolve => { 
-      let headers = new Headers(); 
-      headers.append('Content-Type', 'application/json'); 
-      this.http.delete(this.server + '/api/users/delete?_id='+deleteUserId, {headers: headers}) 
-        .map(res => res.json()) 
-        .subscribe(data => { 
-          resolve(data); 
-        }); 
-    }); 
-  } 
- 
-  modifyUser(user) { 
-    return new Promise(resolve => { 
-      let headers = new Headers(); 
-      headers.append('Content-Type', 'application/json'); 
-      this.http.put(this.server + '/api/users/update', user, {headers: headers}) 
-        .map(res => res.json()) 
-        .subscribe(data => { 
-          resolve(data); 
-        }); 
-    }); 
-  } 
+  deleteUser(deleteUserId: String) {
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.delete(this.server + '/api/users/delete?_id=' + deleteUserId, {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
+  modifyUser(user) {
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.put(this.server + '/api/users/update', user, {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
 
 }
 

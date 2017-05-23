@@ -11,10 +11,13 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+  <ion-searchbar [showCancelButton]="shouldShowCancel"
+                 (ionInput)="onInput($event)"
+                  placeholder="Buscar roles">
+  </ion-searchbar>
   <ion-list>
-    <ion-list-header>My Roles</ion-list-header>
-    <ion-item *ngFor="let role of roles">
+    <ion-item *ngFor="let role of search">
       <ion-icon item-left name="contact" *ngIf="role.rolename == 'admin'"></ion-icon>
       <ion-icon item-left name="person" *ngIf="role.rolename == 'user'"></ion-icon>
       <ion-icon item-left name="ionitron" *ngIf="role.rolename != 'admin' && role.rolename != 'user' "></ion-icon>

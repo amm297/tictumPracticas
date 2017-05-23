@@ -16,6 +16,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
 <<<<<<< HEAD
+      <file leaf-file-name="roles.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ionicapp/src/providers/roles.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="12" column="2" lean-forward="false" selection-start-line="12" selection-start-column="2" selection-end-line="18" selection-end-column="40" />
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
       <file leaf-file-name="roles.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ionicapp/src/providers/roles.ts">
@@ -36,11 +43,19 @@
             <state relative-caret-position="455">
               <caret line="30" column="5" lean-forward="false" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
 >>>>>>> Esperanza
+>>>>>>> alberto
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="users.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ionicapp/src/providers/users.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
       <file leaf-file-name="userform.ts" pinned="false" current-in-tab="false">
@@ -62,11 +77,14 @@
             <state relative-caret-position="272">
               <caret line="16" column="50" lean-forward="false" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
 >>>>>>> Esperanza
+>>>>>>> alberto
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
       <file leaf-file-name="tableusers.html" pinned="false" current-in-tab="false">
@@ -127,6 +145,7 @@
           </provider>
         </entry>
       </file>
+>>>>>>> alberto
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -136,16 +155,16 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>search</find>
+    </findStrings>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/ionicapp/src/models/user.ts" />
         <option value="$PROJECT_DIR$/ionicapp/src/app/app.module.ts" />
-        <option value="$PROJECT_DIR$/ionicapp/src/pages/tableroles/tableroles.ts" />
-        <option value="$PROJECT_DIR$/ionicapp/src/app/app.component.ts" />
-        <option value="$PROJECT_DIR$/server/server.js" />
-        <option value="$PROJECT_DIR$/ionicapp/src/providers/users.ts" />
-        <option value="$PROJECT_DIR$/ionicapp/src/providers/roles.ts" />
         <option value="$PROJECT_DIR$/ionicapp/src/pages/home/home.ts" />
         <option value="$PROJECT_DIR$/ionicapp/src/pages/admin/admin.ts" />
         <option value="$PROJECT_DIR$/ionicapp/src/pages/user/user.ts" />
@@ -161,20 +180,29 @@
 =======
 >>>>>>> Esperanza
         <option value="$PROJECT_DIR$/ionicapp/src/pages/userform/userform.ts" />
-        <option value="$PROJECT_DIR$/ionicapp/src/pages/tableusers/tableusers.ts" />
-        <option value="$PROJECT_DIR$/ionicapp/src/pages/tableusers/tableusers.html" />
         <option value="$PROJECT_DIR$/ionicapp/src/pages/home/home.html" />
         <option value="$PROJECT_DIR$/ionicapp/src/pages/admin/admin.html" />
         <option value="$PROJECT_DIR$/ionicapp/src/pages/reset-password/reset-password.html" />
-        <option value="$PROJECT_DIR$/ionicapp/src/pages/tableroles/tableroles.html" />
         <option value="$PROJECT_DIR$/ionicapp/src/pages/user/user.html" />
         <option value="$PROJECT_DIR$/ionicapp/src/pages/userform/dniValidation.ts" />
         <option value="$PROJECT_DIR$/ionicapp/src/pages/userform/dniValidator.ts" />
         <option value="$PROJECT_DIR$/ionicapp/src/pages/userform/userform.html" />
 <<<<<<< HEAD
+        <option value="$PROJECT_DIR$/ionicapp/src/pages/tableroles/tableroles.html" />
+        <option value="$PROJECT_DIR$/ionicapp/src/pages/tableroles/tableroles.ts" />
+        <option value="$PROJECT_DIR$/ionicapp/src/pages/tableusers/tableusers.ts" />
+        <option value="$PROJECT_DIR$/ionicapp/src/pages/tableusers/tableusers.html" />
+        <option value="$PROJECT_DIR$/server/server.js" />
+        <option value="$PROJECT_DIR$/ionicapp/src/app/app.component.ts" />
+        <option value="$PROJECT_DIR$/ionicapp/config.xml" />
+        <option value="$PROJECT_DIR$/ionicapp/src/providers/roles.ts" />
+        <option value="$PROJECT_DIR$/ionicapp/src/providers/users.ts" />
+=======
+<<<<<<< HEAD
 >>>>>>> Esperanza
 =======
 >>>>>>> Esperanza
+>>>>>>> alberto
       </list>
     </option>
   </component>
@@ -209,7 +237,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -276,6 +304,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+<<<<<<< HEAD
+=======
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="tictumPracticas" />
@@ -395,9 +425,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+>>>>>>> alberto
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -409,6 +440,11 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.tslint" value="" />
     <property name="typescript-compiler-editor-notification" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\tictum\tictumPracticas\tictumPracticas\ionicapp" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -504,10 +540,14 @@
       <workItem from="1495136104165" duration="334000" />
       <workItem from="1495177147887" duration="291000" />
       <workItem from="1495195343597" duration="2925000" />
+      <workItem from="1495463968310" duration="2890000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="27587000" />
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="18435000" />
@@ -517,21 +557,22 @@
 =======
     <option name="totallyTimeSpent" value="22018000" />
 >>>>>>> Esperanza
+>>>>>>> alberto
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3081991" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30746704" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19873817" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -552,6 +593,8 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/admin/admin.ts">
@@ -588,6 +631,7 @@
         </state>
       </provider>
     </entry>
+>>>>>>> alberto
     <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/tableroles/tableroles.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -623,7 +667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="16" lean-forward="false" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -667,9 +710,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="449">
           <caret line="37" column="5" lean-forward="false" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#40#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -706,7 +747,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="16" lean-forward="false" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -750,9 +790,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="449">
           <caret line="37" column="5" lean-forward="false" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#40#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -813,6 +851,8 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
     <entry file="file://$PROJECT_DIR$/ionicapp/src/app/app.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -841,6 +881,7 @@
         </state>
       </provider>
     </entry>
+>>>>>>> alberto
     <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/home/home.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -853,7 +894,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -861,7 +901,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-155">
           <caret line="8" column="45" lean-forward="false" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -907,6 +946,15 @@
 =======
         <state relative-caret-position="347">
           <caret line="33" column="3" lean-forward="true" selection-start-line="30" selection-start-column="2" selection-end-line="33" selection-end-column="3" />
+<<<<<<< HEAD
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/userform/userform.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="48" column="24" lean-forward="false" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
+=======
 >>>>>>> Esperanza
           <folding />
 =======
@@ -969,10 +1017,24 @@
         <state relative-caret-position="347">
           <caret line="33" column="3" lean-forward="true" selection-start-line="30" selection-start-column="2" selection-end-line="33" selection-end-column="3" />
 >>>>>>> Esperanza
+>>>>>>> alberto
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/home/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/admin/admin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="28" lean-forward="false" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/ionicapp/package.json">
@@ -1013,10 +1075,21 @@
 >>>>>>> Esperanza
 =======
 >>>>>>> Esperanza
+>>>>>>> alberto
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/reset-password/reset-password.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="35" lean-forward="false" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/user/user.html">
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/user/user.ts">
@@ -1072,22 +1145,55 @@
           <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
 =======
     <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/home/home.html">
+>>>>>>> alberto
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/admin/admin.html">
+    <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/userform/dniValidation.ts" />
+    <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/userform/passwordValidator.ts">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="-275">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/userform/dniValidator.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="30" column="5" lean-forward="false" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/userform/userform.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="50" lean-forward="false" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/tableroles/tableroles.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="28" column="6" lean-forward="false" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+=======
         <state relative-caret-position="51">
           <caret line="3" column="28" lean-forward="false" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
 >>>>>>> Esperanza
+>>>>>>> alberto
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/tableusers/tableusers.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="14" column="13" lean-forward="true" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+=======
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/admin/admin.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -1100,6 +1206,7 @@
         <state relative-caret-position="51">
           <caret line="3" column="35" lean-forward="false" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
 >>>>>>> Esperanza
+>>>>>>> alberto
           <folding />
         </state>
       </provider>
@@ -1119,9 +1226,14 @@
 =======
     <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/tableroles/tableroles.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="323">
+          <caret line="19" column="42" lean-forward="false" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+=======
         <state relative-caret-position="51">
           <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
 >>>>>>> Esperanza
+>>>>>>> alberto
           <folding />
         </state>
       </provider>
@@ -1158,6 +1270,10 @@
 =======
     <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/tableusers/tableusers.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="109">
+          <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+=======
         <state relative-caret-position="51">
 =======
     <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/tableusers/tableusers.html">
@@ -1165,38 +1281,43 @@
         <state relative-caret-position="51">
 >>>>>>> Esperanza
           <caret line="3" column="23" lean-forward="false" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+>>>>>>> alberto
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/user/user.html">
+    <entry file="file://$PROJECT_DIR$/server/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="432">
+          <caret line="161" column="25" lean-forward="true" selection-start-line="161" selection-start-column="25" selection-end-line="161" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/userform/dniValidation.ts">
+    <entry file="file://$PROJECT_DIR$/ionicapp/config.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="3" column="30" lean-forward="true" selection-start-line="1" selection-start-column="1" selection-end-line="3" selection-end-column="30" />
+          <caret line="3" column="43" lean-forward="false" selection-start-line="3" selection-start-column="43" selection-end-line="3" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/userform/passwordValidator.ts">
+    <entry file="file://$PROJECT_DIR$/ionicapp/src/app/app.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-275">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="85">
+          <caret line="5" column="46" lean-forward="false" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#0#42#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/userform/dniValidator.ts">
+    <entry file="file://$PROJECT_DIR$/ionicapp/src/providers/roles.ts">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="170">
+          <caret line="12" column="2" lean-forward="false" selection-start-line="12" selection-start-column="2" selection-end-line="18" selection-end-column="40" />
+=======
         <state relative-caret-position="455">
           <caret line="30" column="5" lean-forward="false" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
 <<<<<<< HEAD
@@ -1221,10 +1342,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="43" lean-forward="true" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+>>>>>>> alberto
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/ionicapp/src/providers/users.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+=======
     <entry file="file://$PROJECT_DIR$/ionicapp/src/pages/tableusers/tableusers.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -1248,6 +1376,7 @@
 >>>>>>> Esperanza
 =======
 >>>>>>> Esperanza
+>>>>>>> alberto
           <folding />
         </state>
       </provider>
