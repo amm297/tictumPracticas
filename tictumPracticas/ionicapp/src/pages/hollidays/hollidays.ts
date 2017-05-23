@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {UserPage} from "../user/user";
 import {Users} from "../../providers/users";
 import {User} from "../../models/user";
+import { AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the hollidaysPage page.
@@ -41,15 +42,20 @@ export class hollidaysPage {
     currentDate: new Date()
    }; //
 
-  constructor(public navCtrl: NavController, public navParams: NavParams , private userService:Users) {
+  constructor(public navCtrl: NavController, public navParams: NavParams , private userService:Users,public alertCtrl: AlertController) {
     this.user = this.navParams.get("user");
+    //console.log(this.user.hollidays);
   }
 
   ionViewDidLoad() {
     this.loadHollidays();
+
+
   }    
     loadEvents() {
-        this.eventSource = this.StartHollidays();
+       // this.eventSource = this.StartHollidays();
+       this.eventSource = this.loadHollidays();
+
     }
     onViewTitleChanged(title) {
         this.viewTitle = title;
@@ -82,7 +88,8 @@ export class hollidaysPage {
         this.holliday.startDate = this.currentSelectedDate; 
         console.log(this.holliday.startDate);
         this.buttonPersonalDaysDisabled = true;
-      }
+      } 
+    
     }
 
     EndHollidays(){
@@ -99,9 +106,9 @@ export class hollidaysPage {
 
 
     bookHollidays(){
-    /*1 contar los dias entre f.inicio y f.final
-      2 poner por defecto estado pendiente(reserva)
-      3  enviar holliday{starDate , endDate , state , days  }
+    /*1 contar los dias entre f.inicio y f.final   (listo)
+      2 poner por defecto estado pendiente(reserva) (listo)
+      3  enviar holliday{starDate , endDate , state , days  } (listo)
       4 comprobar que no tenga ya las vacaciones pilladas en esas fechas
       5 Quitar los fines de semana
     */
@@ -141,21 +148,26 @@ export class hollidaysPage {
 
     loadHollidays() {
 
-       
+    
         var events = [];
-       /* for (var i = 0; i < this.user.hollidays.lenght; i += 1) {
-                startTime = new Date(this.user.hollidays[i].statDate);
-                endTime = new Date(this.user.hollidays[i].endDate));
+
+       for (var i = 0; i < this.user.hollidays.length; i ++) {
+              
+
+               let  startTime = new Date(this.user.hollidays[i].startDate);
+               let endTime = new Date(this.user.hollidays[i].endDate);
                 events.push({
                     title: 'vacaciones',
                     startTime: startTime,
                     endTime: endTime,
                     allDay: false,
+                    color: 'danger'
                 
-                });
-            
+                }); 
+           // console.log(events);
         }
-        return events;*/
+        return events;
+
     }
     onRangeChanged(ev) {
         console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);

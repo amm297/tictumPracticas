@@ -2,23 +2,26 @@
     <ion-navbar color="primary">
         <ion-title>{{viewTitle}}</ion-title>
         <ion-buttons end>
-            <button ion-button [disabled]="isToday" (click)="today()">Today</button>
+            <button ion-button [disabled]="isToday" (click)="today()">Dia Actual</button>
              <!--<button ion-button (click)="changeMode('month')">M</button>
            <button ion-button (click)="changeMode('week')">W</button>
-            <button ion-button (click)="changeMode('day')">D</button> -->
-            <button ion-button (click)="loadEvents()">Load Events</button>
+            <button ion-button (click)="changeMode('day')">D</button> 
+            -->
+      <button ion-button (click)="loadEvents()">Load Events</button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
  
 <ion-content class="has-header">
+
  
     <template #template let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
     <button ion-button  (click)="StartHollidays()" [disabled]="startDateDisabled">Inicio Vacaciones</button>
       <button ion-button  (click)="EndHollidays()" [disabled]="endDateDisabled">Final Vacaciones</button>
         <button ion-button  (click)="PersonalDays()"  [disabled]="buttonPersonalDaysDisabled">Dias asuntos propios</button>
 
-    
+
+ 
 
     <ion-card *ngIf="holliday.startDate" >
     <ion-card-header>
@@ -60,12 +63,12 @@
               [calendarMode]="calendar.mode"
               [currentDate]="calendar.currentDate"
               [markDisabled]="markDisabled"
+              [showEventDetail]="false"
               [monthviewEventDetailTemplate]="template"
               (onCurrentDateChanged)="onCurrentDateChanged($event)"
               (onEventSelected)="onEventSelected($event)"
               (onTitleChanged)="onViewTitleChanged($event)"
               (onTimeSelected)="onTimeSelected($event)"
-
               (createEvent)="createEvent($event)"
               step="30">
     </calendar>
