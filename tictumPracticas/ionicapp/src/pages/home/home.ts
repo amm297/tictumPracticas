@@ -11,7 +11,7 @@ import {GenericPasswordPage} from "../generic-password/generic-password";
 import {TranslateService} from "@ngx-translate/core";
 
 @Component({
-  selector: 'home-page',
+  selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
