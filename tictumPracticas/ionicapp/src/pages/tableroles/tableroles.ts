@@ -9,7 +9,7 @@ import { Roles } from '../../providers/roles';
 })
 export class TablerolesPage {
 
-  roles: any;
+  roles: any; 
   search: any;
   displayInput: boolean = false;
   displayButton: string = '';
@@ -40,16 +40,12 @@ export class TablerolesPage {
     this.displayInput = true;
   }
 
-  closeInput() {
-    this.role.rolename = '';
+  closeInput() {    
+    this.role = { rolename: '' };
     this.displayInput = false;
-    if (this.displayButton == 'edit') {
-      this.getAllRoles();
-    }
   }
 
   addRole() {
-
     const position = this.roles.findIndex((roleCheck: any) => {
       return roleCheck.rolename == this.role.rolename;
     })
@@ -82,25 +78,28 @@ export class TablerolesPage {
     alert.present();
   }
 
-
   updateRole() {
-    const position = this.roles.findIndex((roleCheck: any) => {
-      return roleCheck.rolename == this.role.rolename;
-    })
-    if (position > -1) {
+    let antRoles = this.roles;
+    antRoles = this.roles.filter(role => {
+      return (
+        role.rolename.toLowerCase().indexOf(this.role.rolename.toLowerCase()) > -1)
+    });
+
+    console.log(antRoles);
+    console.log(this.role);
+
+    if (antRoles.length > 1) {
       this.presentAlert();
-    }
-    else {
+    } else {
       if (this.role.rolename !== '') {
-        this.rolesService.updateRole(this.role).then((data) => {
+        this.rolesService.updateRole(this.role).then(() => {
           this.closeInput();
         });
       }
     }
   }
 
-
- deleteRole(roleId: String, index: number) {
+  deleteRole(roleId: String, index: number) {
     let confirm = this.alertCtrl.create({
       title: '¡Cuidado!',
       message: '¿Estas seguro de eliminar el rol?',
