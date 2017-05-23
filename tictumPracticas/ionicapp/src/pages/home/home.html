@@ -42,9 +42,8 @@
       <ion-label>Remenber Me</ion-label>
       <ion-checkbox [(ngModel)]="remember" [ngModelOptions]="{standalone: true}" id="checkBox"></ion-checkbox>
     </ion-item>
-
-    <div text-center>
-      <a block clear (click)="goToResetPassword()">I forgot my password</a>
-    </div>
   </form>
+  <div text-center>
+    <button ion-button block clear (click)="goToResetPassword()">I forgot my password</button>
+  </div>
 </ion-content>

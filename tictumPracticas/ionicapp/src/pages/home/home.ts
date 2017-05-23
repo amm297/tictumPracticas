@@ -83,7 +83,7 @@ export class HomePage {
 
   goToResetPassword() {
     console.log("Cambiar contraseña del email " + this.user.input);
-    this.navCtrl.setRoot(GenericPasswordPage, this.user.input);
+    this.navCtrl.push( GenericPasswordPage, this.user.input);
   }
 
   onLanguage(event) {
@@ -96,5 +96,4 @@ export class HomePage {
         break;
     }
   }
-
 }
