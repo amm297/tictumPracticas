@@ -30,7 +30,8 @@ export class LocationPage {
       let mapOptions = {
         center: latLng,
         zoom: 15,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+
       }
  
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
@@ -42,7 +43,7 @@ export class LocationPage {
   }
   
   addMarker(){
-	 
+	 // coger geoposicion
 	  let marker = new google.maps.Marker({
 		map: this.map,
 		animation: google.maps.Animation.DROP,
