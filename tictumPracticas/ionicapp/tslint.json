@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
   "rules": {
     "no-duplicate-variable": true,
@@ -10,16 +9,3 @@
     "node_modules/tslint-eslint-rules/dist/rules"
   ]
 }
-=======
-{
-  "rules": {
-    "no-duplicate-variable": true,
-    "no-unused-variable": [
-      true
-    ]
-  },
-  "rulesDirectory": [
-    "node_modules/tslint-eslint-rules/dist/rules"
-  ]
-}
->>>>>>> alma

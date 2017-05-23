@@ -1,9 +1,37 @@
-<<<<<<< HEAD
+$base:#8ddbe0;
+
 page-tableusers {
 
 }
-=======
-page-tableusers {
-
+.cabec{
+	p{
+		color:$base;
+		float:left;		
+		margin-top: 10px;
+		font-size: 1.2em;
+		span.item-note{
+			text-decoration: underline;
+		}
+	}
 }
->>>>>>> alma
+.btnn{
+	float:right;
+	@media screen and (max-device-width:640px){
+		float:left;
+		display: block;
+		margin: 0 auto;
+	}
+	ion-icon{
+		padding:0;
+		@media screen and (max-device-width:640px){
+			font-size: 36pt;
+			text-align: center;
+		}
+		&:last-child{
+			margin-left: 0.3em;
+			@media screen and (max-device-width:640px){
+				margin-left: 1.2em !important;
+			}
+		}
+	}
+}

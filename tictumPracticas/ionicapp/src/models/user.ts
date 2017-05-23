@@ -11,6 +11,10 @@ export class User {
 	email: string;
 	password: string;
 	role: string;
+	hollidays: any[];
+	personalDays: any[];
+	daysp:number;
+	daysh:number;
 
   	constructor(values : Object = {}){
 		Object.assign(this,values);
@@ -23,6 +27,15 @@ export class User {
 	isUser(){
 		return (this.role == 'user') ? true : false;
 	}
+	addHolliday(data){
+
+   	this.hollidays.push(data);
+   }
+
+   addPersonalDays(data){
+     
+      this.personalDays.push(data)
+   }
 
 
 
