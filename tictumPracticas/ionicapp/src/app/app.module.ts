@@ -16,6 +16,8 @@ import {Http, HttpModule} from "@angular/http";
 import {IonicApp, IonicErrorHandler, IonicModule} from "ionic-angular";
 import {StatusBar} from "@ionic-native/status-bar";
 import {SplashScreen} from "@ionic-native/splash-screen";
+import { NgCalendarModule  } from 'ionic2-calendar';
+import {hollidaysPage} from "../pages/hollidays/hollidays";
 
 //Translate config
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
@@ -31,6 +33,7 @@ export function createTranslateLoader(http: Http) {
     AdminPage,
     TableusersPage,
     UserformPage,
+    hollidaysPage,  
     TablerolesPage,
     ResetPassword,
     UserPage,
@@ -38,6 +41,7 @@ export function createTranslateLoader(http: Http) {
   ],
   imports: [
     BrowserModule,
+    NgCalendarModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
     TranslateModule.forRoot({
@@ -55,6 +59,7 @@ export function createTranslateLoader(http: Http) {
     AdminPage,
     TableusersPage,
     UserformPage,
+    hollidaysPage,  
     TablerolesPage,
     ResetPassword,
     UserPage,
