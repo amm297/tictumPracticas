@@ -52,6 +52,10 @@ export class TableusersPage implements OnInit {
     this.navCtrl.push(UserformPage, {user: user});
   }
 
+  changeRole(userId: string, role:string){
+    this.usersService.changeRole(userId,role);
+  }
+
   onInput(event) {
     let input = event.target.value;
     if(input && input.trim()!=''){

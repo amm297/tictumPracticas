@@ -59,17 +59,26 @@ export class HomePage {
           console.log("Login OK");
           console.log(this.navCtrl.last().component.name);
           let logUser: User = new User(data);
+          if(logUser.isActive()){
+            let alert = this.alertCtrl.create({
+              title: 'Oops!',
+              subTitle: "No pudedes iniciar sesion en estos momentos",
+              buttons: ['Ok']
+            });
+            alert.present();
+          }else{
+            if (this.remember) {
+              localStorage.setItem("email", logUser.email);
+              localStorage.setItem("pwd", logUser.password);
+            }
 
-          if (this.remember) {
-            localStorage.setItem("email", logUser.email);
-            localStorage.setItem("pwd", logUser.password);
-          }
-
-          if(logUser.password == "1234cambio") this.navCtrl.setRoot(ResetPassword,{user:logUser});
-          else{
-            if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
-            else this.navCtrl.setRoot(UserPage);
-          }
+            if(logUser.password == "1234cambio") this.navCtrl.setRoot(ResetPassword,{user:logUser});
+            else{
+              if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
+              else this.navCtrl.setRoot(UserPage);
+            }
+           }
+          
         }
         console.log(data);
       });

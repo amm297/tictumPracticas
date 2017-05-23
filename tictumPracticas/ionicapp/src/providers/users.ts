@@ -10,8 +10,8 @@ export class Users {
   }
 
   //server = 'http://192.168.5.26:8080';
-  server = 'http://172.16.112.163:8080';
-  //server = 'http://localhost:8080';
+  //server = 'http://172.16.112.163:8080';
+  server = 'http://localhost:8080';
 
 
 
@@ -47,6 +47,21 @@ export class Users {
     
   }
 
+  /*Descactivar usuario */
+
+  changeRole(userId,role){
+    return new Promise(resolve =>{
+      let headers = new Headers();
+      headers.append('Content-Type','application/json');
+      this.http.put(this.server+'/api/users/changerole/'+userId,{role:role},{headers:headers})
+      .map(res => res.json())
+      .subscribe(data =>{
+        console.log(data);
+        resolve(data);
+      })
+    })
+  }
+
  /*-- Esperanza --*/
 
   /*Función para generar contraseña AUTOMÁTICA*/
@@ -73,6 +88,8 @@ export class Users {
         });
     });
   }
+
+
 
  //Esperanza
 

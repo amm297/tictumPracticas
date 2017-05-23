@@ -25,6 +25,10 @@ export class User {
 	}
 
 
+	isActive(){
+		return (this.role == 'inactivo') ? true : false;
+	}
+
 
 
 
