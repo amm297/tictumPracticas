@@ -26958,3 +26958,11 @@ ion-navbar.toolbar {
     padding-top: calc(16px + 20px);
   }
 }
+
+td.monthview-primary-with-event.monthview-selected {
+  background-color: yellow;
+}
+
+.monthview-primary-with-event[_ngcontent-c1] {
+  background-color: yellow !important;
+}

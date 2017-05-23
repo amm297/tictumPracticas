@@ -5,9 +5,10 @@
             <button ion-button [disabled]="isToday" (click)="today()">Dia Actual</button>
              <!--<button ion-button (click)="changeMode('month')">M</button>
            <button ion-button (click)="changeMode('week')">W</button>
-            <button ion-button (click)="changeMode('day')">D</button> 
+            <button ion-button (click)="changeMode('day')">D</button>  
+             <button ion-button (click)="loadEvents()">Load Events</button>
             -->
-      <button ion-button (click)="loadEvents()">Load Events</button>
+    
         </ion-buttons>
     </ion-navbar>
 </ion-header>
@@ -21,7 +22,7 @@
         <button ion-button  (click)="PersonalDays()"  [disabled]="buttonPersonalDaysDisabled">Dias asuntos propios</button>
 
 
- 
+
 
     <ion-card *ngIf="holliday.startDate" >
     <ion-card-header>

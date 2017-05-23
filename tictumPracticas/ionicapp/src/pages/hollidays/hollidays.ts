@@ -49,14 +49,14 @@ export class hollidaysPage {
 
   ionViewDidLoad() {
     this.loadHollidays();
+     this.eventSource = this.loadHollidays();
 
 
   }    
-    loadEvents() {
+   // loadEvents() {
        // this.eventSource = this.StartHollidays();
-       this.eventSource = this.loadHollidays();
-
-    }
+     //  this.eventSource = this.loadHollidays();
+    //}
     onViewTitleChanged(title) {
         this.viewTitle = title;
     }
@@ -66,8 +66,6 @@ export class hollidaysPage {
     changeMode(mode) {
         this.calendar.mode = mode;
     }
-
-
     today() {
         this.calendar.currentDate = new Date();
     }
@@ -82,16 +80,13 @@ export class hollidaysPage {
         event.setHours(0, 0, 0, 0);
         this.isToday = today.getTime() === event.getTime();
     }
-
     StartHollidays(){
       if(this.currentSelectedDate !=''){
         this.holliday.startDate = this.currentSelectedDate; 
         console.log(this.holliday.startDate);
         this.buttonPersonalDaysDisabled = true;
-      } 
-    
+      }
     }
-
     EndHollidays(){
 
       if(this.currentSelectedDate !='' && this.holliday.startDate!=''&& this.holliday.startDate < this.currentSelectedDate ){
@@ -112,14 +107,17 @@ export class hollidaysPage {
       4 comprobar que no tenga ya las vacaciones pilladas en esas fechas
       5 Quitar los fines de semana
     */
+     
       this.holliday.state= "pending";      
       this.user.addHolliday(this.holliday);
       this.userService.addHollidays(this.user)
       .then(data => {
         console.log(data);
         this.navCtrl.pop();
-      });
-    }
+      });}
+     
+    
+      
 
   PersonalDays(){
     //comprobar que la fecha no sea sabado o domingo
@@ -150,7 +148,7 @@ export class hollidaysPage {
 
     
         var events = [];
-
+ 
        for (var i = 0; i < this.user.hollidays.length; i ++) {
               
 
@@ -182,6 +180,8 @@ export class hollidaysPage {
         var current = new Date();
         current.setHours(0, 0, 0);
         return date < current;
+
+
     };
 
 }
