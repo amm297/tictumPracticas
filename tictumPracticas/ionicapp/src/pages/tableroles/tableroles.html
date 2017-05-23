@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Lista de Roles
+      {{ 'LIST_ROLES' | translate }}
     </ion-title>
     <ion-buttons end>
       <button ion-button (click)="showInput()">
@@ -35,8 +35,8 @@
     </button>
 
 
-    <ion-input type="text" [(ngModel)]="role.rolename" name="rolename" placeholder="Nombre del rol"></ion-input>
+    <ion-input type="text" [(ngModel)]="role.rolename" name="rolename" placeholder="{{ 'ROLE_NAME' | translate }}"></ion-input>
   </ion-item>
-  <button *ngIf="this.displayButton == 'add'" ion-button (click)="addRole()">Añadir</button>
-  <button *ngIf="this.displayButton == 'edit'" ion-button (click)="updateRole()">Editar</button>
+  <button *ngIf="this.displayButton == 'add'" ion-button (click)="addRole()">{{ 'ADD' | translate }}</button>
+  <button *ngIf="this.displayButton == 'edit'" ion-button (click)="updateRole()">{{ 'EDIT' | translate }}</button>
 </ion-footer>

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Administrador</ion-title>
+    <ion-title>{{ 'ADMINISTRATOR' | translate }}</ion-title>
     <ion-buttons left>
       <button ion-button (click)="showConfirm()">
         <ion-icon name="log-out"></ion-icon>
@@ -12,14 +12,14 @@
 <ion-content padding>
   <button ion-button block (click)="onClickAddUser()">
     <ion-icon name="person-add" item-left padding-right="5px"></ion-icon>
-    Registrar Usuario
+    {{ 'REGISTER' | translate }}
   </button>
   <button ion-button block (click)="onClickUsers()">
     <ion-icon name="people" item-left padding-right="5px"></ion-icon>
-    Mostrar Usuarios
+    {{ 'SHOWUSER' | translate }}
   </button>
   <button ion-button block (click)="onClickRoles()">
     <ion-icon name="medical" item-left padding-right="5px"></ion-icon>
-    Mostrar Roles
+    {{ 'SHOWROLE' | translate }}
   </button>
 </ion-content>
