@@ -49,15 +49,10 @@ export class hollidaysPage {
 
     ionViewDidLoad() {
       console.log(this.user);
-      this.loadHollidays();
+      this.eventSource = this.loadHollidays();
     }    
 
-    loadEvents() {
-       // this.eventSource = this.StartHollidays();
-       this.eventSource = this.loadHollidays();
-    }
-
-    onViewTitleChanged(title) {
+     onViewTitleChanged(title) {
         this.viewTitle = title;
     }
 
@@ -94,16 +89,13 @@ export class hollidaysPage {
         event.setHours(0, 0, 0, 0);
         this.isToday = today.getTime() === event.getTime();
     }
-
     StartHollidays(){
       if(this.currentSelectedDate !=''){
         this.holliday.startDate = this.currentSelectedDate; 
         console.log(this.holliday.startDate);
         this.buttonPersonalDaysDisabled = true;
-      } 
-    
+      }
     }
-
     EndHollidays(){
       if(this.currentSelectedDate !='' && this.holliday.startDate!=''&& this.holliday.startDate < this.currentSelectedDate ){
         this.holliday.endDate = this.currentSelectedDate;   
@@ -123,14 +115,17 @@ export class hollidaysPage {
       4 comprobar que no tenga ya las vacaciones pilladas en esas fechas
       5 Quitar los fines de semana
     */
+     
       this.holliday.state= "pending";      
       this.user.addHolliday(this.holliday);
       this.userService.addHollidays(this.user)
       .then(data => {
         console.log(data);
         this.navCtrl.pop();
-      });
-    }
+      });}
+     
+    
+      
 
     PersonalDays(){
       //comprobar que la fecha no sea sabado o domingo
@@ -164,7 +159,7 @@ export class hollidaysPage {
                     startTime: startTime,
                     endTime: endTime,
                     allDay: false,
-                    color: 'danger'
+                    color: this.user.hollidays[i].state
                 
                 }); 
            // console.log(events);
@@ -191,24 +186,9 @@ export class hollidaysPage {
         var current = new Date();
         current.setHours(0, 0, 0);
         return date < current;
+
+
     };
 
 }
-  
-/*
-  if(this.startDate == ''){
-          this.startDate = ev.selectedTime;
-     nsole.log(this.startDate);
-            
-        }else{
-             if(this.endDate == ''){
-          this.endDate = ev.selectedTime;
-          console.log(this.endDate);
-            
-        }else{
-            if(this.personalDay == ''){
-          this.personalDay = ev.selectedTime;
-          console.log(this.personalDay);
-            
-        } co
-        }*/     
+ 
