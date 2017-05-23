@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
+import {ResetPassword} from "../reset-password/reset-password";
 
 @IonicPage()
 @Component({
@@ -35,6 +36,10 @@ export class UserPage {
   logout() {
     localStorage.clear();
     this.navCtrl.setRoot(HomePage);
+  }
+
+  onChangePassword(){
+    this.navCtrl.push(ResetPassword);
   }
 
 }
