@@ -22,6 +22,7 @@ export class HomePage {
   };
   loginForm;
   remember;
+  language;
 
   constructor(public navCtrl: NavController,
               public formBuilder: FormBuilder,

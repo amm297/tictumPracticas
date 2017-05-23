@@ -6,10 +6,13 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-select placeholder="{{ 'LANGUAGE' | translate }}" (ionChange)="onLanguage($event)">
-    <ion-option value="spa">{{ 'SPANISH' | translate }}</ion-option>
-    <ion-option value="eng">{{ 'ENGLISH' | translate }}</ion-option>
-  </ion-select>
+  <ion-item no-lines>
+    <ion-label>{{'LANGUAGE'|translate}}</ion-label>
+    <ion-select rigth (ionChange)="onLanguage($event)">
+      <ion-option value="spa">{{ 'SPANISH' | translate }}</ion-option>
+      <ion-option value="eng">{{ 'ENGLISH' | translate }}</ion-option>
+    </ion-select>
+  </ion-item>
   <form [formGroup]="loginForm" (ngSubmit)="userLogin(user)">
     <ion-item>
       <ion-label>
