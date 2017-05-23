@@ -7,9 +7,6 @@ import {HomePage} from "../home/home";
 import {User} from "../../models/user";
 import {Users} from "../../providers/users";
 
-import {AdminPage} from "../admin/admin";
-import {UserPage} from "../user/user";
-
 import {PasswordValidator} from  '../userform/passwordValidator';
 import {DniValidator} from  '../userform/dniValidator';
 
@@ -78,13 +75,9 @@ export class ResetPassword {
                 localStorage.setItem("pwd", this.user.password);
                 this.navCtrl.push(HomePage) ;
               
-              }              
+              }
             });
-
-
-
         	}
-
       };
     }
 	}

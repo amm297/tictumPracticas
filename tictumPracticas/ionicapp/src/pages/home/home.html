@@ -9,11 +9,10 @@
   <form [formGroup]="loginForm" (ngSubmit)="userLogin(user)">
     <ion-item>
       <ion-icon name="at"></ion-icon>
-      <!-- <ion-label color="primary" stacked>Email or DNI (12354678X): -->
       <ion-label floating>
         Email or DNI (12354678X):
       </ion-label>
-      <ion-input [(ngModel)]="user.input" type="text" formControlName="input"></ion-input> <!-- placeholder="12354678X" -->
+      <ion-input [(ngModel)]="user.input" type="text" formControlName="input"></ion-input>
     </ion-item>
 
     <ion-item *ngIf="!loginForm.controls.input.valid && loginForm.controls.input.touched">

@@ -7,6 +7,7 @@ import {Users} from "../../providers/users";
 import {AdminPage} from "../admin/admin";
 import {UserPage} from "../user/user";
 import {ResetPassword} from "../reset-password/reset-password";
+import {GenericPasswordPage} from "../generic-password/generic-password";
 
 @Component({
   selector: 'home-page',
@@ -53,25 +54,40 @@ export class HomePage {
             buttons: ['Ok']
           });
           alert.present();
-        }
-        else {
+        } else {
+          //Modificado por Esperanza
           console.log("Login OK");
           let logUser: User = new User(data);
-          if (this.remember) {
-            localStorage.setItem("email", logUser.email);
-            localStorage.setItem("pwd", logUser.password);
+          console.log(logUser);
+           if (data['autoP']==true){
+               console.log("Tienes que cambiar la contraseña");
+              let alert = this.alertCtrl.create({
+                title: 'Login OK!',
+                subTitle: data['changePassw'],
+                buttons: ['Ok']
+              });
+              alert.present();
+              this.navCtrl.setRoot(ResetPassword, logUser);
+          //Fin modificación
+           } else {
+               console.log("Login correcto");
+              let logUser: User = new User(data);
+              if (this.remember) {
+                localStorage.setItem("email", logUser.email);
+                localStorage.setItem("pwd", logUser.password);
+              }
+              if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
+              else this.navCtrl.setRoot(UserPage);
           }
-          if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
-          else this.navCtrl.setRoot(UserPage);
         }
         console.log(data);
       });
     }
   }
-
+//Esperanza
   goToResetPassword() {
     console.log("Cambiar contraseña del email "+this.user.input);
-    this.navCtrl.push(ResetPassword,this.user.input);
+    this.navCtrl.push(GenericPasswordPage,this.user.input);
   }
-
+//Esperanza
 }
