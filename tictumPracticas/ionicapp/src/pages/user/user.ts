@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
+import {hollidaysPage} from '../hollidays/hollidays';
 
 @IonicPage()
 @Component({
@@ -32,6 +33,11 @@ export class UserPage {
     });
     confirm.present();
   }
+
+  onClickHollidays(){
+    this.navCtrl.push(hollidaysPage);
+  }
+
   logout() {
     localStorage.clear();
     this.navCtrl.setRoot(HomePage);
