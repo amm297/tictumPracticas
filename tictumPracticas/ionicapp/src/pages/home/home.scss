@@ -1,0 +1,31 @@
+$darktheme:#242424;
+
+.scroll-content{
+  display: table !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+.scroll {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.logo{
+	width:152px;
+	height:152px;
+}
+form{
+	padding-top:20px;
+}
+.checkboxremem{
+	background-color: rgba(0,0,0,0.0);
+	ion-label{
+		color:black;
+	}
+}
+.iforgot{
+	a{
+		color:$darktheme;
+		font-weight: bold;
+	}
+}

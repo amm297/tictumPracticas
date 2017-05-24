@@ -10,9 +10,11 @@ export class Roles {
     this.data = null;
   }
 
-  server = 'http://192.168.5.26:8080';
+
+  //server = 'http://192.168.5.26:8080';
   //server = 'http://172.16.112.40:8080';
-  //server = 'http://localhost:8080';
+  server = 'http://localhost:8080';
+
 
   getAllRoles() {
     return new Promise(resolve => {

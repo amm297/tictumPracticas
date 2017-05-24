@@ -12,10 +12,31 @@ import {GenericPasswordPage} from "../pages/generic-password/generic-password";
 
 import {ErrorHandler, NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
-import {HttpModule} from "@angular/http";
+import {Http, HttpModule} from "@angular/http";
 import {IonicApp, IonicErrorHandler, IonicModule} from "ionic-angular";
 import {StatusBar} from "@ionic-native/status-bar";
 import {SplashScreen} from "@ionic-native/splash-screen";
+
+//Translate config
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+export function createTranslateLoader(http: Http) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+//GEOLOCALIZACION
+import { LocationPage } from "../pages/location/location";
+import { NewPositionPage } from "../pages/new-position/new-position";
+import { Geolocation } from '@ionic-native/geolocation';
+import { GoogleMaps } from '@ionic-native/google-maps';
+
+
+// Hollydays
+
+import { NgCalendarModule  } from 'ionic2-calendar';
+import { HollidaysPage } from "../pages/hollidays/hollidays";
+
+
 
 @NgModule({
   declarations: [
@@ -27,12 +48,24 @@ import {SplashScreen} from "@ionic-native/splash-screen";
     TablerolesPage,
     ResetPassword,
     UserPage,
-    GenericPasswordPage
+    GenericPasswordPage,
+    LocationPage,
+    HollidaysPage,
+    NewPositionPage
+
   ],
   imports: [
     BrowserModule,
+    NgCalendarModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [Http]
+      }
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,14 +77,19 @@ import {SplashScreen} from "@ionic-native/splash-screen";
     TablerolesPage,
     ResetPassword,
     UserPage,
-    GenericPasswordPage
+    GenericPasswordPage,
+    LocationPage,
+    HollidaysPage,
+    NewPositionPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Users,
-    Roles
+    Roles,
+    Geolocation,
+    GoogleMaps
   ]
 })
 export class AppModule {

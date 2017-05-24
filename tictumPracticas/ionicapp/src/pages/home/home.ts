@@ -8,6 +8,7 @@ import {AdminPage} from "../admin/admin";
 import {UserPage} from "../user/user";
 import {ResetPassword} from "../reset-password/reset-password";
 import {GenericPasswordPage} from "../generic-password/generic-password";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'home-page',
@@ -22,7 +23,11 @@ export class HomePage {
   loginForm;
   remember;
 
-  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public alertCtrl: AlertController, private usersService: Users) {
+  constructor(public navCtrl: NavController,
+              public formBuilder: FormBuilder,
+              public alertCtrl: AlertController,
+              private usersService: Users,
+              private translateService: TranslateService) {
     //console.log('Paso constructor');
     this.user.input = localStorage.getItem("email");
     this.user.password = localStorage.getItem("pwd");
@@ -54,40 +59,42 @@ export class HomePage {
             buttons: ['Ok']
           });
           alert.present();
-        } else {
-          //Modificado por Esperanza
+        }
+        else {
           console.log("Login OK");
+          console.log(this.navCtrl.last().component.name);
           let logUser: User = new User(data);
-          console.log(logUser);
-           if (data['autoP']==true){
-               console.log("Tienes que cambiar la contraseña");
-              let alert = this.alertCtrl.create({
-                title: 'Login OK!',
-                subTitle: data['changePassw'],
-                buttons: ['Ok']
-              });
-              alert.present();
-              this.navCtrl.setRoot(ResetPassword, logUser);
-          //Fin modificación
-           } else {
-               console.log("Login correcto");
-              let logUser: User = new User(data);
-              if (this.remember) {
-                localStorage.setItem("email", logUser.email);
-                localStorage.setItem("pwd", logUser.password);
-              }
-              if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
-              else this.navCtrl.setRoot(UserPage);
+
+          if (this.remember) {
+            localStorage.setItem("email", logUser.email);
+            localStorage.setItem("pwd", logUser.password);
+          }
+
+          if (logUser.password == "1234cambio") this.navCtrl.setRoot(ResetPassword, {user: logUser});
+          else {
+            if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
+            else this.navCtrl.setRoot(UserPage);
           }
         }
         console.log(data);
       });
     }
   }
-//Esperanza
+
   goToResetPassword() {
-    console.log("Cambiar contraseña del email "+this.user.input);
-    this.navCtrl.push(GenericPasswordPage,this.user.input);
+    console.log("Cambiar contraseña del email " + this.user.input);
+    this.navCtrl.setRoot(GenericPasswordPage, this.user.input);
   }
-//Esperanza
+
+  onLanguage(event) {
+    switch (event.value) {
+      case 'spa':
+        this.translateService.use('spa')
+        break;
+      case 'eng':
+        this.translateService.use('eng')
+        break;
+    }
+  }
+
 }

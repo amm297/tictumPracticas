@@ -9,11 +9,12 @@ export class Users {
   constructor(public http: Http) {
   }
 
-  server = 'http://192.168.5.26:8080';
+  //server = 'http://192.168.5.26:8080';
 
   //server = 'http://172.16.112.40:8080';
-  //server = 'http://192.168.5.35:8080';
+  server = 'http://192.168.5.35:8080';
   //server = 'http://172.16.112.163:8080';
+
 
 
   registerUser(data) {
@@ -47,6 +48,34 @@ export class Users {
     localStorage.clear();
     
   }
+  /*-- Roberto --*/
+
+  addHollidays(data){
+    console.log(data);
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.put(this.server + '/api/users/addhollidays', JSON.stringify(data), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
+  addPersonalDays(data){
+    console.log(data);
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.put(this.server + '/api/users/addPersonalDays', JSON.stringify(data), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+  /*-- Roberto --*/
 
  /*-- Esperanza --*/
 

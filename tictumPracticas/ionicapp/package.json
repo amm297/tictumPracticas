@@ -1,8 +1,7 @@
 {
-  "name": "ionic-app-base",
-  "version": "0.1.0",
-  "author": "Grupo Prácticas",
-  "homepage": "http://ionicframework.com/",
+  "name": "ionic-hello-world",
+  "version": "0.0.0",
+  "author": "Ionic Framework",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -12,28 +11,45 @@
     "ionic:serve": "ionic-app-scripts serve"
   },
   "dependencies": {
-    "@angular/common": "4.0.2",
-    "@angular/compiler": "4.0.2",
-    "@angular/compiler-cli": "4.0.2",
-    "@angular/core": "4.0.2",
-    "@angular/forms": "4.0.2",
-    "@angular/http": "4.0.2",
-    "@angular/platform-browser": "4.0.2",
-    "@angular/platform-browser-dynamic": "4.0.2",
-    "@ionic-native/core": "3.4.2",
+    "@angular/common": "4.1.0",
+    "@angular/compiler": "4.1.0",
+    "@angular/compiler-cli": "4.1.0",
+    "@angular/core": "4.1.0",
+    "@angular/forms": "4.1.0",
+    "@angular/http": "4.1.0",
+    "@angular/platform-browser": "4.1.0",
+    "@angular/platform-browser-dynamic": "4.1.0",
+    "@ionic-native/core": "3.7.0",
     "@ionic-native/geolocation": "^3.10.3",
-    "@ionic-native/splash-screen": "3.4.2",
-    "@ionic-native/status-bar": "3.4.2",
+    "@ionic-native/google-maps": "^3.10.3",
+    "@ionic-native/splash-screen": "3.7.0",
+    "@ionic-native/status-bar": "3.7.0",
     "@ionic/storage": "2.0.1",
+    "@ngx-translate/core": "^6.0.1",
+    "@ngx-translate/http-loader": "0.0.3",
+    "angular2-uuid": "^1.1.1",
+    "cordova-android": "^6.2.3",
+    "cordova-plugin-console": "^1.0.5",
+    "cordova-plugin-device": "^1.1.4",
     "cordova-plugin-geolocation": "^2.4.3",
+    "cordova-plugin-googlemaps": "^1.4.0",
+    "cordova-plugin-splashscreen": "^4.0.3",
+    "cordova-plugin-statusbar": "^2.2.1",
+    "cordova-plugin-whitelist": "^1.3.1",
+    "express-session": "^1.15.2",
+    "intl": "^1.2.5",
     "ionic-angular": "3.2.1",
+    "ionic-plugin-keyboard": "^2.2.1",
+    "ionic2-calendar": "^0.3.2",
     "ionicons": "3.0.0",
+    "ng2-translate": "^5.0.0",
     "rxjs": "5.1.1",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.10"
   },
   "devDependencies": {
     "@ionic/app-scripts": "1.3.7",
+    "@ionic/cli-plugin-cordova": "1.2.0",
     "@ionic/cli-plugin-ionic-angular": "1.1.2",
     "typescript": "2.2.1"
   },
@@ -49,7 +65,10 @@
   "description": "ionic-maps: An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-geolocation": {}
+      "cordova-plugin-geolocation": {},
+      "cordova-plugin-googlemaps": {
+        "API_KEY_FOR_IOS": "AIzaSyBdVl-cTICSwYKrZ95SuvNw7dbMuDt1KG0"
+      }
     }
   }
 }
