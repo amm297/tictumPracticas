@@ -11,9 +11,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-searchbar [howCancelButton]="shouldShowCancel"
-                 (ionInput)="onInput($event)"
-                  placeholder="Buscar roles">
+  <ion-searchbar [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" placeholder="Buscar roles">
   </ion-searchbar>
   <ion-list>
     <div *ngFor="let role of search; let i=index">

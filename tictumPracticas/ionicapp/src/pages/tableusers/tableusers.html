@@ -8,9 +8,9 @@
 <ion-content padding>
   <ion-searchbar [showCancelButton]="shouldShowCancel"
                  (ionInput)="onInput($event)"></ion-searchbar>
-  <ion-list>
-    <ion-item *ngFor="let user of search; let i=index" text-wrap (click)="toggleGroup(i)"
-              [ngClass]="{active: isGroupShown(i)}">
+  <ion-list [virtualScroll]="users" approxItemHeight="2000px">
+    <ion-item *virtualItem="let user; let index = index" text-wrap (click)="toggleGroup(index)"
+              [ngClass]="{active: isGroupShown(index)}">
       <h2>
         <ion-row>
           <ion-col col-10>
@@ -18,12 +18,12 @@
             {{user.name}} {{user.lastname}}
           </ion-col>
           <ion-col text-right>
-            <ion-icon color="success" [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            <ion-icon color="success" [name]="isGroupShown(index) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
           </ion-col>
         </ion-row>
       </h2>
 
-      <div *ngIf="isGroupShown(i)">
+      <div *ngIf="isGroupShown(index)">
         <ion-card color="light">
 
           <ion-list no-lines>
@@ -38,7 +38,7 @@
               <button ion-button color="warning" icon-only clear (click)="modifyUser(user)">
                 <ion-icon name="create"></ion-icon>
               </button>
-              <button ion-button color="danger" icon-only clear (click)="deleteUser(user._id,i)">
+              <button ion-button color="danger" icon-only clear (click)="deleteUser(user._id,index)">
                 <ion-icon name="trash"></ion-icon>
               </button>
             </ion-col>
@@ -47,5 +47,10 @@
       </div>
     </ion-item>
   </ion-list>
-
+ <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Cargando más usuarios...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

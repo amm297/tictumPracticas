@@ -1,11 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-import { User } from "../models/user";
+//import { User } from "../models/user";
 import {Md5} from 'ts-md5/dist/md5';
 
 @Injectable()
 export class Users {
+
+  // Límite de registros por página
+  perpage:number = 2;
 
   constructor(public http: Http) {
   }
@@ -151,7 +154,17 @@ export class Users {
           resolve(data); 
         }); 
     }); 
-  } 
+  }
+  /* Metodo de prueba para la paginación del listado de usuarios */
+  load(start:number=0) {
+    return new Promise(resolve => {
+      this.http.get(this.server + '/api/users/read?limit='+this.perpage+'&skip='+start)
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
 
 }
 

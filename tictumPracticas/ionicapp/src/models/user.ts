@@ -1,6 +1,3 @@
-/**
- * Created by Javier on 17/05/2017.
- */
 export class User {
 	dni: string;
 	name: string;
@@ -36,9 +33,5 @@ export class User {
      
       this.personalDays.push(data)
    }
-
-
-
-
 
 }
