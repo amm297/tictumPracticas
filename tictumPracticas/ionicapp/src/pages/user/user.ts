@@ -4,6 +4,7 @@ import {HomePage} from "../home/home";
 import {hollidaysPage} from "../hollidays/hollidays";
 
 import {User} from "../../models/user";
+import {LocationPage} from '../location/location'
 
 @IonicPage()
 @Component({
@@ -49,7 +50,9 @@ user: User = new User();
     this.navCtrl.setRoot(HomePage);
   }
 
-
+  onClickShowMap(){
+    this.navCtrl.push(LocationPage);
+  }
 
 
 onClickCalendario(){

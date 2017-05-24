@@ -35453,3 +35453,12 @@ td.monthview-current .calendar-day {
   background-color: #f4b342 !important;
   color: white;
 }
+
+.ios page-location .scroll, .md page-location .scroll {
+  height: 100%;
+}
+
+.ios page-location #map, .md page-location #map {
+  width: 100%;
+  height: 100%;
+}
