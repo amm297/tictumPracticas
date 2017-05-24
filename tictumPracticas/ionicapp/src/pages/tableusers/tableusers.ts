@@ -10,7 +10,8 @@ import {UserformPage} from '../userform/userform'
 })
 export class TableusersPage implements OnInit {
 
-  users: any;
+  private start: number = 0;
+  users: any = [];
   search: any;
   shownGroup;
 
@@ -18,6 +19,31 @@ export class TableusersPage implements OnInit {
               public navParams: NavParams,
               private usersService: Users,
               private alertCtrl: AlertController) {
+    this.loadUsers();
+    this.search = this.users;
+  }
+  
+  loadUsers() {
+    return new Promise(resolve => {
+      this.usersService.load(this.start)
+        .then(data => {
+          console.log(data);
+          for(let user of data['docs']) {
+            this.users.push(user);
+          }
+          console.log(this.users);
+          resolve(true);
+        });
+    })
+  }
+
+  doInfinite(inifiniteScroll: any) {
+    console.log('doInfinite, start is currently ' + this.start);
+    // Debe coincidir con el valor perpage del servicio users.ts
+    this.start += 2;
+    this.loadUsers().then(() => {
+      inifiniteScroll.complete();
+    });
   }
 
   ngOnInit() {

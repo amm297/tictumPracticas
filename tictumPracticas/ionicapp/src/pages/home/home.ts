@@ -60,21 +60,30 @@ export class HomePage {
             buttons: ['Ok']
           });
           alert.present();
-        }
-        else {
+        } else {
+          //Modificado por Esperanza
           console.log("Login OK");
-          console.log(this.navCtrl.last().component.name);
           let logUser: User = new User(data);
-
-          if (this.remember) {
-            localStorage.setItem("email", logUser.email);
-            localStorage.setItem("pwd", logUser.password);
-          }
-
-          if (logUser.password == "1234cambio") this.navCtrl.setRoot(ResetPassword, {user: logUser});
-          else {
-            if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
-            else this.navCtrl.setRoot(UserPage);
+          console.log(logUser);
+           if (data['autoP']==true){
+               console.log("Tienes que cambiar la contraseña");
+              let alert = this.alertCtrl.create({
+                title: 'Login OK!',
+                subTitle: data['changePassw'],
+                buttons: ['Ok']
+              });
+              alert.present();
+              this.navCtrl.setRoot(ResetPassword, logUser);
+          //Fin modificación
+           } else {
+               console.log("Login correcto");
+              let logUser: User = new User(data);
+              if (this.remember) {
+                localStorage.setItem("email", logUser.email);
+                localStorage.setItem("pwd", logUser.password);
+              }
+              if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
+              else this.navCtrl.setRoot(UserPage);
           }
         }
         console.log(data);

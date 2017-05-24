@@ -40,8 +40,9 @@
       <ion-checkbox [(ngModel)]="remember" [ngModelOptions]="{standalone: true}" id="checkBox"></ion-checkbox>
     </ion-item>
     <div text-center>
-    <button ion-button block clear (click)="goToResetPassword()">{{ 'REMENBER' | translate }}</button>
-  </div>
+      <a block clear (click)="goToResetPassword()">{{ 'REMENBER' | translate }}</a>
+    </div>
+    
   </form>
 </ion-content>
 
