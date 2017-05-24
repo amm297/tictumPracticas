@@ -48,7 +48,7 @@ export function createTranslateLoader(http: Http) {
     CheckinTabsPage,
     CheckinmapPage,
     CheckintablePage,
-    DetailsusersPage
+    DetailsusersPage,
     LocationPage
   ],
   imports: [
@@ -79,7 +79,7 @@ export function createTranslateLoader(http: Http) {
     CheckinTabsPage,
     CheckinmapPage,
     CheckintablePage,
-    DetailsusersPage
+    DetailsusersPage,
     LocationPage
   ],
   providers: [

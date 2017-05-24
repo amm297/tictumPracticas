@@ -43,7 +43,7 @@ user: User = new User();
   }
 
   onClickHollidays(){
-    this.navCtrl.push(hollidaysPage);
+    this.navCtrl.push(hollidaysPage,{user:this.user});
   }
 
   logout() {
@@ -55,16 +55,10 @@ user: User = new User();
     this.navCtrl.push(ResetPassword);
   }
 
-  onClickShowMap(){
+  onClickMap(){
     this.navCtrl.push(LocationPage);
   }
 
 
-onClickCalendario(){
-    this.navCtrl.push(hollidaysPage,{user:this.user});
-
-  
-
-  }
 
 }

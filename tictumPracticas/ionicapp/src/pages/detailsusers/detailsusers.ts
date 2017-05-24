@@ -46,6 +46,12 @@ export class DetailsusersPage {
     confirm.present();
   }
 
+   changeRole(userId: string, role:string){
+    this.usersService.changeRole(userId,role).then(data =>{
+        console.log(data);
+    });
+  }
+
   modifyUser(user) {
     this.navCtrl.push(UserformPage, {user: user});
   }

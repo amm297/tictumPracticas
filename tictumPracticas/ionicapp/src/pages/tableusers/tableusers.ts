@@ -13,6 +13,8 @@ export class TableusersPage {
 
   private page: number = 1;
   users: any = [];
+   search: any; 
+ 
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -67,11 +69,7 @@ export class TableusersPage {
     this.navCtrl.push(UserformPage, {user: user});
   }*/
 
-  changeRole(userId: string, role:string){
-    this.usersService.changeRole(userId,role).then(data =>{
-        console.log(data);
-    });
-  }
+ 
 
   onInput(event) {
     let input = event.target.value;
