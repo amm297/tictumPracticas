@@ -8,9 +8,8 @@
 <ion-content padding>
   <ion-searchbar [showCancelButton]="shouldShowCancel"
                  (ionInput)="onInput($event)"></ion-searchbar>
-  <ion-list [virtualScroll]="users" approxItemHeight="2000px">
-    <ion-item *virtualItem="let user; let index = index" text-wrap (click)="toggleGroup(index)"
-              [ngClass]="{active: isGroupShown(index)}">
+  <ion-list [virtualScroll]="users">
+    <ion-item *virtualItem="let user; let index = index" text-wrap>
       <h2>
         <ion-row>
           <ion-col col-10>
@@ -18,11 +17,11 @@
             {{user.name}} {{user.lastname}}
           </ion-col>
           <ion-col text-right>
-            <ion-icon color="success" [name]="isGroupShown(index) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+            <ion-icon color="success" name="arrow-dropright"></ion-icon>
           </ion-col>
         </ion-row>
       </h2>
-      <div *ngIf="isGroupShown(index)">
+      <!--<div *ngIf="isGroupShown(index)">
         <ion-card>
           <ion-list no-lines>
             <ion-item>{{user.dni}}</ion-item>
@@ -42,7 +41,7 @@
             </ion-col>
           </ion-row>
         </ion-card>
-      </div>
+      </div>-->
     </ion-item>
   </ion-list>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

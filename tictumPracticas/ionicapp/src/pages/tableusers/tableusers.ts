@@ -10,7 +10,7 @@ import {UserformPage} from '../userform/userform'
 })
 export class TableusersPage {
 
-  private start: number = 0;
+  private page: number = 1;
   users: any = [];
   search: any;
   shownGroup;
@@ -25,7 +25,7 @@ export class TableusersPage {
 
   loadUsers() {
     return new Promise(resolve => {
-      this.usersService.load(this.start)
+      this.usersService.load(this.page)
         .then(data => {
           console.log(data);
           for(let user of data['docs']) {
@@ -38,9 +38,7 @@ export class TableusersPage {
   }
 
   doInfinite(inifiniteScroll: any) {
-    console.log('doInfinite, start is currently ' + this.start);
-    // Debe coincidir con el valor perpage del servicio users.ts
-    this.start += 2;
+    this.page++;
     this.loadUsers().then(() => {
       inifiniteScroll.complete();
     });

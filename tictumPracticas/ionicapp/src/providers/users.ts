@@ -112,9 +112,9 @@ export class Users {
   }
 
   /* Metodo de prueba para la paginación del listado de usuarios */
-  load(start:number=0) {
+  load(page:number=0) {
     return new Promise(resolve => {
-      this.http.get(this.server + '/api/users/read?limit='+this.perpage+'&skip='+start)
+      this.http.get(this.server + '/api/users/read?page='+page)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
