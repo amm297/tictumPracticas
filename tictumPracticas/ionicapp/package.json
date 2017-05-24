@@ -24,6 +24,7 @@
     "@ionic-native/splash-screen": "3.7.0",
     "@ionic-native/status-bar": "3.7.0",
     "@ionic/storage": "2.0.1",
+    "angular-md5": "^0.1.10",
     "@ngx-translate/core": "^6.0.1",
     "@ngx-translate/http-loader": "0.0.3",
     "angular2-uuid": "^1.1.1",
@@ -43,6 +44,7 @@
     "ng2-translate": "^5.0.0",
     "rxjs": "5.1.1",
     "sw-toolbox": "3.6.0",
+    "ts-md5": "^1.2.0",
     "zone.js": "0.8.10"
   },
   "devDependencies": {

@@ -1,6 +1,3 @@
-/**
- * Created by Javier on 30/04/2017.
- */
 import {FormControl} from '@angular/forms';
 
 export class PasswordValidator {

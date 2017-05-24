@@ -60,7 +60,8 @@ export class TableusersPage implements OnInit {
         user.name.toLowerCase().indexOf(input.toLowerCase()) != -1 ||
         user.dni.indexOf(input) > -1 ||
         user.email.toLowerCase().indexOf(input.toLowerCase()) > -1 ||
-        user.role.toLowerCase().indexOf(input.toLowerCase()) > -1 )
+        user.role.toLowerCase().indexOf(input.toLowerCase()) > -1 ||
+        user.lastname.toLowerCase().indexOf(input.toLowerCase()) > -1)
       });
     } else {
       this.search = this.users;

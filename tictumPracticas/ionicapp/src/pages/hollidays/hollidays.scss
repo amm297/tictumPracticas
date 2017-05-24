@@ -1,3 +1,50 @@
 page-hollidays {
 
 }
+
+ .monthview-selected {
+    background-color: transparent !important;
+    color: black !important;
+  }
+
+  td.monthview-current {
+    color: white;
+
+    .calendar-day {
+      background-color: color($colors, 'light') !important;
+    }
+  }
+
+  .monthview-datetable {
+    border: 0 !important;
+
+    td, th {
+      border: 1px !important;
+      padding:  0!important;
+      background-color: transparent!important;
+    }
+  }
+
+
+.calendar-day {
+    &.primary {
+      background-color: 'primary' !important;
+      color: white;
+    }
+
+    &.success {
+      background-color: 'success' !important;
+      color: white;
+    }
+
+    &.pending {
+      background-color: #f4b342 !important;
+      color: white;
+    }
+
+    &.danger {
+      background-color: 'danger' !important;
+      color: white;
+    }
+}
+  

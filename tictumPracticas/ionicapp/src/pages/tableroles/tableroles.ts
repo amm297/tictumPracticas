@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 import {Roles} from '../../providers/roles';
 
 @IonicPage()
@@ -16,7 +16,11 @@ export class TablerolesPage {
   role: { rolename: string } = {rolename: ''};
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public rolesService: Roles) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public rolesService: Roles,
+    private alertCtrl: AlertController) {
   }
 
   ngOnInit() {
@@ -31,6 +35,7 @@ export class TablerolesPage {
   }
 
   showInput() {
+    this.role = {rolename: ''};
     this.displayButton = 'add';
     this.displayInput = true;
   }
@@ -42,14 +47,20 @@ export class TablerolesPage {
   }
 
   addRole() {
-    if (this.role.rolename !== '') {
-      this.rolesService.addRole(this.role).then(() => {
-        this.closeInput();
-        this.role.rolename = '';
-        this.getAllRoles();
-      });
+    const position = this.roles.findIndex((roleCheck: any) => {
+      return roleCheck.rolename == this.role.rolename;
+    })
+    if (position > -1) {
+      this.presentAlert();
     }
-
+    else {
+      if (this.role.rolename !== '') {
+        this.rolesService.addRole(this.role).then((data) => {
+          this.roles.push(data);
+          this.closeInput();
+        });
+      }
+    }
   }
 
   editRole(role) {
@@ -57,21 +68,54 @@ export class TablerolesPage {
     this.displayButton = 'edit';
     this.displayInput = true;
   }
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: '¡Cuidado!',
+      subTitle: 'Este rol ya existe',
+      buttons: ['Ok']
+    });
+    alert.present();
+  }
 
   updateRole() {
-    if (this.role.rolename !== '') {
-      this.rolesService.updateRole(this.role).then(() => {
-        this.closeInput();
-        this.role.rolename = '';
-        this.getAllRoles();
-      });
+    let antRoles = this.roles;
+    antRoles = this.roles.filter(role => {
+      return (
+      role.rolename.toLowerCase().indexOf(this.role.rolename.toLowerCase()) > -1)
+    });
+
+    console.log(antRoles);
+    console.log(this.role);
+
+    if (antRoles.length > 1) {
+      this.presentAlert();
+    } else {
+      if (this.role.rolename !== '') {
+        this.rolesService.updateRole(this.role).then(() => {
+          this.closeInput();
+        });
+      }
     }
   }
 
-  deleteRole(role) {
-    this.rolesService.removeRole(role).then(() => {
-      this.getAllRoles();
+  deleteRole(roleId: String, index: number) {
+    let confirm = this.alertCtrl.create({
+      title: '¡Cuidado!',
+      message: '¿Estas seguro de eliminar el rol?',
+      buttons: [
+        {
+          text: 'Si',
+          handler: () => {
+            this.rolesService.removeRole(roleId);
+            this.roles.splice(index, 1);
+          }
+        },
+        {
+          text: 'No'
+        }
+      ]
     });
+    confirm.present();
   }
 
   onInput(event) {

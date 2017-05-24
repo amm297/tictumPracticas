@@ -22,6 +22,7 @@ export class HomePage {
   };
   loginForm;
   remember;
+  language;
 
   constructor(public navCtrl: NavController,
               public formBuilder: FormBuilder,
@@ -31,13 +32,13 @@ export class HomePage {
     //console.log('Paso constructor');
     this.user.input = localStorage.getItem("email");
     this.user.password = localStorage.getItem("pwd");
-
+    if(localStorage.getItem("language")){
+      translateService.use(localStorage.getItem("language"));
+    }
     this.loginForm = formBuilder.group({
       input: ['', Validators.required],
       password: ['', Validators.required],
     });
-
-
   }
 
   ionViewDidLoad() {
@@ -89,12 +90,13 @@ export class HomePage {
   onLanguage(event) {
     switch (event.value) {
       case 'spa':
-        this.translateService.use('spa')
+        this.translateService.use('spa');
+        localStorage.setItem("language","spa");
         break;
       case 'eng':
-        this.translateService.use('eng')
+        this.translateService.use('eng');
+        localStorage.setItem("language","eng");
         break;
     }
   }
-
 }

@@ -19,7 +19,7 @@ export class UserformPage {
   roles: any;
   confirmpassword: string;
   userForm;
-  btnValue : string = "Registrar usuario";
+  text : string = "REGISTER_USER";
   edit : boolean = false;
 
   constructor(private navCtrl: NavController,
@@ -31,7 +31,7 @@ export class UserformPage {
 
     if (this.navParams.get('user')) {
         this.user = this.navParams.get('user');
-        this.btnValue = "Editar usuario";
+        this.text = "EDIT_USER";
         this.edit = true;
     }
 
@@ -53,6 +53,9 @@ export class UserformPage {
     this.rolesService.getAllRoles().then(data => {
       this.roles = data;
     });
+  }
+  ionViewWillLeave(){
+    this.modifyUser(this.user);
   }
 
   registerUser() {
@@ -83,6 +86,9 @@ export class UserformPage {
     } else {
       console.log("Formulario incorrecto!");
     }
+  }
+  modifyUser(user){
+    this.usersService.modifyUser(this.user);
   }
 
 
