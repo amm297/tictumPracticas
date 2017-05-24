@@ -1,7 +1,6 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>Usuario</ion-title>
+    <ion-title>{{ 'USER' | translate }}</ion-title>
     <ion-buttons left>
     <button ion-button (click)="showConfirm()">
       <ion-icon name="log-out"></ion-icon>
@@ -10,20 +9,9 @@
 
   </ion-buttons>
   </ion-navbar>
-
 </ion-header>
-
 <ion-content padding>
-
-
-    <button ion-button (click)="onClickCalendario()">
-    <ion-icon name="medical" item-left></ion-icon>
-    Mostrar vacaciones calendario
-  </button>
-
-  <button ion-button (click)="onClickShowMap()">
-    <ion-icon name="medical" item-left></ion-icon>
-    Mapa
-  </button>
-
+  <button ion-button outline block>{{ 'RESERVE_VACATION' | translate }}</button>
+  <button ion-button outline block>{{ 'CLOCK_IN' | translate }}</button>
+  <button ion-button outline block (click)="onChangePassword()">{{ 'CHANGE_PASSWORD' | translate }}</button>
 </ion-content>

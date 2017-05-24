@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
 import {hollidaysPage} from "../hollidays/hollidays";
+import {ResetPassword} from "../reset-password/reset-password";
 
 import {User} from "../../models/user";
 import {LocationPage} from '../location/location'
@@ -48,6 +49,10 @@ user: User = new User();
   logout() {
     localStorage.clear();
     this.navCtrl.setRoot(HomePage);
+  }
+
+  onChangePassword(){
+    this.navCtrl.push(ResetPassword);
   }
 
   onClickShowMap(){

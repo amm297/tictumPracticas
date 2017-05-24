@@ -11,7 +11,7 @@ import {GenericPasswordPage} from "../generic-password/generic-password";
 import {TranslateService} from "@ngx-translate/core";
 
 @Component({
-  selector: 'home-page',
+  selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
@@ -22,6 +22,7 @@ export class HomePage {
   };
   loginForm;
   remember;
+  language;
 
   constructor(public navCtrl: NavController,
               public formBuilder: FormBuilder,
@@ -31,13 +32,14 @@ export class HomePage {
     //console.log('Paso constructor');
     this.user.input = localStorage.getItem("email");
     this.user.password = localStorage.getItem("pwd");
+    if(localStorage.getItem("language")){
+      translateService.use(localStorage.getItem("language"));
+    }
 
     this.loginForm = formBuilder.group({
       input: ['', Validators.required],
       password: ['', Validators.required],
     });
-
-
   }
 
   ionViewDidLoad() {
@@ -92,18 +94,19 @@ export class HomePage {
 
   goToResetPassword() {
     console.log("Cambiar contraseña del email " + this.user.input);
-    this.navCtrl.setRoot(GenericPasswordPage, this.user.input);
+    this.navCtrl.push( GenericPasswordPage, this.user.input);
   }
 
   onLanguage(event) {
     switch (event.value) {
       case 'spa':
-        this.translateService.use('spa')
+        this.translateService.use('spa');
+        localStorage.setItem("language","spa");
         break;
       case 'eng':
-        this.translateService.use('eng')
+        this.translateService.use('eng');
+        localStorage.setItem("language","eng");
         break;
     }
   }
-
 }

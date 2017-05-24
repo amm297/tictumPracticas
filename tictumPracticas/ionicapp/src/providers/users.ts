@@ -1,23 +1,23 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-import { User } from "../models/user";
+import {User} from "../models/user";
 
 @Injectable()
 export class Users {
 
+  // Límite de registros por página
+  perpage:number = 2;
+
   constructor(public http: Http) {
   }
 
-
- //WI-Fi
+  //WI-Fi
   //server = 'http://192.168.4.45:8080';
-
   //server = 'http://192.168.5.26:8080';
-  //server = 'http://172.16.112.163:8080';
-  server = 'http://172.16.112.35:8080';
-
-
+  //Portatil Celada
+  server = 'http://172.16.112.163:8080';
+  //server = 'http://localhost:8080';
 
   registerUser(data) {
     console.log(data.dni);
@@ -46,11 +46,6 @@ export class Users {
     });
   }
 
-  logoutUser(data) {
-    localStorage.clear();
-
-  }
-
   /*Descactivar usuario */
 
   changeRole(userId,role){
@@ -66,7 +61,9 @@ export class Users {
     })
   }
 
- /*-- Esperanza --*/
+  logoutUser(data) {
+    localStorage.clear();
+  }
 
   /*Función para generar contraseña AUTOMÁTICA*/
 	newPasswdAuto(data){
@@ -92,37 +89,6 @@ export class Users {
         });
     });
   }
-
-
-  //Gestion de vacaciones
-   addHollidays(data){
-    console.log(data);
-    return new Promise(resolve => {
-      let headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      this.http.put(this.server + '/api/users/addhollidays', JSON.stringify(data), {headers: headers})
-        .map(res => res.json())
-        .subscribe(data => {
-          resolve(data);
-        });
-    });
-  }
-
-  addPersonalDays(data){
-    console.log(data);
-    return new Promise(resolve => {
-      let headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      this.http.put(this.server + '/api/users/addPersonalDays', JSON.stringify(data), {headers: headers})
-        .map(res => res.json())
-        .subscribe(data => {
-          resolve(data);
-        });
-    });
-  }
-
- //Esperanza
-
 
   getAllUsers() {
     return new Promise(resolve => {
@@ -160,7 +126,42 @@ export class Users {
     });
   }
 
+  //Gestion de vacaciones
+   addHollidays(data){
+    console.log(data);
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.put(this.server + '/api/users/addhollidays', JSON.stringify(data), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
+  addPersonalDays(data){
+    console.log(data);
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.put(this.server + '/api/users/addPersonalDays', JSON.stringify(data), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
+  /* Metodo de prueba para la paginación del listado de usuarios */
+  load(page:number=0) {
+    return new Promise(resolve => {
+      this.http.get(this.server + '/api/users/read?page='+page)
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
 }
-
-
- 

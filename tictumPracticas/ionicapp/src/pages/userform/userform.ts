@@ -19,7 +19,7 @@ export class UserformPage {
   roles: any;
   confirmpassword: string;
   userForm;
-  btnValue : string = "Registrar usuario";
+  text : string = "REGISTER_USER";
   edit : boolean = false;
 
   constructor(private navCtrl: NavController,
@@ -35,7 +35,7 @@ export class UserformPage {
 
     if (this.navParams.get('user')) {
         this.user = this.navParams.get('user');
-        this.btnValue = "Editar usuario";
+        this.text = "EDIT_USER";
         this.edit = true;
     }
 

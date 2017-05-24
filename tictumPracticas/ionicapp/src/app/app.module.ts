@@ -9,6 +9,7 @@ import {TablerolesPage} from "../pages/tableroles/tableroles";
 import {Roles} from "../providers/roles";
 import {ResetPassword} from "../pages/reset-password/reset-password";
 import {GenericPasswordPage} from "../pages/generic-password/generic-password";
+import {DetailsusersPage} from "../pages/detailsusers/detailsusers";
 
 import {ErrorHandler, NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
@@ -25,6 +26,9 @@ import { Geolocation } from '@ionic-native/geolocation';
 //Translate config
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {CheckinTabsPage} from "../pages/checkin-admin/checkin-tabs/checkin-tabs";
+import {CheckinmapPage} from "../pages/checkin-admin/checkinmap/checkinmap";
+import {CheckintablePage} from "../pages/checkin-admin/checkintable/checkintable";
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -41,6 +45,10 @@ export function createTranslateLoader(http: Http) {
     ResetPassword,
     UserPage,
     GenericPasswordPage,
+    CheckinTabsPage,
+    CheckinmapPage,
+    CheckintablePage,
+    DetailsusersPage
     LocationPage
   ],
   imports: [
@@ -68,6 +76,10 @@ export function createTranslateLoader(http: Http) {
     ResetPassword,
     UserPage,
     GenericPasswordPage,
+    CheckinTabsPage,
+    CheckinmapPage,
+    CheckintablePage,
+    DetailsusersPage
     LocationPage
   ],
   providers: [
