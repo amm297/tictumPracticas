@@ -4,6 +4,7 @@ import {TableusersPage} from "../tableusers/tableusers";
 import {UserformPage} from "../userform/userform";
 import {TablerolesPage} from "../tableroles/tableroles";
 import {HomePage} from "../home/home";
+import {CheckinTabsPage} from "../checkin-admin/checkin-tabs/checkin-tabs";
 
 @IonicPage()
 @Component({
@@ -25,6 +26,13 @@ export class AdminPage {
 
   onClickAddUser() {
     this.navCtrl.push(UserformPage);
+  }
+
+  onClickHolidays() {
+  }
+
+  onClickCheckIn() {
+    this.navCtrl.push(CheckinTabsPage);
   }
 
   showConfirm() {

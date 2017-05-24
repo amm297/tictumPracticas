@@ -20,6 +20,9 @@ import {SplashScreen} from "@ionic-native/splash-screen";
 //Translate config
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {CheckinTabsPage} from "../pages/checkin-admin/checkin-tabs/checkin-tabs";
+import {CheckinmapPage} from "../pages/checkin-admin/checkinmap/checkinmap";
+import {CheckintablePage} from "../pages/checkin-admin/checkintable/checkintable";
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -34,7 +37,10 @@ export function createTranslateLoader(http: Http) {
     TablerolesPage,
     ResetPassword,
     UserPage,
-    GenericPasswordPage
+    GenericPasswordPage,
+    CheckinTabsPage,
+    CheckinmapPage,
+    CheckintablePage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +64,10 @@ export function createTranslateLoader(http: Http) {
     TablerolesPage,
     ResetPassword,
     UserPage,
-    GenericPasswordPage
+    GenericPasswordPage,
+    CheckinTabsPage,
+    CheckinmapPage,
+    CheckintablePage
   ],
   providers: [
     StatusBar,

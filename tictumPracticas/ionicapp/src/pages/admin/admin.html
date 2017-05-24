@@ -19,7 +19,15 @@
     {{ 'SHOWUSER' | translate }}
   </button>
   <button ion-button block (click)="onClickRoles()">
-    <ion-icon name="medical" item-left padding-right="5px"></ion-icon>
+    <ion-icon name="warning" item-left padding-right="5px"></ion-icon>
     {{ 'SHOWROLE' | translate }}
+  </button>
+  <button ion-button block (click)="onClickHolidays()">
+    <ion-icon name="calendar" item-left padding-right="5px"></ion-icon>
+    Gestión de vacaciones
+  </button>
+  <button ion-button block (click)="onClickCheckIn()">
+    <ion-icon name="alarm" item-left padding-right="5px"></ion-icon>
+    Gestión de fichajes
   </button>
 </ion-content>
