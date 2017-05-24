@@ -24,7 +24,7 @@ export class hollidaysPage {
     startDate: '',
     endDate:'',
     days:0 ,
-    state:''
+    status:''
   }
   buttonPersonalDaysDisabled:boolean=false;
   bookPersonalDaysDisabled : boolean = true;
@@ -111,12 +111,12 @@ export class hollidaysPage {
     bookHollidays(){
     /*1 contar los dias entre f.inicio y f.final   (listo)
       2 poner por defecto estado pendiente(reserva) (listo)
-      3  enviar holliday{starDate , endDate , state , days  } (listo)
+      3  enviar holliday{starDate , endDate , status , days  } (listo)
       4 comprobar que no tenga ya las vacaciones pilladas en esas fechas
       5 Quitar los fines de semana
     */
      
-      this.holliday.state= "pending";      
+      this.holliday.status= "pending";      
       this.user.addHolliday(this.holliday);
       this.userService.addHollidays(this.user)
       .then(data => {
@@ -159,8 +159,8 @@ export class hollidaysPage {
                     startTime: startTime,
                     endTime: endTime,
                     allDay: false,
-                    color: this.user.hollidays[i].state
-                
+                    extra: 'Hola que tal',
+                    color: this.user.hollidays[i].status                
                 }); 
            // console.log(events);
         }
