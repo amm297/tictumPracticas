@@ -52,5 +52,7 @@
   "VALID_PHONE2": "caracteres numéricos",
   "VALID_PASSWORD2": "Introduce al menos ocho caracteres",
   "EDIT_USER":"Editar Usuario",
-  "REGISTER_USER":"Registrar Usuario"
+  "REGISTER_USER":"Registrar Usuario",
+  "PAGE_MODAL": "-------------------------------------------------------",
+  "TITTLE_MODAL":"Detalles del Usuario"
 }

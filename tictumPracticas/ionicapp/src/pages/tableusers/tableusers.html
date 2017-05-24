@@ -6,8 +6,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-searchbar [showCancelButton]="shouldShowCancel"
-                 (ionInput)="onInput($event)"></ion-searchbar>
+
   <ion-list [virtualScroll]="users">
     <ion-item *virtualItem="let user; let index = index" text-wrap>
       <h2>
@@ -17,7 +16,7 @@
             {{user.name}} {{user.lastname}}
           </ion-col>
           <ion-col text-right>
-            <ion-icon color="success" name="arrow-dropright"></ion-icon>
+            <ion-icon color="success" name="arrow-dropright" (click)="openModal(user)"></ion-icon>
           </ion-col>
         </ion-row>
       </h2>

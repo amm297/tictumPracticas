@@ -9,6 +9,7 @@ import {TablerolesPage} from "../pages/tableroles/tableroles";
 import {Roles} from "../providers/roles";
 import {ResetPassword} from "../pages/reset-password/reset-password";
 import {GenericPasswordPage} from "../pages/generic-password/generic-password";
+import {DetailsusersPage} from "../pages/detailsusers/detailsusers";
 
 import {ErrorHandler, NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
@@ -40,7 +41,8 @@ export function createTranslateLoader(http: Http) {
     GenericPasswordPage,
     CheckinTabsPage,
     CheckinmapPage,
-    CheckintablePage
+    CheckintablePage,
+    DetailsusersPage
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,8 @@ export function createTranslateLoader(http: Http) {
     GenericPasswordPage,
     CheckinTabsPage,
     CheckinmapPage,
-    CheckintablePage
+    CheckintablePage,
+    DetailsusersPage
   ],
   providers: [
     StatusBar,

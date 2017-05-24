@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
 import {Users} from "../../providers/users";
-import {UserformPage} from '../userform/userform'
+import {UserformPage} from '../userform/userform';
+import {DetailsusersPage} from "../detailsusers/detailsusers";
 
 @IonicPage()
 @Component({
@@ -12,15 +13,13 @@ export class TableusersPage {
 
   private page: number = 1;
   users: any = [];
-  search: any;
-  shownGroup;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              public modalCtrl: ModalController,
               private usersService: Users,
               private alertCtrl: AlertController) {
     this.loadUsers();
-    this.search = this.users;
   }
 
   loadUsers() {
@@ -44,7 +43,7 @@ export class TableusersPage {
     });
   }
 
-  deleteUser(userId: String, index: number) {
+  /*deleteUser(userId: String, index: number) {
     let confirm = this.alertCtrl.create({
       title: 'Cuidado!',
       message: '¿Estas seguro de eliminar el usuario?',
@@ -66,34 +65,14 @@ export class TableusersPage {
 
   modifyUser(user) {
     this.navCtrl.push(UserformPage, {user: user});
+  }*/
+
+
+  openModal(user){
+    console.log('Usuario de la Ventana Modal ' , user);
+    // create the modal
+    let profileModal = this.modalCtrl.create(DetailsusersPage, {user});
+    // open the new modal
+    profileModal.present();
   }
-
-  onInput(event) {
-    let input = event.target.value;
-    if (input && input.trim() != '') {
-      this.search = this.users.filter(user => {
-        return (
-        user.name.toLowerCase().indexOf(input.toLowerCase()) != -1 ||
-        user.dni.indexOf(input) > -1 ||
-        user.email.toLowerCase().indexOf(input.toLowerCase()) > -1 ||
-        user.role.toLowerCase().indexOf(input.toLowerCase()) > -1 ||
-        user.lastname.toLowerCase().indexOf(input.toLowerCase()) > -1)
-      });
-    } else {
-      this.search = this.users;
-    }
-  }
-
-//Display users
-  toggleGroup(group) {
-    if (this.isGroupShown(group)) {
-      this.shownGroup = null;
-    } else {
-      this.shownGroup = group;
-    }
-  };
-
-  isGroupShown(group) {
-    return this.shownGroup === group;
-  };
 }
