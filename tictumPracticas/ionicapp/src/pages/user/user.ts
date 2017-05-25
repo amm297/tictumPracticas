@@ -4,6 +4,7 @@ import {HomePage} from "../home/home";
 import {HollidaysPage} from "../hollidays/hollidays";
 import {ResetPassword} from "../reset-password/reset-password";
 import {User} from "../../models/user";
+import {LocationPage} from '../location/location'
 
 @IonicPage()
 @Component({
@@ -41,18 +42,19 @@ user: User = new User();
     });
     confirm.present();
   }
-  logout(){
-    localStorage.clear();
-    this.navCtrl.setRoot(HomePage);
-  }
+  
   onClickHollidays(){
-    this.navCtrl.push(HollidaysPage);
+    this.navCtrl.push(HollidaysPage,{user:this.user});
   }
   onChangePassword(){
     this.navCtrl.push(ResetPassword);
   }
-  onClickCalendario(){
-    this.navCtrl.push(HollidaysPage,{user:this.user});
+  onClickMap(){
+    this.navCtrl.push(LocationPage);
+  }
+  logout(){
+    localStorage.clear();
+    this.navCtrl.setRoot(HomePage);
   }
 
 }

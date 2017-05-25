@@ -63,27 +63,37 @@ export class HomePage {
         } else {
           //Modificado por Esperanza
           console.log("Login OK");
+          console.log(this.navCtrl.last().component.name);
           let logUser: User = new User(data);
           console.log(logUser);
-           if (data['autoP']==true){
-               console.log("Tienes que cambiar la contraseña");
-              let alert = this.alertCtrl.create({
-                title: 'Login OK!',
-                subTitle: data['changePassw'],
-                buttons: ['Ok']
-              });
-              alert.present();
-              this.navCtrl.setRoot(ResetPassword, logUser);
-          //Fin modificación
-           } else {
-               console.log("Login correcto");
-              let logUser: User = new User(data);
-              if (this.remember) {
-                localStorage.setItem("email", logUser.email);
-                localStorage.setItem("pwd", logUser.password);
-              }
-              if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
-              else this.navCtrl.setRoot(UserPage);
+          if(logUser.isActive()){
+            let alert = this.alertCtrl.create({
+              title: 'Oops!',
+              subTitle: "No pudedes iniciar sesion en estos momentos",
+              buttons: ['Ok']
+            });
+            alert.present();
+           }else{
+             if (data['autoP']==true){
+                 console.log("Tienes que cambiar la contraseña");
+                let alert = this.alertCtrl.create({
+                  title: 'Login OK!',
+                  subTitle: data['changePassw'],
+                  buttons: ['Ok']
+                });
+                alert.present();
+                this.navCtrl.setRoot(ResetPassword, logUser);
+            //Fin modificación
+             } else {
+                 console.log("Login correcto");
+                // let logUser: User = new User(data);
+                if (this.remember) {
+                  localStorage.setItem("email", logUser.email);
+                  localStorage.setItem("pwd", logUser.password);
+                }
+                if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
+                else this.navCtrl.setRoot(UserPage);
+            }
           }
         }
         console.log(data);

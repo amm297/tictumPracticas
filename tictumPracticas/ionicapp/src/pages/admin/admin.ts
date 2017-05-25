@@ -5,6 +5,7 @@ import {UserformPage} from "../userform/userform";
 import {TablerolesPage} from "../tableroles/tableroles";
 import {HomePage} from "../home/home";
 import {LocationPage} from "../location/location";
+import {CheckinTabsPage} from "../checkin-admin/checkin-tabs/checkin-tabs";
 
 @IonicPage()
 @Component({
@@ -29,6 +30,12 @@ export class AdminPage {
   }
   onClickLocation() {
     this.navCtrl.push(LocationPage);
+  }
+  onClickHolidays() {
+  }
+
+  onClickCheckIn() {
+    this.navCtrl.push(CheckinTabsPage);
   }
 
   showConfirm() {

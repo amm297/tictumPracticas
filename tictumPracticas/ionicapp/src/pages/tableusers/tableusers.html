@@ -6,11 +6,23 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-searchbar [showCancelButton]="shouldShowCancel"
+<ion-list [virtualScroll]="users">
+    <ion-item *virtualItem= "let user; let index = 'index' text-wrap">
+      <h2>
+        <ion-row>
+          <ion-col col-10>
+            <span class="item-note" text-uppercase>{{user.role}}</span>:
+            {{user.name}} {{user.lastname}}
+          </ion-col>
+          <ion-col text-right>
+            <ion-icon color="success" name="arrow-dropright" (click)="openModal(user)"></ion-icon>
+          </ion-col>
+        </ion-row>
+  <!-- <ion-searchbar [showCancelButton]="shouldShowCancel"
                  (ionInput)="onInput($event)"></ion-searchbar>
   <ion-list [virtualScroll]="users" approxItemHeight="2000px">
     <ion-item *virtualItem="let user; let index = index" text-wrap (click)="toggleGroup(index)"
-              [ngClass]="{active: isGroupShown(index)}">
+              [ngClass]="{active: isGroupShown(index)}"> 
       <h2>
         <ion-row>
           <ion-col col-10>
@@ -20,10 +32,10 @@
           <ion-col text-right>
             <ion-icon color="success" [name]="isGroupShown(index) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
           </ion-col>
-        </ion-row>
+        </ion-row>-->
       </h2>
 
-      <div *ngIf="isGroupShown(index)">
+      <!-- <div *ngIf="isGroupShown(index)">
         <ion-card color="light">
 
           <ion-list no-lines>
@@ -44,10 +56,10 @@
             </ion-col>
           </ion-row>
         </ion-card>
-      </div>
+      </div> -->
     </ion-item>
   </ion-list>
- <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content
       loadingSpinner="bubbles"
       loadingText="Cargando más usuarios...">

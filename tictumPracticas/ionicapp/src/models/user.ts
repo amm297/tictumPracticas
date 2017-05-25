@@ -33,5 +33,8 @@ export class User {
      
       this.personalDays.push(data)
    }
+   isActive(){
+		return (this.role == 'inactive') ? true : false;
+	}
 
 }

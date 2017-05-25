@@ -1,5 +1,5 @@
 {
-  "name": "ionic2-hotel",
+  "name": "practicas-tictum",
   "version": "0.1.0",
   "description": "A sample Node.js app using Express 4",
   "engines": {
@@ -15,7 +15,7 @@
     "cors": "^2.8.1",
     "express": "^4.14.0",
     "mongoose": "^4.6.3",
-    "mongoose-paginate": "^5.0.3",
+    "mongoose-pagination": "^1.0.0",
     "morgan": "^1.8.1"
   }
 }

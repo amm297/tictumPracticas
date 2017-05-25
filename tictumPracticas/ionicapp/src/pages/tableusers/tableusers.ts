@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
 import {Users} from "../../providers/users";
-import {UserformPage} from '../userform/userform'
+import {UserformPage} from '../userform/userform';
+import {DetailsusersPage} from "../detailsusers/detailsusers";
 
 @IonicPage()
 @Component({
@@ -10,13 +11,14 @@ import {UserformPage} from '../userform/userform'
 })
 export class TableusersPage implements OnInit {
 
-  private start: number = 0;
-  users: any = [];
-  search: any;
+  private page: number = 1;
+   users: any = [];
+   search: any; 
   shownGroup;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              public modalCtrl: ModalController,
               private usersService: Users,
               private alertCtrl: AlertController) {
     this.loadUsers();
@@ -25,7 +27,7 @@ export class TableusersPage implements OnInit {
   
   loadUsers() {
     return new Promise(resolve => {
-      this.usersService.load(this.start)
+      this.usersService.load(this.page)
         .then(data => {
           console.log(data);
           for(let user of data['docs']) {
@@ -38,9 +40,7 @@ export class TableusersPage implements OnInit {
   }
 
   doInfinite(inifiniteScroll: any) {
-    console.log('doInfinite, start is currently ' + this.start);
-    // Debe coincidir con el valor perpage del servicio users.ts
-    this.start += 2;
+    this.page++;
     this.loadUsers().then(() => {
       inifiniteScroll.complete();
     });
@@ -95,15 +95,24 @@ export class TableusersPage implements OnInit {
   }
 
 //Display users
-  toggleGroup(group) {
-    if (this.isGroupShown(group)) {
-      this.shownGroup = null;
-    } else {
-      this.shownGroup = group;
-    }
-  };
-
-  isGroupShown(group) {
-    return this.shownGroup === group;
-  };
+openModal(user){
+    console.log('Usuario de la Ventana Modal ' , user);
+    // create the modal
+    let profileModal = this.modalCtrl.create(DetailsusersPage, {user});
+    // open the new modal
+    profileModal.present();
+  }
 }
+
+//   toggleGroup(group) {
+//     if (this.isGroupShown(group)) {
+//       this.shownGroup = null;
+//     } else {
+//       this.shownGroup = group;
+//     }
+//   };
+
+//   isGroupShown(group) {
+//     return this.shownGroup === group;
+//   };
+// }
