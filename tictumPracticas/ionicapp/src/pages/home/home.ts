@@ -76,19 +76,30 @@ export class HomePage {
             });
             alert.present();
           }else{
-            //Guardar el usuario para inicio de sesion automatico
-            if (this.remember) {
-              localStorage.setItem("email", logUser.email);
-              localStorage.setItem("pwd", logUser.password);
-            }
-            //Cambio de contraseña
-            if(logUser.password == "1234cambio") this.navCtrl.setRoot(ResetPassword,{user:logUser});
-            else{
-              //Gestion de tipo de usuairio
-              if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
-              else this.navCtrl.setRoot(UserPage,{user:logUser});
-            }
-           }
+            if (data['autoP']==true){
+                 console.log("Tienes que cambiar la contraseña");
+                let alert = this.alertCtrl.create({
+                  title: 'Login OK!',
+                  subTitle: data['changePassw'],
+                  buttons: ['Ok']
+                });
+                alert.present();
+                this.navCtrl.setRoot(ResetPassword, logUser);
+            }else{
+              //Guardar el usuario para inicio de sesion automatico
+              if (this.remember) {
+                localStorage.setItem("email", logUser.email);
+                localStorage.setItem("pwd", logUser.password);
+              }
+              //Cambio de contraseña
+              if(logUser.password == "1234cambio") this.navCtrl.setRoot(ResetPassword,{user:logUser});
+              else{
+                //Gestion de tipo de usuairio
+                if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
+                else this.navCtrl.setRoot(UserPage,{user:logUser});
+              }
+            }  
+          }
           
         }
       });
