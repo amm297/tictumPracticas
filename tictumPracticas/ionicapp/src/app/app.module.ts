@@ -17,6 +17,11 @@ import {Http, HttpModule} from "@angular/http";
 import {IonicApp, IonicErrorHandler, IonicModule} from "ionic-angular";
 import {StatusBar} from "@ionic-native/status-bar";
 import {SplashScreen} from "@ionic-native/splash-screen";
+import { NgCalendarModule  } from 'ionic2-calendar';
+import {hollidaysPage} from "../pages/hollidays/hollidays";
+import {LocationPage} from '../pages/location/location';
+
+import { Geolocation } from '@ionic-native/geolocation';
 
 //Translate config
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
@@ -35,6 +40,7 @@ export function createTranslateLoader(http: Http) {
     AdminPage,
     TableusersPage,
     UserformPage,
+    hollidaysPage,  
     TablerolesPage,
     ResetPassword,
     UserPage,
@@ -42,10 +48,12 @@ export function createTranslateLoader(http: Http) {
     CheckinTabsPage,
     CheckinmapPage,
     CheckintablePage,
-    DetailsusersPage
+    DetailsusersPage,
+    LocationPage
   ],
   imports: [
     BrowserModule,
+    NgCalendarModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
     TranslateModule.forRoot({
@@ -63,6 +71,7 @@ export function createTranslateLoader(http: Http) {
     AdminPage,
     TableusersPage,
     UserformPage,
+    hollidaysPage,  
     TablerolesPage,
     ResetPassword,
     UserPage,
@@ -70,14 +79,16 @@ export function createTranslateLoader(http: Http) {
     CheckinTabsPage,
     CheckinmapPage,
     CheckintablePage,
-    DetailsusersPage
+    DetailsusersPage,
+    LocationPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Users,
-    Roles
+    Roles,
+    Geolocation
   ]
 })
 export class AppModule {

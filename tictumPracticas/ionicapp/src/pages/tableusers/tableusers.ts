@@ -13,6 +13,8 @@ export class TableusersPage {
 
   private page: number = 1;
   users: any = [];
+   search: any; 
+ 
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -67,6 +69,22 @@ export class TableusersPage {
     this.navCtrl.push(UserformPage, {user: user});
   }*/
 
+ 
+
+  onInput(event) {
+    let input = event.target.value;
+    if (input && input.trim() != '') {
+      this.search = this.users.filter(user => {
+        return (
+        user.name.toLowerCase().indexOf(input.toLowerCase()) != -1 ||
+        user.dni.indexOf(input) > -1 ||
+        user.email.toLowerCase().indexOf(input.toLowerCase()) > -1 ||
+        user.role.toLowerCase().indexOf(input.toLowerCase()) > -1 )
+      });
+    } else {
+      this.search = this.users;
+    }
+  }
 
   openModal(user){
     console.log('Usuario de la Ventana Modal ' , user);

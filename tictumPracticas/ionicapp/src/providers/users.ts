@@ -46,6 +46,21 @@ export class Users {
     });
   }
 
+  /*Descactivar usuario */
+
+  changeRole(userId,role){
+    return new Promise(resolve =>{
+      let headers = new Headers();
+      headers.append('Content-Type','application/json');
+      this.http.put(this.server+'/api/users/changerole/'+userId,{role:role},{headers:headers})
+      .map(res => res.json())
+      .subscribe(data =>{
+        console.log(data);
+        resolve(data);
+      })
+    })
+  }
+
   logoutUser(data) {
     localStorage.clear();
   }
@@ -111,6 +126,33 @@ export class Users {
     });
   }
 
+  //Gestion de vacaciones
+   addHollidays(data){
+    console.log(data);
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.put(this.server + '/api/users/addhollidays', JSON.stringify(data), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
+  addPersonalDays(data){
+    console.log(data);
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.put(this.server + '/api/users/addPersonalDays', JSON.stringify(data), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
   /* Metodo de prueba para la paginación del listado de usuarios */
   load(page:number=0) {
     return new Promise(resolve => {
@@ -123,4 +165,3 @@ export class Users {
   }
 
 }
-

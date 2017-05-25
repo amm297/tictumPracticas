@@ -7,6 +7,7 @@
 </ion-header>
 <ion-content padding>
 
+
   <ion-list [virtualScroll]="users">
     <ion-item *virtualItem="let user; let index = index" text-wrap>
       <h2>
@@ -20,27 +21,6 @@
           </ion-col>
         </ion-row>
       </h2>
-      <!--<div *ngIf="isGroupShown(index)">
-        <ion-card>
-          <ion-list no-lines>
-            <ion-item>{{user.dni}}</ion-item>
-            <ion-item>{{user.email}}</ion-item>
-            <ion-item>{{user.country}}</ion-item>
-            <ion-item>{{user.address}}</ion-item>
-            <ion-item>{{user.phone}}</ion-item>
-          </ion-list>
-          <ion-row>
-            <ion-col text-right>
-              <button ion-button color="warning" icon-only clear (click)="modifyUser(user)">
-                <ion-icon name="create"></ion-icon>
-              </button>
-              <button ion-button color="danger" icon-only clear (click)="deleteUser(user._id,index)">
-                <ion-icon name="trash"></ion-icon>
-              </button>
-            </ion-col>
-          </ion-row>
-        </ion-card>
-      </div>-->
     </ion-item>
   </ion-list>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

@@ -1,7 +1,11 @@
 import {Component} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
+import {hollidaysPage} from "../hollidays/hollidays";
 import {ResetPassword} from "../reset-password/reset-password";
+
+import {User} from "../../models/user";
+import {LocationPage} from '../location/location'
 
 @IonicPage()
 @Component({
@@ -10,9 +14,13 @@ import {ResetPassword} from "../reset-password/reset-password";
 })
 export class UserPage {
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private alertCtrl: AlertController) {
+user: User = new User();
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+
+    this.user = this.navParams.get("user");
+    console.log(this.user)
+
   }
 
   showConfirm(){
@@ -33,6 +41,11 @@ export class UserPage {
     });
     confirm.present();
   }
+
+  onClickHollidays(){
+    this.navCtrl.push(hollidaysPage,{user:this.user});
+  }
+
   logout() {
     localStorage.clear();
     this.navCtrl.setRoot(HomePage);
@@ -41,5 +54,11 @@ export class UserPage {
   onChangePassword(){
     this.navCtrl.push(ResetPassword);
   }
+
+  onClickMap(){
+    this.navCtrl.push(LocationPage);
+  }
+
+
 
 }

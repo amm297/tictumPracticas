@@ -32,12 +32,15 @@
       </ion-list>
       <ion-row>
         <ion-col text-right>
-          <button ion-button color="warning" icon-only clear (click)="modifyUser(user)">
-            <ion-icon name="create"></ion-icon>
-          </button>
-          <button ion-button color="danger" icon-only clear (click)="deleteUser(user._id)">
-            <ion-icon name="trash"></ion-icon>
-          </button>
+         <button ion-button clear icon-only color="warning" (click)="modifyUser(user)">
+                <ion-icon name="create"></ion-icon>
+              </button>
+              <button ion-button clear icon-only color="primary" *ngIf="user.role == 'user'" (click)="changeRole(user._id,'inactivo')">
+                <ion-icon name="alert"></ion-icon>
+              </button>
+               <button ion-button clear icon-only color="danger" *ngIf="user.role == 'inactivo'" (click)="changeRole(user._id,'user')">
+                <ion-icon name="aperture"></ion-icon>
+              </button>
         </ion-col>
       </ion-row>
     </ion-card>
