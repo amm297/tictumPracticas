@@ -9,6 +9,7 @@ import {TablerolesPage} from "../pages/tableroles/tableroles";
 import {Roles} from "../providers/roles";
 import {ResetPassword} from "../pages/reset-password/reset-password";
 import {GenericPasswordPage} from "../pages/generic-password/generic-password";
+import {CheckinPage} from "../pages/checkin/checkin";
 
 import {ErrorHandler, NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
@@ -51,7 +52,8 @@ import { HollidaysPage } from "../pages/hollidays/hollidays";
     GenericPasswordPage,
     LocationPage,
     HollidaysPage,
-    NewPositionPage
+    NewPositionPage,
+    CheckinPage
 
   ],
   imports: [
@@ -80,7 +82,8 @@ import { HollidaysPage } from "../pages/hollidays/hollidays";
     GenericPasswordPage,
     LocationPage,
     HollidaysPage,
-    NewPositionPage
+    NewPositionPage,
+    CheckinPage
   ],
   providers: [
     StatusBar,

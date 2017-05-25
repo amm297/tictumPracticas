@@ -35,7 +35,12 @@ export class ResetPassword {
     password: '' 
   }; 
 
-  constructor(public navCtrl: NavController, private navParams: NavParams, public formBuilder: FormBuilder, public alertCtrl: AlertController, private usersService: Users) {
+  constructor(
+    public navCtrl: NavController, 
+    private navParams: NavParams, 
+    public formBuilder: FormBuilder, 
+    public alertCtrl: AlertController,
+    private usersService: Users) {
     if (this.navParams.get('user')){
         this.user.email = this.navParams.get('user').email;
         this.user.dni = this.navParams.get('user').dni;
@@ -46,6 +51,7 @@ export class ResetPassword {
       confirmpassword: ['', PasswordValidator.isEqual], 
     });
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ResetPassword');

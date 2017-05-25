@@ -3,6 +3,8 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { User } from "../models/user";
 
+import {Md5} from 'ts-md5/dist/md5';
+
 @Injectable()
 export class Users {
 
@@ -12,13 +14,15 @@ export class Users {
   //server = 'http://192.168.5.26:8080';
 
   //server = 'http://172.16.112.40:8080';
-  server = 'http://192.168.5.35:8080';
+  //server = 'http://192.168.5.35:8080';
   //server = 'http://172.16.112.163:8080';
-
+server = 'http://localhost:8080';
 
 
   registerUser(data) {
     console.log(data.dni);
+    data.password = Md5.hashStr(data.password);
+    console.log(data.password);
     return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
@@ -31,8 +35,10 @@ export class Users {
     });
   }
 
-  loginUser(data) {
+ loginUser(data) {
     console.log(this.server);
+    data.password = Md5.hashStr(data.password);
+    console.log(data.password);
     return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
@@ -43,6 +49,7 @@ export class Users {
         });
     });
   }
+
 
   logoutUser(data) {
     localStorage.clear();
@@ -80,19 +87,21 @@ export class Users {
  /*-- Esperanza --*/
 
   /*Función para generar contraseña AUTOMÁTICA*/
-	newPasswdAuto(data){
-	    return new Promise(resolve => {
-	      let headers = new Headers();
-	      headers.append('Content-Type', 'application/json');
-	      this.http.put(this.server + '/api/users/autopassw', JSON.stringify(data), {headers: headers})
-	        .map(res => res.json())
-	        .subscribe(data => {
-	          resolve(data);
-	        });
-	    });
-	}
+  newPasswdAuto(data){
+      return new Promise(resolve => {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        this.http.put(this.server + '/api/users/autopassw', JSON.stringify(data), {headers: headers})
+          .map(res => res.json())
+          .subscribe(data => {
+            resolve(data);
+          });
+      });
+  }
  /*Funcion para cambiar la contraseña, comprobamos que el email/dni existe en la base de datos y después le añadimos la nueva contraseña.*/
   newPassword(data){
+    data.password = Md5.hashStr(data.password);
+    console.log(data.password);
     return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
@@ -104,6 +113,20 @@ export class Users {
     });
   }
 
+
+  newCheck(data, coordenadas){
+    console.log("HOla");
+    return new Promise(resolve => {
+      let headers = new Headers();
+      console.log("buenas...");
+      headers.append('Content-Type', 'application/json');
+      this.http.put(this.server + '/api/users/check', JSON.stringify(data), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
  //Esperanza
 
 
@@ -131,17 +154,19 @@ export class Users {
     }); 
   } 
  
-  modifyUser(user) { 
+  modifyUser(data) {     
+    data.password = Md5.hashStr(data.password);
+    console.log(data.password);
     return new Promise(resolve => { 
       let headers = new Headers(); 
       headers.append('Content-Type', 'application/json'); 
-      this.http.put(this.server + '/api/users/update', user, {headers: headers}) 
+      this.http.put(this.server + '/api/users/update', JSON.stringify(data), {headers: headers}) 
         .map(res => res.json()) 
         .subscribe(data => { 
           resolve(data); 
         }); 
     }); 
-  } 
+  }
 
 }
 

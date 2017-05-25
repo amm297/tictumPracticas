@@ -55,6 +55,7 @@ export class LocationPage {
     })*/
 }
 
+//Eliminar porque lo unificaremos en el user
  getPosicion():any{
     this.geolocation.getCurrentPosition().then(res => {
       this.coords.lat = res.coords.latitude;
@@ -68,19 +69,23 @@ export class LocationPage {
       }
     );
   }
+//Hasta aquí lo eliminaremos despues de terminar las pruebas
+
 
   addMarker(){
 
     let marker = new google.maps.Marker({
     map: this.map,
     animation: google.maps.Animation.DROP,
-    position: this.map.getCenter()
+    position: this.coords
     });
    
-    let content = "<h4>Information!</h4><h2>User</h2><p>Latitud:"+this.coords.lat+"<br>Longitud:"+this.coords.lat+"</p>"+Date(); 
+    let content = "<h4>Information!</h4><h2>User</h2><p>Latitud:"
+    +this.coords.lat+"<br>Longitud:"
+    +this.coords.lat+"</p>"+Date(); 
    
     this.addInfoWindow(marker, content);
-    this.viewCtrl.dismiss();
+
    
 }
 //Muestra la ventana de información al lado del marcador.

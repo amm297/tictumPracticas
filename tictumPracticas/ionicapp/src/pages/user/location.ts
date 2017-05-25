@@ -19,7 +19,7 @@ declare var google: any;
   selector: 'page-location',
   templateUrl: 'location.html',
 })
-export class LocationPage {
+export class Location {
   
  map: any; // Manejador del mapa.
  coords : any = { lat: 0, lng: 0 }
@@ -47,10 +47,10 @@ export class LocationPage {
       center: this.coords,
       zoom: 12
     });
-    let myPosition = new google.maps.Marker({
+ /*   let myPosition = new google.maps.Marker({
       map:this.map,
       position:this.coords
-    })
+    })*/
 }
 
  getPosicion():any{

@@ -41,7 +41,9 @@ export class HollidaysPage {
     currentDate: new Date()
    }; //
 
-  constructor(public navCtrl: NavController, public navParams: NavParams , private userService:Users) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams , 
+    private userService:Users) {
     this.user = this.navParams.get("user");
   }
 
