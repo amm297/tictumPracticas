@@ -88,8 +88,9 @@ export class HomePage {
             }else{
               //Guardar el usuario para inicio de sesion automatico
               if (this.remember) {
+                console.log(this.user.password);
                 localStorage.setItem("email", logUser.email);
-                localStorage.setItem("pwd", logUser.password);
+                localStorage.setItem("pwd", this.user.password);
               }
               //Cambio de contraseña
               if(logUser.password == "1234cambio") this.navCtrl.setRoot(ResetPassword,{user:logUser});

@@ -38,11 +38,11 @@ export class Users {
   }
 
   loginUser(data) {
-    data.password = Md5.hashStr(data.password);
+    
     return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      this.http.post(this.server + '/api/users/login', JSON.stringify(data), {headers: headers})
+      this.http.post(this.server + '/api/users/login', JSON.stringify({input:data.input,password:Md5.hashStr(data.password)}), {headers: headers})
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
