@@ -6,74 +6,72 @@
              <!--<button ion-button (click)="changeMode('month')">M</button>
            <button ion-button (click)="changeMode('week')">W</button>
             <button ion-button (click)="changeMode('day')">D</button>  
-             <button ion-button (click)="loadEvents()">Load Events</button>
+             
             -->
-    
         </ion-buttons>
     </ion-navbar>
 </ion-header>
  
+
+
 <ion-content class="has-header">
 
- 
-    <template #template let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
-    <button ion-button  (click)="StartHollidays()" [disabled]="startDateDisabled">Inicio Vacaciones</button>
-      <button ion-button  (click)="EndHollidays()" [disabled]="endDateDisabled">Final Vacaciones</button>
-        <button ion-button  (click)="PersonalDays()"  [disabled]="buttonPersonalDaysDisabled">Dias asuntos propios</button>
 
-
-
-
-    <ion-card *ngIf="holliday.startDate" >
-    <ion-card-header>
-    Vacaciones para el usuario x
-    </ion-card-header>
-    <ion-card-content>
-   
-    <p>Inicio Vacaciones: {{holliday.startDate | date: 'dd/MM/yyyy'}}</p>
-    <p>Final de Vacaciones: {{holliday.endDate | date: 'dd/MM/yyyy'}}</p>
-     <p>Dias totales: {{user.daysh}} Dias</p>
-    <p>Dias solicitados: {{holliday.days}} Dias</p>
-
-    <p>Dias restantes: {{user.daysh-holliday.days}} Dias</p>
-
-
-     <button ion-button  (click)="bookHollidays()" [disabled]="bookHollidaysDisabled" >Solicitar Vacaciones</button>
-      
- </ion-card-content>
-     </ion-card>
-
-     <ion-card *ngIf="personalDay">
-    <ion-card-header>
-    Dias Asuntos propios para el usuario x
-    </ion-card-header>
-    <ion-card-content>
-   <p> Dias Asuntos Propios: {{personalDay | date: 'dd/MM/yyyy' }}</p>
-
-   <p>Dias totales: {{user.daysp}} Dias</p>
-    <p>Dias restantes: {{user.daysp-1}} Dias</p>
-    <button ion-button  (click)="bookPersonalDays()" [disabled]="bookPersonalDaysDisabled" >Solicitar Dia Asuntos propios</button>
-      
- </ion-card-content>
-     </ion-card>
-
-    
+  <template #template let-view="view" let-row="row" let-col="col">
+      <div class="calendar-day {{view.dates[row*7+col].events[0]?.color }}" >
+        {{view.dates[row*7+col].label}}
+      </div>
   </template>
 
-    <calendar [eventSource]="eventSource"
+
+ <template #detailtemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
+      <button ion-button  (click)="StartHollidays()" [disabled]="startDateDisabled">Inicio Vacaciones</button>
+      <button ion-button  (click)="EndHollidays()" [disabled]="endDateDisabled">Final Vacaciones</button>
+      <button ion-button  (click)="PersonalDays()"  [disabled]="buttonPersonalDaysDisabled">Dias asuntos propios</button>
+
+      <ion-card *ngIf="holliday.startDate" >
+        <ion-card-header>
+          {{user.name }} {{user.lastname}}
+         </ion-card-header>
+        <ion-card-content>
+          <p>Inicio Vacaciones: {{holliday.startDate | date: 'dd/MM/yyyy'}}</p>
+          <p>Final de Vacaciones: {{holliday.endDate | date: 'dd/MM/yyyy'}}</p>
+          <p>Dias totales: {{user.daysh}} Dias</p>
+          <p>Dias restantes: {{user.daysh-total}} Dias</p>
+          <p>Dias consumidos: {{total}} Dias</p>
+          <p>Dias solicitud actual: {{holliday.days}} Dias</p>
+          <button ion-button  (click)="bookHollidays()" [disabled]="bookHollidaysDisabled" >Solicitar Vacaciones</button>
+        </ion-card-content>
+      </ion-card>
+      <ion-card *ngIf="personalDay">
+        <ion-card-header>
+          Dias Asuntos propios para el usuario x
+        </ion-card-header>
+        <ion-card-content>
+          <p> Dias Asuntos Propios: {{personalDay | date: 'dd/MM/yyyy' }}</p>
+          <p>Dias totales: {{user.daysp}} Dias</p>
+          <p>Dias restantes: {{user.daysp-1}} Dias</p>
+          <button ion-button  (click)="bookPersonalDays()" [disabled]="bookPersonalDaysDisabled" >Solicitar Dia Asuntos propios</button>
+        </ion-card-content>
+      </ion-card>    
+  </template>
+
+
+
+  <calendar 
+              [eventSource]="eventSource"
               [calendarMode]="calendar.mode"
               [currentDate]="calendar.currentDate"
               [markDisabled]="markDisabled"
               [showEventDetail]="false"
-              [monthviewEventDetailTemplate]="template"
+              [monthviewDisplayEventTemplate]="template"
+              [monthviewEventDetailTemplate]="detailtemplate"
               (onCurrentDateChanged)="onCurrentDateChanged($event)"
               (onEventSelected)="onEventSelected($event)"
               (onTitleChanged)="onViewTitleChanged($event)"
               (onTimeSelected)="onTimeSelected($event)"
               (createEvent)="createEvent($event)"
-              step="30">
-    </calendar>
-
+              step="30"></calendar>
 
     
 </ion-content>

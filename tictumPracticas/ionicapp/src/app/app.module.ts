@@ -8,16 +8,23 @@ import {Users} from "../providers/users";
 import {TablerolesPage} from "../pages/tableroles/tableroles";
 import {Roles} from "../providers/roles";
 import {ResetPassword} from "../pages/reset-password/reset-password";
+import {GenericPasswordPage} from "../pages/generic-password/generic-password";
 
 import {ErrorHandler, NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
-import {HttpModule} from "@angular/http";
+import {Http, HttpModule} from "@angular/http";
 import {IonicApp, IonicErrorHandler, IonicModule} from "ionic-angular";
 import {StatusBar} from "@ionic-native/status-bar";
 import {SplashScreen} from "@ionic-native/splash-screen";
 import { NgCalendarModule  } from 'ionic2-calendar';
 import {hollidaysPage} from "../pages/hollidays/hollidays";
 
+//Translate config
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+export function createTranslateLoader(http: Http) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -26,17 +33,24 @@ import {hollidaysPage} from "../pages/hollidays/hollidays";
     AdminPage,
     TableusersPage,
     UserformPage,
-    hollidaysPage,
-  
+    hollidaysPage,  
     TablerolesPage,
     ResetPassword,
-    UserPage
+    UserPage,
+    GenericPasswordPage
   ],
   imports: [
     BrowserModule,
     NgCalendarModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [Http]
+      }
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,12 +59,11 @@ import {hollidaysPage} from "../pages/hollidays/hollidays";
     AdminPage,
     TableusersPage,
     UserformPage,
-    hollidaysPage,
-  
+    hollidaysPage,  
     TablerolesPage,
     ResetPassword,
-    UserPage
-
+    UserPage,
+    GenericPasswordPage
   ],
   providers: [
     StatusBar,
