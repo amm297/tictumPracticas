@@ -1,6 +1,8 @@
-import {Component} from '@angular/core';
-import {CheckintablePage} from "../checkintable/checkintable";
-import {CheckinmapPage} from "../checkinmap/checkinmap";
+import { Component } from '@angular/core';
+import { CheckintablePage } from "../checkintable/checkintable";
+import { CheckinmapPage } from "../checkinmap/checkinmap";
+import { Users } from '../../../providers/users';
+import { NavController } from 'ionic-angular';
 @Component({
   selector: 'page-chenckintabs',
   template: `

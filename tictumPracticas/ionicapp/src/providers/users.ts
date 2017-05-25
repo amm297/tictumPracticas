@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {User} from "../models/user";
 import {Md5} from 'ts-md5/dist/md5';
 
 @Injectable()
@@ -68,6 +67,7 @@ export class Users {
   logoutUser(data) {
     localStorage.clear();
   }
+  /*-- Roberto --*/
 
   /*Función para generar contraseña AUTOMÁTICA*/
 	newPasswdAuto(data){    
@@ -152,6 +152,19 @@ export class Users {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.put(this.server + '/api/users/addPersonalDays', JSON.stringify(data), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
+  //Fichar
+  newCheck(data,userId){
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.put(this.server + '/api/users/check/'+userId, JSON.stringify(data), {headers: headers})
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
