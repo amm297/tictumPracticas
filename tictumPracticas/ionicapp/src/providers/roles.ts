@@ -9,12 +9,8 @@ export class Roles {
   constructor(public http: Http) {
     this.data = null;
   }
-
-
-
-
-  //server = 'http://192.168.5.26:8080';
-  server = 'http://172.16.112.163:8080';
+  //Portatil Alberto
+  server = 'http://172.16.112.51:8080';
 
 
 
