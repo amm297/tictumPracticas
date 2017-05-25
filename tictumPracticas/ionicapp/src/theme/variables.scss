@@ -1,4 +1,4 @@
-$font-path: "../assets/fonts";
+$font-path: "/assets/fonts";
 
 @import "ionic.globals";
 @import "ionic.theme.dark";
@@ -13,6 +13,7 @@ $danger: #FF0000;
 $warning: #FF7400;
 $light: #d3ffe9;
 $dark: #090909;
+$card:#eee;
 
 $colors: (
 	primary: $base,
@@ -20,7 +21,8 @@ $colors: (
 	danger: $danger,
 	light: $light,
 	dark: $dark,
-	warning:$warning);
+	warning:$warning,
+	card:$card);
 
 $toolbar-ios-background:($interf);
 $toolbar-md-background:($interf);
@@ -29,7 +31,7 @@ $toolbar-wp-background:($interf);
 
 
 ion-content{
-	background-image: url("../img/bckgrnd_02_grayscale.png");
+	background-image: url("/assets/img/bckgrnd_02_grayscale.png");
 	background-size: 100%;
 }
 
@@ -40,7 +42,7 @@ ion-content{
 }
 
 .validator{
-	background-color: rgba(0,0,0,0.0);
+	background-color: rgba(0,0,0,0.0) !important;
 	.item-inner{
 		border-bottom:0px !important;
 		p{
@@ -55,5 +57,5 @@ ion-content{
 }
 
 .ioninput{
-	border-radius:10px;
+	border-radius:10px !important;
 }
