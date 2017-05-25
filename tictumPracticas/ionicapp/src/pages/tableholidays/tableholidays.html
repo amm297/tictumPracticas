@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Vacaciones solicitadas
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" placeholder="Buscar roles">
+  </ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let user of search; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
+      <h2>
+        <!--
+          pendiente: #f9e79f 
+          rechazado: #c0392b
+          aceptado: #52be80
+        -->
+        <ion-row>
+          <ion-col col-10>
+            <span class="item-note" text-uppercase>{{user.role}}</span>: {{user.name}} {{user.lastname}}
+          </ion-col>
+          <ion-col text-right>
+            <ion-icon color="success" [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </h2>
+
+      <div *ngIf="isGroupShown(i)">
+        <ion-card>
+          <ion-list no-lines>
+            <div class="{{holliday.status}}" *ngFor="let holliday of user.hollidays;let indexHoliday = index">
+                <ion-icon item-left name="calendar"></ion-icon>
+                {{ holliday.startDate | date:'dd-MM-yyyy'}}
+                <ion-icon name="arrow-round-forward"></ion-icon>
+                {{ holliday.endDate | date:'dd-MM-yyyy' }}
+              <ion-row>
+                <ion-col text-left>             
+                  <ion-icon item-left name="information-circle"></ion-icon>{{ holliday.status }}                  
+                </ion-col>
+                <ion-col text-right>
+                  <button ion-button color="secondary" icon-only clear (click)="modifyHollidays(user,indexHoliday,'aproved')">
+                <ion-icon name="checkmark"></ion-icon>
+              </button>
+                  <button ion-button color="danger" icon-only clear (click)="modifyHollidays(user, indexHoliday,'denied')">
+                <ion-icon name="close"></ion-icon>
+              </button>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-list>
+        </ion-card>
+      </div>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
