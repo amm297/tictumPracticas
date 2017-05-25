@@ -3,8 +3,12 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import {Validators, FormBuilder} from '@angular/forms';
 
 import {HomePage} from "../home/home";
-//import {AdminPage} from "../admin/admin";
+
+import {User} from "../../models/user";
 import {Users} from "../../providers/users";
+
+import {AdminPage} from "../admin/admin";
+import {UserPage} from "../user/user";
 
 import {PasswordValidator} from  '../userform/passwordValidator';
 import {DniValidator} from  '../userform/dniValidator';
@@ -22,16 +26,12 @@ import {DniValidator} from  '../userform/dniValidator';
 })
 export class ResetPassword {
   
+  user: User = new User();
   confirmpassword: string;
   resetPasswForm;
-  user = {
-    email: '',
-    dni:'',
-    password: ''
-  };
 
-  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public alertCtrl: AlertController, private usersService: Users) {
-
+  constructor(public navCtrl: NavController, private navParams: NavParams, public formBuilder: FormBuilder, public alertCtrl: AlertController, private usersService: Users) {
+    if (this.navParams.get('user')) this.user = this.navParams.get('user');
     this.resetPasswForm = formBuilder.group({
       email: ['',Validators.compose([Validators.minLength(8),Validators.email,Validators.required])],
       dni: ['', Validators.compose([Validators.required, DniValidator.isValid, DniValidator.hasValidFormat])],
@@ -47,12 +47,12 @@ export class ResetPassword {
   resetPassword(){
 		console.log("Changing password...");
 		if (this.resetPasswForm.valid) {
-        	if (this.user.password == this.confirmpassword) {
-        		let cambio = {
-        			email:this.user.email,
-              dni:this.user.dni,
-              password: this.user.password,
-        		}
+     	if (this.user.password == this.confirmpassword) {
+        let cambio = {
+        	email:this.user.email,
+          dni:this.user.dni,
+          password: this.user.password,
+        }
         		console.log(cambio);
             
           	this.usersService.newPassword(cambio).then((data) => {
@@ -72,8 +72,12 @@ export class ResetPassword {
                 });
                 alert.present();
 
+                //Código para que despues de cambiar la contraseña se redireccione al Login de nuevo.
+                
+                localStorage.setItem("email", this.user.email);
+                localStorage.setItem("pwd", this.user.password);
                 this.navCtrl.push(HomePage) ;
-
+              
               }              
             });
 

@@ -4,7 +4,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-//import { AdminPage } from '../pages/admin/admin';
+
+
+import { AdminPage } from '../pages/admin/admin';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,7 +14,7 @@ import { HomePage } from '../pages/home/home';
 export class MyApp {
   // set the rootPage to the first page we want displayed
   public rootPage: any = HomePage;
-  //public rootPage: any = AdminPage;
+  // public rootPage: any = AdminPage;
 
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

@@ -48,6 +48,10 @@ export class UserformPage {
     });
   }
 
+  ionViewWillLeave(){
+    this.modifyUser(this.user);
+  }
+
   registerUser() {
     if (this.userForm.valid) {
       this.usersService.registerUser(this.user).then((data) => {
@@ -71,5 +75,8 @@ export class UserformPage {
     }
   }
 
+  modifyUser(user){
+    this.usersService.modifyUser(this.user);
+  }
 
 }

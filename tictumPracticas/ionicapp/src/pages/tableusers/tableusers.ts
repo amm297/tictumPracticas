@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 import {Users} from "../../providers/users";
-import {UserformPage} from '../userform/userform'
+import {UserformPage} from '../userform/userform';
 
 @IonicPage()
 @Component({
@@ -12,6 +12,8 @@ export class TableusersPage implements OnInit {
 
   users: any;
   search:any;
+  field: string;
+  order: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -24,6 +26,7 @@ export class TableusersPage implements OnInit {
       this.users = data;
       this.search = data;
       console.log(this.users);
+
     });
   }
 
@@ -67,5 +70,157 @@ export class TableusersPage implements OnInit {
     }
   }
 
+  showOrderedUsers(field,order){
+    console.log(field);
+    console.log(order);
+  
+    if (order == 'true' && field=='email') {
+      console.log(order);
+      this.search.sort(function(a, b) {
+        var nameA = a.email.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.email.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        // names must be equal
+        return 0;
+      });
+    }else if (order == 'false' && field=='email') {
+      this.search.sort(function(a, b) {
+        var nameA = a.email.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.email.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return 1;
+        }
+        if (nameA > nameB) {
+          return -1;
+        }
+        // names must be equal
+        return 0;
+      });
+    }
+  
+ if (order == 'true' && field=='dni') {
+      console.log(order);
+      this.search.sort(function(a, b) {
+        var nameA = a.dni.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.dni.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        // names must be equal
+        return 0;
+      });
+    }else if (order == 'false' && field=='dni') {
+      this.search.sort(function(a, b) {
+        var nameA = a.dni.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.dni.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return 1;
+        }
+        if (nameA > nameB) {
+          return -1;
+        }
+        // names must be equal
+        return 0;
+      });
+    }
 
+
+ if (order == 'true' && field=='phone') {
+      console.log(order);
+      this.search.sort(function(a, b) {
+        var nameA = a.phone.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.phone.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        // names must be equal
+        return 0;
+      });
+    }else if (order == 'false' && field=='phone') {
+      this.search.sort(function(a, b) {
+        var nameA = a.phone.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.phone.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return 1;
+        }
+        if (nameA > nameB) {
+          return -1;
+        }
+        // names must be equal
+        return 0;
+      });
+    }
+
+
+ if (order == 'true' && field=='country') {
+      console.log(order);
+      this.search.sort(function(a, b) {
+        var nameA = a.country.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.country.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        // names must be equal
+        return 0;
+      });
+    }else if (order == 'false' && field=='country') {
+      this.search.sort(function(a, b) {
+        var nameA = a.country.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.country.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return 1;
+        }
+        if (nameA > nameB) {
+          return -1;
+        }
+        // names must be equal
+        return 0;
+      });
+    }
+
+ if (order == 'true' && field=='address') {
+      console.log(order);
+      this.search.sort(function(a, b) {
+        var nameA = a.address.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.address.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        // names must be equal
+        return 0;
+      });
+    }else if (order == 'false' && field=='address') {
+      this.search.sort(function(a, b) {
+        var nameA = a.address.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.address.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return 1;
+        }
+        if (nameA > nameB) {
+          return -1;
+        }
+        // names must be equal
+        return 0;
+      });
+    }
+
+
+  }
 }

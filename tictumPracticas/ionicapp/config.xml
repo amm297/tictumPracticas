@@ -84,4 +84,13 @@
     <plugin name="cordova-plugin-device" spec="1.1.4" />
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
     <plugin name="cordova-plugin-geolocation" spec="^2.4.3" />
+    <plugin name="cordova-plugin-geolocation" spec="^2.4.3">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="The app need geolocation" />
+    </plugin>
+    <plugin name="cordova-plugin-googlemaps" spec="^1.4.0">
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyByDeReTews_EBkRVeno3LsfoaDW3Z5z04" />
+        <variable name="API_KEY_FOR_IOS" value="AIzaSyByDeReTews_EBkRVeno3LsfoaDW3Z5z04" />
+        <variable name="NSLOCATIONWHENINUSEUSAGEDESCRIPTION" value="Show your location on the map" />
+        <variable name="NSLOCATIONALWAYSUSAGEDESCRIPTION" value="Trace your location on the map" />
+    </plugin>
 </widget>

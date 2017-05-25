@@ -1,15 +1,20 @@
-<!--
-  Generated template for the LocationPage page.
-
--->
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
- 
-<ion-content>
-    <div id="map"></div>
+<ion-header> 
+  <ion-navbar> 
+    <ion-title> 
+      Map 
+    </ion-title> 
+  <!--   <ion-buttons end> 
+      <button ion-button (click)="addMarker()"><ion-icon name="add"></ion-icon>Add Marker</button> 
+    </ion-buttons>    -->
+  </ion-navbar> 
+</ion-header> 
+  
+<ion-content> 
+  <div #map id="map"></div>   
+  <ion-fab right top> 
+    <button ion-fab (tap)="newPosition()"> 
+      <ion-icon name="pin"></ion-icon> 
+      <ion-icon name="add"></ion-icon> 
+    </button> 
+  </ion-fab> 
 </ion-content>

@@ -6,14 +6,41 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
+
+  <ion-item>
+    <ion-label>Campo</ion-label>
+      <ion-select [(ngModel)]="field">
+        <ion-option value="dni">dni</ion-option>
+        <ion-option value="email">email</ion-option>
+        <ion-option value="country">country</ion-option>
+        <ion-option value="address">address</ion-option>
+        <ion-option value="phone">phone</ion-option>
+      </ion-select>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label>Orden</ion-label>
+      <ion-select [(ngModel)]="order">
+        <ion-option value="true">alfabetico</ion-option>
+        <ion-option value="false">inverso</ion-option>
+      </ion-select>
+  </ion-item>
+
+  <button ion-button clear icon-only color="secundary" (click)="showOrderedUsers(field,order)">
+      <ion-icon name="book"></ion-icon>
+  </button>
+
+
   <ion-searchbar [showCancelButton]="shouldShowCancel"
                  (ionInput)="onInput($event)"
                  (ionCancel)="onCancel($event)"></ion-searchbar>
-  <ion-card *ngFor="let user of search; let index = index">
+
+  <ion-card *ngFor="let user of search; let index = 'index'">
     <ion-card-header>
-      {{user.name }} {{user.lastname}} <span class="item-note">{{user.role  }}</span>
+      {{user.name }} {{user.lastname}}  <span class="item-note">{{user.role}}</span>
     </ion-card-header>
-    <ion-card-content>
+
+    <ion-card-content >
       <ion-list>
         <ion-item>{{user.dni}}</ion-item>
         <ion-item>{{user.email}}</ion-item>
