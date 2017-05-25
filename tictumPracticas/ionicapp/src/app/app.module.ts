@@ -29,6 +29,10 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {CheckinTabsPage} from "../pages/checkin-admin/checkin-tabs/checkin-tabs";
 import {CheckinmapPage} from "../pages/checkin-admin/checkinmap/checkinmap";
 import {CheckintablePage} from "../pages/checkin-admin/checkintable/checkintable";
+import {HollidaysTabsPage} from '../pages/tablehollidays/hollidaystabs/hollidaystabs';
+import {TableaprovedPage} from '../pages/tablehollidays/tableaproved/tableaproved';
+import {TabledeniedPage} from '../pages/tablehollidays/tabledenied/tabledenied';
+import {TablependingPage} from '../pages/tablehollidays/tablepending/tablepending';
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -40,7 +44,7 @@ export function createTranslateLoader(http: Http) {
     AdminPage,
     TableusersPage,
     UserformPage,
-    hollidaysPage,  
+    hollidaysPage,
     TablerolesPage,
     ResetPassword,
     UserPage,
@@ -49,7 +53,11 @@ export function createTranslateLoader(http: Http) {
     CheckinmapPage,
     CheckintablePage,
     DetailsusersPage,
-    LocationPage
+    LocationPage,
+    HollidaysTabsPage,
+    TableaprovedPage,
+    TabledeniedPage,
+    TablependingPage
   ],
   imports: [
     BrowserModule,
@@ -71,7 +79,7 @@ export function createTranslateLoader(http: Http) {
     AdminPage,
     TableusersPage,
     UserformPage,
-    hollidaysPage,  
+    hollidaysPage,
     TablerolesPage,
     ResetPassword,
     UserPage,
@@ -80,7 +88,11 @@ export function createTranslateLoader(http: Http) {
     CheckinmapPage,
     CheckintablePage,
     DetailsusersPage,
-    LocationPage
+    LocationPage,
+    HollidaysTabsPage,
+    TableaprovedPage,
+    TabledeniedPage,
+    TablependingPage
   ],
   providers: [
     StatusBar,
