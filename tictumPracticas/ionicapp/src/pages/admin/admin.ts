@@ -5,7 +5,7 @@ import {UserformPage} from "../userform/userform";
 import {TablerolesPage} from "../tableroles/tableroles";
 import {HomePage} from "../home/home";
 import {CheckinTabsPage} from "../checkin-admin/checkin-tabs/checkin-tabs";
-import {HollidaysTabsPage} from '../tablehollidays/hollidaystabs/hollidaystabs';
+import {TableholidaysPage} from '../tableholidays/tableholidays';
 
 @IonicPage()
 @Component({
@@ -30,7 +30,7 @@ export class AdminPage {
   }
 
   onClickHolidays() {
-    this.navCtrl.push(HollidaysTabsPage);
+    this.navCtrl.push(TableholidaysPage);
   }
 
   onClickCheckIn() {
