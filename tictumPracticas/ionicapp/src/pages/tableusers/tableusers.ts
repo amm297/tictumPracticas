@@ -1,51 +1,34 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
+import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 import {Users} from "../../providers/users";
-import {UserformPage} from '../userform/userform';
-import {DetailsusersPage} from "../detailsusers/detailsusers";
+import {UserformPage} from '../userform/userform'
 
 @IonicPage()
 @Component({
   selector: 'page-tableusers',
   templateUrl: 'tableusers.html',
 })
-export class TableusersPage {
+export class TableusersPage implements OnInit {
 
-  private page: number = 1;
-  users: any = [];
-   search: any; 
- 
+  users: any;
+  search: any;
+  shownGroup;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public modalCtrl: ModalController,
               private usersService: Users,
               private alertCtrl: AlertController) {
-    this.loadUsers();
   }
 
-  loadUsers() {
-    return new Promise(resolve => {
-      this.usersService.load(this.page)
-        .then(data => {
-          console.log(data);
-          for(let user of data['docs']) {
-            this.users.push(user);
-          }
-          console.log(this.users);
-          resolve(true);
-        });
-    })
-  }
-
-  doInfinite(inifiniteScroll: any) {
-    this.page++;
-    this.loadUsers().then(() => {
-      inifiniteScroll.complete();
+  ngOnInit() {
+    this.usersService.getAllUsers().then((data) => {
+      this.users = data;
+      this.search = this.users;
+      console.log(this.users);
     });
   }
 
-  /*deleteUser(userId: String, index: number) {
+  deleteUser(userId: String, index: number) {
     let confirm = this.alertCtrl.create({
       title: 'Cuidado!',
       message: '¿Estas seguro de eliminar el usuario?',
@@ -67,9 +50,7 @@ export class TableusersPage {
 
   modifyUser(user) {
     this.navCtrl.push(UserformPage, {user: user});
-  }*/
-
- 
+  }
 
   onInput(event) {
     let input = event.target.value;
@@ -86,11 +67,16 @@ export class TableusersPage {
     }
   }
 
-  openModal(user){
-    console.log('Usuario de la Ventana Modal ' , user);
-    // create the modal
-    let profileModal = this.modalCtrl.create(DetailsusersPage, {user});
-    // open the new modal
-    profileModal.present();
-  }
+//Display users
+  toggleGroup(group) {
+    if (this.isGroupShown(group)) {
+      this.shownGroup = null;
+    } else {
+      this.shownGroup = group;
+    }
+  };
+
+  isGroupShown(group) {
+    return this.shownGroup === group;
+  };
 }

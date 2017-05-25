@@ -1,10 +1,9 @@
-import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TableusersPage} from "../tableusers/tableusers";
 import {UserformPage} from "../userform/userform";
 import {TablerolesPage} from "../tableroles/tableroles";
 import {HomePage} from "../home/home";
-import {CheckinTabsPage} from "../checkin-admin/checkin-tabs/checkin-tabs";
 
 @IonicPage()
 @Component({
@@ -13,48 +12,23 @@ import {CheckinTabsPage} from "../checkin-admin/checkin-tabs/checkin-tabs";
 })
 export class AdminPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  onClickUsers() {
+  onClickUsers(){
     this.navCtrl.push(TableusersPage);
   }
 
-  onClickRoles() {
+  onClickRoles(){
     this.navCtrl.push(TablerolesPage);
   }
 
-  onClickAddUser() {
+  onClickAddUser(){
     this.navCtrl.push(UserformPage);
   }
 
-  onClickHolidays() {
-  }
 
-  onClickCheckIn() {
-    this.navCtrl.push(CheckinTabsPage);
-  }
-
-  showConfirm() {
-    let confirm = this.alertCtrl.create({
-      title: 'Salir',
-      message: '¿Estas seguro de cerrar sesion?',
-      buttons: [
-        {
-          text: 'Si',
-          handler: () => {
-            this.logout();
-          }
-        },
-        {
-          text: 'No'
-        }
-      ]
-    });
-    confirm.present();
-  }
-
-  logout() {
+  logout(){
     localStorage.clear();
     this.navCtrl.setRoot(HomePage);
   }
