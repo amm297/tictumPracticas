@@ -9,7 +9,8 @@ export class Users {
   constructor(public http: Http) {
   }
 
-  server = 'http://172.16.112.163:8080';
+  server = 'http://172.16.112.35:8080';
+  //server = 'http://172.16.112.163:8080';
   //server = 'http://192.168.5.26:8080';
 
   registerUser(data) {
@@ -95,6 +96,33 @@ export class Users {
         }); 
     }); 
   } 
+
+  modifyHollidays(userId,holliday,index){
+    console.log(holliday)
+    return new Promise(resolve => { 
+      let headers = new Headers(); 
+      headers.append('Content-Type', 'application/json'); 
+      this.http.put(this.server + '/api/users/updateHollidays/' + userId,{holliday: holliday,index:index}, {headers: headers}) 
+        .map(res => res.json()) 
+        .subscribe(data => { 
+          console.log(data);
+          resolve(data); 
+        }); 
+    });     
+  }
+  /*
+  changeHollidays(userId, status,index){
+    return new Promise(resolve => { 
+      let headers = new Headers(); 
+      headers.append('Content-Type', 'application/json'); 
+      this.http.put(this.server + '/api/users/updateHollidays/' + userId,{status: status,index:index}, {headers: headers}) 
+        .map(res => res.json()) 
+        .subscribe(data => { 
+          console.log(data);
+          resolve(data); 
+        }); 
+    });     
+  }*/
 
 }
 
