@@ -35422,6 +35422,24 @@ ion-navbar.toolbar {
   }
 }
 
+.ios page-checkinmap .scroll, .md page-checkinmap .scroll {
+  height: 100%;
+}
+
+.ios page-checkinmap #map, .md page-checkinmap #map {
+  width: 100%;
+  height: 100%;
+}
+
+.ios page-checkintable .scroll, .md page-checkintable .scroll {
+  height: 100%;
+}
+
+.ios page-checkintable #map, .md page-checkintable #map {
+  width: 100%;
+  height: 100%;
+}
+
 .monthview-selected {
   background-color: #e5e5e5 !important;
   color: black !important;

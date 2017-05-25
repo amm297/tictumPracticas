@@ -29,6 +29,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {CheckinTabsPage} from "../pages/checkin-admin/checkin-tabs/checkin-tabs";
 import {CheckinmapPage} from "../pages/checkin-admin/checkinmap/checkinmap";
 import {CheckintablePage} from "../pages/checkin-admin/checkintable/checkintable";
+import {TableholidaysPage} from '../pages/tableholidays/tableholidays';
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -40,7 +41,7 @@ export function createTranslateLoader(http: Http) {
     AdminPage,
     TableusersPage,
     UserformPage,
-    hollidaysPage,  
+    hollidaysPage,
     TablerolesPage,
     ResetPassword,
     UserPage,
@@ -49,7 +50,8 @@ export function createTranslateLoader(http: Http) {
     CheckinmapPage,
     CheckintablePage,
     DetailsusersPage,
-    LocationPage
+    LocationPage,
+    TableholidaysPage
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,7 @@ export function createTranslateLoader(http: Http) {
     AdminPage,
     TableusersPage,
     UserformPage,
-    hollidaysPage,  
+    hollidaysPage,
     TablerolesPage,
     ResetPassword,
     UserPage,
@@ -80,7 +82,8 @@ export function createTranslateLoader(http: Http) {
     CheckinmapPage,
     CheckintablePage,
     DetailsusersPage,
-    LocationPage
+    LocationPage,
+    TableholidaysPage
   ],
   providers: [
     StatusBar,

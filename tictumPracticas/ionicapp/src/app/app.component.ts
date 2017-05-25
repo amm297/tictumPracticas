@@ -5,7 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 
 import {HomePage} from '../pages/home/home';
 import {TranslateService} from "@ngx-translate/core";
-//import { AdminPage } from '../pages/admin/admin';
+//import {HollidaysTabsPage} from '../pages/tablehollidays/hollidaystabs/hollidaystabs';
 
 @Component({
   templateUrl: 'app.html'

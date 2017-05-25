@@ -48,12 +48,14 @@ export class HomePage {
 
 
   userLogin() {
-    console.log("Comprobando Login" + this.loginForm.valid);
+    //Formulario de login válido
     if (this.loginForm.valid) {
-      if (this.user.input.includes('@')) {
-        this.user.input = this.user.input.toLowerCase();
-      }
+      // Comrpobar que el campo es un email
+      if (this.user.input.includes('@')) this.user.input = this.user.input.toLowerCase();
+      
+      //hacer el login contra el servicio
       this.usersService.loginUser(this.user).then((data) => {
+        //Se produce un error al iniciar sesion
         if (data.hasOwnProperty('errmsg')) {
           let alert = this.alertCtrl.create({
             title: 'Oops!',
@@ -62,11 +64,11 @@ export class HomePage {
           });
           alert.present();
         }
+        //El login es correco
         else {
-          console.log("Login OK");
-          console.log(this.navCtrl.last().component.name);
-          let logUser: User = new User(data);
-          if(logUser.isActive()){
+          let logUser: User = new User(data); //usuario que se ha logueado
+          //El usuario no esta activado
+          if(logUser.isInactive()){
             let alert = this.alertCtrl.create({
               title: 'Oops!',
               subTitle: "No pudedes iniciar sesion en estos momentos",
@@ -74,20 +76,33 @@ export class HomePage {
             });
             alert.present();
           }else{
-            if (this.remember) {
-              localStorage.setItem("email", logUser.email);
-              localStorage.setItem("pwd", logUser.password);
-            }
-
-            if(logUser.password == "1234cambio") this.navCtrl.setRoot(ResetPassword,{user:logUser});
-            else{
-              if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
-              else this.navCtrl.setRoot(UserPage,{user:logUser});
-            }
-           }
+            if (data['autoP']==true){
+                 console.log("Tienes que cambiar la contraseña");
+                let alert = this.alertCtrl.create({
+                  title: 'Login OK!',
+                  subTitle: data['changePassw'],
+                  buttons: ['Ok']
+                });
+                alert.present();
+                this.navCtrl.setRoot(ResetPassword, logUser);
+            }else{
+              //Guardar el usuario para inicio de sesion automatico
+              if (this.remember) {
+                console.log(this.user.password);
+                localStorage.setItem("email", logUser.email);
+                localStorage.setItem("pwd", this.user.password);
+              }
+              //Cambio de contraseña
+              if(logUser.password == "1234cambio") this.navCtrl.setRoot(ResetPassword,{user:logUser});
+              else{
+                //Gestion de tipo de usuairio
+                if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
+                else this.navCtrl.setRoot(UserPage,{user:logUser});
+              }
+            }  
+          }
           
         }
-        console.log(data);
       });
     }
   }
