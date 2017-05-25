@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {User} from "../models/user";
+import {Md5} from 'ts-md5/dist/md5';
 
 @Injectable()
 export class Users {
@@ -12,15 +13,18 @@ export class Users {
   constructor(public http: Http) {
   }
 
+  
   //WI-Fi
   //server = 'http://192.168.4.45:8080';
   //server = 'http://192.168.5.26:8080';
   //Portatil Celada
-  server = 'http://172.16.112.163:8080';
+  server = 'http://172.16.112.51:8080';
   //server = 'http://localhost:8080';
 
+
+
   registerUser(data) {
-    console.log(data.dni);
+    data.password = Md5.hashStr(data.password);
     return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
@@ -34,7 +38,7 @@ export class Users {
   }
 
   loginUser(data) {
-    console.log(this.server);
+    data.password = Md5.hashStr(data.password);
     return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
@@ -66,7 +70,7 @@ export class Users {
   }
 
   /*Función para generar contraseña AUTOMÁTICA*/
-	newPasswdAuto(data){
+	newPasswdAuto(data){    
 	    return new Promise(resolve => {
 	      let headers = new Headers();
 	      headers.append('Content-Type', 'application/json');
@@ -79,6 +83,7 @@ export class Users {
 	}
  /*Funcion para cambiar la contraseña, comprobamos que el email/dni existe en la base de datos y después le añadimos la nueva contraseña.*/
   newPassword(data){
+     data.password = Md5.hashStr(data.password);
     return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
@@ -114,11 +119,12 @@ export class Users {
     });
   }
 
-  modifyUser(user) {
+  modifyUser(data) {
+     data.password = Md5.hashStr(data.password);
     return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      this.http.put(this.server + '/api/users/update', user, {headers: headers})
+      this.http.put(this.server + '/api/users/update', data, {headers: headers})
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);

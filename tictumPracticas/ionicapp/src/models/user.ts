@@ -39,7 +39,7 @@ export class User {
       this.personalDays.push(data)
    }
 
-	isActive(){
+	isInactive(){
 		return (this.role == 'inactivo') ? true : false;
 	}
 
