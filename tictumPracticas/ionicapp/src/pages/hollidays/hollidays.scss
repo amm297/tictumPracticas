@@ -1,0 +1,42 @@
+page-hollidays {
+
+}
+
+ .monthview-selected {
+    background-color: #e5e5e5 !important;
+    color: black !important;
+  }
+
+  td.monthview-current {
+    color: white;
+
+    .calendar-day {
+      background-color: color($colors, 'light') !important;
+    }
+  }
+
+  .monthview-datetable {
+
+    td, th {
+      padding:  0!important;
+    }
+  }
+
+
+.calendar-day {
+    &.aproved {
+      background-color: color($colors, aproved) !important;
+      color: white;
+    }
+
+    &.denied {
+      background-color: color($colors, denied) !important;
+      color: white;
+    }
+
+    &.pending {
+      background-color: color($colors, pending) !important;
+      color: white;
+    }
+}
+  
