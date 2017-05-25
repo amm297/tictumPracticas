@@ -19,7 +19,7 @@ export class UserformPage {
   roles: any;
   confirmpassword: string;
   userForm;
-  btnValue : string = "Registrar usuario";
+  text : string = "REGISTER_USER";
   edit : boolean = false;
 
   constructor(private navCtrl: NavController,
@@ -28,10 +28,14 @@ export class UserformPage {
               private rolesService: Roles,
               private formBuilder: FormBuilder,
               private alertCtrl: AlertController) {
+    if (this.navParams.get('user')) this.user = this.navParams.get('user');
+    else 
+      {this.user.daysh=30;
+      this.user.daysp=6;}
 
     if (this.navParams.get('user')) {
         this.user = this.navParams.get('user');
-        this.btnValue = "Editar usuario";
+        this.text = "EDIT_USER";
         this.edit = true;
     }
 
