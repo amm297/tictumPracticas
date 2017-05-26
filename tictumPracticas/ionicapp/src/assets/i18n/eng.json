@@ -9,6 +9,7 @@
   "PASSWORD": "Password",
   "EMPTY_PASSWORD": "Introduce a password",
   "REMENBER": "Remenber my Password",
+  "RECOVER":"Recover password",
   "CONFIRM_FORGOT": "I forgot my password",
   "PAG_ADMIN": "----------------------------------------------------",
   "ADMINISTRATOR": "Administrator",

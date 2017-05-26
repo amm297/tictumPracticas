@@ -13,7 +13,8 @@ export class TablerolesPage {
   search: any;
   displayInput: boolean = false;
   displayButton: string = '';
-  role: { rolename: string } = {rolename: ''};
+  role;
+  oldRolename;
 
 
   constructor(public navCtrl: NavController,
@@ -43,7 +44,7 @@ export class TablerolesPage {
   }
 
   closeInput() {
-    this.role = {rolename: ''};
+    this.role.rolename = this.oldRolename;
     this.displayInput = false;
   }
 
@@ -65,8 +66,8 @@ export class TablerolesPage {
   }
 
   editRole(role) {
-    console.log("estamos editando");
     this.role = role;
+    this.oldRolename = this.role.rolename;
     this.displayButton = 'edit';
     this.displayInput = true;
   }
@@ -81,23 +82,10 @@ export class TablerolesPage {
   }
 
   updateRole() {
-    let antRoles = this.roles;
-    antRoles = this.roles.filter(role => {
-      return (
-      role.rolename.toLowerCase().indexOf(this.role.rolename.toLowerCase()) > -1)
-    });
-
-    console.log(antRoles);
-    console.log(this.role);
-
-    if (antRoles.length > 1) {
-      this.presentAlert();
-    } else {
-      if (this.role.rolename !== '') {
-        this.rolesService.updateRole(this.role).then(() => {
-          this.closeInput();
-        });
-      }
+    if (this.role.rolename !== '') {
+      this.rolesService.updateRole(this.role).then(() => {
+        this.closeInput();
+      });
     }
   }
 
