@@ -162,11 +162,13 @@ export class Users {
   }
 
   //Fichar
-  newCheck(data, userId) {
-    return new Promise(resolve => {
+  Check(userId,data) {
+
+    console.log(userId);
+   return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      this.http.put(this.server + '/api/users/check/' + userId, JSON.stringify(data), {headers: headers})
+      this.http.put(this.server + '/api/users/check?_id=' + userId, JSON.stringify(data), {headers: headers})
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);

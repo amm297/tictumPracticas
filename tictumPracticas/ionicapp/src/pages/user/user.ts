@@ -56,7 +56,7 @@ user: User = new User();
   }
 
   onClickMap(){
-    this.navCtrl.push(LocationPage);
+    this.navCtrl.push(LocationPage,{user :this.user});
   }
 
 

@@ -13,6 +13,7 @@ export class User {
 	role: string;
 	hollidays: any[];
 	personalDays: any[];
+	checking: any[];
 	daysp:number;
 	daysh:number;
 
@@ -37,6 +38,9 @@ export class User {
    addPersonalDays(data){
      
       this.personalDays.push(data)
+   }
+   addCheck(data){
+   	this.checking.push(data);
    }
 
 	isInactive(){
