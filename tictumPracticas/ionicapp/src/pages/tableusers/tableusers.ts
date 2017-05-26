@@ -24,6 +24,8 @@ export class TableusersPage {
   }
 
   loadUsers() {
+    let loading = this.usersService.createLoading('Cargando usuarios');
+    loading.present();
     return new Promise(resolve => {
       this.usersService.load(this.page)
         .then(data => {
@@ -32,6 +34,7 @@ export class TableusersPage {
             this.users.push(user);
           }
           this.search = this.users;
+          loading.dismiss();
           resolve(true);
         });
     })
