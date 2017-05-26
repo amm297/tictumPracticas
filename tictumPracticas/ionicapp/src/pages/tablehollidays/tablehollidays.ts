@@ -1,0 +1,42 @@
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+
+@IonicPage()
+@Component({
+  selector: 'page-tablehollidays',
+  templateUrl: 'tablehollidays.html',
+})
+export class TablehollidaysPage {
+
+  users;
+  displayUsers;
+  statusDisplay;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.users = this.navParams.get('users');
+  }
+
+  ionViewWillEnter() {
+    this.statusDisplay = this.navParams.get('status')
+    this.displayUsers = this.getUsersByStatus(this.statusDisplay);
+    console.log(this.displayUsers);
+  }
+
+  getUsersByStatus(status) {
+    let displayUsers = this.users.filter(user => {
+      let found = false;
+      for (let holliday of user.hollidays) {
+        if (holliday.status == status) found = true;
+      }
+      return found;
+    });
+    return displayUsers;
+  }
+
+  onChangeStatus(user, index, status) {
+    user.hollidays[index].status = status;
+    console.log(user.hollidays[index]);
+    this.getUsersByStatus('pending');
+  }
+
+}
