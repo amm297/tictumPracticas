@@ -54,5 +54,8 @@
   "EDIT_USER":"Editar Usuario",
   "REGISTER_USER":"Registrar Usuario",
   "PAGE_MODAL": "-------------------------------------------------------",
-  "TITTLE_MODAL":"Detalles del Usuario"
+  "TITTLE_MODAL":"Detalles del Usuario",
+  "DNI" : "DNI",
+  "EMAIL": "Email",
+  "ORDER_FIELD": "Ordenar "
 }

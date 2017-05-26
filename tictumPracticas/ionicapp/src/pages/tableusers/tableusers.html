@@ -8,6 +8,16 @@
 <ion-content padding>
   <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar usuarios">
   </ion-searchbar>
+  <ion-item no-lines>
+    <ion-label>{{'ORDER_FIELD' | translate}}</ion-label>
+    <ion-select rigth (ionChange)="onOrderUsers($event)">
+      <ion-option value="dni">{{'DNI' | translate}}</ion-option>
+      <ion-option value="email">{{ 'Email' | translate}}</ion-option>
+      <ion-option value="country"> {{ 'COUNTRY' | translate}}</ion-option>
+      <ion-option value="address">{{ 'ADDRESS' | translate}}</ion-option>
+      <ion-option value="phone"> {{'PHONE_NUMBER' | translate }}</ion-option>
+    </ion-select>
+  </ion-item>
   <ion-list [virtualScroll]="search">
     <ion-item *virtualItem="let user; let index = index" text-wrap>
       <div style="padding:0;marging:0" (click)="openModal(user)">
