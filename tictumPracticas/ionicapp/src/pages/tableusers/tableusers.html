@@ -1,53 +1,44 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Lista de Usuarios
+      {{ 'LIST_USERS' | translate }}
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-searchbar [showCancelButton]="shouldShowCancel"
-                 (ionInput)="onInput($event)"
-                 (ionCancel)="onCancel($event)"></ion-searchbar>
-  <ion-item *ngFor="let user of search; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}"> 
-
-    <h2> 
-        <ion-row> 
-          <ion-col col-10> 
-            <span class="item-note" text-uppercase>{{user.role}}</span>: 
-            {{user.name}} {{user.lastname}} 
-          </ion-col> 
-          <ion-col text-right> 
-            <ion-icon color="success" [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon> 
-          </ion-col> 
-        </ion-row> 
-      </h2> 
-      <div *ngIf="isGroupShown(i)"> 
-        <ion-card>
-        <ion-list no-lines> 
-            <ion-item>{{user.dni}}</ion-item> 
-            <ion-item>{{user.email}}</ion-item> 
-            <ion-item>{{user.country}}</ion-item> 
-            <ion-item>{{user.address}}</ion-item> 
-            <ion-item>{{user.phone}}</ion-item> 
-          </ion-list> 
-          <ion-row> 
-            <ion-col text-right> 
-              <button ion-button clear icon-only color="warning" (click)="modifyUser(user)">
-                <ion-icon name="create"></ion-icon>
-              </button>
-              <button ion-button clear icon-only color="primary" *ngIf="user.role == 'user'" (click)="changeRole(user._id,'inactivo')">
-                <ion-icon name="alert"></ion-icon>
-              </button>
-               <button ion-button clear icon-only color="danger" *ngIf="user.role == 'inactivo'" (click)="changeRole(user._id,'user')">
-                <ion-icon name="aperture"></ion-icon>
-              </button>
-            </ion-col> 
-          </ion-row> 
-        </ion-card> 
-      </div>  
-
+  <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar usuarios">
+  </ion-searchbar>
+  <ion-item no-lines>
+    <ion-label>{{'ORDER_FIELD' | translate}}</ion-label>
+    <ion-select rigth (ionChange)="onOrderUsers($event)">
+      <ion-option value="dni">{{'DNI' | translate}}</ion-option>
+      <ion-option value="email">{{ 'Email' | translate}}</ion-option>
+      <ion-option value="country"> {{ 'COUNTRY' | translate}}</ion-option>
+      <ion-option value="address">{{ 'ADDRESS' | translate}}</ion-option>
+      <ion-option value="phone"> {{'PHONE_NUMBER' | translate }}</ion-option>
+    </ion-select>
   </ion-item>
-
-
+  <ion-list [virtualScroll]="search">
+    <ion-item *virtualItem="let user; let index = index" text-wrap>
+      <div style="padding:0;marging:0" (click)="openModal(user)">
+        <h2>
+          <ion-row>
+            <ion-col col-10>
+              <span class="item-note" text-uppercase>{{user.role}}</span>:
+              {{user.name}} {{user.lastname}}
+            </ion-col>
+            <ion-col text-right>
+              <ion-icon color="success" name="arrow-dropright"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </h2>
+      </div>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Cargando más usuarios...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

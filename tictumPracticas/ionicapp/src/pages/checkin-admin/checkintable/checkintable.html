@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button (click)="back()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Check-In Table</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <div *ngFor="let user of users">
+      <ion-item>
+        <h2>{{user.name}} {{user.lastname}}</h2>
+        <ion-card>
+          <ion-card-header>
+                <p>02-05-2017
+                  <ion-icon name="arrow-forward"></ion-icon>
+                  15:05
+                </p>
+          </ion-card-header>
+        </ion-card>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

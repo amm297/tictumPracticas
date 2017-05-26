@@ -2,8 +2,10 @@ import {Component} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
 import {hollidaysPage} from "../hollidays/hollidays";
+import {ResetPassword} from "../reset-password/reset-password";
 
 import {User} from "../../models/user";
+import {LocationPage} from '../location/location'
 
 @IonicPage()
 @Component({
@@ -41,7 +43,7 @@ user: User = new User();
   }
 
   onClickHollidays(){
-    this.navCtrl.push(hollidaysPage);
+    this.navCtrl.push(hollidaysPage,{user:this.user});
   }
 
   logout() {
@@ -49,14 +51,14 @@ user: User = new User();
     this.navCtrl.setRoot(HomePage);
   }
 
-
-
-
-onClickCalendario(){
-    this.navCtrl.push(hollidaysPage,{user:this.user});
-
-  
-
+  onChangePassword(){
+    this.navCtrl.push(ResetPassword);
   }
+
+  onClickMap(){
+    this.navCtrl.push(LocationPage);
+  }
+
+
 
 }
