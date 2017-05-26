@@ -1,5 +1,5 @@
 /**
- * Created by Grupo Prácticas on 17/05/2017.
+ * Created by Javier on 17/05/2017.
  */
 export class User {
 	dni: string;
@@ -15,7 +15,6 @@ export class User {
 	personalDays: any[];
 	daysp:number;
 	daysh:number;
-	checkin:any[];
 
   	constructor(values : Object = {}){
 		Object.assign(this,values);
@@ -28,21 +27,23 @@ export class User {
 	isUser(){
 		return (this.role == 'user') ? true : false;
 	}
+   
 
-	addHolliday(data){
+   addHolliday(data){
 
-   		this.hollidays.push(data);
+   	this.hollidays.push(data);
    }
 
    addPersonalDays(data){
      
-      this.personalDays.push(data);
+      this.personalDays.push(data)
    }
 
+	isInactive(){
+		return (this.role == 'inactivo') ? true : false;
+	}
 
-   addCheck(data){
-   		this.checkin.push(data);
-   }
+
 
 
 }

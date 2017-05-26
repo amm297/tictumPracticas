@@ -4,7 +4,8 @@ import {TableusersPage} from "../tableusers/tableusers";
 import {UserformPage} from "../userform/userform";
 import {TablerolesPage} from "../tableroles/tableroles";
 import {HomePage} from "../home/home";
-import {LocationPage} from "../location/location";
+import {CheckinTabsPage} from "../checkin-admin/checkin-tabs/checkin-tabs";
+import {TableholidaysPage} from '../tableholidays/tableholidays';
 
 @IonicPage()
 @Component({
@@ -27,8 +28,13 @@ export class AdminPage {
   onClickAddUser() {
     this.navCtrl.push(UserformPage);
   }
-  onClickLocation() {
-    this.navCtrl.push(LocationPage);
+
+  onClickHolidays() {
+    this.navCtrl.push(TableholidaysPage);
+  }
+
+  onClickCheckIn() {
+    this.navCtrl.push(CheckinTabsPage);
   }
 
   showConfirm() {

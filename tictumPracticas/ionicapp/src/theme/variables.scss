@@ -14,7 +14,6 @@ $font-path: "../assets/fonts";
 
 
 
-
 // Named Color Variables
 // --------------------------------------------------
 // Named colors makes it easy to reuse colors on various components.
@@ -29,7 +28,10 @@ $colors: (
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222,
-  warning:    #f4b342
+  warning:    #f4b342,
+  pending: #f4b342,
+  aproved: #42f483,
+  denied: #f44d41,
 );
 
 

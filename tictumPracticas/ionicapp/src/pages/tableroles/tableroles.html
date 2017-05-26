@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Lista de Roles
+      {{ 'LIST_ROLES' | translate }}
     </ion-title>
     <ion-buttons end>
       <button ion-button (click)="showInput()">
@@ -11,48 +11,32 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-  <ion-searchbar [showCancelButton]="shouldShowCancel"
-                 (ionInput)="onInput($event)"
-                  placeholder="Buscar roles">
+  <ion-searchbar [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" placeholder="Buscar roles">
   </ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let role of search">
-      <ion-icon item-left name="contact" *ngIf="role.rolename == 'admin'"></ion-icon>
-      <ion-icon item-left name="person" *ngIf="role.rolename == 'user'"></ion-icon>
-      <ion-icon item-left name="ionitron" *ngIf="role.rolename != 'admin' && role.rolename != 'user' "></ion-icon>
-      <h2>{{role.rolename}}</h2>
-      <button ion-button item-right color="warning" (click)="editRole(role)"><ion-icon name="create"></ion-icon></button>
-      <button ion-button color="danger" item-right (click)="deleteRole(role)"><ion-icon name="trash"></ion-icon></button>
-
-    </ion-item>
-    <!--
-          <ion-item-options>
-            <button ion-button color="primary" icon-left (click)="editContact(contact)">
-              <ion-icon name="ios-create"></ion-icon>
-              Edit
-            </button>
-            <button ion-button color="danger" icon-left (click)="deleteContact(contact)">
-              <ion-icon name="ios-trash"></ion-icon>
-              Delete
-            </button>
-          </ion-item-options>
-    -->
+    <div *ngFor="let role of search; let i=index">
+      <ion-item *ngIf="role.rolename != 'inactivo'">
+        <ion-icon item-left name="contact" *ngIf="role.rolename == 'admin'"></ion-icon>
+        <ion-icon item-left name="person" *ngIf="role.rolename == 'user'"></ion-icon>
+        <ion-icon item-left name="ionitron" *ngIf="role.rolename != 'admin' && role.rolename != 'user' "></ion-icon>
+        <h2>{{role.rolename}}</h2>
+        <button ion-button item-right (click)="editRole(role)"><ion-icon name="create"></ion-icon></button>
+        <button ion-button color="danger" item-right (click)="deleteRole(role._id,i)"><ion-icon name="trash"></ion-icon></button>
+      </ion-item>
+    </div>
   </ion-list>
 </ion-content>
 <ion-footer *ngIf="this.displayInput">
-    
-  <ion-item>
-       
-      
-      <ion-label fixed>Role name</ion-label>
-     <ion-input type="text" [(ngModel)]="role.rolename" name="rolename"></ion-input>
-     <button *ngIf="this.displayButton == 'add'" ion-button (click)="addRole()" item-right>Añadir</button>
-     <button  *ngIf="this.displayButton == 'edit'" ion-button (click)="updateRole()" item-right>Editar</button>
 
-     <button item-right ion-button clear icon-only (click)="closeInput()">
-        <ion-icon name="close"></ion-icon>
-      </button>
+  <ion-item>
+    <button item-right ion-button clear icon-only (click)="closeInput()">
+      <ion-icon name="close"></ion-icon>
+    </button>
+
+
+    <ion-input type="text" [(ngModel)]="role.rolename" name="rolename" placeholder="{{ 'ROLE_NAME' | translate }}"></ion-input>
   </ion-item>
+  <button *ngIf="this.displayButton == 'add'" ion-button (click)="addRole()">{{ 'ADD' | translate }}</button>
+  <button *ngIf="this.displayButton == 'edit'" ion-button (click)="updateRole()">{{ 'EDIT' | translate }}</button>
 </ion-footer>
