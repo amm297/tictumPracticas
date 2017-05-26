@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button (click)="back()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>tabledenied</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <div *ngFor="let user of users">
+      <ion-item *ngIf="deniedHollidays(user)">
+        <h2>{{user.name}} {{user.lastname}}</h2>
+        <ion-card color="{{holliday.status}}" *ngFor="let holliday of user.hollidays">
+          <ion-card-header *ngIf="holliday.status == 'denied'">
+            <p>{{holliday.startDate | date:'dd/MM/yyyy'}}
+              <ion-icon name="arrow-forward"></ion-icon>
+              {{holliday.endDate | date:'dd/MM/yyyy'}}
+            </p>
+          </ion-card-header>
+        </ion-card>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>
