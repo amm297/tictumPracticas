@@ -17,7 +17,7 @@ export class TableholidaysPage {
     let loading = this.usersService.createLoading('Cargando usuarios');
     loading.present();
     this.usersService.getAllUsers().then(data => {
-      this.users = data['docs'];
+      this.users = data;
       this.statusDisplay = 'pending';
       this.displayUsers = this.getUsersByStatus(this.statusDisplay);
       loading.dismiss();
