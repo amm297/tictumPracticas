@@ -1,9 +1,18 @@
 <ion-header>
   <ion-navbar>
+<<<<<<< HEAD
     <ion-title> {{ 'Sign-In' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding class="homecent">
+=======
+    <ion-title>
+      {{ 'LOGIN' | translate }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+>>>>>>> master
   <ion-item no-lines>
     <ion-label>{{'LANGUAGE'|translate}}</ion-label>
     <ion-select rigth (ionChange)="onLanguage($event)">
@@ -12,6 +21,7 @@
     </ion-select>
   </ion-item>
   <form [formGroup]="loginForm" (ngSubmit)="userLogin(user)">
+<<<<<<< HEAD
 
     <ion-item class="ioninput">
       <ion-label>
@@ -27,10 +37,28 @@
     <ion-item class="ioninput">
       <ion-label>
         <ion-icon name="key"></ion-icon>
+=======
+    <ion-item>
+      <ion-label>
+        <ion-icon item-left name="at"></ion-icon>
+        Email or DNI:
+      </ion-label>
+      <ion-input [(ngModel)]="user.input" type="text" formControlName="input" placeholder="Ej:12354678X"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="!loginForm.controls.input.valid && loginForm.controls.input.touched">
+      <p style="color:red;"> {{ 'PLACEHOLDER_EMAIL' | translate }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <ion-icon item-left name="key"></ion-icon>
+>>>>>>> master
         {{ 'PASSWORD' | translate }}
       </ion-label>
       <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>
     </ion-item>
+<<<<<<< HEAD
     <ion-item *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched" class="validator">
       <p style="color:red;">{{ 'EMPTY_PASSWORD' | translate }}</p>
     </ion-item>
@@ -44,6 +72,23 @@
   <div text-center>
       <a block clear (click)="goToResetPassword()">{{ 'REMEMBER' | translate }}</a>
     </div>
+=======
+
+    <ion-item *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched">
+      <p style="color:red;">{{ 'EMPTY_PASSWORD' | translate }}</p>
+    </ion-item>
+
+    <button ion-button margin-top="10px" type="submit" block>{{ 'LOGIN' | translate }}</button>
+
+    <ion-item no-lines>
+      <ion-label>{{ 'REMENBER' | translate }}</ion-label>
+      <ion-checkbox [(ngModel)]="remember" [ngModelOptions]="{standalone: true}" id="checkBox"></ion-checkbox>
+    </ion-item>
+  </form>
+  <div text-center>
+    <button ion-button block clear (click)="goToResetPassword()">{{ 'REMENBER' | translate }}</button>
+  </div>
+>>>>>>> master
 </ion-content>
 
 

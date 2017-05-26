@@ -52,5 +52,11 @@
   "VALID_PHONE2": "numeric characters",
   "VALID_PASSWORD2": "Introduce at least eigth characters",
   "EDIT_USER":"Edit User",
+<<<<<<< HEAD
   "REGISTER_USER":"Register User"
+=======
+  "REGISTER_USER":"Register User",
+  "PAGE_MODAL": "-------------------------------------------------------",
+  "TITTLE_MODAL":"Details User"
+>>>>>>> master
 }

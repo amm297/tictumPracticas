@@ -32,6 +32,10 @@ export class UserformPage {
     else 
       {this.user.daysh=30;
       this.user.daysp=6;}
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     if (this.navParams.get('user')) {
         this.user = this.navParams.get('user');
         this.text = "EDIT_USER";

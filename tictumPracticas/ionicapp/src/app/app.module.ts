@@ -17,7 +17,11 @@ import {Http, HttpModule} from "@angular/http";
 import {IonicApp, IonicErrorHandler, IonicModule} from "ionic-angular";
 import {StatusBar} from "@ionic-native/status-bar";
 import {SplashScreen} from "@ionic-native/splash-screen";
+import { NgCalendarModule  } from 'ionic2-calendar';
+import {hollidaysPage} from "../pages/hollidays/hollidays";
+import {LocationPage} from '../pages/location/location';
 
+<<<<<<< HEAD
 //Translate config
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -39,6 +43,20 @@ import {CheckinTabsPage} from "../pages/checkin-admin/checkin-tabs/checkin-tabs"
 import {CheckinmapPage} from "../pages/checkin-admin/checkinmap/checkinmap";
 import {CheckintablePage} from "../pages/checkin-admin/checkintable/checkintable";
 
+=======
+import { Geolocation } from '@ionic-native/geolocation';
+
+//Translate config
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {CheckinTabsPage} from "../pages/checkin-admin/checkin-tabs/checkin-tabs";
+import {CheckinmapPage} from "../pages/checkin-admin/checkinmap/checkinmap";
+import {CheckintablePage} from "../pages/checkin-admin/checkintable/checkintable";
+import {TableholidaysPage} from '../pages/tableholidays/tableholidays';
+export function createTranslateLoader(http: Http) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+>>>>>>> master
 
 @NgModule({
   declarations: [
@@ -47,16 +65,26 @@ import {CheckintablePage} from "../pages/checkin-admin/checkintable/checkintable
     AdminPage,
     TableusersPage,
     UserformPage,
+    hollidaysPage,
     TablerolesPage,
     ResetPassword,
     UserPage,
     GenericPasswordPage,
+<<<<<<< HEAD
     LocationPage,
     HollidaysPage,
     CheckinTabsPage,
     CheckinmapPage,
     CheckintablePage,
     DetailsusersPage
+=======
+    CheckinTabsPage,
+    CheckinmapPage,
+    CheckintablePage,
+    DetailsusersPage,
+    LocationPage,
+    TableholidaysPage
+>>>>>>> master
   ],
   imports: [
     BrowserModule,
@@ -78,10 +106,12 @@ import {CheckintablePage} from "../pages/checkin-admin/checkintable/checkintable
     AdminPage,
     TableusersPage,
     UserformPage,
+    hollidaysPage,
     TablerolesPage,
     ResetPassword,
     UserPage,
     GenericPasswordPage,
+<<<<<<< HEAD
     LocationPage,
     HollidaysPage,
     CheckinTabsPage,
@@ -89,6 +119,15 @@ import {CheckintablePage} from "../pages/checkin-admin/checkintable/checkintable
     CheckintablePage,
     DetailsusersPage
     ],
+=======
+    CheckinTabsPage,
+    CheckinmapPage,
+    CheckintablePage,
+    DetailsusersPage,
+    LocationPage,
+    TableholidaysPage
+  ],
+>>>>>>> master
   providers: [
     StatusBar,
     SplashScreen,

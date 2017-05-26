@@ -4,8 +4,13 @@ import {TableusersPage} from "../tableusers/tableusers";
 import {UserformPage} from "../userform/userform";
 import {TablerolesPage} from "../tableroles/tableroles";
 import {HomePage} from "../home/home";
+<<<<<<< HEAD
 import {LocationPage} from "../location/location";
 import {CheckinTabsPage} from "../checkin-admin/checkin-tabs/checkin-tabs";
+=======
+import {CheckinTabsPage} from "../checkin-admin/checkin-tabs/checkin-tabs";
+import {TableholidaysPage} from '../tableholidays/tableholidays';
+>>>>>>> master
 
 @IonicPage()
 @Component({
@@ -34,6 +39,13 @@ export class AdminPage {
   onClickHolidays() {
   }
 
+<<<<<<< HEAD
+=======
+  onClickHolidays() {
+    this.navCtrl.push(TableholidaysPage);
+  }
+
+>>>>>>> master
   onClickCheckIn() {
     this.navCtrl.push(CheckinTabsPage);
   }

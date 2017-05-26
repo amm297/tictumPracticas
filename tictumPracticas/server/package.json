@@ -15,7 +15,11 @@
     "cors": "^2.8.1",
     "express": "^4.14.0",
     "mongoose": "^4.6.3",
+<<<<<<< HEAD
     "mongoose-pagination": "^1.0.0",
+=======
+    "mongoose-paginate": "^5.0.3",
+>>>>>>> master
     "morgan": "^1.8.1"
   }
 }

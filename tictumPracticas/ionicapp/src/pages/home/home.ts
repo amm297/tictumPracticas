@@ -11,7 +11,7 @@ import {GenericPasswordPage} from "../generic-password/generic-password";
 import {TranslateService} from "@ngx-translate/core";
 
 @Component({
-  selector: 'home-page',
+  selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
@@ -35,6 +35,10 @@ export class HomePage {
     if(localStorage.getItem("language")){
       translateService.use(localStorage.getItem("language"));
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     this.loginForm = formBuilder.group({
       input: ['', Validators.required],
       password: ['', Validators.required],
@@ -47,12 +51,17 @@ export class HomePage {
 
 
   userLogin() {
-    console.log("Comprobando Login" + this.loginForm.valid);
+    //Formulario de login válido
     if (this.loginForm.valid) {
-      if (this.user.input.includes('@')) {
-        this.user.input = this.user.input.toLowerCase();
-      }
+      // Comrpobar que el campo es un email
+      if (this.user.input.includes('@')) this.user.input = this.user.input.toLowerCase();
+      
+      //hacer el login contra el servicio
       this.usersService.loginUser(this.user).then((data) => {
+<<<<<<< HEAD
+=======
+        //Se produce un error al iniciar sesion
+>>>>>>> master
         if (data.hasOwnProperty('errmsg')) {
           let alert = this.alertCtrl.create({
             title: 'Oops!',
@@ -60,6 +69,7 @@ export class HomePage {
             buttons: ['Ok']
           });
           alert.present();
+<<<<<<< HEAD
         } else {
           //Modificado por Esperanza
           console.log("Login OK");
@@ -67,14 +77,27 @@ export class HomePage {
           let logUser: User = new User(data);
           console.log(logUser);
           if(logUser.isActive()){
+=======
+        }
+        //El login es correco
+        else {
+          let logUser: User = new User(data); //usuario que se ha logueado
+          //El usuario no esta activado
+          if(logUser.isInactive()){
+>>>>>>> master
             let alert = this.alertCtrl.create({
               title: 'Oops!',
               subTitle: "No pudedes iniciar sesion en estos momentos",
               buttons: ['Ok']
             });
             alert.present();
+<<<<<<< HEAD
            }else{
              if (data['autoP']==true){
+=======
+          }else{
+            if (data['autoP']==true){
+>>>>>>> master
                  console.log("Tienes que cambiar la contraseña");
                 let alert = this.alertCtrl.create({
                   title: 'Login OK!',
@@ -83,6 +106,7 @@ export class HomePage {
                 });
                 alert.present();
                 this.navCtrl.setRoot(ResetPassword, logUser);
+<<<<<<< HEAD
             //Fin modificación
              } else {
                  console.log("Login correcto");
@@ -95,15 +119,37 @@ export class HomePage {
                 else this.navCtrl.setRoot(UserPage);
             }
           }
+=======
+            }else{
+              //Guardar el usuario para inicio de sesion automatico
+              if (this.remember) {
+                console.log(this.user.password);
+                localStorage.setItem("email", logUser.email);
+                localStorage.setItem("pwd", this.user.password);
+              }
+              //Cambio de contraseña
+              if(logUser.password == "1234cambio") this.navCtrl.setRoot(ResetPassword,{user:logUser});
+              else{
+                //Gestion de tipo de usuairio
+                if (logUser.isAdmin()) this.navCtrl.setRoot(AdminPage);
+                else this.navCtrl.setRoot(UserPage,{user:logUser});
+              }
+            }  
+          }
+          
+>>>>>>> master
         }
-        console.log(data);
       });
     }
   }
 
   goToResetPassword() {
     console.log("Cambiar contraseña del email " + this.user.input);
+<<<<<<< HEAD
     this.navCtrl.setRoot(GenericPasswordPage, this.user.input);
+=======
+    this.navCtrl.push( GenericPasswordPage, this.user.input);
+>>>>>>> master
   }
 
   onLanguage(event) {

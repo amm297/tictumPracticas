@@ -9,6 +9,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
+<<<<<<< HEAD
   <button ion-button (click)="onClickAddUser()" block>
     <ion-icon name="person-add" item-left padding-right="5px"></ion-icon>
     {{ 'REGISTER' | translate }}
@@ -32,5 +33,27 @@
   <button ion-button (click)="onClickLocation()" block>
     <ion-icon name="map" item-left padding-right="5px"></ion-icon>
     {{ 'MAP' | translate }}
+=======
+  <button ion-button block (click)="onClickAddUser()">
+    <ion-icon name="person-add" item-left padding-right="5px"></ion-icon>
+    {{ 'REGISTER' | translate }}
   </button>
+  <button ion-button block (click)="onClickUsers()">
+    <ion-icon name="people" item-left padding-right="5px"></ion-icon>
+    {{ 'SHOWUSER' | translate }}
+  </button>
+  <button ion-button block (click)="onClickRoles()">
+    <ion-icon name="warning" item-left padding-right="5px"></ion-icon>
+    {{ 'SHOWROLE' | translate }}
+>>>>>>> master
+  </button>
+  <button ion-button block (click)="onClickHolidays()">
+    <ion-icon name="calendar" item-left padding-right="5px"></ion-icon>
+    Gestión de vacaciones
+  </button>
+  <button ion-button block (click)="onClickCheckIn()">
+    <ion-icon name="alarm" item-left padding-right="5px"></ion-icon>
+    Gestión de fichajes
+  </button>
+
 </ion-content>

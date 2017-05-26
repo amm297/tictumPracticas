@@ -16,11 +16,18 @@ export class TablerolesPage {
   role: { rolename: string } = {rolename: ''};
 
 
+<<<<<<< HEAD
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
     public rolesService: Roles,
     private alertCtrl: AlertController) {
+=======
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public rolesService: Roles,
+              private alertCtrl: AlertController) {
+>>>>>>> master
   }
 
   ngOnInit() {
@@ -41,9 +48,12 @@ export class TablerolesPage {
   }
 
   closeInput() {
+<<<<<<< HEAD
     this.role.rolename = '';
+=======
+    this.role = {rolename: ''};
+>>>>>>> master
     this.displayInput = false;
-    this.getAllRoles();
   }
 
   addRole() {
@@ -64,6 +74,10 @@ export class TablerolesPage {
   }
 
   editRole(role) {
+<<<<<<< HEAD
+=======
+    console.log("estamos editando");
+>>>>>>> master
     this.role = role;
     this.displayButton = 'edit';
     this.displayInput = true;
@@ -77,6 +91,18 @@ export class TablerolesPage {
     alert.present();
   }
 
+<<<<<<< HEAD
+=======
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: '¡Cuidado!',
+      subTitle: 'Este rol ya existe',
+      buttons: ['Ok']
+    });
+    alert.present();
+  }
+
+>>>>>>> master
   updateRole() {
     let antRoles = this.roles;
     antRoles = this.roles.filter(role => {
@@ -116,6 +142,7 @@ export class TablerolesPage {
       ]
     });
     confirm.present();
+<<<<<<< HEAD
   }
 
   onInput(event) {
@@ -128,6 +155,19 @@ export class TablerolesPage {
     } else {
       this.search = this.roles;
     }
+=======
+>>>>>>> master
   }
 
+  onInput(event) {
+    let input = event.target.value;
+    if (input && input.trim() != '') {
+      this.search = this.roles.filter(role => {
+        return (
+        role.rolename.toLowerCase().indexOf(input.toLowerCase()) > -1)
+      });
+    } else {
+      this.search = this.roles;
+    }
+  }
 }
