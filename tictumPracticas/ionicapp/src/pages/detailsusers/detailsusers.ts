@@ -22,10 +22,6 @@ export class DetailsusersPage {
   	this.user = this.navParams.get("user");
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DetailsusersPage');
-  }
-
   deleteUser(userId: String) { //, index: number
     let confirm = this.alertCtrl.create({
       title: 'Cuidado!',

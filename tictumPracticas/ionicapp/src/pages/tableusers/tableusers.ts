@@ -31,7 +31,7 @@ export class TableusersPage {
           for(let user of data['docs']) {
             this.users.push(user);
           }
-          console.log(this.users);
+          this.search = this.users;
           resolve(true);
         });
     })
@@ -86,7 +86,6 @@ export class TableusersPage {
   }
 
   openModal(user){
-    console.log('Usuario de la Ventana Modal ' , user);
     // create the modal
     let profileModal = this.modalCtrl.create(DetailsusersPage, {user});
     // open the new modal
@@ -97,7 +96,6 @@ export class TableusersPage {
           return userSearch._id == user._id;
         });
         this.users[position] = user;
-        console.log(this.users[position].role);
       }
     });
   }

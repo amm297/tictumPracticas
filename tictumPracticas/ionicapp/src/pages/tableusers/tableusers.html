@@ -6,9 +6,9 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-
-
-  <ion-list [virtualScroll]="users">
+  <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar usuarios">
+  </ion-searchbar>
+  <ion-list [virtualScroll]="search">
     <ion-item *virtualItem="let user; let index = index" text-wrap>
       <div style="padding:0;marging:0" (click)="openModal(user)">
         <h2>
