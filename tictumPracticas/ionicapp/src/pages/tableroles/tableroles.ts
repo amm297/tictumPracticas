@@ -49,13 +49,10 @@ export class TablerolesPage {
   }
 
   addRole() {
-    const position = this.roles.findIndex((roleCheck: any) => {
-      return roleCheck.rolename == this.role.rolename;
-    })
-    if (position > -1) {
-      this.presentAlert();
-    }
-    else {
+    if (this.roleExists(this.role.rolename, 0)) {
+      let alert = this.createAlert();
+      alert.present();
+    } else {
       if (this.role.rolename !== '') {
         this.rolesService.addRole(this.role).then((data) => {
           this.roles.push(data);
@@ -72,20 +69,24 @@ export class TablerolesPage {
     this.displayInput = true;
   }
 
-  presentAlert() {
-    let alert = this.alertCtrl.create({
+  createAlert() {
+    return this.alertCtrl.create({
       title: '¡Cuidado!',
       subTitle: 'Este rol ya existe',
       buttons: ['Ok']
     });
-    alert.present();
   }
 
   updateRole() {
-    if (this.role.rolename !== '') {
-      this.rolesService.updateRole(this.role).then(() => {
-        this.closeInput();
-      });
+    if (this.roleExists(this.role.rolename, 1)) {
+      let alert = this.createAlert();
+      alert.present();
+    } else {
+      if (this.role.rolename !== '') {
+        this.rolesService.updateRole(this.role).then(() => {
+          this.closeInput();
+        });
+      }
     }
   }
 
@@ -119,5 +120,12 @@ export class TablerolesPage {
     } else {
       this.search = this.roles;
     }
+  }
+
+  roleExists(rolename, times) {
+    let found = this.roles.filter((roleCheck: any) => {
+      return roleCheck.rolename == this.role.rolename;
+    })
+    return found.length > times;
   }
 }
