@@ -30,6 +30,11 @@ import {CheckinTabsPage} from "../pages/checkin-admin/checkin-tabs/checkin-tabs"
 import {CheckinmapPage} from "../pages/checkin-admin/checkinmap/checkinmap";
 import {CheckintablePage} from "../pages/checkin-admin/checkintable/checkintable";
 import {TableholidaysPage} from '../pages/tableholidays/tableholidays';
+import {TableaprovedPage} from '../pages/tablehollidays-tabs/tableaproved/tableaproved';
+import {TabledeniedPage} from '../pages/tablehollidays-tabs/tabledenied/tabledenied';
+import {TablependingPage} from '../pages/tablehollidays-tabs/tablepending/tablepending';
+import {TablehollidaysPage} from '../pages/tablehollidays/tablehollidays';
+import {HollidaysTabsPage} from '../pages/tablehollidays/hollidays-tabs';
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -51,7 +56,8 @@ export function createTranslateLoader(http: Http) {
     CheckintablePage,
     DetailsusersPage,
     LocationPage,
-    TableholidaysPage
+    HollidaysTabsPage,
+    TablehollidaysPage
   ],
   imports: [
     BrowserModule,
@@ -83,7 +89,8 @@ export function createTranslateLoader(http: Http) {
     CheckintablePage,
     DetailsusersPage,
     LocationPage,
-    TableholidaysPage
+    HollidaysTabsPage,
+    TablehollidaysPage
   ],
   providers: [
     StatusBar,

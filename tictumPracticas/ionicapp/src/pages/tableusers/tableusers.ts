@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
 import {Users} from "../../providers/users";
-import {UserformPage} from '../userform/userform';
 import {DetailsusersPage} from "../detailsusers/detailsusers";
 
 @IonicPage()
@@ -13,8 +12,8 @@ export class TableusersPage {
 
   private page: number = 1;
   users: any = [];
-   search: any; 
- 
+  search: any;
+
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -25,6 +24,8 @@ export class TableusersPage {
   }
 
   loadUsers() {
+    let loading = this.usersService.createLoading('Cargando usuarios');
+    loading.present();
     return new Promise(resolve => {
       this.usersService.load(this.page)
         .then(data => {
@@ -32,7 +33,8 @@ export class TableusersPage {
           for(let user of data['docs']) {
             this.users.push(user);
           }
-          console.log(this.users);
+          this.search = this.users;
+          loading.dismiss();
           resolve(true);
         });
     })
@@ -69,7 +71,7 @@ export class TableusersPage {
     this.navCtrl.push(UserformPage, {user: user});
   }*/
 
- 
+
 
   onInput(event) {
     let input = event.target.value;
@@ -87,10 +89,17 @@ export class TableusersPage {
   }
 
   openModal(user){
-    console.log('Usuario de la Ventana Modal ' , user);
     // create the modal
     let profileModal = this.modalCtrl.create(DetailsusersPage, {user});
     // open the new modal
     profileModal.present();
+    profileModal.onWillDismiss((user)=>{
+      if(user){
+        const position = this.users.findIndex((userSearch) => {
+          return userSearch._id == user._id;
+        });
+        this.users[position] = user;
+      }
+    });
   }
 }

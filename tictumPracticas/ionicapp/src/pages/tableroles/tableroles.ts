@@ -27,9 +27,12 @@ export class TablerolesPage {
   }
 
   getAllRoles() {
+    let loading = this.rolesService.createLoading('Cargando roles');
+    loading.present();
     this.rolesService.getAllRoles().then((data) => {
       this.roles = data;
       this.search = this.roles;
+      loading.dismiss();
     });
   }
 
