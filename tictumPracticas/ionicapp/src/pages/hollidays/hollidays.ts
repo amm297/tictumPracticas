@@ -33,11 +33,13 @@ export class hollidaysPage {
   bookHollidaysDisabled: boolean = true;
   user : User = new User();
   eventSource;
+  eventSourceP;
   startTime;
   endTime;
   total;
   totalP;
   controlHollidays;
+  controlDaysP;
   viewTitle;
   isToday: boolean;
   calendar = {
@@ -52,10 +54,17 @@ export class hollidaysPage {
 
     ionViewDidLoad() {
       console.log(this.user);
-      this.eventSource = this.loadHollidays();
+        this.eventSource = this.loadHollidays();
     }    
 
-     onViewTitleChanged(title) {
+      showPesonalDays() {
+       this.eventSource= this.loadPersonaldays();
+    }
+     showHollidays() {
+    this.eventSource = this.loadHollidays();
+    }
+    
+    onViewTitleChanged(title) {
         this.viewTitle = title;
     }
 
@@ -148,14 +157,23 @@ export class hollidaysPage {
         this.startDateDisabled= true;
         this.endDateDisabled= true;
         this.bookPersonalDaysDisabled = false;
-        this.user.personalDays.length;
-
+        this.controlDaysP =this.user.personalDays.length;
+       if(this.controlDaysP==this.user.daysp){
+               this.bookPersonalDaysDisabled = true;
+             let alert = this.alertCtrl.create({
+                 title: 'Vacaciones sobrepasadas',
+                 subTitle: 'Vas a coger mas dias de los permitidos',
+                 buttons: ['Ok']
+             });
+        alert.present();
+         }  
+      } 
+      else 
+         console.log("fecha no valida")  
         console.log(this.user.personalDays.length)
        }
-    }
-      
     
-
+      
     bookPersonalDays(){
       this.user.addPersonalDays(this.personalDay);
       this.userService.addPersonalDays(this.user)
@@ -180,6 +198,26 @@ export class hollidaysPage {
                 }); 
         }
         return events;
+    }
+    loadPersonaldays() {    
+        var events = [];
+        console.log(this.user.personalDays.length)
+       for (var i = 0; i < this.user.personalDays.length; i ++) {
+               let  startTime = new Date(this.user.personalDays[i]);
+               let endTime = new Date(new Date(this.user.personalDays[i]).getTime()+(24*60*60*1000));
+                   events.push({
+                    title: 'asuntos propios',
+                    startTime: startTime,
+                    endTime: endTime,
+                    allDay:false,
+                    color:'personal'  
+                  }); 
+              console.log(this.user.personalDays[i]); 
+              console.log(events)      
+        }
+        return events;
+
+       
     }
 
     checkDateInHollidays(date){

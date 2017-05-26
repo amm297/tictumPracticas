@@ -41,10 +41,15 @@
       <p style="color:red;">Has introducido diferentes contraseñas.</p>
     </ion-item>
 
-    <ion-item>
-      <ion-label floating>País</ion-label>
-      <ion-input [(ngModel)]="user.country" type="text" formControlName="country"></ion-input>
+     <ion-item>
+        <ion-label stacked>País</ion-label>
+        <ion-select>
+            <ion-option [selected]="country=='Spain'" *ngFor="let country of countries">
+                {{country}} 
+            </ion-option>
+       </ion-select>
     </ion-item>
+    
     <ion-item *ngIf="!userForm.controls.country.valid  && (userForm.controls.country.dirty || submitAttempt)">
       <p style="color:red;">Has introducido diferentes contraseñas.</p>
     </ion-item>

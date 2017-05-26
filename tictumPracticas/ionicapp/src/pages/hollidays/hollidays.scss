@@ -42,6 +42,10 @@ td,th{
       background-color: color($colors, pending) !important;
       color: white;
     }
+    &.personal {
+      background-color: color($colors, secondary) !important;
+      color: white;
+    }
     &.nobackground{
       background-color: white !important;
       color: black;

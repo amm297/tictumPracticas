@@ -35454,6 +35454,11 @@ td.monthview-current .calendar-day {
   color: white;
 }
 
+.calendar-day.personal {
+  background-color: #32db64 !important;
+  color: white;
+}
+
 .calendar-day.nobackground {
   background-color: white !important;
   color: black;
