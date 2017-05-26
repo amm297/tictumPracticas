@@ -4,7 +4,6 @@ import {Validators, FormBuilder} from '@angular/forms';
 import {User} from "../../models/user";
 import {Users} from "../../providers/users";
 
-import {PasswordValidator} from  './passwordValidator';
 import {DniValidator} from  './dniValidator';
 import {Roles} from "../../providers/roles";
 
@@ -17,7 +16,6 @@ export class UserformPage {
 
   user: User = new User();
   roles: any;
-  confirmpassword: string;
   userForm;
   text : string = "REGISTER_USER";
   edit : boolean = false;
@@ -47,8 +45,6 @@ export class UserformPage {
       country: ['', Validators.required],
       phone: ['', Validators.compose([Validators.minLength(8), Validators.pattern('[0-9()+-]*'), Validators.required])],
       email: ['', Validators.compose([Validators.minLength(8), Validators.email, Validators.required])],
-      password: ['', Validators.compose([Validators.minLength(8), Validators.required])],
-      confirmpassword: ['', PasswordValidator.isEqual],
       role: ['', Validators.required]
     });
   }
@@ -66,6 +62,7 @@ export class UserformPage {
           if(!data.hasOwnProperty('errmsg')) this.navCtrl.pop();
         });
       }else{
+        this.user.password = "1234cambio";
         this.usersService.registerUser(this.user).then((data) => {
           if (data.hasOwnProperty('errmsg')) {
             let msg = '';
@@ -80,6 +77,7 @@ export class UserformPage {
             alert.present();
           } else {
             this.navCtrl.pop();
+
           }
         });
       }
