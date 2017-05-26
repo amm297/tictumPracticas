@@ -14,10 +14,13 @@ export class TableholidaysPage {
   statusDisplay;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private usersService: Users) {
+    let loading = this.usersService.createLoading('Cargando usuarios');
+    loading.present();
     this.usersService.getAllUsers().then(data => {
       this.users = data['docs'];
       this.statusDisplay = 'pending';
       this.displayUsers = this.getUsersByStatus(this.statusDisplay);
+      loading.dismiss();
     });
   }
 
