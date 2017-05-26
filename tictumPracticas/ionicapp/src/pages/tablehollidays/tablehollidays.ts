@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {App, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AdminPage} from '../admin/admin';
 
 @IonicPage()
 @Component({
@@ -12,7 +13,7 @@ export class TablehollidaysPage {
   displayUsers;
   statusDisplay;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private app:App) {
     this.users = this.navParams.get('users');
   }
 
@@ -37,6 +38,13 @@ export class TablehollidaysPage {
     user.hollidays[index].status = status;
     console.log(user.hollidays[index]);
     this.getUsersByStatus('pending');
+  }
+
+  onBack(){
+    this.app.getRootNav().setRoot(AdminPage, {}, {
+      animate: true,
+      direction: 'back'
+    })
   }
 
 }
