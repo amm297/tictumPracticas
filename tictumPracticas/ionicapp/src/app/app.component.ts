@@ -6,14 +6,13 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {HomePage} from '../pages/home/home';
 
 import {TranslateService} from "@ngx-translate/core";
-import {TableusersPage} from '../pages/tableusers/tableusers';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   // set the rootPage to the first page we want displayed
-  public rootPage: any = TableusersPage;
+  public rootPage: any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService) {
     platform.ready().then(() => {
