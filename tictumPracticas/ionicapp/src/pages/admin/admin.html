@@ -3,30 +3,30 @@
     <ion-title>{{ 'ADMINISTRATOR' | translate }}</ion-title>
     <ion-buttons left>
       <button ion-button (click)="showConfirm()">
-        <ion-icon name="log-out"></ion-icon>
+        <ion-icon name="log-out" class="lgt"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <button ion-button block (click)="onClickAddUser()">
+  <button ion-button large round (click)="onClickAddUser()">
     <ion-icon name="person-add" item-left padding-right="5px"></ion-icon>
     {{ 'REGISTER' | translate }}
   </button>
-  <button ion-button block (click)="onClickUsers()">
+  <button ion-button large round (click)="onClickUsers()">
     <ion-icon name="people" item-left padding-right="5px"></ion-icon>
     {{ 'SHOWUSER' | translate }}
   </button>
-  <button ion-button block (click)="onClickRoles()">
+  <button ion-button large round (click)="onClickRoles()">
     <ion-icon name="warning" item-left padding-right="5px"></ion-icon>
     {{ 'SHOWROLE' | translate }}
   </button>
-  <button ion-button block (click)="onClickHolidays()">
+  <button ion-button large round (click)="onClickHolidays()">
     <ion-icon name="calendar" item-left padding-right="5px"></ion-icon>
     {{ 'CALENDAR' | translate }}
   </button>
-  <button ion-button block (click)="onClickCheckIn()">
+  <button ion-button large round (click)="onClickCheckIn()">
     <ion-icon name="alarm" item-left padding-right="5px"></ion-icon>
     {{ 'CLOCK_IN_MANAGEMENT' | translate }}
   </button>

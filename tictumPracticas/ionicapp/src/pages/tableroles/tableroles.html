@@ -27,16 +27,15 @@
     </div>
   </ion-list>
 </ion-content>
-<ion-footer *ngIf="this.displayInput">
 
+<ion-footer *ngIf="this.displayInput">
   <ion-item>
-    <button item-right ion-button clear icon-only (click)="closeInput()">
+    <ion-input type="text" [(ngModel)]="role.rolename" name="rolename" placeholder="{{ 'ROLE_NAME' | translate }}"></ion-input>
+      <button *ngIf="this.displayButton == 'add'" ion-button (click)="addRole()">{{ 'ADD' | translate }}</button>
+      <button *ngIf="this.displayButton == 'edit'" ion-button (click)="updateRole()">{{ 'EDIT' | translate }}</button>
+      <button item-right ion-button clear icon-only (click)="closeInput()">
       <ion-icon name="close"></ion-icon>
     </button>
-
-
-    <ion-input type="text" [(ngModel)]="role.rolename" name="rolename" placeholder="{{ 'ROLE_NAME' | translate }}"></ion-input>
   </ion-item>
-  <button *ngIf="this.displayButton == 'add'" ion-button (click)="addRole()">{{ 'ADD' | translate }}</button>
-  <button *ngIf="this.displayButton == 'edit'" ion-button (click)="updateRole()">{{ 'EDIT' | translate }}</button>
 </ion-footer>
+-->
