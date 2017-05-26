@@ -61,9 +61,16 @@ export class hollidaysPage {
   }
 
     ionViewDidLoad() {
-      console.log(this.user);
       this.eventSource = this.loadHollidays();
     }    
+
+    showHollidays(){
+      this.eventSource = this.loadHollidays();
+    }
+    showPesonalDays(){
+      this.eventSource = this.loadPersonalDays();
+    }
+
 
      onViewTitleChanged(title) {
         this.viewTitle = title;
@@ -85,6 +92,7 @@ export class hollidaysPage {
     onTimeSelected(ev) {
         this.currentSelectedDate=ev.selectedTime;
         let check = this.checkDateInHollidays(this.currentSelectedDate);
+        check = (!check) ? this.checkDatePersonalDay(this.currentSelectedDate) : check;
         this.buttonPersonalDaysDisabled=check;
         this.startDateDisabled = check;
         this.endDateDisabled = check;
@@ -149,10 +157,22 @@ export class hollidaysPage {
       if(this.currentSelectedDate !=''){
         let d = new Date(this.currentSelectedDate);
         if(d.getDay() == 6 || d.getDay() == 0) console.log("Error fin de semana");
-        this.personalDay = this.currentSelectedDate;
-        this.startDateDisabled= true;
-        this.endDateDisabled= true;
-        this.bookPersonalDaysDisabled = false;
+        else{
+          this.personalDay = this.currentSelectedDate;
+          this.startDateDisabled= true;
+          this.endDateDisabled= true;
+          this.bookPersonalDaysDisabled = false;
+
+          if(this.user.personalDays.length >= this.user.daysp){
+            this.bookPersonalDaysDisabled = true;
+            let alert = this.alertCtrl.create({
+              title: "Dias sobrepasados",
+              subTitle : "Vas a solicitar mas dias de los que tienes permitidos",
+              buttons:  ['OK']
+            });
+            alert.present();
+          }
+        }
       }
     }
 
@@ -181,12 +201,39 @@ export class hollidaysPage {
         return events;
     }
 
+    loadPersonalDays(){
+      var events = [];
+      for(let i in this.user.personalDays){
+            let personalDay = this.user.personalDays[i];
+            events.push({
+               title: 'Asuntos propios',
+               startTime: new Date(personalDay),
+               endTime: new Date(new Date(personalDay).getTime()+(24*60*60*1000)),
+               allDay: false,
+               color: 'personal'
+            });
+
+        }
+        console.log(events);
+        return events;
+
+    }
+
     checkDateInHollidays(date){
       for(let i in this.user.hollidays){
         let holliday = this.user.hollidays[i];
         let startTime = new Date(holliday.startDate);
         let endTime = new Date(holliday.endDate);
         if((startTime <= date  && date < endTime) || (date < this.calendar.currentDate)) return true;
+      }
+      return false;
+    }
+
+    checkDatePersonalDay(date){
+      for(let i in this.user.personalDays){
+        let personalDay = new Date(this.user.personalDays[i]);
+        let d = new Date(date);
+        if(personalDay.getTime() == d.getTime()) return true;
       }
       return false;
     }
