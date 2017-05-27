@@ -22,6 +22,7 @@ import {hollidaysPage} from "../pages/hollidays/hollidays";
 import {LocationPage} from '../pages/location/location';
 
 import { Geolocation } from '@ionic-native/geolocation';
+import {GoogleMaps} from '@ionic-native/google-maps';
 
 //Translate config
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
@@ -95,6 +96,7 @@ export function createTranslateLoader(http: Http) {
   providers: [
     StatusBar,
     SplashScreen,
+    GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Users,
     Roles,

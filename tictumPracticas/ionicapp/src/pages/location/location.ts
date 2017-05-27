@@ -85,6 +85,7 @@ export class LocationPage {
          this.usersService.Check(this.user._id,this.checking);
          console.log(this.checking);
          //falta añadir en local
+         
        });
        
     });
