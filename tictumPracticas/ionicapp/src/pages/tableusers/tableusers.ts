@@ -31,8 +31,6 @@ export class TableusersPage {
   }
 
   loadUsers() {
-    
-    
     return new Promise(resolve => {
       this.usersService.load(this.page)
         .then(data => {

@@ -38,8 +38,8 @@ export class UserformPage {
     }
 
     this.userForm = formBuilder.group({
-      name: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      lastname: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      name: ['', Validators.compose([Validators.pattern('[a-zA-ZáéíóúñÁÉÍÓÚÑ ]*'), Validators.required])],
+      lastname: ['', Validators.compose([Validators.pattern('[a-zA-ZáéíóúñÁÉÍÓÚÑ ]*'), Validators.required])],
       dni: ['', Validators.compose([Validators.required, DniValidator.isValid, DniValidator.hasValidFormat])],
       address: ['', Validators.required],
       country: ['', Validators.required],

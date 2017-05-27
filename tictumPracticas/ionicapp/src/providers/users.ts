@@ -14,9 +14,9 @@ export class Users {
   }
 
   //WI-Fi
-  //server = 'http://192.168.4.45:8080';
+  server = 'http://192.168.4.64:8080';
   //server = 'http://192.168.5.26:8080';
-  server = 'http://172.16.112.51:8080';
+  //server = 'http://172.16.112.51:8080';
   //server = 'http://localhost:8080';
 
   registerUser(data) {
@@ -34,7 +34,6 @@ export class Users {
   }
 
   loginUser(data) {
-
     return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
@@ -154,6 +153,17 @@ export class Users {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.put(this.server + '/api/users/addPersonalDays', JSON.stringify(data), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+  updateHollidays(data){
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.put(this.server + '/api/users/updateHollidays', JSON.stringify(data), {headers: headers})
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);

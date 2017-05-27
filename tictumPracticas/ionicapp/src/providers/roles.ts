@@ -11,8 +11,8 @@ export class Roles {
     this.data = null;
   }
 
-  //server = 'http://192.168.5.26:8080';
-  server = 'http://172.16.112.51:8080';
+  server = 'http://192.168.4.64:8080';
+  //server = 'http://172.16.112.51:8080';
   //server = 'http://localhost:8080';
 
   getAllRoles() {
@@ -27,11 +27,11 @@ export class Roles {
     });
   }
 
-  removeRole(role) {
+  removeRole(id) {
     return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      this.http.delete(this.server + '/api/roles/delete?_id=' + role._id, {headers: headers})
+      this.http.delete(this.server + '/api/roles/delete?_id=' + id, {headers: headers})
         .map(res => res.json())
         .subscribe(data => {
           console.log(data);
@@ -69,5 +69,4 @@ export class Roles {
       content: msg
     });
   }
-
 }

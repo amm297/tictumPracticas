@@ -11,6 +11,9 @@
   <ion-item no-lines>
     <ion-label>{{'ORDER_FIELD' | translate}}</ion-label>
     <ion-select rigth (ionChange)="onOrderUsers($event)">
+      <ion-option value="role">{{'ROLE' | translate}}</ion-option>
+      <ion-option value="name">{{'NAME' | translate}}</ion-option>
+      <ion-option value="lastname">{{'LASTNAME' | translate}}</ion-option>
       <ion-option value="dni">{{'DNI' | translate}}</ion-option>
       <ion-option value="email">{{ 'Email' | translate}}</ion-option>
       <ion-option value="country"> {{ 'COUNTRY' | translate}}</ion-option>
