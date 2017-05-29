@@ -85,6 +85,7 @@ export class Users {
   /*Funcion para cambiar la contraseña, comprobamos que el email/dni existe en la base de datos y después le añadimos la nueva contraseña.*/
   newPassword(data) {
     data.password = Md5.hashStr(data.password);
+    data.oldpassword =(data.oldpassword)?  Md5.hashStr(data.oldpassword) : null;
     return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');

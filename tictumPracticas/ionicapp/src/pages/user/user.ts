@@ -52,7 +52,7 @@ user: User = new User();
   }
 
   onChangePassword(){
-    this.navCtrl.push(ResetPassword);
+    this.navCtrl.push(ResetPassword,{user: this.user});
   }
 
   onClickMap(){

@@ -29,19 +29,24 @@ export class ResetPassword {
   //user: User = new User();
   confirmpassword: string;
   resetPasswForm;
+  hideOldPassword: boolean = false;
   user = { 
+    oldpassword: '',
     email: '', 
     dni:'', 
     password: '' 
   }; 
 
   constructor(public navCtrl: NavController, private navParams: NavParams, public formBuilder: FormBuilder, public alertCtrl: AlertController, private usersService: Users) {
+    this.hideOldPassword = (this.navCtrl.last().component.name == "HomePage") ? false : true;
     if (this.navParams.get('user')){
         this.user.email = this.navParams.get('user').email;
         this.user.dni = this.navParams.get('user').dni;
+        
     } 
 
     this.resetPasswForm = formBuilder.group({
+      oldpassword:['',Validators.minLength(8)],
       password: ['', Validators.compose([Validators.minLength(8),Validators.required])],
       confirmpassword: ['', PasswordValidator.isEqual], 
     });
@@ -59,6 +64,7 @@ export class ResetPassword {
         	email:this.user.email,
           dni:this.user.dni,
           password: this.user.password,
+          oldpassword:this.user.oldpassword
         }
         		console.log(cambio);
             
