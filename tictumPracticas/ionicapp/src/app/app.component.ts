@@ -13,7 +13,7 @@ import {UserPage} from '../pages/user/user';
 })
 export class MyApp {
   // set the rootPage to the first page we want displayed
-  public rootPage: any = AdminPage;
+  public rootPage: any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService) {
     platform.ready().then(() => {
