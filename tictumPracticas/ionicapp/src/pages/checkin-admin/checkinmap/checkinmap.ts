@@ -16,7 +16,7 @@ export class CheckinmapPage {
   map: any;
   users;
   date = new Date().toISOString();
-  checksDisplay;
+  checksDisplay : any[];
   markers: any = [];
 
   constructor(public navCtrl: NavController,
@@ -25,10 +25,18 @@ export class CheckinmapPage {
               public geolocation: Geolocation,
               private checkingService: Checking) {
     this.users = this.navParams.data;
+     console.log(this.checkingService.userPressed );
+
   }
 
   ionViewDidLoad() {
-    this.loadMap();
+    console.log("Holii");
+    this.loadMap().then(_ =>{
+      if(this.checkingService.userPressed != null) this.checksDisplay.push(this.checkingService.userPressed);
+      this.addMarkers("entrada");
+      if(this.checkingService.userPressed != null) this.map.setCenter(this.checkingService.userPressed.checking.entrada.geolocation);
+    });
+
   }
 
   onChangeDate() {
@@ -38,8 +46,7 @@ export class CheckinmapPage {
 
   loadMap() {
 
-    this.geolocation.getCurrentPosition().then((position) => {
-
+    return this.geolocation.getCurrentPosition().then((position) => {
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
       let mapOptions = {
@@ -50,8 +57,7 @@ export class CheckinmapPage {
       }
 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      this.addMarkers("entrada");
-
+      
     }, (err) => {
       console.log(err);
     });
@@ -68,7 +74,7 @@ export class CheckinmapPage {
   addMarkers(elem) {
     // coger geoposicion
     this.clearMarkers();
-    
+
     for(let check of this.checksDisplay){
       let marker = new google.maps.Marker({
         map: this.map,

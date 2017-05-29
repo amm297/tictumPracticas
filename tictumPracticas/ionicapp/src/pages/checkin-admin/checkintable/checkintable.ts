@@ -3,6 +3,7 @@ import {App, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AdminPage} from "../../admin/admin";
 import {Users} from '../../../providers/users';
 import {Checking} from '../../../providers/checking';
+import {CheckinmapPage} from '../checkinmap/checkinmap';
 
 @IonicPage()
 @Component({
@@ -24,6 +25,11 @@ export class CheckintablePage {
 
   onChangeDate() {
     this.checksDisplay = this.checkingService.getChecksByDate(this.users, this.date);
+  }
+
+  onClickCheckUser(check){
+     this.checkingService.onClickCheckUser(check);
+     this.navCtrl.parent.select(1); 
   }
 
   back() {

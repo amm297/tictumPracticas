@@ -1,5 +1,6 @@
 export class Checking {
 
+  userPressed;
   constructor() {
 
   }
@@ -20,6 +21,10 @@ export class Checking {
       }
     }
     return checksDisplay;
+  }
+
+  onClickCheckUser(data){
+    this.userPressed = data;
   }
 
   /*getFormatDate(format?){
