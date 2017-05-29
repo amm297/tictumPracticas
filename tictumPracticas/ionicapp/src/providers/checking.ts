@@ -12,6 +12,7 @@ export class Checking {
         if (checkDate == check.date) {
           let checkUser = {
             name: user.name,
+            lastname:user.lastname,
             checking: check
           };
           checksDisplay.push(checkUser);
