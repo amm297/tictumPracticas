@@ -40,7 +40,30 @@ export class User {
       this.personalDays.push(data)
    }
    addCheck(data){
-   	this.checking.push(data);
+   	//comprobar si ya exitiste el data
+  
+   	if(!this.getTodayCheck(data.date))	this.checking.push(data);
+   	else this.modifyCheck(data);
+   	console.log(this.checking);
+   }
+
+   getTodayCheck(date){
+   	for(let i in this.checking){
+   		let check = this.checking[i];
+   		if(check.date == date) return true;
+   	}
+   	return false;
+   }
+
+   modifyCheck(data){
+   	for(let i in this.checking){
+   		let check = this.checking[i];
+   		if(check.date == data.date) {
+   			check.salida = data.salida;
+   			console.log("Modificado");
+   		}
+   	}
+
    }
 
 	isInactive(){

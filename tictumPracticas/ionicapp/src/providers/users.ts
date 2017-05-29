@@ -14,10 +14,10 @@ export class Users {
   }
 
   //WI-Fi
-  server = 'http://192.168.4.64:8080';
+  //server = 'http://192.168.4.64:8080';
   //server = 'http://192.168.5.26:8080';
   //server = 'http://172.16.112.51:8080';
-  //server = 'http://localhost:8080';
+  server = 'http://localhost:8080';
 
   registerUser(data) {
     data.password = Md5.hashStr(data.password);
@@ -175,12 +175,15 @@ export class Users {
   Check(userId,data) {
 
     console.log(userId);
+    console.log(data);
    return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.put(this.server + '/api/users/check?_id=' + userId, JSON.stringify(data), {headers: headers})
         .map(res => res.json())
         .subscribe(data => {
+          console.log("service")
+          console.log(data);
           resolve(data);
         });
     });

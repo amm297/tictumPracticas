@@ -14,14 +14,15 @@ export class LocationPage {
  
   @ViewChild('map') mapElement: ElementRef;
   map: any;
-  user ;
+  user : User =new User() ;
+  userId :string = "";
   check : string = '';
   currentPosition = {
     lat: 0,
     lng: 0
   }
   checking={
-    fecha: '',
+    date: '',
     entrada: {
       geolocation : {
         lat: 0,
@@ -44,7 +45,7 @@ export class LocationPage {
               public geolocation: Geolocation, 
               private navParams: NavParams,
               private usersService: Users) {
-    this.checking.fecha = this.getFormattedDate();
+    this.checking.date = this.getFormattedDate();
     this.user  = (this.navParams.get('user'))? this.navParams.get('user') : new User();
     this.check = this.getTodayCheck();
     console.log(this.check);
@@ -82,12 +83,9 @@ export class LocationPage {
          this.checking[this.check].calle = res[0]['formatted_address'];
          this.checking[this.check].hora =  new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
          this.addMarker();
-         this.usersService.Check(this.user._id,this.checking);
-         console.log(this.checking);
-         //falta añadir en local
-         
-       });
-       
+         this.user.addCheck(this.checking);
+         this.usersService.Check(this.user['_id'],{checking:this.checking,modify:this.check});
+       });       
     });
   }
   
@@ -101,7 +99,7 @@ export class LocationPage {
 	  let content = "<h4>Has Fichado! </h4>"+
                   "<p>" +this.user.name + " " + this.user.lastname+ "</p>"+
                   "<p>" +this.checking[this.check].calle + "</p>"+
-                  "<p>" +this.checking.fecha + " " + this.checking[this.check].hora+ "</p>";          	 
+                  "<p>" +this.checking.date + " " + this.checking[this.check].hora+ "</p>";          	 
 	  let infoWindow = new google.maps.InfoWindow({content: content});
     google.maps.event.addListener(marker, 'click', () => { infoWindow.open(this.map, marker);});
 	 
@@ -111,8 +109,8 @@ export class LocationPage {
 
     for(let i in this.user.checking){
       let c = this.user.checking[i];
-      console.log(c);
-      if(c.fecha == this.getFormattedDate() && c.entrada.hora != "") return "salida";
+      if(c.date == this.getFormattedDate() && c.entrada.hora != "") return "salida";
+
     }
     return "entrada";    
   }
