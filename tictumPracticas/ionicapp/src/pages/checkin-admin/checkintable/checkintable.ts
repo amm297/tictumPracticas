@@ -11,40 +11,46 @@ import {Users} from '../../../providers/users';
 export class CheckintablePage {
 
   users: any = [];
-  date = this.getFormattedDate();
+  date = new Date().toISOString();
+  strDate;
 
-  
-
-  constructor(public navCtrl: NavController, private app: App, private navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              private app: App,
+              private navParams: NavParams) {
     this.users = this.navParams.data;
-    console.log(this.users);
-    console.log(this.date);
   }
 
   onChangeDate() {
-    this.getChecksByDate();
-    console.log(this.date);
+    this.getFormatDate();
   }
 
   getChecksByDate() {
-     console.log(this.users);
-     console.log(this.getFormattedDate(true));
-     for (let user of this.users) {
-       for (let check of user.checking) {
-         if (check.date == this.getFormattedDate(true)) {
-           console.log(check);
-         }
-       }
-     }
+    // for (let user of this.users) {
+    //   for (let check of user.checking) {
+    //     if (check.date == this.getFormattedDate()) {
+    //       console.log(check);
+    //     }
+    //   }
+    // }
   }
 
-   getFormattedDate(format?) {
-      let date = new Date();
-      let year = date.getFullYear();
-      let month = (1 + date.getMonth()).toString();
-      month = month.length > 1 ? month : '0' + month;
-      let day = date.getDate().toString();
-      day = day.length > 1 ? day : '0' + day;
+  getFormatDate(){
+    let day,month,year;
+    if(this.date['day']){
+      day = this.date['day'];
+      month = this.date['month'];
+      year = this.date['year'];
+    }else{
+      let today = new Date();
+      day = today.getUTCDate();
+      month = today.getUTCMonth();
+      year = today.getUTCFullYear();
+    }
+    if(day<10) day = "0"+day;
+    if(month<10) month = "0"+month;
+    this.strDate = month + "/" + day + "/" + year;
+    console.log(this.strDate);
+  }
 
       //2017-05-29T14:57:10.361Z
       if(format) return month + '/' + day + '/' + year;
