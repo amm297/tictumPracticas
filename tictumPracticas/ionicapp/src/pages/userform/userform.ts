@@ -77,7 +77,6 @@ export class UserformPage {
             alert.present();
           } else {
             this.navCtrl.pop();
-
           }
         });
       }
