@@ -6,6 +6,14 @@
       </button>
     </ion-buttons>
     <ion-title>Check In Map</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="addMarkers('entrada')">
+        <ion-icon name="log-in"></ion-icon>
+      </button>
+      <button ion-button (click)="addMarkers('salida')">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 

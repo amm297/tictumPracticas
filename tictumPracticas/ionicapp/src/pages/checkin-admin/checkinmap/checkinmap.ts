@@ -17,6 +17,7 @@ export class CheckinmapPage {
   users;
   date = new Date().toISOString();
   checksDisplay;
+  markers: any = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -49,7 +50,7 @@ export class CheckinmapPage {
       }
 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      this.addMarkers();
+      this.addMarkers("entrada");
 
     }, (err) => {
       console.log(err);
@@ -57,21 +58,34 @@ export class CheckinmapPage {
 
   }
 
-  addMarkers() {
+  clearMarkers(){
+    for(let m of this.markers){
+      m.setMap(null);
+    }
+    this.markers = [];
+  }
+
+  addMarkers(elem) {
     // coger geoposicion
+    this.clearMarkers();
+    
     for(let check of this.checksDisplay){
       let marker = new google.maps.Marker({
         map: this.map,
         animation: google.maps.Animation.DROP,
-        position: check.checking.entrada.geolocation
+        position: check.checking[elem].geolocation
       });   
-      let content = "<h4>"+check.name+" </h4>"+
-                    "<p>" +check.checking.entrada.calle + "</p>"+
-                    "<p>" +check.checking.date + " " + check.checking.entrada.hora+ "</p>";             
+      this.markers.push(marker);
+      let content = "<h4>"+check.name +" " + check.lastname+" </h4>"+
+                    "<p>" +check.checking[elem].calle + "</p>"+
+                    "<p>" +check.checking.date + " " + check.checking[elem].hora+ "</p>";             
       let infoWindow = new google.maps.InfoWindow({content: content});
       google.maps.event.addListener(marker, 'click', () => { infoWindow.open(this.map, marker);});
     }
   }
+
+
+
 
   addInfoWindow(marker, content) {
 
