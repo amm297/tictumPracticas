@@ -50,7 +50,7 @@ export class ResetPassword {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ResetPassword');
   }
-/*Cambia no resetea*/
+
   resetPassword(){
 		console.log("Changing password...");
 		if (this.resetPasswForm.valid) {
@@ -75,7 +75,7 @@ export class ResetPassword {
                   let alert = this.alertCtrl.create({
                   title: 'OK!',
                   subTitle: data['msgok'],
-                  buttons: ['Aceptar']
+                  buttons: ['Acept']
                 });
                 alert.present();
 
