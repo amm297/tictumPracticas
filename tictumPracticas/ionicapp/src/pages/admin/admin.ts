@@ -13,12 +13,20 @@ import {HollidaysTabsPage} from '../tablehollidays/hollidays-tabs';
   selector: 'page-admin',
   templateUrl: 'admin.html',
 })
+
+
+
 export class AdminPage {
+
+  users
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private alertCtrl: AlertController,
               private usersService: Users) {
+    this.usersService.getAllUsers().then(data => {
+      this.users = data;
+    })
   }
 
   onClickUsers() {
@@ -44,7 +52,7 @@ export class AdminPage {
   }
 
   onClickCheckIn() {
-    this.navCtrl.push(CheckinTabsPage);
+    this.navCtrl.push(CheckinTabsPage,{users:this.users});
   }
 
   showConfirm() {
