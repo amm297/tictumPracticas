@@ -13,9 +13,10 @@ export class CheckinmapPage {
 
   @ViewChild('map') mapElement: ElementRef;
   map: any;
+  users;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private app: App, public geolocation: Geolocation) {
-
+      this.users = this.navParams;
   }
 
   ionViewDidLoad() {

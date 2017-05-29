@@ -11,19 +11,7 @@
 
 
 <ion-content padding>
+  <ion-datetime [(ngModel)]="date" name="date" (ionChange)="onChangeDate()"></ion-datetime>
   <ion-list>
-    <div *ngFor="let user of users">
-      <ion-item>
-        <h2>{{user.name}} {{user.lastname}}</h2>
-        <ion-card>
-          <ion-card-header>
-                <p>02-05-2017
-                  <ion-icon name="arrow-forward"></ion-icon>
-                  15:05
-                </p>
-          </ion-card-header>
-        </ion-card>
-      </ion-item>
-    </div>
   </ion-list>
 </ion-content>
