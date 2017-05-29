@@ -6,9 +6,10 @@ export class Checking {
 
   getChecksByDate(users, date){
     let checksDisplay = [];
+    let checkDate = this.getFormatDate(date);
     for (let user of users) {
       for (let check of user.checking) {
-        if (this.getFormatDate(date) == check.date) {
+        if (checkDate == check.date) {
           let checkUser = {
             name: user.name,
             checking: check
@@ -20,7 +21,29 @@ export class Checking {
     return checksDisplay;
   }
 
+  /*getFormatDate(format?){
+    let date :any;
+    if(typeof this.date === "object"){
+      date = this.date;
+      let ret = date.month + "/" + date.day + "/" + date.year;
+      console.log(ret);
+      return ret;
+    } 
+    else{
+      date = (format)? new Date(Date.parse(this.date)) : new Date();
+      console.log(date);
+      let day = date.getUTCDate().toString();
+      let month = (date.getUTCMonth() + 1).toString();
+      let year = date.getUTCFullYear();
+      day = (day.length > 1) ? day:"0"+day ;
+      month = (month.length > 1) ? month : "0"+month;
+      let ret =  (format)? month + "/" + day + "/" + year : year+"-"+month+"-"+day;
+      console.log(ret);
+      return ret;
+    }*/
+
   getFormatDate(date) {
+    console.log(date);
     let day, month, year;
     if (date['day']) {
       day = date['day'];
