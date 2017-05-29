@@ -11,51 +11,53 @@ import {Users} from '../../../providers/users';
 export class CheckintablePage {
 
   users: any = [];
-  date = new Date().toISOString();
-  strDate;
+  date = this.getFormatDate();
 
-  constructor(public navCtrl: NavController,
-              private app: App,
-              private navParams: NavParams) {
+  constructor(public navCtrl: NavController, private app: App, private navParams: NavParams) {
     this.users = this.navParams.data;
   }
 
   onChangeDate() {
-    this.getFormatDate();
+    this.getChecksByDate();
   }
 
   getChecksByDate() {
-    // for (let user of this.users) {
-    //   for (let check of user.checking) {
-    //     if (check.date == this.getFormattedDate()) {
-    //       console.log(check);
-    //     }
-    //   }
-    // }
+    let d = this.getFormatDate(true);
+     for (let user of this.users) {
+       for (let check of user.checking) {
+         if (check.date == d) {
+           console.log(check);
+         }
+       }
+     }
   }
 
-  getFormatDate(){
-    let day,month,year;
-    if(this.date['day']){
-      day = this.date['day'];
-      month = this.date['month'];
-      year = this.date['year'];
-    }else{
-      let today = new Date();
-      day = today.getUTCDate();
-      month = today.getUTCMonth();
-      year = today.getUTCFullYear();
+ 
+
+  getFormatDate(format?){
+    let date :any;
+    if(typeof this.date === "object"){
+      date = this.date;
+      let ret = date.month + "/" + date.day + "/" + date.year;
+      console.log(ret);
+      return ret;
+    } 
+    else{
+      date = (format)? new Date(Date.parse(this.date)) : new Date();
+      console.log(date);
+      let day = date.getUTCDate().toString();
+      let month = (date.getUTCMonth() + 1).toString();
+      let year = date.getUTCFullYear();
+      day = (day.length > 1) ? day:"0"+day ;
+      month = (month.length > 1) ? month : "0"+month;
+      let ret =  (format)? month + "/" + day + "/" + year : year+"-"+month+"-"+day;
+      console.log(ret);
+      return ret;
     }
-    if(day<10) day = "0"+day;
-    if(month<10) month = "0"+month;
-    this.strDate = month + "/" + day + "/" + year;
-    console.log(this.strDate);
+
   }
 
-      //2017-05-29T14:57:10.361Z
-      if(format) return month + '/' + day + '/' + year;
-      return year+"-"+month+"-"+day+"T00:00:00.000Z";
-    }
+  
 
   back() {
     this.app.getRootNav().setRoot(AdminPage, {}, {
