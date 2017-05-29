@@ -11,7 +11,9 @@ import {Users} from '../../../providers/users';
 export class CheckintablePage {
 
   users: any = [];
-  date = new Date().toISOString();
+  date = this.getFormattedDate();
+
+  
 
   constructor(public navCtrl: NavController, private app: App, private navParams: NavParams) {
     this.users = this.navParams.data;
@@ -20,28 +22,34 @@ export class CheckintablePage {
   }
 
   onChangeDate() {
-    // this.getChecksByDate();
+    this.getChecksByDate();
+    console.log(this.date);
   }
 
   getChecksByDate() {
-    console.log(this.getFormattedDate());
-    // for (let user of this.users) {
-    //   for (let check of user.checking) {
-    //     if (check.date == this.getFormattedDate()) {
-    //       console.log(check);
-    //     }
-    //   }
-    // }
+     console.log(this.users);
+     console.log(this.getFormattedDate(true));
+     for (let user of this.users) {
+       for (let check of user.checking) {
+         if (check.date == this.getFormattedDate(true)) {
+           console.log(check);
+         }
+       }
+     }
   }
 
-  getFormattedDate() {
-    // let year = this.date["year"];
-    // let month = this.date["month"];
-    // month = month.length > 1 ? month : '0' + month;
-    // let day = this.date["day"];
-    // day = day.length > 1 ? day : '0' + day;
-    // return month + '/' + day + '/' + year;
-  }
+   getFormattedDate(format?) {
+      let date = new Date();
+      let year = date.getFullYear();
+      let month = (1 + date.getMonth()).toString();
+      month = month.length > 1 ? month : '0' + month;
+      let day = date.getDate().toString();
+      day = day.length > 1 ? day : '0' + day;
+
+      //2017-05-29T14:57:10.361Z
+      if(format) return month + '/' + day + '/' + year;
+      return year+"-"+month+"-"+day+"T00:00:00.000Z";
+    }
 
   back() {
     this.app.getRootNav().setRoot(AdminPage, {}, {
