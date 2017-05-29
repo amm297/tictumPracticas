@@ -1,3 +1,4 @@
+
 import {Component} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
@@ -15,6 +16,8 @@ import {LocationPage} from '../location/location'
 export class UserPage {
 
 user: User = new User();
+  shownGroup = null;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
 
@@ -56,9 +59,19 @@ user: User = new User();
   }
 
   onClickMap(){
-    this.navCtrl.push(LocationPage,{user :this.user});
+    this.navCtrl.push(LocationPage);
   }
 
+toggleGroup(group) {
+    if (this.isGroupShown(group)) {
+        this.shownGroup = null;
+    } else {
+        this.shownGroup = group;
+    }
+  };
 
+  isGroupShown(group) {
+    return this.shownGroup === group;
+  };
 
 }
