@@ -7,16 +7,23 @@
     </ion-buttons>
     <ion-title>Check-In Table</ion-title>
   </ion-navbar>
+
 </ion-header>
 
 
 <ion-content padding>
+
+
   <ion-datetime [(ngModel)]="date" name="date" (ionChange)="onChangeDate()"></ion-datetime>
+    <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar usuarios">
+    </ion-searchbar>
+
   <ion-list>
-    <ion-item *ngFor="let check of checksDisplay" (click)="onClickCheckUser(check)">
-      <p item-left>{{check.name}}</p>
-      <p item-right>Entrada: {{check.checking.entrada.hora}}</p>
-      <p item-right>Salida: {{check.checking.salida.hora}}</p>
+    <ion-item *ngFor="let check of search">
+      <p>{{check.name}} {{check.lastname}}</p>
+      <p item-right>Entrada: <strong>{{check.checking.entrada.hora}}</strong></p>
+      <p item-right>Salida: <strong>{{check.checking.salida.hora}}</strong></p>
     </ion-item>
   </ion-list>
+
 </ion-content>

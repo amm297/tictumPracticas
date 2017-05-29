@@ -59,7 +59,7 @@ user: User = new User();
   }
 
   onClickMap(){
-    this.navCtrl.push(LocationPage,{user :this.user});
+    this.navCtrl.push(LocationPage);
   }
 
 toggleGroup(group) {
