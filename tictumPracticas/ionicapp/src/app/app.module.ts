@@ -36,6 +36,7 @@ import {TabledeniedPage} from '../pages/tablehollidays-tabs/tabledenied/tableden
 import {TablependingPage} from '../pages/tablehollidays-tabs/tablepending/tablepending';
 import {TablehollidaysPage} from '../pages/tablehollidays/tablehollidays';
 import {HollidaysTabsPage} from '../pages/tablehollidays/hollidays-tabs';
+import {Checking} from '../providers/checking';
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -100,7 +101,8 @@ export function createTranslateLoader(http: Http) {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Users,
     Roles,
-    Geolocation
+    Geolocation,
+    Checking
   ]
 })
 export class AppModule {
