@@ -12,8 +12,8 @@ export class Roles {
   }
 //WI-FI
   //server = 'http://192.168.4.64:8080';
-  //server = 'http://172.16.112.51:8080';
-  server = 'http://localhost:8080';
+  server = 'http://172.16.112.45:8080';
+  //server = 'http://localhost:8080';
 
   getAllRoles() {
     return new Promise(resolve => {

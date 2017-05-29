@@ -84,7 +84,7 @@ export class LocationPage {
          this.checking[this.check].hora =  new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
          this.addMarker();
          this.user.addCheck(this.checking);
-         this.usersService.Check(this.user['_id'],{checking:this.checking,modify:this.check});
+         this.usersService.Check(this.user['_id'],{checking:this.user.checking,modify:this.check});
        });       
     });
   }
