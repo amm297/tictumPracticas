@@ -22,7 +22,10 @@ $colors: (
 	light: $light,
 	dark: $dark,
 	warning:$warning,
-	card:$card);
+	card:$card,
+	pending: #4fb342,
+	aproved: #42f483,
+	denied: #f44d41);
 
 $toolbar-ios-background:($interf);
 $toolbar-md-background:($interf);
