@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController,NavParams } from 'ionic-angular';
+import { NavController,NavParams, AlertController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { User }  from '../../models/user';
 import { Users}  from '../../providers/users';
@@ -17,6 +17,7 @@ export class LocationPage {
   user : User =new User() ;
   userId :string = "";
   check : string = '';
+  checkDisabled : boolean = false;
   currentPosition = {
     lat: 0,
     lng: 0
@@ -44,11 +45,20 @@ export class LocationPage {
   constructor(public navCtrl: NavController, 
               public geolocation: Geolocation, 
               private navParams: NavParams,
-              private usersService: Users) {
+              private usersService: Users,
+              private alertCtrl: AlertController) {
     this.checking.date = this.getFormattedDate();
     this.user  = (this.navParams.get('user'))? this.navParams.get('user') : new User();
     this.check = this.getTodayCheck();
-    console.log(this.check);
+    if(this.check == "err"){
+      this.checkDisabled = true;
+       let confirm = this.alertCtrl.create({
+          title: 'Ooops!',
+          message: 'Ya has fichado hoy',
+          buttons: [ 'OK' ]
+        });
+      confirm.present();
+    }
   }
  
   ionViewDidLoad(){
@@ -75,17 +85,21 @@ export class LocationPage {
     this.geolocation.getCurrentPosition()
     .then(position =>{
        this.check = this.getTodayCheck();
-       this.currentPosition.lat = position.coords.latitude;
-       this.currentPosition.lng = position.coords.longitude;
-       this.checking[this.check].geolocation = this.currentPosition;
-       let geocoder = new google.maps.Geocoder();
-       geocoder.geocode({'location': this.currentPosition}, (res,status)=>{
-         this.checking[this.check].calle = res[0]['formatted_address'];
-         this.checking[this.check].hora =  new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
-         this.addMarker();
-         this.user.addCheck(this.checking);
-         this.usersService.Check(this.user['_id'],{checking:this.user.checking,modify:this.check});
-       });       
+       if(this.check != "err"){
+         this.currentPosition.lat = position.coords.latitude;
+         this.currentPosition.lng = position.coords.longitude;
+         this.checking[this.check].geolocation = this.currentPosition;
+         let geocoder = new google.maps.Geocoder();
+         geocoder.geocode({'location': this.currentPosition}, (res,status)=>{
+           this.checking[this.check].calle = res[0]['formatted_address'];
+           this.checking[this.check].hora =  new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
+           this.addMarker();
+           this.user.addCheck(this.checking);
+           this.usersService.Check(this.user['_id'],{checking:this.user.checking});
+         }); 
+       }else {
+         console.log("ya aha fichado")
+       }  
     });
   }
   
@@ -109,7 +123,8 @@ export class LocationPage {
 
     for(let i in this.user.checking){
       let c = this.user.checking[i];
-      if(c.date == this.getFormattedDate() && c.entrada.hora != "") return "salida";
+      if(c.date == this.getFormattedDate() && c.salida.hora != "" && c.entrada.hora != "") return "err";
+      else if(c.date == this.getFormattedDate() && c.entrada.hora != "") return "salida";
 
     }
     return "entrada";    

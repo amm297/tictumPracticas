@@ -9,7 +9,7 @@
 <ion-content>
   <div #map id="map"></div>   
   <ion-fab right top> 
-    <button ion-fab (tap)="onClickCheck()"> 
+    <button [disabled]="checkDisabled" ion-fab (tap)="onClickCheck()"> 
       <ion-icon name="pin"></ion-icon> 
       <ion-icon name="add"></ion-icon> 
     </button> 
