@@ -44,7 +44,13 @@ export class AdminPage {
   }
 
   onClickCheckIn() {
-    this.navCtrl.push(CheckinTabsPage);
+    let loading = this.usersService.createLoading('Cargando usuarios');
+    loading.present();
+    this.usersService.getAllUsers().then(data=>{
+        loading.dismiss();
+        this.navCtrl.push(CheckinTabsPage,data);
+      }
+    );
   }
 
   showConfirm() {
