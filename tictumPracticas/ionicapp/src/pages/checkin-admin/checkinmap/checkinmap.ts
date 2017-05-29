@@ -1,7 +1,8 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
-import { AdminPage } from "../../admin/admin";
+import {Component, ViewChild, ElementRef} from '@angular/core';
+import {App, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Geolocation} from '@ionic-native/geolocation';
+import {AdminPage} from "../../admin/admin";
+import {Checking} from '../../../providers/checking';
 
 declare var google;
 
@@ -14,13 +15,24 @@ export class CheckinmapPage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   users;
+  date = new Date().toISOString();
+  checksDisplay;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private app: App, public geolocation: Geolocation) {
-      this.users = this.navParams;
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private app: App,
+              public geolocation: Geolocation,
+              private checkingService: Checking) {
+    this.users = this.navParams.data;
   }
 
   ionViewDidLoad() {
     this.loadMap();
+  }
+
+  onChangeDate() {
+    this.checksDisplay = this.checkingService.getChecksByDate(this.users, this.date);
+    console.log(this.checksDisplay);
   }
 
   loadMap() {
