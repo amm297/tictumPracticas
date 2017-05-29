@@ -41,12 +41,11 @@ export class ResetPassword {
     this.hideOldPassword = (this.navCtrl.last().component.name == "HomePage") ? false : true;
     if (this.navParams.get('user')){
         this.user.email = this.navParams.get('user').email;
-        this.user.dni = this.navParams.get('user').dni;
-        
+        this.user.dni = this.navParams.get('user').dni;        
     } 
 
     this.resetPasswForm = formBuilder.group({
-      oldpassword:['',Validators.minLength(8)],
+      oldpassword:['',Validators.compose([Validators.minLength(8),Validators.required])],
       password: ['', Validators.compose([Validators.minLength(8),Validators.required])],
       confirmpassword: ['', PasswordValidator.isEqual], 
     });
