@@ -14,9 +14,9 @@ export class Users {
   }
 
   //WI-Fi
-  //server = 'http://192.168.4.45:8080';
+  server = 'http://192.168.4.45:8080';
   //server = 'http://192.168.5.26:8080';
-  server = 'http://172.16.112.51:8080';
+  //server = 'http://172.16.112.51:8080';
   //server = 'http://localhost:8080';
 
   registerUser(data) {
