@@ -8,7 +8,7 @@
   "PLACEHOLDER_EMAIL": "Introduce un email o un DNI válido",
   "PASSWORD": "Contraseña",
   "EMPTY_PASSWORD": "Introduce una contraseña",
-  "REMENBER": "Recordar mi contraseña",
+  "REMEMBER": "Recordar mi contraseña",
   "RECOVER":"Recuperar Contraseña",
   "CONFIRM_FORGOT": "Olvidé mi contraseña",
 
@@ -21,12 +21,13 @@
   "CLOCK_IN_MANAGEMENT": "Gestión de Fichajes",
 
   "PAG_GENERIC_PASSWORD": "----------------------------------------------------",
-  "REMENBER_PASSWORD": "Recordar contraseña",
+  "REMEMBER_PASSWORD": "Recordar contraseña",
   "VALID_EMAIL": "Introduce un email válido",
   "VALID_DNI": "Introduce un DNI válido",
   "UPDATE_PASSWORD": "Actualizar contraseña",
 
   "PAG_RESET_PASSWORD": "----------------------------------------------------",
+  "OLD_PASSWORD":"Contraseña actual",
   "RECOVER_PASSWORD": "Recuperar contraseña",
   "NEW_PASSWORD": "Nueva contraseña",
   "VALID_PASSWORD": "Introduce una contraseña valida",
@@ -44,9 +45,11 @@
   "LIST_USERS": "Lista de Usuarios",
 
   "PAG_USER": "----------------------------------------------------",
+  "USER":"Usuario",
   "RESERVE_VACATION": "Reservar vacaciones",
   "CLOCK_IN": "Fichar",
   "CHANGE_PASSWORD":"Cambiar Contraseña",
+  "MY_DATA":"Mis datos",
 
   "PAG_USERFORM": "----------------------------------------------------",
   "NAME": "Nombre",
@@ -54,6 +57,8 @@
   "LASTNAME": "Apellido",
   "VALID_LASTNAME": "Apellido debe tener únicamente letras.",
   "ADDRESS": "Dirección",
+  "CITY": "Ciudad",
+  "STATE_OR_PROVINCE": "Estado o Provincia",
   "COUNTRY": "País",
   "DIFFERENT_PASSWORD": "Has introducido diferentes contraseñas.",
   "PHONE_NUMBER": "Teléfono",
@@ -64,8 +69,17 @@
   "EDIT_USER":"Editar Usuario",
   "REGISTER_USER":"Registrar Usuario",
 
+  "PAG_CHECKINTABLE": "----------------------------------------------------",
+  "ENTRANCE":"Entrada",
+  "EXIT":"Salida",
+  "CHECK_IN_TABLE":"Control en Tabla",
+
+  "PAG_CHECKINMAP": "----------------------------------------------------",
+  "CHECK_IN_MAP":"Control en Mapa",
+  "MAP":"Mapa",
+  
   "PAGE_MODAL": "-------------------------------------------------------",
-  "TITTLE_MODAL":"Detalles del Usuario",
+  "TITLE_MODAL":"Detalles del Usuario",
   "DNI" : "DNI",
   "EMAIL": "Email",
   "ORDER_FIELD": "Ordenar "
