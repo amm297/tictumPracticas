@@ -38,7 +38,7 @@ export class TablerolesPage {
   }
 
   showInput() {
-    this.role.rolename = this.oldRolename;
+    if(this.role ) this.role.rolename = this.oldRolename;
     this.role = {rolename: ''};
     this.displayButton = 'add';
     this.displayInput = true;
