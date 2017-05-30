@@ -42,6 +42,8 @@ export class UserformPage {
       lastname: ['', Validators.compose([Validators.pattern('[a-zA-ZáéíóúñÁÉÍÓÚÑ ]*'), Validators.required])],
       dni: ['', Validators.compose([Validators.required, DniValidator.isValid, DniValidator.hasValidFormat])],
       address: ['', Validators.required],
+      city: ['', Validators.required],
+      stateprovince: ['', Validators.required],
       country: ['', Validators.required],
       phone: ['', Validators.compose([Validators.minLength(8), Validators.pattern('[0-9()+-]*'), Validators.required])],
       email: ['', Validators.compose([Validators.minLength(8), Validators.email, Validators.required])],

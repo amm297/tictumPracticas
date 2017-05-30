@@ -35,6 +35,16 @@
     </ion-item>
 
     <ion-item>
+      <ion-label floating>{{ 'CITY' | translate }}</ion-label>
+      <ion-input [(ngModel)]="user.city" type="text" formControlName="city"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>{{ 'STATE_OR_PROVINCE' | translate }}</ion-label>
+      <ion-input [(ngModel)]="user.stateprovince" type="text" formControlName="stateprovince"></ion-input>
+    </ion-item>
+
+    <ion-item>
       <ion-label floating>{{ 'COUNTRY' | translate }}</ion-label>
       <ion-input [(ngModel)]="user.country" type="text" formControlName="country"></ion-input>
     </ion-item>

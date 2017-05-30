@@ -38,7 +38,8 @@ export class ResetPassword {
         this.user.email = this.navParams.get('user').email;
         this.user.dni = this.navParams.get('user').dni;        
     } 
-
+// Si el campo de la password actual no está oculto tenemos que comprobar la contraseña actual, la nueva y la confirmación de la nueva
+// Si está oculto sólo comprobaremos los campos de la contraseña nueva y la confirmación.
     if(this.hideOldPassword == true) {
       this.resetPasswForm = formBuilder.group({
         oldpassword:['',Validators.compose([Validators.minLength(8),Validators.required])],
@@ -58,18 +59,17 @@ export class ResetPassword {
   }
 
   resetPassword(){
-		console.log("Changing password...");
-		if (this.resetPasswForm.valid) {
-     	//if (this.user.password == this.confirmpassword) {
+    console.log("Changing password...");
+    if (this.resetPasswForm.valid) {
         let cambio = {
-        	email:this.user.email,
+          email:this.user.email,
           dni:this.user.dni,
           password: this.user.password,
           oldpassword:this.user.oldpassword
         }
-        		console.log(cambio);
+            console.log(cambio);
             
-          	this.usersService.newPassword(cambio).then((data) => {
+            this.usersService.newPassword(cambio).then((data) => {
             /*Comprobamos que el cambio de contraseña se ha realizado correctamente, si no es así mostramos un error por pantalla.*/
               if(data.hasOwnProperty('errmsg')){
                 let alert = this.alertCtrl.create({
@@ -94,11 +94,6 @@ export class ResetPassword {
               
               }              
             });
-
-
-
-     //   	}
-
       };
     }
-	}
+  }
