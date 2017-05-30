@@ -32,6 +32,7 @@ export class CheckinmapPage {
   ionViewDidLoad() {
     console.log("Holii");
     this.loadMap().then(_ =>{
+      console.log(this.checkingService.userPressed);
       if(this.checkingService.userPressed != null) this.checksDisplay.push(this.checkingService.userPressed);
       this.addMarkers("entrada");
       if(this.checkingService.userPressed != null) this.map.setCenter(this.checkingService.userPressed.checking.entrada.geolocation);

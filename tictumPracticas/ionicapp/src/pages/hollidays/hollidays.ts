@@ -111,8 +111,8 @@ export class hollidaysPage {
       if(this.currentSelectedDate !=''){
         this.holliday.startDate = this.currentSelectedDate; 
         this.buttonPersonalDaysDisabled = true;
-        for(let i in this.user.hollidays){
-          this.total += this.user.hollidays[i].days;
+        for(let holliday of this.user.hollidays){
+          this.total += (holliday.staus !="denied") ?  holliday.days : 0;
         }
         console.log(this.total);
       }
@@ -129,8 +129,8 @@ export class hollidaysPage {
         let  f = new Date(this.holliday.endDate);
         this.holliday.days = Math.floor((f.getTime()-s.getTime())/(24*60*60*1000));
         this.holliday.days -= 2*Math.floor(this.holliday.days/7);
-        if( this.holliday.days+this.total > this.user.daysh ){
-             this.bookHollidaysDisabled = true;
+        this.bookHollidaysDisabled = this.checkHollidayPeriod();
+        if( this.holliday.days+this.total > this.user.daysh ){             
              let alert = this.alertCtrl.create({
                  title: 'Vacaciones sobrepasadas',
                  subTitle: 'Vas a coger mas dias de los permitidos',
@@ -190,12 +190,12 @@ export class hollidaysPage {
 
     loadHollidays() {    
         var events = [];
-        for(let i in this.user.hollidays){
-            let holliday = this.user.hollidays[i];
+        for(let holliday of this.user.hollidays){
+            //let holliday = this.user.hollidays[i];
             events.push({
                title: 'vacaciones',
                startTime: new Date(holliday.startDate),
-               endTime: new Date(holliday.endDate),
+               endTime: new Date(new Date(holliday.endDate).getTime()+(24*60*60*1000)),
                allDay: false,
                color: holliday.status
             });
@@ -222,11 +222,20 @@ export class hollidaysPage {
     }
 
     checkDateInHollidays(date){
-      for(let i in this.user.hollidays){
-        let holliday = this.user.hollidays[i];
+      for(let holliday of this.user.hollidays){
         let startTime = new Date(holliday.startDate);
         let endTime = new Date(holliday.endDate);
         if((startTime <= date  && date < endTime) || (date < this.calendar.currentDate)) return true;
+      }
+      return false;
+    }
+
+    checkHollidayPeriod(){
+      console.log(this.holliday);
+    for(let holliday of this.user.hollidays){
+        let startTime = new Date(holliday.startDate);
+        let endTime = new Date(holliday.endDate);
+        if((new Date(this.holliday.startDate) <= startTime  && endTime <= new Date(this.holliday.endDate))) return true;
       }
       return false;
     }

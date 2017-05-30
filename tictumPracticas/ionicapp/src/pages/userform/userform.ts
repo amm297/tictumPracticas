@@ -40,6 +40,8 @@ export class UserformPage {
       dni: ['', Validators.compose([Validators.required, DniValidator.isValid, DniValidator.hasValidFormat])],
       address: ['', Validators.required],
       country: ['', Validators.required],
+      city: ['', Validators.required], 
+      stateprovince: ['', Validators.required], 
       phone: ['', Validators.compose([Validators.minLength(8), Validators.pattern('[0-9()+-]*'), Validators.required])],
       email: ['', Validators.compose([Validators.minLength(8), Validators.email, Validators.required])],
       role: ['', Validators.required]
@@ -60,6 +62,7 @@ export class UserformPage {
         });
       }else{
         this.user.password = "1234cambio";
+        this.user.email=this.user.email.toLowerCase();
         this.service.registerUser(this.user).then((data) => {
           if (data.hasOwnProperty('errmsg')) {
             let msg = '';

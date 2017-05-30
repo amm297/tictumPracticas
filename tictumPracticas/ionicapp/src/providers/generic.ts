@@ -56,6 +56,10 @@ export class GenericProvider {
     return this.getPromise({route: this.server + '/api/users/read'});
   }
 
+  getUserById(userId){
+    return this.getPromise({route:this.server + '/api/users/readbyId/'+userId});
+  }
+
   deleteUser(deleteUserId: String) {
     return this.deletePromise({info:this.server + '/api/users/delete?_id=' + deleteUserId })
   }
@@ -68,7 +72,7 @@ export class GenericProvider {
   //Gestion de vacaciones
   addHollidays(data) {
     console.log(data);
-    return this.putPromise({route:this.server + '/api/users/update',data:data});
+    return this.putPromise({route:this.server + '/api/users/addhollidays',data:data});
   }
 
   addPersonalDays(data) {

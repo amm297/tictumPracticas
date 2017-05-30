@@ -21,14 +21,16 @@
 <ion-content padding>
 	<ion-card>
       <ion-list no-lines>
-      	<ion-item>{{user.name}}</ion-item>
-        <ion-item>{{user.lastname}}</ion-item>
-        <ion-item>{{user.role}}</ion-item>
-      	<ion-item>{{user.dni}}</ion-item>
-        <ion-item>{{user.email}}</ion-item>
-        <ion-item>{{user.country}}</ion-item>
-        <ion-item>{{user.address}}</ion-item>
-        <ion-item>{{user.phone}}</ion-item>
+      	 <p>{{'DNI' | translate}}: <ion-item>{{user.dni}}</ion-item></p> 
+          <p>{{ 'NAME' | translate }}: <ion-item>{{user.name}}</ion-item></p> 
+          <p>{{'LASTNAME' | translate}}: <ion-item>{{user.lastname}}</ion-item></p> 
+          <p>{{'ROLE' | translate}}: <ion-item>{{user.role}}</ion-item></p> 
+          <p>{{ 'Email' | translate}}: <ion-item>{{user.email}}</ion-item></p> 
+          <p>{{ 'ADDRESS' | translate}}: <ion-item>{{user.address}}</ion-item></p> 
+          <p>{{ 'CITY' | translate}}: <ion-item>{{user.city}}</ion-item></p> 
+          <p>{{ 'STATE_OR_PROVINCE' | translate}}: <ion-item>{{user.stateprovince}}</ion-item></p> 
+          <p>{{ 'COUNTRY' | translate}}: <ion-item>{{user.country}}</ion-item></p> 
+          <p>{{'PHONE_NUMBER' | translate }}: <ion-item>{{user.phone}}</ion-item></p> 
       </ion-list>
       <ion-row>
         <ion-col text-right>

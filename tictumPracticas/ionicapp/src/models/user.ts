@@ -7,6 +7,8 @@ export class User {
 	lastname: string;
 	address: string;
 	country: string;
+   city: string; 
+   stateprovince: string; 
 	phone: string;
 	email: string;
 	password: string;
