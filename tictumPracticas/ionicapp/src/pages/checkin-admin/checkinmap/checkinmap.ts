@@ -30,14 +30,23 @@ export class CheckinmapPage {
   }
 
   ionViewDidLoad() {
-    console.log("Holii");
+    
+
+  }
+
+  ionViewWillEnter()  {
     this.loadMap().then(_ =>{
-      console.log(this.checkingService.userPressed);
+      
       if(this.checkingService.userPressed != null) this.checksDisplay.push(this.checkingService.userPressed);
       this.addMarkers("entrada");
       if(this.checkingService.userPressed != null) this.map.setCenter(this.checkingService.userPressed.checking.entrada.geolocation);
     });
+  }
 
+
+  ionViewWillLeave() {
+    this.clearMarkers();
+    this.checkingService.onClickCheckUser(null);
   }
 
   onChangeDate() {

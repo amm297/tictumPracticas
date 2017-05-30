@@ -109,6 +109,7 @@ export class hollidaysPage {
 
     StartHollidays(){
       if(this.currentSelectedDate !=''){
+        this.total = 0;
         this.holliday.startDate = this.currentSelectedDate; 
         this.buttonPersonalDaysDisabled = true;
         for(let holliday of this.user.hollidays){

@@ -20,7 +20,7 @@ export class DniValidator {
       if (value.length == 9) {
         let dniNumber: number = parseInt(value.substring(0, 8));
         let validLetter: string = validLetters.charAt(dniNumber % 23);
-        let currentLetter = value.substring(8, value.length).toUpperCase();
+        let currentLetter = value.substring(8, value.length);
         return currentLetter === validLetter ?
           null: {
           "dni.isValid":{

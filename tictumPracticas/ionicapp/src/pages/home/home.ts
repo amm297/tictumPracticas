@@ -87,7 +87,6 @@ export class HomePage {
             }else{
               //Guardar el usuario para inicio de sesion automatico
               if (this.remember) {
-                console.log(this.user.password);
                 localStorage.setItem("email", logUser.email);
                 localStorage.setItem("pwd", this.user.password);
               }

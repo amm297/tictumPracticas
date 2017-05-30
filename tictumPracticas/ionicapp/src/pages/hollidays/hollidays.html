@@ -19,9 +19,9 @@
   </template>
 
   <template #detailTemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
-      <button ion-button  (click)="StartHollidays()" [disabled]="startDateDisabled">Inicio Vacaciones</button>
-      <button ion-button  (click)="EndHollidays()" [disabled]="endDateDisabled">Final Vacaciones</button>
-      <button ion-button  (click)="PersonalDays()"  [disabled]="buttonPersonalDaysDisabled">Dias asuntos propios</button>
+      <button ion-button  (click)="StartHollidays()" [disabled]="startDateDisabled">{{ 'START_HOLLIDAYS' | translate}}</button>
+      <button ion-button  (click)="EndHollidays()" [disabled]="endDateDisabled">{{ 'END_HOLLIDAYS' | translate}}</button>
+      <button ion-button  (click)="PersonalDays()"  [disabled]="buttonPersonalDaysDisabled">{{ 'PERSONAL_DAY' | translate}}</button>
 
      <ion-card *ngIf="holliday.startDate" >
         <ion-card-header>

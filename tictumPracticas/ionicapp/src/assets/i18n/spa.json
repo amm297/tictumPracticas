@@ -82,5 +82,11 @@
   "TITTLE_MODAL":"Detalles del Usuario",
   "DNI" : "DNI",
   "EMAIL": "Email",
-  "ORDER_FIELD": "Ordenar "
+  "ORDER_FIELD": "Ordenar ",
+
+  "VACATION": "----------------------------------------------------------",
+  "START_HOLLIDAYS" : "Inicio Vacaciones",
+  "END_HOLLIDAYS" : "Final Vacaciones",
+  "PERSONAL_DAY" : "Dia personal"
+
 }

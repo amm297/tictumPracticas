@@ -59,10 +59,19 @@ export class UserformPage {
       if(this.edit){
         this.service.modifyUser(this.user).then(data =>{
           if(!data.hasOwnProperty('errmsg')) this.navCtrl.pop();
+          else{
+            let alert = this.alertCtrl.create({
+              title: 'Oops!',
+              subTitle: data['errmsg'],
+              buttons: ['Ok']
+            });
+            alert.present();
+          }
         });
       }else{
         this.user.password = "1234cambio";
         this.user.email=this.user.email.toLowerCase();
+        this.user.dni = this.user.dni.toUpperCase();
         this.service.registerUser(this.user).then((data) => {
           if (data.hasOwnProperty('errmsg')) {
             let msg = '';
