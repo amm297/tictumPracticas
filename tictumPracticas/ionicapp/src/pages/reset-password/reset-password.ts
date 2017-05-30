@@ -4,14 +4,9 @@ import {Validators, FormBuilder} from '@angular/forms';
 
 import {HomePage} from "../home/home";
 
-import {User} from "../../models/user";
 import {GenericProvider} from "../../providers/generic";
 
-import {AdminPage} from "../admin/admin";
-import {UserPage} from "../user/user";
-
 import {PasswordValidator} from  '../userform/passwordValidator';
-import {DniValidator} from  '../userform/dniValidator';
 
 /**
  * Generated class for the ResetPassword page.
@@ -37,22 +32,25 @@ export class ResetPassword {
     password: '' 
   }; 
 
-  constructor(public navCtrl: NavController, 
-              private navParams: NavParams, 
-              public formBuilder: FormBuilder, 
-              public alertCtrl: AlertController, 
-              private service: GenericProvider) {
+  constructor(public navCtrl: NavController, private navParams: NavParams, public formBuilder: FormBuilder, public alertCtrl: AlertController, private service: GenericProvider) {
     this.hideOldPassword = (this.navCtrl.last().component.name == "HomePage") ? false : true;
     if (this.navParams.get('user')){
         this.user.email = this.navParams.get('user').email;
         this.user.dni = this.navParams.get('user').dni;        
     } 
 
-    this.resetPasswForm = formBuilder.group({
-      oldpassword:['',Validators.compose([Validators.minLength(8),Validators.required])],
-      password: ['', Validators.compose([Validators.minLength(8),Validators.required])],
-      confirmpassword: ['', PasswordValidator.isEqual], 
-    });
+    if(this.hideOldPassword == true) {
+      this.resetPasswForm = formBuilder.group({
+        oldpassword:['',Validators.compose([Validators.minLength(8),Validators.required])],
+        password: ['', Validators.compose([Validators.minLength(8),Validators.required])],
+        confirmpassword: ['', PasswordValidator.isEqual]
+      });
+    } else {
+      this.resetPasswForm = formBuilder.group({
+        password: ['', Validators.compose([Validators.minLength(8),Validators.required])],
+        confirmpassword: ['', PasswordValidator.isEqual]
+      });      
+    }
   }
 
   ionViewDidLoad() {
@@ -60,18 +58,18 @@ export class ResetPassword {
   }
 
   resetPassword(){
-		console.log("Changing password...");
-		if (this.resetPasswForm.valid) {
-     	if (this.user.password == this.confirmpassword) {
+    console.log("Changing password...");
+    if (this.resetPasswForm.valid) {
+       //if (this.user.password == this.confirmpassword) {
         let cambio = {
-        	email:this.user.email,
+          email:this.user.email,
           dni:this.user.dni,
           password: this.user.password,
           oldpassword:this.user.oldpassword
         }
-        		console.log(cambio);
+            console.log(cambio);
             
-          	this.service.newPassword(cambio).then((data) => {
+            this.service.newPassword(cambio).then((data) => {
             /*Comprobamos que el cambio de contraseña se ha realizado correctamente, si no es así mostramos un error por pantalla.*/
               if(data.hasOwnProperty('errmsg')){
                 let alert = this.alertCtrl.create({
@@ -84,7 +82,7 @@ export class ResetPassword {
                   let alert = this.alertCtrl.create({
                   title: 'OK!',
                   subTitle: data['msgok'],
-                  buttons: ['Acept']
+                  buttons: ['Aceptar']
                 });
                 alert.present();
 
@@ -99,8 +97,8 @@ export class ResetPassword {
 
 
 
-        	}
+     //     }
 
       };
     }
-	}
+  }
