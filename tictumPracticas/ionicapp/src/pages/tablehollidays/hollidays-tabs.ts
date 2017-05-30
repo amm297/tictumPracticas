@@ -5,16 +5,7 @@ import {TablehollidaysPage} from './tablehollidays';
 
 @Component({
   selector: 'page-hollidaystabs',
-  template: `
-    <ion-tabs selectedIndex="1">
-      <ion-tab [root]="tableHollidays" [rootParams]="{users:users,status:'denied'}" color="denied" tabTitle="Denegadas"
-               tabIcon="thumbs-down"></ion-tab>
-      <ion-tab [root]="tableHollidays" [rootParams]="{users:users,status:'pending'}" tabTitle="Pendientes"
-               tabIcon="help"></ion-tab>
-      <ion-tab [root]="tableHollidays" [rootParams]="{users:users,status:'aproved'}" tabTitle="Aprobadas"
-               tabIcon="thumbs-up"></ion-tab>
-    </ion-tabs>
-  `
+  templateUrl: 'hollidays-tabs.html',
 })
 export class HollidaysTabsPage {
   tableHollidays = TablehollidaysPage;

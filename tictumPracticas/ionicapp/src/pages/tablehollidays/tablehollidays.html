@@ -11,7 +11,7 @@
 
 
 <ion-content padding>
-  <ion-item *ngFor="let user of displayUsers">
+  <ion-item *ngFor="let user of displayUsers" class="ioninput">
     <h2>{{user.name}} {{user.lastname}}</h2>
     <div style="{padding:0;margin:0}" *ngFor="let holliday of user.hollidays;let index = index">
       <ion-card *ngIf="holliday.status==statusDisplay" color="{{holliday.status}}">

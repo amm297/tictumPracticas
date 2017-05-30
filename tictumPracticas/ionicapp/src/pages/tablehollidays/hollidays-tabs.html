@@ -1,0 +1,8 @@
+<ion-tabs selectedIndex="1" style="background-color:red">
+      <ion-tab class="custombg" [root]="tableHollidays" [rootParams]="{users:users,status:'denied'}" style="color:red" tabTitle="Denegadas"
+               tabIcon="thumbs-down"></ion-tab>
+      <ion-tab class="custombg" [root]="tableHollidays" [rootParams]="{users:users,status:'pending'}" tabTitle="Pendientes"
+               tabIcon="help"></ion-tab>
+      <ion-tab  class="custombg"[root]="tableHollidays" [rootParams]="{users:users,status:'aproved'}" tabTitle="Aprobadas"
+               tabIcon="thumbs-up"></ion-tab>
+    </ion-tabs>

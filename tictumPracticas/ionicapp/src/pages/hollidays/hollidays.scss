@@ -1,6 +1,9 @@
 page-hollidays {
 
 }
+  table{
+    color:white !important;
+  }
 
  .monthview-selected {
     background-color: #e5e5e5 !important;
@@ -8,10 +11,10 @@ page-hollidays {
   }
 
   td.monthview-current {
-    color: white;
+    color: black !important;
 
     .calendar-day {
-      background-color: color($colors, 'light') !important;
+      background-color: white !important;
     }
   }
 
@@ -26,21 +29,21 @@ page-hollidays {
 .calendar-day {
     &.aproved {
       background-color: color($colors, aproved) !important;
-      color: white;
+      color: black !important;
     }
 
     &.denied {
       background-color: color($colors, denied) !important;
-      color: white;
+      color: black !important;
     }
      &.personal {
       background-color: color($colors, secondary) !important;
-      color: white;
+      color: black !important;
     }
 
     &.pending {
       background-color: color($colors, pending) !important;
-      color: white;
+      color: black !important;
     }
 }
   

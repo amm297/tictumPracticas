@@ -12,8 +12,8 @@
 <ion-content class="has-header">
 
    
-  <template #template let-view="view" let-row="row" let-col="col">
-      <div class="calendar-day {{ view.dates[row*7+col].events[0]?.color }}">
+  <template #template let-view="view" let-row="row" let-col="col" style="color:white;">
+      <div class="calendar-day {{ view.dates[row*7+col].events[0]?.color }}" style="color:white;">
         {{view.dates[row*7+col].label}}
     </div>
   </template>

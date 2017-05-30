@@ -16,7 +16,7 @@
   </ion-searchbar>
   <ion-list>
     <div *ngFor="let role of search; let i=index">
-      <ion-item *ngIf="role.rolename != 'inactivo'">
+      <ion-item *ngIf="role.rolename != 'inactivo'" class="ioninput">
         <ion-icon item-left name="contact" *ngIf="role.rolename == 'admin'"></ion-icon>
         <ion-icon item-left name="person" *ngIf="role.rolename == 'user'"></ion-icon>
         <ion-icon item-left name="ionitron" *ngIf="role.rolename != 'admin' && role.rolename != 'user' "></ion-icon>
@@ -27,9 +27,9 @@
     </div>
   </ion-list>
 </ion-content>
-<ion-footer *ngIf="this.displayInput">
-  <ion-item>
-    <ion-input type="text" [(ngModel)]="role.rolename" name="rolename" placeholder="{{ 'ROLE_NAME' | translate }}"></ion-input>
+<ion-footer *ngIf="this.displayInput" >
+  <ion-item class="custombg">
+    <ion-input type="text" style="color:white" [(ngModel)]="role.rolename" name="rolename" placeholder="{{ 'ROLE_NAME' | translate }}"></ion-input>
       <button *ngIf="this.displayButton == 'add'" ion-button (click)="addRole()" item-right>{{ 'ADD' | translate }}</button>
       <button *ngIf="this.displayButton == 'edit'" ion-button (click)="updateRole()" item-right>{{ 'EDIT' | translate }}</button>
       <button item-right ion-button clear icon-only (click)="closeInput()">

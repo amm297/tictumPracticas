@@ -23,6 +23,10 @@ export class TableusersPage {
               private service: GenericProvider,
               private alertCtrl: AlertController) {
 
+    
+  }
+
+  ionViewDidLoad(){
     let loading = this.service.createLoading('Cargando usuarios');
     loading.present();
     this.loadUsers().then(_=>{

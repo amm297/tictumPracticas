@@ -8,7 +8,7 @@
 <ion-content padding>
   <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar usuarios">
   </ion-searchbar>
-  <ion-item no-lines>
+  <ion-item no-lines class="ioninput">
     <ion-label>{{'ORDER_FIELD' | translate}}</ion-label>
     <ion-select rigth (ionChange)="onOrderUsers($event)">
       <ion-option value="role">{{'ROLE' | translate}}</ion-option>
@@ -19,7 +19,7 @@
     </ion-select>
   </ion-item>
   <ion-list [virtualScroll]="search">
-    <ion-item *virtualItem="let user; let index = index" text-wrap>
+    <ion-item *virtualItem="let user; let index = index" text-wrap class="ioninput" >
       <div style="padding:0;marging:0" (click)="openModal(user)">
         <h2>
           <ion-row>

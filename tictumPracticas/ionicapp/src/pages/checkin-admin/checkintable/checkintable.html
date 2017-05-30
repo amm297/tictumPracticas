@@ -14,15 +14,15 @@
 <ion-content padding>
 
 
-  <ion-datetime [(ngModel)]="date"  name="date" (ionChange)="onChangeDate()"></ion-datetime>
-    <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar usuarios">
+  <ion-datetime [(ngModel)]="date"  name="date" (ionChange)="onChangeDate()" class="ioninput"></ion-datetime>
+    <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar usuarios" >
     </ion-searchbar>
 
   <ion-list>
-    <ion-item *ngFor="let check of search" (click)="onClickCheckUser(check)">
-      <p>{{check.name}} {{check.lastname}}</p>
-      <p item-right>Entrada: <strong>{{check.checking.entrada.hora}}</strong></p>
-      <p item-right>Salida: <strong>{{check.checking.salida.hora}}</strong></p>
+    <ion-item *ngFor="let check of search" (click)="onClickCheckUser(check)" class="ioninput" >
+      <p style="color:white;">{{check.name}} {{check.lastname}}</p>
+      <p style="color:white;" item-right>Entrada: <strong>{{check.checking.entrada.hora}}</strong></p>
+      <p style="color:white;" item-right>Salida: <strong>{{check.checking.salida.hora}}</strong></p>
     </ion-item>
   </ion-list>
 

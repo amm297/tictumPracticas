@@ -12,17 +12,17 @@
 
 <ion-content no-padding>
   <ion-row>
-    <ion-datetime text-center [(ngModel)]="date"  name="date" (ionChange)="onChangeDate()"></ion-datetime>
+    <ion-datetime text-center [(ngModel)]="date"  name="date" (ionChange)="onChangeDate()" class="ioninput"></ion-datetime>
     
   </ion-row>
   <ion-row>
   <ion-col >  
-      <button ion-button clear block  (click)="addMarkers('entrada')">
+      <button ion-button clear block color="white" (click)="addMarkers('entrada')">
         <ion-icon name="log-in" > </ion-icon>  {{ 'ENTRANCE' | translate}}
       </button>
     </ion-col>
     <ion-col>
-      <button ion-button clear block  (click)="addMarkers('salida')">
+      <button ion-button clear block color="white" (click)="addMarkers('salida')">
         <ion-icon name="log-out" > </ion-icon>  {{ 'EXIT' | translate}}
       </button>
   </ion-col>

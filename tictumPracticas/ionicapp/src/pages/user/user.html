@@ -10,34 +10,34 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content padding class="ioninput">
   <button ion-button outline block (click)="onClickHollidays()">{{ 'RESERVE_VACATION' | translate }}</button>
   <button ion-button outline block (click)="onClickMap()">{{ 'CLOCK_IN' | translate }}</button>
   <button ion-button outline block (click)="onChangePassword()">{{ 'CHANGE_PASSWORD' | translate }}</button>
   <button ion-button outline block (click)="toggleGroup(i)">{{ 'MY_DATA' | translate }}
-    <ion-row>  
-      <ion-col>
-        <ion-icon color="success" item-right [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+    <ion-row class="ioninput">  
+      <ion-col class="ioninput">
+        <ion-icon color="success" class="ioninput" item-right [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
       </ion-col>
     </ion-row>
   </button>
 
-  <ion-item no-lines>
+  <ion-item no-lines class="ioninput">
     <div *ngIf="isGroupShown(i)">
-      <ion-card>
+      <ion-card class="ioninput">
 
-        <ion-list>
-         <p>{{'DNI' | translate}}: <ion-item>{{user.dni}}</ion-item></p> 
-          <p>{{ 'NAME' | translate }}: <ion-item>{{user.name}}</ion-item></p> 
-          <p>{{'LASTNAME' | translate}}: <ion-item>{{user.lastname}}</ion-item></p> 
-          <p>{{'ROLE' | translate}}: <ion-item>{{user.role}}</ion-item></p> 
-          <p>{{ 'Email' | translate}}: <ion-item>{{user.email}}</ion-item></p> 
-          <p>{{ 'ADDRESS' | translate}}: <ion-item>{{user.address}}</ion-item></p> 
-          <p>{{ 'CITY' | translate}}: <ion-item>{{user.city}}</ion-item></p> 
-          <p>{{ 'STATE_OR_PROVINCE' | translate}}: <ion-item>{{user.stateprovince}}</ion-item></p> 
-          <p>{{ 'COUNTRY' | translate}}: <ion-item>{{user.country}}</ion-item></p> 
-          <p>{{'PHONE_NUMBER' | translate }}: <ion-item>{{user.phone}}</ion-item></p> 
-        </ion-list>
+        <ion-list no-lines class="ioninput">
+          <ion-row >  <ion-col> <p style="color:white;"> {{'DNI' | translate}}: </p>   </ion-col> <ion-col> <p style="color:white;">{{user.dni}}   </p> </ion-col></ion-row>
+           <ion-row >  <ion-col> <p style="color:white;"> {{ 'NAME' | translate }}: </p>   </ion-col> <ion-col> <p style="color:white;">{{user.name}}   </p> </ion-col></ion-row>
+           <ion-row >  <ion-col> <p style="color:white;"> {{'LASTNAME' | translate}}: </p> </ion-col> <ion-col> <p style="color:white;">  {{user.lastname}}   </p> </ion-col></ion-row>
+           <ion-row >  <ion-col> <p style="color:white;"> {{'ROLE' | translate}}: </p>  </ion-col> <ion-col> <p style="color:white;"> {{user.role}}   </p> </ion-col></ion-row>
+           <ion-row >  <ion-col> <p style="color:white;"> {{ 'Email' | translate}}: </p>  </ion-col> <ion-col> <p style="color:white;"> {{user.email}}   </p> </ion-col></ion-row>
+           <ion-row >  <ion-col> <p style="color:white;"> {{ 'ADDRESS' | translate}}: </p> </ion-col> <ion-col> <p style="color:white;">  {{user.address}}   </p> </ion-col></ion-row>
+           <ion-row >  <ion-col> <p style="color:white;"> {{ 'CITY' | translate}}: </p>  </ion-col> <ion-col> <p style="color:white;"> {{user.city}}   </p> </ion-col></ion-row>
+           <ion-row >  <ion-col> <p style="color:white;"> {{ 'STATE_OR_PROVINCE' | translate}}: </p> </ion-col> <ion-col> <p style="color:white;">  {{user.stateprovince}}   </p> </ion-col></ion-row>
+           <ion-row >  <ion-col> <p style="color:white;"> {{ 'COUNTRY' | translate}}: </p>   </ion-col> <ion-col> <p style="color:white;">{{user.country}}   </p> </ion-col></ion-row>
+           <ion-row >  <ion-col> <p style="color:white;"> {{'PHONE_NUMBER' | translate }}: </p>  </ion-col> <ion-col> <p style="color:white;"> {{user.phone}}   </p> </ion-col></ion-row>
+      </ion-list>
 
       </ion-card>
     </div>
