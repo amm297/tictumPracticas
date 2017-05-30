@@ -37,6 +37,7 @@ import {TablependingPage} from '../pages/tablehollidays-tabs/tablepending/tablep
 import {TablehollidaysPage} from '../pages/tablehollidays/tablehollidays';
 import {HollidaysTabsPage} from '../pages/tablehollidays/hollidays-tabs';
 import {Checking} from '../providers/checking';
+import { GenericProvider } from '../providers/generic';
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -102,7 +103,8 @@ export function createTranslateLoader(http: Http) {
     Users,
     Roles,
     Geolocation,
-    Checking
+    Checking,
+    GenericProvider
   ]
 })
 export class AppModule {

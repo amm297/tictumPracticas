@@ -5,7 +5,7 @@ import {UserformPage} from "../userform/userform";
 import {TablerolesPage} from "../tableroles/tableroles";
 import {HomePage} from "../home/home";
 import {CheckinTabsPage} from "../checkin-admin/checkin-tabs/checkin-tabs";
-import {Users} from '../../providers/users';
+import {GenericProvider} from '../../providers/generic';
 import {HollidaysTabsPage} from '../tablehollidays/hollidays-tabs';
 
 @IonicPage()
@@ -23,8 +23,8 @@ export class AdminPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private alertCtrl: AlertController,
-              private usersService: Users) {
-    this.usersService.getAllUsers().then(data => {
+              private service: GenericProvider) {
+    this.service.getAllUsers().then(data => {
       this.users = data;
     })
   }
@@ -42,9 +42,9 @@ export class AdminPage {
   }
 
   onClickHolidays() {
-    let loading = this.usersService.createLoading('Cargando usuarios');
+    let loading = this.service.createLoading('Cargando usuarios');
     loading.present();
-    this.usersService.getAllUsers().then(data=>{
+    this.service.getAllUsers().then(data=>{
       loading.dismiss();
       this.navCtrl.push(HollidaysTabsPage,data);
       }
@@ -52,9 +52,9 @@ export class AdminPage {
   }
 
   onClickCheckIn() {
-    let loading = this.usersService.createLoading('Cargando usuarios');
+    let loading = this.service.createLoading('Cargando usuarios');
     loading.present();
-    this.usersService.getAllUsers().then(data=>{
+    this.service.getAllUsers().then(data=>{
         loading.dismiss();
         this.navCtrl.push(CheckinTabsPage,data);
       }

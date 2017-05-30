@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
-import {Roles} from '../../providers/roles';
+import {GenericProvider} from '../../providers/generic';
 
 @IonicPage()
 @Component({
@@ -19,7 +19,7 @@ export class TablerolesPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public rolesService: Roles,
+              public service: GenericProvider,
               private alertCtrl: AlertController) {
   }
 
@@ -28,9 +28,9 @@ export class TablerolesPage {
   }
 
   getAllRoles() {
-    let loading = this.rolesService.createLoading('Cargando roles');
+    let loading = this.service.createLoading('Cargando roles');
     loading.present();
-    this.rolesService.getAllRoles().then((data) => {
+    this.service.getAllRoles().then((data) => {
       this.roles = data;
       this.search = this.roles;
       loading.dismiss();
@@ -54,7 +54,7 @@ export class TablerolesPage {
       alert.present();
     } else {
       if (this.role.rolename !== '') {
-        this.rolesService.addRole(this.role).then((data) => {
+        this.service.addRole(this.role).then((data) => {
           this.roles.push(data);
           this.closeInput();
         });
@@ -83,7 +83,7 @@ export class TablerolesPage {
       alert.present();
     } else {
       if (this.role.rolename !== '') {
-        this.rolesService.updateRole(this.role).then(() => {
+        this.service.updateRole(this.role).then(() => {
           this.displayInput = false;
         });
       }
@@ -98,7 +98,7 @@ export class TablerolesPage {
         {
           text: 'Si',
           handler: () => {
-            this.rolesService.removeRole(roleId);
+            this.service.removeRole(roleId);
             this.roles.splice(index, 1);
           }
         },

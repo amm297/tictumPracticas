@@ -2,13 +2,12 @@ import {Component} from '@angular/core';
 import {NavController, AlertController} from 'ionic-angular';
 import {Validators, FormBuilder} from '@angular/forms';
 import {User} from '../../models/user'
-
-import {Users} from "../../providers/users";
 import {AdminPage} from "../admin/admin";
 import {UserPage} from "../user/user";
 import {ResetPassword} from "../reset-password/reset-password";
 import {GenericPasswordPage} from "../generic-password/generic-password";
 import {TranslateService} from "@ngx-translate/core";
+import {GenericProvider} from '../../providers/generic';
 
 @Component({
   selector: 'page-home',
@@ -27,7 +26,7 @@ export class HomePage {
   constructor(public navCtrl: NavController,
               public formBuilder: FormBuilder,
               public alertCtrl: AlertController,
-              private usersService: Users,
+              private service: GenericProvider,
               private translateService: TranslateService) {
     //console.log('Paso constructor');
     this.user.input = localStorage.getItem("email");
@@ -54,7 +53,7 @@ export class HomePage {
       if (this.user.input.includes('@')) this.user.input = this.user.input.toLowerCase();
       
       //hacer el login contra el servicio
-      this.usersService.loginUser(this.user).then((data) => {
+      this.service.loginUser(this.user).then((data) => {
         //Se produce un error al iniciar sesion
         if (data.hasOwnProperty('errmsg')) {
           let alert = this.alertCtrl.create({

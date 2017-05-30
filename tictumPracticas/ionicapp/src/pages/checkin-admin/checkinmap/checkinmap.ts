@@ -42,6 +42,7 @@ export class CheckinmapPage {
   onChangeDate() {
     this.checksDisplay = this.checkingService.getChecksByDate(this.users, this.date);
     console.log(this.checksDisplay);
+    this.addMarkers("entrada");
   }
 
   loadMap() {

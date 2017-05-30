@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import {Validators, FormBuilder} from '@angular/forms';
 
 import {HomePage} from "../home/home";
-import {Users} from "../../providers/users";
+import {GenericProvider} from "../../providers/generic";
 
 import {DniValidator} from  '../userform/dniValidator';
 /**
@@ -24,7 +24,10 @@ export class GenericPasswordPage {
     	dni:''
   	};
 	
-	constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public alertCtrl: AlertController, private usersService: Users) {
+	constructor(public navCtrl: NavController, 
+              public formBuilder: FormBuilder, 
+              public alertCtrl: AlertController, 
+              private service: GenericProvider) {
 
     	this.genericPasswForm = formBuilder.group({
       		email: ['',Validators.compose([Validators.minLength(8),Validators.email,Validators.required])],
@@ -45,7 +48,7 @@ export class GenericPasswordPage {
           dni:this.user.dni
         }
             
-        this.usersService.newPasswdAuto(userData).then((data) => {
+        this.service.newPasswdAuto(userData).then((data) => {
           /*Creamos una contraseña genérica para cada usuario*/
           if(data.hasOwnProperty('errmsg')){
             let alert = this.alertCtrl.create({

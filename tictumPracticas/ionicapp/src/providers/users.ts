@@ -10,18 +10,21 @@ export class Users {
   // Límite de registros por página
   perpage: number = 2;
 
+
   constructor(public http: Http, private loadingCtrl: LoadingController) {
   }
 
   //WI-Fi
   //server = 'http://192.168.4.64:8080';
   //server = 'http://192.168.5.26:8080';
-  server = 'http://172.16.112.45:8080';
-  //server = 'http://localhost:8080';
+  //server = 'http://172.16.112.45:8080';
+  server = 'http://localhost:8080';
 
   registerUser(data) {
     data.password = Md5.hashStr(data.password);
-    return new Promise(resolve => {
+    return this.postPromise({route:this.server + '/api/users/create',data:data});
+
+   /* return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.post(this.server + '/api/users/create', JSON.stringify(data), {headers: headers})
@@ -30,11 +33,13 @@ export class Users {
           console.log(data);
           resolve(data);
         });
-    });
+    });*/
   }
 
   loginUser(data) {
-    return new Promise(resolve => {
+
+    return this.postPromise({route:this.server + '/api/users/login',data:{input: data.input,password: Md5.hashStr(data.password)}});
+    /*return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.post(this.server + '/api/users/login', JSON.stringify({
@@ -45,13 +50,14 @@ export class Users {
         .subscribe(data => {
           resolve(data);
         });
-    });
+    });*/
   }
 
   /*Descactivar usuario */
 
   changeRole(userId, role) {
-    return new Promise(resolve => {
+    return this.putPromise({route:this.server + '/api/users/changerole/' + userId,data:{role: role}});
+    /*return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.put(this.server + '/api/users/changerole/' + userId, {role: role}, {headers: headers})
@@ -60,7 +66,7 @@ export class Users {
           console.log(data);
           resolve(data);
         })
-    })
+    })*/
   }
 
   logoutUser(data) {
@@ -71,7 +77,8 @@ export class Users {
 
   /*Función para generar contraseña AUTOMÁTICA*/
   newPasswdAuto(data) {
-    return new Promise(resolve => {
+    return this.putPromise({route:this.server + '/api/users/autopassw',data:data});
+    /*return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.put(this.server + '/api/users/autopassw', JSON.stringify(data), {headers: headers})
@@ -79,14 +86,16 @@ export class Users {
         .subscribe(data => {
           resolve(data);
         });
-    });
+    });*/
   }
 
   /*Funcion para cambiar la contraseña, comprobamos que el email/dni existe en la base de datos y después le añadimos la nueva contraseña.*/
   newPassword(data) {
     data.password = Md5.hashStr(data.password);
     data.oldpassword =(data.oldpassword)?  Md5.hashStr(data.oldpassword) : null;
-    return new Promise(resolve => {
+
+    return this.putPromise({route:this.server + '/api/users/resetpassw',data:data});
+    /*return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.put(this.server + '/api/users/resetpassw', JSON.stringify(data), {headers: headers})
@@ -94,11 +103,12 @@ export class Users {
         .subscribe(data => {
           resolve(data);
         });
-    });
+    });*/
   }
 
   getAllUsers() {
-    return new Promise(resolve => {
+    return this.getPromise({route: this.server + '/api/users/read'});
+    /*return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.get(this.server + '/api/users/read', {headers: headers})
@@ -106,11 +116,12 @@ export class Users {
         .subscribe(data => {
           resolve(data);
         });
-    });
+    });*/
   }
 
   deleteUser(deleteUserId: String) {
-    return new Promise(resolve => {
+    return this.deletePromise({info:this.server + '/api/users/delete?_id=' + deleteUserId })
+    /*return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.delete(this.server + '/api/users/delete?_id=' + deleteUserId, {headers: headers})
@@ -118,12 +129,13 @@ export class Users {
         .subscribe(data => {
           resolve(data);
         });
-    });
+    });*/
   }
 
   modifyUser(data) {
     data.password = Md5.hashStr(data.password);
-    return new Promise(resolve => {
+      return this.putPromise({route:this.server + '/api/users/update',data:data});
+    /*return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.put(this.server + '/api/users/update', data, {headers: headers})
@@ -131,26 +143,29 @@ export class Users {
         .subscribe(data => {
           resolve(data);
         });
-    });
+    });*/
   }
 
   //Gestion de vacaciones
   addHollidays(data) {
     console.log(data);
-    return new Promise(resolve => {
+    return this.putPromise({route:this.server + '/api/users/update',data:data});
+
+    /*return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      this.http.put(this.server + '/api/users/addhollidays', JSON.stringify(data), {headers: headers})
+      this.http.put(return this.putPromise({route:this.server + '/api/users/update',data:data});, JSON.stringify(data), {headers: headers})
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
         });
-    });
+    });*/
   }
 
   addPersonalDays(data) {
     console.log(data);
-    return new Promise(resolve => {
+    return this.putPromise({route:this.server + '/api/users/addPersonalDays',data:data});
+    /*return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.put(this.server + '/api/users/addPersonalDays', JSON.stringify(data), {headers: headers})
@@ -158,10 +173,12 @@ export class Users {
         .subscribe(data => {
           resolve(data);
         });
-    });
+    });*/
   }
   updateHollidays(data){
-    return new Promise(resolve => {
+    return this.putPromise({route:this.server + '/api/users/updateHollidays',data:data});
+
+    /*return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.put(this.server + '/api/users/updateHollidays', JSON.stringify(data), {headers: headers})
@@ -169,7 +186,7 @@ export class Users {
         .subscribe(data => {
           resolve(data);
         });
-    });
+    });*/
   }
 
   //Fichar
@@ -177,7 +194,8 @@ export class Users {
 
     console.log(userId);
     console.log(data);
-   return new Promise(resolve => {
+    return this.putPromise({route:this.server + '/api/users/check?_id=' + userId,data:data});
+   /*return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       this.http.put(this.server + '/api/users/check?_id=' + userId, JSON.stringify(data), {headers: headers})
@@ -187,13 +205,35 @@ export class Users {
           console.log(data);
           resolve(data);
         });
-    });
+    });*/
   }
 
   /* Metodo de prueba para la paginación del listado de usuarios */
   load(page: number = 0) {
-    return new Promise(resolve => {
+    //return this.getPromise({route: this.server + '/api/users/readPage?page=' + page});
+    return this.getPromise({route: this.server + '/api/users/readPage?page='+page});
+    /*return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
       this.http.get(this.server + '/api/users/readPage?page=' + page)
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });*/
+  }
+
+  createLoading(msg) {
+    return this.loadingCtrl.create({
+      content: msg
+    });
+  }
+
+  getPromise(info){
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.get(info.route, {headers: headers})
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -201,9 +241,42 @@ export class Users {
     });
   }
 
-  createLoading(msg) {
-    return this.loadingCtrl.create({
-      content: msg
+  postPromise(info){
+     return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.post(info.route, JSON.stringify(info.data), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          console.log(data);
+          resolve(data);
+        });
+    });
+  }
+
+  putPromise(info){
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.put(info.route, JSON.stringify(info.data), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          console.log("service")
+          console.log(data);
+          resolve(data);
+        });
+    });
+  }
+
+  deletePromise(info){
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      this.http.delete(info.route, {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
     });
   }
 

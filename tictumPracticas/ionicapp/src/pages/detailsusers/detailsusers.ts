@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
-import {Users} from "../../providers/users";
+import {GenericProvider} from "../../providers/generic";
 import {UserformPage} from '../userform/userform';
 
 @IonicPage()
@@ -15,7 +15,7 @@ export class DetailsusersPage {
   constructor(public navCtrl: NavController,
   			  public navParams: NavParams,
   			  public viewCtrl: ViewController,
-          private usersService: Users,
+          private service: GenericProvider,
           private alertCtrl: AlertController) {
 
   	console.log('Constructor de la Ventana Modal: ' , this.navParams.get("user"));
@@ -30,7 +30,7 @@ export class DetailsusersPage {
         {
           text: 'Si',
           handler: () => {
-            this.usersService.deleteUser(userId);
+            this.service.deleteUser(userId);
             //this.users.splice(index, 1);
           }
         },
@@ -43,7 +43,7 @@ export class DetailsusersPage {
   }
 
    changeRole(userId: string, role:string){
-    this.usersService.changeRole(userId,role).then(() =>{
+    this.service.changeRole(userId,role).then(() =>{
         this.user.role = role;
         this.viewCtrl.dismiss(this.user);
     });

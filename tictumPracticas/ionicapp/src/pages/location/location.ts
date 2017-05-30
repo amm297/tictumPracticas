@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController,NavParams, AlertController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { User }  from '../../models/user';
-import { Users}  from '../../providers/users';
+import { GenericProvider}  from '../../providers/generic';
  
 declare var google;
  
@@ -45,10 +45,12 @@ export class LocationPage {
   constructor(public navCtrl: NavController, 
               public geolocation: Geolocation, 
               private navParams: NavParams,
-              private usersService: Users,
+              private service: GenericProvider,
               private alertCtrl: AlertController) {
     this.checking.date = this.getFormattedDate();
     this.user  = (this.navParams.get('user'))? this.navParams.get('user') : new User();
+    console.log(this.user);
+    console.log(this.user.checking);
     this.check = this.getTodayCheck();
     if(this.check == "err"){
       this.checkDisabled = true;
@@ -95,7 +97,7 @@ export class LocationPage {
            this.checking[this.check].hora =  new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
            this.addMarker();
            this.user.addCheck(this.checking);
-           this.usersService.Check(this.user['_id'],{checking:this.user.checking});
+           this.service.Check(this.user['_id'],{checking:this.user.checking});
          }); 
        }else {
          console.log("ya aha fichado")

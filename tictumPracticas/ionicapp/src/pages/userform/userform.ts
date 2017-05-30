@@ -2,10 +2,8 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 import {Validators, FormBuilder} from '@angular/forms';
 import {User} from "../../models/user";
-import {Users} from "../../providers/users";
-
 import {DniValidator} from  './dniValidator';
-import {Roles} from "../../providers/roles";
+import {GenericProvider} from "../../providers/generic";
 
 @IonicPage()
 @Component({
@@ -22,8 +20,7 @@ export class UserformPage {
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
-              private usersService: Users,
-              private rolesService: Roles,
+              private service: GenericProvider,
               private formBuilder: FormBuilder,
               private alertCtrl: AlertController) {
     if (this.navParams.get('user')) this.user = this.navParams.get('user');
@@ -50,7 +47,7 @@ export class UserformPage {
   }
 
   ionViewWillLoad() {
-    this.rolesService.getAllRoles().then(data => {
+    this.service.getAllRoles().then(data => {
       this.roles = data;
     });
   }
@@ -58,12 +55,12 @@ export class UserformPage {
   registerUser() {
     if (this.userForm.valid) {
       if(this.edit){
-        this.usersService.modifyUser(this.user).then(data =>{
+        this.service.modifyUser(this.user).then(data =>{
           if(!data.hasOwnProperty('errmsg')) this.navCtrl.pop();
         });
       }else{
         this.user.password = "1234cambio";
-        this.usersService.registerUser(this.user).then((data) => {
+        this.service.registerUser(this.user).then((data) => {
           if (data.hasOwnProperty('errmsg')) {
             let msg = '';
             if (data['errmsg'].indexOf('dni') > 0) msg = "DNI ya en uso: " + this.user.dni;

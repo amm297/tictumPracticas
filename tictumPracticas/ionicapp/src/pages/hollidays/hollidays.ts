@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {UserPage} from "../user/user";
-import {Users} from "../../providers/users";
+import {GenericProvider} from "../../providers/generic";
 import {User} from "../../models/user";
 import { AlertController } from 'ionic-angular';
 
@@ -55,7 +55,10 @@ export class hollidaysPage {
     currentDate: new Date()
    }; //
 
-  constructor(public navCtrl: NavController, public navParams: NavParams , private userService:Users,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams , 
+              private service:GenericProvider,
+              public alertCtrl: AlertController) {
     this.user = this.navParams.get("user");
     //console.log(this.user.hollidays);
   }
@@ -144,7 +147,7 @@ export class hollidaysPage {
     bookHollidays(){     
       this.holliday.status= "pending";      
       this.user.addHolliday(this.holliday);
-      this.userService.addHollidays(this.user)
+      this.service.addHollidays(this.user)
       .then(data => {
         console.log(data);
         this.navCtrl.pop();
@@ -178,7 +181,7 @@ export class hollidaysPage {
 
     bookPersonalDays(){
       this.user.addPersonalDays(this.personalDay);
-      this.userService.addPersonalDays(this.user)
+      this.service.addPersonalDays(this.user)
       .then(data => {
         console.log(data);
         this.navCtrl.pop();

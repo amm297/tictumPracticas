@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
-import {Users} from "../../providers/users";
+import {GenericProvider} from "../../providers/generic";
 import {DetailsusersPage} from "../detailsusers/detailsusers";
 
 @IonicPage()
@@ -20,10 +20,10 @@ export class TableusersPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public modalCtrl: ModalController,
-              private usersService: Users,
+              private service: GenericProvider,
               private alertCtrl: AlertController) {
 
-    let loading = this.usersService.createLoading('Cargando usuarios');
+    let loading = this.service.createLoading('Cargando usuarios');
     loading.present();
     this.loadUsers().then(_=>{
       loading.dismiss();
@@ -32,7 +32,7 @@ export class TableusersPage {
 
   loadUsers() {
     return new Promise(resolve => {
-      this.usersService.load(this.page)
+      this.service.load(this.page)
         .then(data => {
           console.log(data);
           for(let user of data['docs']) {

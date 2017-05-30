@@ -41,6 +41,7 @@ export class User {
    }
    addCheck(data){
    	//comprobar si ya exitiste el data
+      console.log(this.checking);
   
    	if(!this.getTodayCheck(data.date))	this.checking.push(data);
    	else this.modifyCheck(data);

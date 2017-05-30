@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {App, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AdminPage} from "../../admin/admin";
-import {Users} from '../../../providers/users';
 import {Checking} from '../../../providers/checking';
 import {CheckinmapPage} from '../checkinmap/checkinmap';
 

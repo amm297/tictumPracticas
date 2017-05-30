@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {App, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AdminPage} from '../admin/admin';
-import {Users} from '../../providers/users';
+import {GenericProvider} from '../../providers/generic';
 
 @IonicPage()
 @Component({
@@ -14,7 +14,10 @@ export class TablehollidaysPage {
   displayUsers;
   statusDisplay;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private app:App, private usersService:Users) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              private app:App, 
+              private service:GenericProvider) {
     this.users = this.navParams.get('users');
   }
 
@@ -37,7 +40,7 @@ export class TablehollidaysPage {
   onChangeStatus(user, index, status) {
     user.hollidays[index].status = status;
     this.getUsersByStatus('pending');
-    this.usersService.updateHollidays(user).then(data=>{
+    this.service.updateHollidays(user).then(data=>{
       console.log(data);
     });
   }
