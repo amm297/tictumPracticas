@@ -1,15 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {  NavController, NavParams } from 'ionic-angular';
 import {GenericProvider} from "../../providers/generic";
 import {User} from "../../models/user";
 import { AlertController } from 'ionic-angular';
-
-/**
- * Generated class for the hollidaysPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 
 
 @Component({
@@ -97,7 +90,7 @@ export class hollidaysPage {
        // check = this.checkDatePersonalDay(this.currentSelectedDate);
         this.buttonPersonalDaysDisabled=check;
         this.startDateDisabled = check;
-        this.endDateDisabled = this.checkDatePersonalDay(this.currentSelectedDate);
+        this.endDateDisabled = check;
     }
 
     onCurrentDateChanged(event:Date) {

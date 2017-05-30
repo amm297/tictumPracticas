@@ -13,9 +13,9 @@ import {LoadingController} from 'ionic-angular';
 export class GenericProvider {
 
 	//WI-Fi
-  //server = 'http://192.168.4.64:8080';
+  server = 'http://192.168.4.34:8080';
   //server = 'http://192.168.5.26:8080';
-  server = 'http://172.16.112.45:8080';
+  //server = 'http://172.16.112.45:8080';
   //server = 'http://localhost:8080';
 
   constructor(public http: Http,private loadingCtrl: LoadingController) {

@@ -73,6 +73,7 @@
   "ENTRANCE":"Entrada",
   "EXIT":"Salida",
   "CHECK_IN_TABLE":"Control en Tabla",
+  "LIST": "Lista",
 
   "PAG_CHECKINMAP": "----------------------------------------------------",
   "CHECK_IN_MAP":"Control en Mapa",
@@ -88,7 +89,12 @@
   "START_HOLLIDAYS" : "Inicio Vacaciones",
   "END_HOLLIDAYS" : "Final Vacaciones",
   "PERSONAL_DAY" : "Dia personal",
-  "HOLLIDAYS": "Vacaciones"
+  "HOLLIDAYS": "Vacaciones",
 
+
+  "TABLEHOLLIDAYS": "----------------------------------------------------------",
+  "DENIED": "Denegadas",
+  "APROVED": "Aprobadas",
+  "PENDING": "Pendientes"
 
 }

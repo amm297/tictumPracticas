@@ -73,6 +73,7 @@
   "ENTRANCE":"Entrance",
   "EXIT":"Exit",
   "CHECK_IN_TABLE":"Check In Table",
+  "LIST": "List",
 
   "PAG_CHECKINMAP": "----------------------------------------------------",
   "CHECK_IN_MAP":"Check In Map",
@@ -88,5 +89,10 @@
   "START_HOLLIDAYS" : "Start Hollidays",
   "END_HOLLIDAYS" : "End Hollidays",
   "PERSONAL_DAY" : "Personal Day",
-  "HOLLIDAYS" : "Hollidays"
+  "HOLLIDAYS" : "Hollidays",
+
+  "TABLEHOLLIDAYS": "----------------------------------------------------------",
+   "DENIED": "Denied",
+   "APROVED": "Approved",
+   "PENDING": "Pending"
 }

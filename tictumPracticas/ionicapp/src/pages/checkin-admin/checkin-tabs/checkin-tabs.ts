@@ -7,8 +7,8 @@ import {NavParams} from 'ionic-angular';
   selector: 'page-chenckintabs',
   template: `
     <ion-tabs>
-      <ion-tab [root]="checkintablePage" [rootParams]="users" tabTitle="Lista" tabIcon="list-box"></ion-tab>
-      <ion-tab [root]="checkinmapPage" [rootParams]="users" tabTitle="Mapa" tabIcon="globe"></ion-tab>
+      <ion-tab [root]="checkintablePage" [rootParams]="users" tabTitle="{{ 'LIST' | translate}}" tabIcon="list-box"></ion-tab>
+      <ion-tab [root]="checkinmapPage" [rootParams]="users" tabTitle="{{'MAP' | translate}}" tabIcon="globe"></ion-tab>
     </ion-tabs>
   `
 })

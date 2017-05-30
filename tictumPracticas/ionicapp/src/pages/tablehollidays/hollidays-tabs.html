@@ -1,8 +1,8 @@
-<ion-tabs selectedIndex="1" style="background-color:red">
-      <ion-tab class="custombg" [root]="tableHollidays" [rootParams]="{users:users,status:'denied'}" style="color:red" tabTitle="Denegadas"
+<ion-tabs selectedIndex="1" class="tabs-icon-top tabs-color-active-positive">
+      <ion-tab #denied class="denied" [root]="tableHollidays" [rootParams]="{users:users,status:'denied'}"  tabTitle="{{ 'DENIED' | translate }}"
                tabIcon="thumbs-down"></ion-tab>
-      <ion-tab class="custombg" [root]="tableHollidays" [rootParams]="{users:users,status:'pending'}" tabTitle="Pendientes"
+      <ion-tab #pending class="pending"  [root]="tableHollidays" [rootParams]="{users:users,status:'pending'}" tabTitle="{{ 'PENDING' | translate }}"
                tabIcon="help"></ion-tab>
-      <ion-tab  class="custombg"[root]="tableHollidays" [rootParams]="{users:users,status:'aproved'}" tabTitle="Aprobadas"
+      <ion-tab #aproved class="aproved" [root]="tableHollidays" [rootParams]="{users:users,status:'aproved'}" tabTitle="{{ 'APROVED' | translate }}"
                tabIcon="thumbs-up"></ion-tab>
     </ion-tabs>
