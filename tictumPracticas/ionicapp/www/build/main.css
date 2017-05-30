@@ -1,3 +1,9 @@
+.logo {
+  background-color: transparent;
+  margin: 0 auto;
+  display: block;
+}
+
 .ion-ios-add:before {
   content: "\f102";
 }
@@ -35475,6 +35481,41 @@ td.monthview-current .calendar-day {
 .calendar-day.pending {
   background-color: #f4b342 !important;
   color: white;
+}
+
+page-home .scroll-content {
+  display: table !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+page-home .scroll {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+page-home .logo {
+  width: 5em;
+  height: 5em;
+  margin-bottom: 25px;
+}
+
+page-home form {
+  padding-top: 25px;
+}
+
+page-home .checkboxremem {
+  background-color: transparent;
+}
+
+page-home .checkboxremem ion-label {
+  color: black;
+}
+
+page-home .iforgot a {
+  color: #242424;
+  font-weight: bold;
 }
 
 .ios page-location .scroll, .md page-location .scroll {
