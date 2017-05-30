@@ -5,23 +5,24 @@
         <ion-icon name="arrow-back"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Check In Map</ion-title>
-<<<<<<< HEAD
-=======
-    <ion-buttons end>
-      <button ion-button (click)="addMarker()"><ion-icon name="add"></ion-icon>Add Marker</button>
-    </ion-buttons>  
->>>>>>> master
+    <ion-title>{{'CHECK_IN_MAP' | translate}}</ion-title>
+    
+   <ion-buttons end>
+      <button ion-button (click)="addMarkers('entrada')">
+        <ion-icon name="log-in" item-left padding-right="5px"></ion-icon>
+        {{'ENTRANCE' | translate}} 
+      </button>
+      <button ion-button (click)="addMarkers('salida')">
+        <ion-icon name="log-out" item-left padding-right="5px">
+        </ion-icon>
+        {{'EXIT' | translate}}
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 
-<<<<<<< HEAD
-<ion-content padding>
-
-</ion-content>
-=======
 <ion-content no-padding>
-  <div #map id="map"></div> 
+  <ion-datetime [(ngModel)]="date" name="date" (ionChange)="onChangeDate()"></ion-datetime>
+  <div #map id="map"></div>
 </ion-content>
->>>>>>> master

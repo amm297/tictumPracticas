@@ -6,16 +6,12 @@ import {HomePage} from "../home/home";
 import {Users} from "../../providers/users";
 
 import {DniValidator} from  '../userform/dniValidator';
-<<<<<<< HEAD
-
-=======
 /**
  * Generated class for the GenericPasswordPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
->>>>>>> master
 @IonicPage()
 @Component({
   selector: 'page-generic-password',

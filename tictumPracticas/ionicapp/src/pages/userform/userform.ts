@@ -4,7 +4,6 @@ import {Validators, FormBuilder} from '@angular/forms';
 import {User} from "../../models/user";
 import {Users} from "../../providers/users";
 
-import {PasswordValidator} from  './passwordValidator';
 import {DniValidator} from  './dniValidator';
 import {Roles} from "../../providers/roles";
 
@@ -17,7 +16,6 @@ export class UserformPage {
 
   user: User = new User();
   roles: any;
-  confirmpassword: string;
   userForm;
   text : string = "REGISTER_USER";
   edit : boolean = false;
@@ -29,13 +27,10 @@ export class UserformPage {
               private formBuilder: FormBuilder,
               private alertCtrl: AlertController) {
     if (this.navParams.get('user')) this.user = this.navParams.get('user');
-    else 
+    else
       {this.user.daysh=30;
       this.user.daysp=6;}
-<<<<<<< HEAD
-=======
 
->>>>>>> master
     if (this.navParams.get('user')) {
         this.user = this.navParams.get('user');
         this.text = "EDIT_USER";
@@ -43,15 +38,15 @@ export class UserformPage {
     }
 
     this.userForm = formBuilder.group({
-      name: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      lastname: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      name: ['', Validators.compose([Validators.pattern('[a-zA-ZáéíóúñÁÉÍÓÚÑ ]*'), Validators.required])],
+      lastname: ['', Validators.compose([Validators.pattern('[a-zA-ZáéíóúñÁÉÍÓÚÑ ]*'), Validators.required])],
       dni: ['', Validators.compose([Validators.required, DniValidator.isValid, DniValidator.hasValidFormat])],
       address: ['', Validators.required],
+      city: ['', Validators.required],
+      stateprovince: ['', Validators.required],
       country: ['', Validators.required],
       phone: ['', Validators.compose([Validators.minLength(8), Validators.pattern('[0-9()+-]*'), Validators.required])],
       email: ['', Validators.compose([Validators.minLength(8), Validators.email, Validators.required])],
-      password: ['', Validators.compose([Validators.minLength(8), Validators.required])],
-      confirmpassword: ['', PasswordValidator.isEqual],
       role: ['', Validators.required]
     });
   }
@@ -61,9 +56,6 @@ export class UserformPage {
       this.roles = data;
     });
   }
-  ionViewWillLeave(){
-    this.modifyUser(this.user);
-  }
 
   registerUser() {
     if (this.userForm.valid) {
@@ -72,6 +64,7 @@ export class UserformPage {
           if(!data.hasOwnProperty('errmsg')) this.navCtrl.pop();
         });
       }else{
+        this.user.password = "1234cambio";
         this.usersService.registerUser(this.user).then((data) => {
           if (data.hasOwnProperty('errmsg')) {
             let msg = '';
@@ -93,9 +86,6 @@ export class UserformPage {
     } else {
       console.log("Formulario incorrecto!");
     }
-  }
-  modifyUser(user){
-    this.usersService.modifyUser(this.user);
   }
 
 

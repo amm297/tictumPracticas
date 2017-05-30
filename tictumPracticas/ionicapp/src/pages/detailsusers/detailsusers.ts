@@ -22,10 +22,6 @@ export class DetailsusersPage {
   	this.user = this.navParams.get("user");
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DetailsusersPage');
-  }
-
   deleteUser(userId: String) { //, index: number
     let confirm = this.alertCtrl.create({
       title: 'Cuidado!',
@@ -47,8 +43,9 @@ export class DetailsusersPage {
   }
 
    changeRole(userId: string, role:string){
-    this.usersService.changeRole(userId,role).then(data =>{
-        console.log(data);
+    this.usersService.changeRole(userId,role).then(() =>{
+        this.user.role = role;
+        this.viewCtrl.dismiss(this.user);
     });
   }
 

@@ -1,62 +1,12 @@
 <ion-header>
-<<<<<<< HEAD
-<ion-navbar>
-=======
   <ion-navbar>
->>>>>>> master
     <ion-title>{{ text | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
-<<<<<<< HEAD
-<ion-content padding class="scrll">
-  <form [formGroup]="userForm" (ngSubmit)="registerUser()">
-    <ion-item class="ioninput">
-      <ion-label floating>DNI</ion-label>
-      <ion-input [(ngModel)]="user.dni" type="text" formControlName="dni"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!userForm.controls.dni.valid  && (userForm.controls.dni.dirty || submitAttempt)" class="validator">
-      <p style="color:red;">{{ 'VALID_DNI' | translate }}</p>
-    </ion-item>
-    <ion-item class="ioninput">
-      <ion-label floating>{{ 'NAME' | translate }}</ion-label>
-      <ion-input [(ngModel)]="user.name" type="text" formControlName="name"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!userForm.controls.name.valid  && (userForm.controls.name.dirty || submitAttempt)" class="validator">
-      <p style="color:red;">{{ 'VALID_NAME' | translate }}</p>
-    </ion-item>
-
-    <ion-item class="ioninput">
-      <ion-label floating>{{ 'LASTNAME' | translate }}</ion-label>
-      <ion-input [(ngModel)]="user.lastname" type="text" formControlName="lastname"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!userForm.controls.lastname.valid  && (userForm.controls.lastname.dirty || submitAttempt)" class="validator">
-      <p style="color:red;">{{ 'VALID_LASTNAME' | translate }}</p>
-    </ion-item>
-    <ion-item class="ioninput">
-      <ion-label floating>{{ 'ADDRESS' | translate }}</ion-label>
-      <ion-input [(ngModel)]="user.address" type="text" formControlName="address"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!userForm.controls.address.valid  && (userForm.controls.address.dirty || submitAttempt)" class="validator">
-      <p style="color:red;">{{ 'VALID_ADDRESS' | translate }}</p>
-    </ion-item>
-    <ion-item class="ioninput">
-      <ion-label floating>{{ 'COUNTRY' | translate }}</ion-label>
-      <ion-input [(ngModel)]="user.country" type="text" formControlName="country"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!userForm.controls.country.valid  && (userForm.controls.country.dirty || submitAttempt)" class="validator">
-      <p style="color:red;">{{ 'DIFFERENT_PASSWORD' | translate }}</p>
-    </ion-item>
-
-    <ion-item class="ioninput">
-      <ion-label floating>{{ 'PHONE_NUMBER' | translate }}</ion-label>
-      <ion-input [(ngModel)]="user.phone" type="text" formControlName="phone"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!userForm.controls.phone.valid  && (userForm.controls.phone.dirty || submitAttempt)" class="validator">
-=======
 <ion-content padding>
   <form [formGroup]="userForm" (ngSubmit)="registerUser()">
     <ion-item>
-      <ion-label floating>DNI</ion-label>
+      <ion-label floating>*DNI</ion-label>
       <ion-input [(ngModel)]="user.dni" type="text" formControlName="dni"></ion-input>
     </ion-item>
     <ion-item *ngIf="!userForm.controls.dni.valid  && (userForm.controls.dni.dirty || submitAttempt)">
@@ -83,16 +33,20 @@
       <ion-label floating>{{ 'ADDRESS' | translate }}</ion-label>
       <ion-input [(ngModel)]="user.address" type="text" formControlName="address"></ion-input>
     </ion-item>
-    <ion-item *ngIf="!userForm.controls.address.valid  && (userForm.controls.address.dirty || submitAttempt)">
-      <p style="color:red;">{{ 'VALID_ADDRESS' | translate }}</p>
+
+    <ion-item>
+      <ion-label floating>{{ 'CITY' | translate }}</ion-label>
+      <ion-input [(ngModel)]="user.city" type="text" formControlName="city"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>{{ 'STATE_OR_PROVINCE' | translate }}</ion-label>
+      <ion-input [(ngModel)]="user.stateprovince" type="text" formControlName="stateprovince"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>{{ 'COUNTRY' | translate }}</ion-label>
       <ion-input [(ngModel)]="user.country" type="text" formControlName="country"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!userForm.controls.country.valid  && (userForm.controls.country.dirty || submitAttempt)">
-      <p style="color:red;">{{ 'DIFFERENT_PASSWORD' | translate }}</p>
     </ion-item>
 
     <ion-item>
@@ -100,56 +54,19 @@
       <ion-input [(ngModel)]="user.phone" type="text" formControlName="phone"></ion-input>
     </ion-item>
     <ion-item *ngIf="!userForm.controls.phone.valid  && (userForm.controls.phone.dirty || submitAttempt)">
->>>>>>> master
       <p style="color:red;">{{ 'VALID_PHONE' | translate }} {{8-user.phone.length}} {{ 'VALID_PHONE2' | translate }}</p>
     </ion-item>
 
-    <ion-item class="ioninput">
-      <ion-label floating>Email</ion-label>
+    <ion-item>
+      <ion-label floating>*Email</ion-label>
       <ion-input [(ngModel)]="user.email" type="email" formControlName="email"></ion-input>
     </ion-item>
-<<<<<<< HEAD
-    <ion-item *ngIf="!userForm.controls.email.valid  && (userForm.controls.email.dirty || submitAttempt)" class="validator">
-      <p style="color:red;">{{ 'VALID_EMAIL' | translate }}</p>
-    </ion-item>
-
-    <ion-item class="ioninput">
-      <ion-label floating>{{ 'PASSWORD' | translate }}</ion-label>
-      <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!userForm.controls.password.valid  && (userForm.controls.password.dirty || submitAttempt)" class="validator">
-      <p style="color:red;">{{ 'VALID_PASSWORD2' | translate }}</p>
-    </ion-item>
-
-    <ion-item class="ioninput">
-      <ion-label floating>{{ 'CONFIRM_PASSWORD' | translate }}</ion-label>
-      <ion-input [(ngModel)]="confirmpassword" type="password" formControlName="confirmpassword"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!userForm.controls.confirmpassword.valid  && (userForm.controls.confirmpassword.dirty || submitAttempt)" class="validator">
-=======
     <ion-item *ngIf="!userForm.controls.email.valid  && (userForm.controls.email.dirty || submitAttempt)">
       <p style="color:red;">{{ 'VALID_EMAIL' | translate }}</p>
     </ion-item>
 
     <ion-item>
-      <ion-label floating>{{ 'PASSWORD' | translate }}</ion-label>
-      <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!userForm.controls.password.valid  && (userForm.controls.password.dirty || submitAttempt)">
-      <p style="color:red;">{{ 'VALID_PASSWORD2' | translate }}</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>{{ 'CONFIRM_PASSWORD' | translate }}</ion-label>
-      <ion-input [(ngModel)]="confirmpassword" type="password" formControlName="confirmpassword"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!userForm.controls.confirmpassword.valid  && (userForm.controls.confirmpassword.dirty || submitAttempt)">
->>>>>>> master
-      <p style="color:red;">{{ 'DIFFERENT_PASSWORD' | translate }}</p>
-    </ion-item>
-
-    <ion-item class="ioninput">
-      <ion-label floating>Rol</ion-label>
+      <ion-label floating>{{ 'ROLE' | translate }}</ion-label>
       <ion-select [(ngModel)]="user.role" formControlName="role">
         <ion-option *ngFor="let role of roles">{{role.rolename}}</ion-option>
       </ion-select>

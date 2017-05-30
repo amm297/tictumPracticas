@@ -5,29 +5,18 @@
         <ion-icon name="arrow-back"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Check-In Table</ion-title>
+    <ion-title>{{'CHECK_IN_TABLE' | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-<<<<<<< HEAD
-
-=======
+  <ion-datetime [(ngModel)]="date" name="date" (ionChange)="onChangeDate()"></ion-datetime>
   <ion-list>
-    <div *ngFor="let user of users">
-      <ion-item>
-        <h2>{{user.name}} {{user.lastname}}</h2>
-        <ion-card>
-          <ion-card-header>
-                <p>02-05-2017
-                  <ion-icon name="arrow-forward"></ion-icon>
-                  15:05
-                </p>
-          </ion-card-header>
-        </ion-card>
-      </ion-item>
-    </div>
+    <ion-item *ngFor="let check of checksDisplay" (click)="onClickCheckUser(check)">
+      <p item-left>{{'NAME' | translate}}: {{check.name}}</p>
+      <p item-right>{{'ENTRANCE' | translate}}: {{check.checking.entrada.hora}}</p>
+      <p item-right>{{'EXIT' | translate}}: {{check.checking.salida.hora}}</p>
+    </ion-item>
   </ion-list>
->>>>>>> master
 </ion-content>

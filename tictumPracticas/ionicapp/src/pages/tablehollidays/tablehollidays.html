@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button (click)="onBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Vacaciones {{statusDisplay | uppercase}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item *ngFor="let user of displayUsers">
+    <h2>{{'USER' | translate}}: {{user.name}} {{user.lastname}}</h2>
+    <div style="{padding:0;margin:0}" *ngFor="let holliday of user.hollidays;let index = index">
+      <ion-card *ngIf="holliday.status==statusDisplay" color="{{holliday.status}}">
+        <ion-card-content>
+          <ion-row>
+            <ion-col>
+              {{holliday.startDate | date:'dd/MM/yyyy'}}
+              <ion-icon name="arrow-forward"></ion-icon>
+              {{holliday.endDate | date:'dd/MM/yyyy'}}
+            </ion-col>
+            <ion-col text-right>
+              {{holliday.days}} días
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="holliday.status=='pending'">
+            <ion-col text-left>
+              <button ion-button clear icon-only (click)="onChangeStatus(user,index,'denied')">
+                <ion-icon name="close" color="denied"></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col text-right>
+              <button ion-button clear icon-only (click)="onChangeStatus(user,index,'aproved')">
+                <ion-icon name="checkmark" color="aproved"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-item>
+</ion-content>

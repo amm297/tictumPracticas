@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <ion-header>
   <ion-navbar>
     <ion-title>
@@ -7,57 +6,38 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-<ion-list [virtualScroll]="users">
-    <ion-item *virtualItem= "let user; let index = 'index' text-wrap">
-      <h2>
-        <ion-row>
-          <ion-col col-10>
-            <span class="item-note" text-uppercase>{{user.role}}</span>:
-            {{user.name}} {{user.lastname}}
-          </ion-col>
-          <ion-col text-right>
-            <ion-icon color="success" name="arrow-dropright" (click)="openModal(user)"></ion-icon>
-          </ion-col>
-        </ion-row>
-  <!-- <ion-searchbar [showCancelButton]="shouldShowCancel"
-                 (ionInput)="onInput($event)"></ion-searchbar>
-  <ion-list [virtualScroll]="users" approxItemHeight="2000px">
-    <ion-item *virtualItem="let user; let index = index" text-wrap (click)="toggleGroup(index)"
-              [ngClass]="{active: isGroupShown(index)}"> 
-      <h2>
-        <ion-row>
-          <ion-col col-10>
-            <span class="item-note" text-uppercase>{{user.role}}</span>:
-            {{user.name}} {{user.lastname}}
-          </ion-col>
-          <ion-col text-right>
-            <ion-icon color="success" [name]="isGroupShown(index) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
-          </ion-col>
-        </ion-row>-->
-      </h2>
-
-      <!-- <div *ngIf="isGroupShown(index)">
-        <ion-card color="light">
-
-          <ion-list no-lines>
-            <ion-item color="light">{{user.dni}}</ion-item>
-            <ion-item color="light">{{user.email}}</ion-item>
-            <ion-item color="light">{{user.country}}</ion-item>
-            <ion-item color="light">{{user.address}}</ion-item>
-            <ion-item color="light">{{user.phone}}</ion-item>
-          </ion-list>
+  <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar usuarios">
+  </ion-searchbar>
+  <ion-item no-lines>
+    <ion-label>{{'ORDER_FIELD' | translate}}</ion-label>
+    <ion-select rigth (ionChange)="onOrderUsers($event)">
+      <ion-option value="role">{{'ROLE' | translate}}</ion-option>
+      <ion-option value="name">{{'NAME' | translate}}</ion-option>
+      <ion-option value="lastname">{{'LASTNAME' | translate}}</ion-option>
+      <ion-option value="dni">{{'DNI' | translate}}</ion-option>
+      <!-- <ion-option value="city">{{'CITY' | translate}}</ion-option>
+      <ion-option value="stateprovince">{{'STATE_OR_PROVINCE' | translate}}</ion-option>
+      <ion-option value="email">{{ 'Email' | translate}}</ion-option>
+      <ion-option value="country"> {{ 'COUNTRY' | translate}}</ion-option>
+      <ion-option value="address">{{ 'ADDRESS' | translate}}</ion-option>
+      <ion-option value="phone"> {{'PHONE_NUMBER' | translate }}</ion-option> -->
+    </ion-select>
+  </ion-item>
+  <ion-list [virtualScroll]="search">
+    <ion-item *virtualItem="let user; let index = index" text-wrap>
+      <div style="padding:0;marging:0" (click)="openModal(user)">
+        <h2>
           <ion-row>
+            <ion-col col-10>
+              <span class="item-note" text-uppercase>{{user.role}}</span>:
+              {{user.name}} {{user.lastname}}
+            </ion-col>
             <ion-col text-right>
-              <button ion-button color="warning" icon-only clear (click)="modifyUser(user)">
-                <ion-icon name="create"></ion-icon>
-              </button>
-              <button ion-button color="danger" icon-only clear (click)="deleteUser(user._id,index)">
-                <ion-icon name="trash"></ion-icon>
-              </button>
+              <ion-icon color="success" name="arrow-dropright"></ion-icon>
             </ion-col>
           </ion-row>
-        </ion-card>
-      </div> -->
+        </h2>
+      </div>
     </ion-item>
   </ion-list>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
@@ -67,37 +47,3 @@
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
-=======
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      {{ 'LIST_USERS' | translate }}
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content padding>
-
-
-  <ion-list [virtualScroll]="users">
-    <ion-item *virtualItem="let user; let index = index" text-wrap>
-      <h2>
-        <ion-row>
-          <ion-col col-10>
-            <span class="item-note" text-uppercase>{{user.role}}</span>:
-            {{user.name}} {{user.lastname}}
-          </ion-col>
-          <ion-col text-right>
-            <ion-icon color="success" name="arrow-dropright" (click)="openModal(user)"></ion-icon>
-          </ion-col>
-        </ion-row>
-      </h2>
-    </ion-item>
-  </ion-list>
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Cargando más usuarios...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
-</ion-content>
->>>>>>> master

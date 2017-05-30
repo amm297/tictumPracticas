@@ -4,14 +4,9 @@ import {Validators, FormBuilder} from '@angular/forms';
 
 import {HomePage} from "../home/home";
 
-import {User} from "../../models/user";
 import {Users} from "../../providers/users";
 
-import {AdminPage} from "../admin/admin";
-import {UserPage} from "../user/user";
-
 import {PasswordValidator} from  '../userform/passwordValidator';
-import {DniValidator} from  '../userform/dniValidator';
 
 /**
  * Generated class for the ResetPassword page.
@@ -29,22 +24,33 @@ export class ResetPassword {
   //user: User = new User();
   confirmpassword: string;
   resetPasswForm;
+  hideOldPassword: boolean = false;
   user = { 
+    oldpassword: '',
     email: '', 
     dni:'', 
     password: '' 
   }; 
 
   constructor(public navCtrl: NavController, private navParams: NavParams, public formBuilder: FormBuilder, public alertCtrl: AlertController, private usersService: Users) {
+    this.hideOldPassword = (this.navCtrl.last().component.name == "HomePage") ? false : true;
     if (this.navParams.get('user')){
         this.user.email = this.navParams.get('user').email;
-        this.user.dni = this.navParams.get('user').dni;
+        this.user.dni = this.navParams.get('user').dni;        
     } 
 
-    this.resetPasswForm = formBuilder.group({
-      password: ['', Validators.compose([Validators.minLength(8),Validators.required])],
-      confirmpassword: ['', PasswordValidator.isEqual], 
-    });
+    if(this.hideOldPassword == true) {
+      this.resetPasswForm = formBuilder.group({
+        oldpassword:['',Validators.compose([Validators.minLength(8),Validators.required])],
+        password: ['', Validators.compose([Validators.minLength(8),Validators.required])],
+        confirmpassword: ['', PasswordValidator.isEqual]
+      });
+    } else {
+      this.resetPasswForm = formBuilder.group({
+        password: ['', Validators.compose([Validators.minLength(8),Validators.required])],
+        confirmpassword: ['', PasswordValidator.isEqual]
+      });      
+    }
   }
 
   ionViewDidLoad() {
@@ -54,11 +60,12 @@ export class ResetPassword {
   resetPassword(){
 		console.log("Changing password...");
 		if (this.resetPasswForm.valid) {
-     	if (this.user.password == this.confirmpassword) {
+     	//if (this.user.password == this.confirmpassword) {
         let cambio = {
         	email:this.user.email,
           dni:this.user.dni,
           password: this.user.password,
+          oldpassword:this.user.oldpassword
         }
         		console.log(cambio);
             
@@ -75,7 +82,7 @@ export class ResetPassword {
                   let alert = this.alertCtrl.create({
                   title: 'OK!',
                   subTitle: data['msgok'],
-                  buttons: ['Acept']
+                  buttons: ['Aceptar']
                 });
                 alert.present();
 
@@ -90,7 +97,7 @@ export class ResetPassword {
 
 
 
-        	}
+     //   	}
 
       };
     }

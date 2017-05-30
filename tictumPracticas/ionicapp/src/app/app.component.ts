@@ -4,12 +4,9 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
 import {HomePage} from '../pages/home/home';
+
 import {TranslateService} from "@ngx-translate/core";
-<<<<<<< HEAD
-//import { AdminPage } from '../pages/admin/admin';
-=======
-//import {HollidaysTabsPage} from '../pages/tablehollidays/hollidaystabs/hollidaystabs';
->>>>>>> master
+import {UserPage} from '../pages/user/user';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +14,6 @@ import {TranslateService} from "@ngx-translate/core";
 export class MyApp {
   // set the rootPage to the first page we want displayed
   public rootPage: any = HomePage;
-  //public rootPage: any = AdminPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService) {
     platform.ready().then(() => {

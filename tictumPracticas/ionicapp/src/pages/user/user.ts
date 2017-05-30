@@ -1,17 +1,10 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import {HomePage} from "../home/home";
-import {HollidaysPage} from "../hollidays/hollidays";
-import {ResetPassword} from "../reset-password/reset-password";
-=======
+
 import {Component} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
 import {hollidaysPage} from "../hollidays/hollidays";
 import {ResetPassword} from "../reset-password/reset-password";
 
->>>>>>> master
 import {User} from "../../models/user";
 import {LocationPage} from '../location/location'
 
@@ -23,47 +16,9 @@ import {LocationPage} from '../location/location'
 export class UserPage {
 
 user: User = new User();
+  shownGroup = null;
 
-<<<<<<< HEAD
-  constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams,
-    private alertCtrl: AlertController) {
 
-    this.user = this.navParams.get("user");
-    console.log(this.user)
-
-  }
-  showConfirm(){
-    let confirm = this.alertCtrl.create({
-      title: 'Salir',
-      message: '¿Estas seguro de cerrar sesion?',
-      buttons: [
-        {
-          text: 'Si',
-          handler: () => {
-            this.logout();
-          }
-        },
-        {
-          text: 'No'
-        }
-      ]
-    });
-    confirm.present();
-  }
-  
-  onClickHollidays(){
-    this.navCtrl.push(HollidaysPage,{user:this.user});
-  }
-  onChangePassword(){
-    this.navCtrl.push(ResetPassword);
-  }
-  onClickMap(){
-    this.navCtrl.push(LocationPage);
-  }
-  logout(){
-=======
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
 
     this.user = this.navParams.get("user");
@@ -95,19 +50,28 @@ user: User = new User();
   }
 
   logout() {
->>>>>>> master
     localStorage.clear();
     this.navCtrl.setRoot(HomePage);
   }
 
   onChangePassword(){
-    this.navCtrl.push(ResetPassword);
+    this.navCtrl.push(ResetPassword,{user: this.user});
   }
 
   onClickMap(){
-    this.navCtrl.push(LocationPage);
+    this.navCtrl.push(LocationPage,{user :this.user});
   }
 
+toggleGroup(group) {
+    if (this.isGroupShown(group)) {
+        this.shownGroup = null;
+    } else {
+        this.shownGroup = group;
+    }
+  };
 
+  isGroupShown(group) {
+    return this.shownGroup === group;
+  };
 
 }

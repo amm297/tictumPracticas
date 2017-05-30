@@ -5,8 +5,6 @@ import {Users} from "../../providers/users";
 import {User} from "../../models/user";
 import { AlertController } from 'ionic-angular';
 
-<<<<<<< HEAD
-=======
 /**
  * Generated class for the hollidaysPage page.
  *
@@ -15,31 +13,22 @@ import { AlertController } from 'ionic-angular';
  */
 
 
->>>>>>> master
 @Component({
   selector: 'page-hollidays',
   templateUrl: 'hollidays.html',
 })
-<<<<<<< HEAD
-export class HollidaysPage {
-  currentSelectedDate : any ='';
-  personalDay : any = '';
-=======
 export class hollidaysPage {
 
   currentSelectedDate : any =''; //fecha seleccionada
   personalDay : any = '';
 
   //esquema de la vacacion
->>>>>>> master
   holliday ={
     startDate: '',
     endDate:'',
     days:0 ,
     status:''
   }
-<<<<<<< HEAD
-=======
 
   //comprobacion de dias
   total: number = 0;
@@ -49,18 +38,13 @@ export class hollidaysPage {
   user : User = new User();
 
   //Habilitacion de botones
->>>>>>> master
   buttonPersonalDaysDisabled:boolean=false;
   bookPersonalDaysDisabled : boolean = true;
   startDateDisabled: boolean = false;
   endDateDisabled: boolean = false;
   bookHollidaysDisabled: boolean = true;
-<<<<<<< HEAD
-  user : User = new User();
-=======
 
   //Variables para el calendario
->>>>>>> master
   eventSource;
   startTime;
   endTime;
@@ -77,9 +61,16 @@ export class hollidaysPage {
   }
 
     ionViewDidLoad() {
-      console.log(this.user);
       this.eventSource = this.loadHollidays();
     }    
+
+    showHollidays(){
+      this.eventSource = this.loadHollidays();
+    }
+    showPesonalDays(){
+      this.eventSource = this.loadPersonalDays();
+    }
+
 
      onViewTitleChanged(title) {
         this.viewTitle = title;
@@ -97,29 +88,14 @@ export class hollidaysPage {
         this.calendar.currentDate = new Date();
     }
 
-<<<<<<< HEAD
-    onTimeSelected(ev) {
-        this.currentSelectedDate=ev.selectedTime;
-        if(this.checkDateInHollidays(this.currentSelectedDate)){
-          this.buttonPersonalDaysDisabled=true;
-          this.startDateDisabled = true;
-          this.endDateDisabled = true;
-        }else{
-          this.buttonPersonalDaysDisabled=false;
-          this.startDateDisabled = false;
-          this.endDateDisabled = false;
-        }
-        console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
-            (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
-=======
     //Seleccion de una fecha
     onTimeSelected(ev) {
         this.currentSelectedDate=ev.selectedTime;
         let check = this.checkDateInHollidays(this.currentSelectedDate);
+        check = (!check) ? this.checkDatePersonalDay(this.currentSelectedDate) : check;
         this.buttonPersonalDaysDisabled=check;
         this.startDateDisabled = check;
         this.endDateDisabled = check;
->>>>>>> master
     }
 
     onCurrentDateChanged(event:Date) {
@@ -128,17 +104,6 @@ export class hollidaysPage {
         event.setHours(0, 0, 0, 0);
         this.isToday = today.getTime() === event.getTime();
     }
-<<<<<<< HEAD
-    StartHollidays(){
-      if(this.currentSelectedDate !=''){
-        this.holliday.startDate = this.currentSelectedDate; 
-        console.log(this.holliday.startDate);
-        this.buttonPersonalDaysDisabled = true;
-      }
-    }
-    EndHollidays(){
-      if(this.currentSelectedDate !='' && this.holliday.startDate!=''&& this.holliday.startDate < this.currentSelectedDate ){
-=======
 
     StartHollidays(){
       if(this.currentSelectedDate !=''){
@@ -156,14 +121,10 @@ export class hollidaysPage {
          this.holliday.startDate!=''   && 
          this.holliday.startDate < this.currentSelectedDate ){
 
->>>>>>> master
         this.holliday.endDate = this.currentSelectedDate;   
         this.bookHollidaysDisabled = false;
         let  s = new Date(this.holliday.startDate);
         let  f = new Date(this.holliday.endDate);
-<<<<<<< HEAD
-        this.holliday.days = (f.getTime()-s.getTime())/(24*60*60*1000);
-=======
         this.holliday.days = Math.floor((f.getTime()-s.getTime())/(24*60*60*1000));
         this.holliday.days -= 2*Math.floor(this.holliday.days/7);
         if( this.holliday.days+this.total > this.user.daysh ){
@@ -175,50 +136,43 @@ export class hollidaysPage {
              });
             alert.present();
         } 
->>>>>>> master
       } 
       else  console.log("fecha no valida")
     }
 
 
-<<<<<<< HEAD
-    bookHollidays(){
-    /*1 contar los dias entre f.inicio y f.final   (listo)
-      2 poner por defecto estado pendiente(reserva) (listo)
-      3  enviar holliday{starDate , endDate , status , days  } (listo)
-      4 comprobar que no tenga ya las vacaciones pilladas en esas fechas
-      5 Quitar los fines de semana
-    */
-     
-=======
     bookHollidays(){     
->>>>>>> master
       this.holliday.status= "pending";      
       this.user.addHolliday(this.holliday);
       this.userService.addHollidays(this.user)
       .then(data => {
         console.log(data);
         this.navCtrl.pop();
-<<<<<<< HEAD
-      });}
-     
-    
-      
-=======
       });
     }
      
->>>>>>> master
 
     PersonalDays(){
       //comprobar que la fecha no sea sabado o domingo
       if(this.currentSelectedDate !=''){
         let d = new Date(this.currentSelectedDate);
         if(d.getDay() == 6 || d.getDay() == 0) console.log("Error fin de semana");
-        this.personalDay = this.currentSelectedDate;
-        this.startDateDisabled= true;
-        this.endDateDisabled= true;
-        this.bookPersonalDaysDisabled = false;
+        else{
+          this.personalDay = this.currentSelectedDate;
+          this.startDateDisabled= true;
+          this.endDateDisabled= true;
+          this.bookPersonalDaysDisabled = false;
+
+          if(this.user.personalDays.length >= this.user.daysp){
+            this.bookPersonalDaysDisabled = true;
+            let alert = this.alertCtrl.create({
+              title: "Dias sobrepasados",
+              subTitle : "Vas a solicitar mas dias de los que tienes permitidos",
+              buttons:  ['OK']
+            });
+            alert.present();
+          }
+        }
       }
     }
 
@@ -234,20 +188,6 @@ export class hollidaysPage {
 
     loadHollidays() {    
         var events = [];
-<<<<<<< HEAD
-       for (var i = 0; i < this.user.hollidays.length; i ++) {
-               let  startTime = new Date(this.user.hollidays[i].startDate);
-               let endTime = new Date(this.user.hollidays[i].endDate);
-                events.push({
-                    title: 'vacaciones',
-                    startTime: startTime,
-                    endTime: endTime,
-                    allDay: false,
-                    extra: 'Hola que tal',
-                    color: this.user.hollidays[i].status                
-                }); 
-           // console.log(events);
-=======
         for(let i in this.user.hollidays){
             let holliday = this.user.hollidays[i];
             events.push({
@@ -257,25 +197,43 @@ export class hollidaysPage {
                allDay: false,
                color: holliday.status
             });
->>>>>>> master
         }
         return events;
     }
 
+    loadPersonalDays(){
+      var events = [];
+      for(let i in this.user.personalDays){
+            let personalDay = this.user.personalDays[i];
+            events.push({
+               title: 'Asuntos propios',
+               startTime: new Date(personalDay),
+               endTime: new Date(new Date(personalDay).getTime()+(24*60*60*1000)),
+               allDay: false,
+               color: 'personal'
+            });
+
+        }
+        console.log(events);
+        return events;
+
+    }
+
     checkDateInHollidays(date){
-<<<<<<< HEAD
-      console.log(date);
-=======
->>>>>>> master
       for(let i in this.user.hollidays){
         let holliday = this.user.hollidays[i];
         let startTime = new Date(holliday.startDate);
         let endTime = new Date(holliday.endDate);
-<<<<<<< HEAD
-        if((startTime < date  && date < endTime) || (date < this.calendar.currentDate)) return true;
-=======
         if((startTime <= date  && date < endTime) || (date < this.calendar.currentDate)) return true;
->>>>>>> master
+      }
+      return false;
+    }
+
+    checkDatePersonalDay(date){
+      for(let i in this.user.personalDays){
+        let personalDay = new Date(this.user.personalDays[i]);
+        let d = new Date(date);
+        if(personalDay.getTime() == d.getTime()) return true;
       }
       return false;
     }
@@ -288,11 +246,6 @@ export class hollidaysPage {
         var current = new Date();
         current.setHours(0, 0, 0);
         return date < current;
-<<<<<<< HEAD
-
-
-=======
->>>>>>> master
     };
 
 }

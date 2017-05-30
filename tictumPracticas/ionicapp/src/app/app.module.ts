@@ -21,30 +21,8 @@ import { NgCalendarModule  } from 'ionic2-calendar';
 import {hollidaysPage} from "../pages/hollidays/hollidays";
 import {LocationPage} from '../pages/location/location';
 
-<<<<<<< HEAD
-//Translate config
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-export function createTranslateLoader(http: Http) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
-
-//GEOLOCALIZACION
-import { LocationPage } from "../pages/location/location";
 import { Geolocation } from '@ionic-native/geolocation';
-
-// Hollydays
-
-import { NgCalendarModule  } from 'ionic2-calendar';
-import { HollidaysPage } from "../pages/hollidays/hollidays";
-
-// Checking
-import {CheckinTabsPage} from "../pages/checkin-admin/checkin-tabs/checkin-tabs";
-import {CheckinmapPage} from "../pages/checkin-admin/checkinmap/checkinmap";
-import {CheckintablePage} from "../pages/checkin-admin/checkintable/checkintable";
-
-=======
-import { Geolocation } from '@ionic-native/geolocation';
+import {GoogleMaps} from '@ionic-native/google-maps';
 
 //Translate config
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
@@ -53,10 +31,15 @@ import {CheckinTabsPage} from "../pages/checkin-admin/checkin-tabs/checkin-tabs"
 import {CheckinmapPage} from "../pages/checkin-admin/checkinmap/checkinmap";
 import {CheckintablePage} from "../pages/checkin-admin/checkintable/checkintable";
 import {TableholidaysPage} from '../pages/tableholidays/tableholidays';
+import {TableaprovedPage} from '../pages/tablehollidays-tabs/tableaproved/tableaproved';
+import {TabledeniedPage} from '../pages/tablehollidays-tabs/tabledenied/tabledenied';
+import {TablependingPage} from '../pages/tablehollidays-tabs/tablepending/tablepending';
+import {TablehollidaysPage} from '../pages/tablehollidays/tablehollidays';
+import {HollidaysTabsPage} from '../pages/tablehollidays/hollidays-tabs';
+import {Checking} from '../providers/checking';
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
->>>>>>> master
 
 @NgModule({
   declarations: [
@@ -70,21 +53,13 @@ export function createTranslateLoader(http: Http) {
     ResetPassword,
     UserPage,
     GenericPasswordPage,
-<<<<<<< HEAD
-    LocationPage,
-    HollidaysPage,
-    CheckinTabsPage,
-    CheckinmapPage,
-    CheckintablePage,
-    DetailsusersPage
-=======
     CheckinTabsPage,
     CheckinmapPage,
     CheckintablePage,
     DetailsusersPage,
     LocationPage,
-    TableholidaysPage
->>>>>>> master
+    HollidaysTabsPage,
+    TablehollidaysPage
   ],
   imports: [
     BrowserModule,
@@ -111,30 +86,23 @@ export function createTranslateLoader(http: Http) {
     ResetPassword,
     UserPage,
     GenericPasswordPage,
-<<<<<<< HEAD
-    LocationPage,
-    HollidaysPage,
-    CheckinTabsPage,
-    CheckinmapPage,
-    CheckintablePage,
-    DetailsusersPage
-    ],
-=======
     CheckinTabsPage,
     CheckinmapPage,
     CheckintablePage,
     DetailsusersPage,
     LocationPage,
-    TableholidaysPage
+    HollidaysTabsPage,
+    TablehollidaysPage
   ],
->>>>>>> master
   providers: [
     StatusBar,
     SplashScreen,
+    GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Users,
     Roles,
-    Geolocation
+    Geolocation,
+    Checking
   ]
 })
 export class AppModule {

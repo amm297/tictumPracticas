@@ -4,22 +4,29 @@ import {TableusersPage} from "../tableusers/tableusers";
 import {UserformPage} from "../userform/userform";
 import {TablerolesPage} from "../tableroles/tableroles";
 import {HomePage} from "../home/home";
-<<<<<<< HEAD
-import {LocationPage} from "../location/location";
 import {CheckinTabsPage} from "../checkin-admin/checkin-tabs/checkin-tabs";
-=======
-import {CheckinTabsPage} from "../checkin-admin/checkin-tabs/checkin-tabs";
-import {TableholidaysPage} from '../tableholidays/tableholidays';
->>>>>>> master
+import {Users} from '../../providers/users';
+import {HollidaysTabsPage} from '../tablehollidays/hollidays-tabs';
 
 @IonicPage()
 @Component({
   selector: 'page-admin',
   templateUrl: 'admin.html',
 })
+
+
+
 export class AdminPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+  users
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private alertCtrl: AlertController,
+              private usersService: Users) {
+    this.usersService.getAllUsers().then(data => {
+      this.users = data;
+    })
   }
 
   onClickUsers() {
@@ -33,21 +40,25 @@ export class AdminPage {
   onClickAddUser() {
     this.navCtrl.push(UserformPage);
   }
-  onClickLocation() {
-    this.navCtrl.push(LocationPage);
-  }
+
   onClickHolidays() {
+    let loading = this.usersService.createLoading('Cargando usuarios');
+    loading.present();
+    this.usersService.getAllUsers().then(data=>{
+      loading.dismiss();
+      this.navCtrl.push(HollidaysTabsPage,data);
+      }
+    );
   }
 
-<<<<<<< HEAD
-=======
-  onClickHolidays() {
-    this.navCtrl.push(TableholidaysPage);
-  }
-
->>>>>>> master
   onClickCheckIn() {
-    this.navCtrl.push(CheckinTabsPage);
+    let loading = this.usersService.createLoading('Cargando usuarios');
+    loading.present();
+    this.usersService.getAllUsers().then(data=>{
+        loading.dismiss();
+        this.navCtrl.push(CheckinTabsPage,data);
+      }
+    );
   }
 
   showConfirm() {

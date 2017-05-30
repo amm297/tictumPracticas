@@ -2,20 +2,45 @@
   <ion-navbar>
     <ion-title>{{ 'USER' | translate }}</ion-title>
     <ion-buttons left>
-    <button ion-button (click)="showConfirm()">
+      <button ion-button (click)="showConfirm()">
       <ion-icon name="log-out"></ion-icon>
     </button>
 
 
-  </ion-buttons>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
   <button ion-button outline block (click)="onClickHollidays()">{{ 'RESERVE_VACATION' | translate }}</button>
   <button ion-button outline block (click)="onClickMap()">{{ 'CLOCK_IN' | translate }}</button>
   <button ion-button outline block (click)="onChangePassword()">{{ 'CHANGE_PASSWORD' | translate }}</button>
-<<<<<<< HEAD
+  <button ion-button outline block (click)="toggleGroup(i)">{{ 'MY_DATA' | translate }}
+    <ion-row>  
+      <ion-col>
+        <ion-icon color="success" item-right [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </button>
+
+  <ion-item no-lines>
+    <div *ngIf="isGroupShown(i)">
+      <ion-card>
+
+        <ion-list>
+          <p>{{' DNI' | translate }}: <ion-item>{{user.dni}}</ion-item></p>
+          <p>{{ 'NAME' | translate }}: <ion-item>{{user.name}}</ion-item></p>
+          <p>{{' LASTNAME' | translate }}: <ion-item>{{user.lastname}}</ion-item></p>
+          <p>{{' ROLE' | translate }}: <ion-item>{{user.role}}</ion-item></p>
+          <p>{{ 'Email' | translate }}: <ion-item>{{user.email}}</ion-item></p>
+          <p>{{ 'ADDRESS' | translate }}: <ion-item>{{user.address}}</ion-item></p>          
+          <p>{{ 'CITY' | translate }}: <ion-item>{{user.city}}</ion-item></p>
+          <p>{{ 'STATE_OR_PROVINCE' | translate }}: <ion-item>{{user.stateprovince}}</ion-item></p>
+          <p>{{ 'PHONE_NUMBER' | translate }}: <ion-item>{{user.phone}}</ion-item></p>
+          <p>{{ 'COUNTRY' | translate }}: <ion-item>{{user.country}}</ion-item></p>
+        </ion-list>
+
+      </ion-card>
+    </div>
+  </ion-item>
+
 </ion-content>
-=======
-</ion-content>
->>>>>>> master
