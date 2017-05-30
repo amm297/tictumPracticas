@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
 import {Users} from "../../providers/users";
-import {UserformPage} from '../userform/userform';
 import {DetailsusersPage} from "../detailsusers/detailsusers";
 
 @IonicPage()
@@ -13,15 +12,22 @@ export class TableusersPage {
 
   private page: number = 1;
   users: any = [];
-   search: any; 
- 
+  search: any;
+  orderField : string = '';
+  orderType : boolean = true;
+
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public modalCtrl: ModalController,
               private usersService: Users,
               private alertCtrl: AlertController) {
-    this.loadUsers();
+
+    let loading = this.usersService.createLoading('Cargando usuarios');
+    loading.present();
+    this.loadUsers().then(_=>{
+      loading.dismiss();
+    });
   }
 
   loadUsers() {
@@ -32,7 +38,7 @@ export class TableusersPage {
           for(let user of data['docs']) {
             this.users.push(user);
           }
-          console.log(this.users);
+          this.search = this.users;
           resolve(true);
         });
     })
@@ -45,31 +51,15 @@ export class TableusersPage {
     });
   }
 
-  /*deleteUser(userId: String, index: number) {
-    let confirm = this.alertCtrl.create({
-      title: 'Cuidado!',
-      message: '¿Estas seguro de eliminar el usuario?',
-      buttons: [
-        {
-          text: 'Si',
-          handler: () => {
-            this.usersService.deleteUser(userId);
-            this.users.splice(index, 1);
-          }
-        },
-        {
-          text: 'No'
-        }
-      ]
+  onOrderUsers(event){//Falta añadir orden descendente
+     let or = (this.orderType)? 1 : -1;
+    this.search.sort(function(a, b) {
+      var nameA = a[event.value].toUpperCase(); // ignore upper and lowercase
+      var nameB = b[event.value].toUpperCase(); // ignore upper and lowercase
+      return (nameA <= nameB) ? (-1 *or) : (1*or);
     });
-    confirm.present();
   }
 
-  modifyUser(user) {
-    this.navCtrl.push(UserformPage, {user: user});
-  }*/
-
- 
 
   onInput(event) {
     let input = event.target.value;
@@ -87,10 +77,17 @@ export class TableusersPage {
   }
 
   openModal(user){
-    console.log('Usuario de la Ventana Modal ' , user);
     // create the modal
     let profileModal = this.modalCtrl.create(DetailsusersPage, {user});
     // open the new modal
     profileModal.present();
+    profileModal.onWillDismiss((user)=>{
+      if(user){
+        const position = this.users.findIndex((userSearch) => {
+          return userSearch._id == user._id;
+        });
+        this.users[position] = user;
+      }
+    });
   }
 }

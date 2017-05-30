@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Md5} from 'ts-md5/dist/md5';
+import {LoadingController} from 'ionic-angular';
 
 @Injectable()
 export class Users {
@@ -9,13 +10,13 @@ export class Users {
   // Límite de registros por página
   perpage: number = 2;
 
-  constructor(public http: Http) {
+  constructor(public http: Http, private loadingCtrl: LoadingController) {
   }
 
   //WI-Fi
-  //server = 'http://192.168.4.45:8080';
+  //server = 'http://192.168.4.64:8080';
   //server = 'http://192.168.5.26:8080';
-  //server = 'http://172.16.112.51:8080';
+  //server = 'http://172.16.112.45:8080';
   server = 'http://localhost:8080';
 
   registerUser(data) {
@@ -33,7 +34,6 @@ export class Users {
   }
 
   loginUser(data) {
-
     return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
@@ -48,7 +48,7 @@ export class Users {
     });
   }
 
-  /*Desactivar usuario */
+  /*Descactivar usuario */
 
   changeRole(userId, role) {
     return new Promise(resolve => {
@@ -66,6 +66,7 @@ export class Users {
   logoutUser(data) {
     localStorage.clear();
   }
+
   /*-- Roberto --*/
 
   /*Función para generar contraseña AUTOMÁTICA*/
@@ -84,6 +85,11 @@ export class Users {
   /*Funcion para cambiar la contraseña, comprobamos que el email/dni existe en la base de datos y después le añadimos la nueva contraseña.*/
   newPassword(data) {
     data.password = Md5.hashStr(data.password);
+    data.oldpassword =(data.oldpassword)?  Md5.hashStr(data.oldpassword) : null;
+    console.log("Password cambiada");
+    console.log(data.password);
+    console.log("Password de la base de datos");
+    console.log(data.oldpassword);
     return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
@@ -158,29 +164,31 @@ export class Users {
         });
     });
   }
-
-  //Cambia el estado de las vacaciones.
-  changeStatusHollidays(data){
-    console.log(data);
+  updateHollidays(data){
     return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      this.http.put(this.server + '/api/users/changeStatus', JSON.stringify(data), {headers: headers})
+      this.http.put(this.server + '/api/users/updateHollidays', JSON.stringify(data), {headers: headers})
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
         });
     });
   }
-  
+
   //Fichar
-  newCheck(data,userId){
-    return new Promise(resolve => {
+  Check(userId,data) {
+
+    console.log(userId);
+    console.log(data);
+   return new Promise(resolve => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      this.http.put(this.server + '/api/users/check/'+userId, JSON.stringify(data), {headers: headers})
+      this.http.put(this.server + '/api/users/check?_id=' + userId, JSON.stringify(data), {headers: headers})
         .map(res => res.json())
         .subscribe(data => {
+          console.log("service")
+          console.log(data);
           resolve(data);
         });
     });
@@ -189,11 +197,17 @@ export class Users {
   /* Metodo de prueba para la paginación del listado de usuarios */
   load(page: number = 0) {
     return new Promise(resolve => {
-      this.http.get(this.server + '/api/users/read?page=' + page)
+      this.http.get(this.server + '/api/users/readPage?page=' + page)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
         });
+    });
+  }
+
+  createLoading(msg) {
+    return this.loadingCtrl.create({
+      content: msg
     });
   }
 

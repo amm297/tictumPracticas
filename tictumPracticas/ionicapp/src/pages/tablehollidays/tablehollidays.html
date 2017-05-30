@@ -1,8 +1,14 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Lista de Vacaciones</ion-title>
+    <ion-buttons left>
+      <button ion-button (click)="onBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Vacaciones {{statusDisplay | uppercase}}</ion-title>
   </ion-navbar>
 </ion-header>
+
 
 <ion-content padding>
   <ion-item *ngFor="let user of displayUsers">
@@ -37,22 +43,3 @@
     </div>
   </ion-item>
 </ion-content>
-<ion-footer>
-  <ion-row>
-    <ion-col>
-      <button ion-button clear block (click)="onShowStatus('denied')">
-        <ion-icon name="close" color="denied"></ion-icon>
-      </button>
-    </ion-col>
-    <ion-col>
-      <button ion-button clear block (click)="onShowStatus('pending')">
-        <ion-icon name="help" color="pending"></ion-icon>
-      </button>
-    </ion-col>
-    <ion-col>
-      <button ion-button clear block (click)="onShowStatus('aproved')">
-        <ion-icon name="checkmark" color="aproved"></ion-icon>
-      </button>
-    </ion-col>
-  </ion-row>
-</ion-footer>

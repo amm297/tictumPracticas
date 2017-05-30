@@ -15,11 +15,11 @@
   </ion-item>
   <form [formGroup]="loginForm" (ngSubmit)="userLogin(user)">
     <ion-item>
-      <ion-label floating>
+      <ion-label>
         <ion-icon item-left name="at"></ion-icon>
-        Email or DNI: (Ej:12354678X)
+        Email or DNI:
       </ion-label>
-      <ion-input [(ngModel)]="user.input" type="text" formControlName="input"></ion-input>
+      <ion-input [(ngModel)]="user.input" type="text" formControlName="input" placeholder="Ej:12354678X"></ion-input>
     </ion-item>
 
     <ion-item *ngIf="!loginForm.controls.input.valid && loginForm.controls.input.touched">
@@ -27,7 +27,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-label floating>
+      <ion-label>
         <ion-icon item-left name="key"></ion-icon>
         {{ 'PASSWORD' | translate }}
       </ion-label>
@@ -46,6 +46,6 @@
     </ion-item>
   </form>
   <div text-center>
-    <button ion-button block clear (click)="goToResetPassword()">{{ 'REMEMBER' | translate }}</button>
+    <button ion-button block clear (click)="goToResetPassword()">{{ 'RECOVER' | translate }}</button>
   </div>
 </ion-content>

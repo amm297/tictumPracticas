@@ -29,7 +29,7 @@ export class HomePage {
               public alertCtrl: AlertController,
               private usersService: Users,
               private translateService: TranslateService) {
-
+    //console.log('Paso constructor');
     this.user.input = localStorage.getItem("email");
     this.user.password = localStorage.getItem("pwd");
     if(localStorage.getItem("language")){

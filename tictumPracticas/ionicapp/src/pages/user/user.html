@@ -2,16 +2,43 @@
   <ion-navbar>
     <ion-title>{{ 'USER' | translate }}</ion-title>
     <ion-buttons left>
-    <button ion-button (click)="showConfirm()">
+      <button ion-button (click)="showConfirm()">
       <ion-icon name="log-out"></ion-icon>
     </button>
 
 
-  </ion-buttons>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
   <button ion-button outline block (click)="onClickHollidays()">{{ 'RESERVE_VACATION' | translate }}</button>
   <button ion-button outline block (click)="onClickMap()">{{ 'CLOCK_IN' | translate }}</button>
   <button ion-button outline block (click)="onChangePassword()">{{ 'CHANGE_PASSWORD' | translate }}</button>
+  <button ion-button outline block (click)="toggleGroup(i)">{{ 'MY_DATA' | translate }}
+    <ion-row>  
+      <ion-col>
+        <ion-icon color="success" item-right [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </button>
+
+  <ion-item no-lines>
+    <div *ngIf="isGroupShown(i)">
+      <ion-card>
+
+        <ion-list>
+          <ion-item>{{user.dni}}</ion-item>
+          <ion-item>{{user.name}}</ion-item>
+          <ion-item>{{user.lastname}}</ion-item>
+          <ion-item>{{user.role}}</ion-item>
+          <ion-item>{{user.email}}</ion-item>
+          <ion-item>{{user.address}}</ion-item>
+          <ion-item>{{user.phone}}</ion-item>
+          <ion-item>{{user.country}}</ion-item>
+        </ion-list>
+
+      </ion-card>
+    </div>
+  </ion-item>
+
 </ion-content>

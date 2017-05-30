@@ -33,6 +33,10 @@ page-hollidays {
       background-color: color($colors, denied) !important;
       color: white;
     }
+     &.personal {
+      background-color: color($colors, secondary) !important;
+      color: white;
+    }
 
     &.pending {
       background-color: color($colors, pending) !important;

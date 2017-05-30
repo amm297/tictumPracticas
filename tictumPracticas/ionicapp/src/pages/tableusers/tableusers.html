@@ -6,21 +6,36 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-
-
-  <ion-list [virtualScroll]="users">
+  <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar usuarios">
+  </ion-searchbar>
+  <ion-item no-lines>
+    <ion-label>{{'ORDER_FIELD' | translate}}</ion-label>
+    <ion-select rigth (ionChange)="onOrderUsers($event)">
+      <ion-option value="role">{{'ROLE' | translate}}</ion-option>
+      <ion-option value="name">{{'NAME' | translate}}</ion-option>
+      <ion-option value="lastname">{{'LASTNAME' | translate}}</ion-option>
+      <ion-option value="dni">{{'DNI' | translate}}</ion-option>
+      <ion-option value="email">{{ 'Email' | translate}}</ion-option>
+      <ion-option value="country"> {{ 'COUNTRY' | translate}}</ion-option>
+      <ion-option value="address">{{ 'ADDRESS' | translate}}</ion-option>
+      <ion-option value="phone"> {{'PHONE_NUMBER' | translate }}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-list [virtualScroll]="search">
     <ion-item *virtualItem="let user; let index = index" text-wrap>
-      <h2>
-        <ion-row>
-          <ion-col col-10>
-            <span class="item-note" text-uppercase>{{user.role}}</span>:
-            {{user.name}} {{user.lastname}}
-          </ion-col>
-          <ion-col text-right>
-            <ion-icon color="success" name="arrow-dropright" (click)="openModal(user)"></ion-icon>
-          </ion-col>
-        </ion-row>
-      </h2>
+      <div style="padding:0;marging:0" (click)="openModal(user)">
+        <h2>
+          <ion-row>
+            <ion-col col-10>
+              <span class="item-note" text-uppercase>{{user.role}}</span>:
+              {{user.name}} {{user.lastname}}
+            </ion-col>
+            <ion-col text-right>
+              <ion-icon color="success" name="arrow-dropright"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </h2>
+      </div>
     </ion-item>
   </ion-list>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

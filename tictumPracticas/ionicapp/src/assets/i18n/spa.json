@@ -8,7 +8,7 @@
   "PLACEHOLDER_EMAIL": "Introduce un email o un DNI válido",
   "PASSWORD": "Contraseña",
   "EMPTY_PASSWORD": "Introduce una contraseña",
-  "REMENBER": "Recordar mi contraseña",
+  "REMEMBER": "Recordar mi contraseña",
   "RECOVER":"Recuperar Contraseña",
   "CONFIRM_FORGOT": "Olvidé mi contraseña",
 
@@ -21,13 +21,13 @@
   "CLOCK_IN_MANAGEMENT": "Gestión de Fichajes",
 
   "PAG_GENERIC_PASSWORD": "----------------------------------------------------",
-  "REMENBER_PASSWORD": "Recordar contraseña",
+  "REMEMBER_PASSWORD": "Recordar contraseña",
   "VALID_EMAIL": "Introduce un email válido",
   "VALID_DNI": "Introduce un DNI válido",
   "UPDATE_PASSWORD": "Actualizar contraseña",
 
   "PAG_RESET_PASSWORD": "----------------------------------------------------",
-  "OLD_PASSWORD": "Contraseña actual",
+  "OLD_PASSWORD":"Contraseña actual",
   "RECOVER_PASSWORD": "Recuperar contraseña",
   "NEW_PASSWORD": "Nueva contraseña",
   "VALID_PASSWORD": "Introduce una contraseña valida",

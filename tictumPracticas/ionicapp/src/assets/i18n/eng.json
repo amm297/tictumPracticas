@@ -8,7 +8,7 @@
   "PLACEHOLDER_EMAIL": "Introduce an email or valid DNI",
   "PASSWORD": "Password",
   "EMPTY_PASSWORD": "Introduce a password",
-  "REMENBER": "Remember my Password",
+  "REMEMBER": "Remember my Password",
   "RECOVER":"Recover password",
   "CONFIRM_FORGOT": "I forgot my password",
 
@@ -21,13 +21,13 @@
   "CLOCK_IN_MANAGEMENT": "Clock in Management",
 
   "PAG_GENERIC_PASSWORD": "----------------------------------------------------",
-  "REMENBER_PASSWORD": "Remember password",
+  "REMEMBER_PASSWORD": "Remember password",
   "VALID_EMAIL": "Introduce a valid email",
   "VALID_DNI": "Introduce a valid DNI",
   "UPDATE_PASSWORD": "Update password",
 
   "PAG_RESET_PASSWORD": "----------------------------------------------------",
-  "OLD_PASSWORD": "Current password",
+  "OLD_PASSWORD":"Current password",
   "RECOVER_PASSWORD": "Recover password",
   "NEW_PASSWORD": "New password",
   "VALID_PASSWORD": "Introduce a valid password",

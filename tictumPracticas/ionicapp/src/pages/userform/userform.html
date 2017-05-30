@@ -6,7 +6,7 @@
 <ion-content padding>
   <form [formGroup]="userForm" (ngSubmit)="registerUser()">
     <ion-item>
-      <ion-label floating>DNI</ion-label>
+      <ion-label floating>*DNI</ion-label>
       <ion-input [(ngModel)]="user.dni" type="text" formControlName="dni"></ion-input>
     </ion-item>
     <ion-item *ngIf="!userForm.controls.dni.valid  && (userForm.controls.dni.dirty || submitAttempt)">
@@ -33,16 +33,10 @@
       <ion-label floating>{{ 'ADDRESS' | translate }}</ion-label>
       <ion-input [(ngModel)]="user.address" type="text" formControlName="address"></ion-input>
     </ion-item>
-    <ion-item *ngIf="!userForm.controls.address.valid  && (userForm.controls.address.dirty || submitAttempt)">
-      <p style="color:red;">{{ 'VALID_ADDRESS' | translate }}</p>
-    </ion-item>
 
     <ion-item>
       <ion-label floating>{{ 'COUNTRY' | translate }}</ion-label>
       <ion-input [(ngModel)]="user.country" type="text" formControlName="country"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!userForm.controls.country.valid  && (userForm.controls.country.dirty || submitAttempt)">
-      <p style="color:red;">{{ 'DIFFERENT_PASSWORD' | translate }}</p>
     </ion-item>
 
     <ion-item>
@@ -50,36 +44,19 @@
       <ion-input [(ngModel)]="user.phone" type="text" formControlName="phone"></ion-input>
     </ion-item>
     <ion-item *ngIf="!userForm.controls.phone.valid  && (userForm.controls.phone.dirty || submitAttempt)">
-      <p style="color:red;">{{ 'VALID_PHONE' | translate }} {{9-user.phone.length}} {{ 'VALID_PHONE2' | translate }}</p>
+      <p style="color:red;">{{ 'VALID_PHONE' | translate }} {{8-user.phone.length}} {{ 'VALID_PHONE2' | translate }}</p>
     </ion-item>
 
     <ion-item>
-      <ion-label floating>Email</ion-label>
+      <ion-label floating>*Email</ion-label>
       <ion-input [(ngModel)]="user.email" type="email" formControlName="email"></ion-input>
     </ion-item>
     <ion-item *ngIf="!userForm.controls.email.valid  && (userForm.controls.email.dirty || submitAttempt)">
       <p style="color:red;">{{ 'VALID_EMAIL' | translate }}</p>
     </ion-item>
-<!--
-  Eliminamos los campos de la contraseña para que no se pueda introducir, automáticamente se genera la contraseña genérica.
-    <ion-item>
-      <ion-label floating>{{ 'PASSWORD' | translate }}</ion-label>
-      <ion-input [(ngModel)]="user.password" type="password" formControlName="password"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!userForm.controls.password.valid  && (userForm.controls.password.dirty || submitAttempt)">
-      <p style="color:red;">{{ 'VALID_PASSWORD2' | translate }}</p>
-    </ion-item>
 
     <ion-item>
-      <ion-label floating>{{ 'CONFIRM_PASSWORD' | translate }}</ion-label>
-      <ion-input [(ngModel)]="confirmpassword" type="password" formControlName="confirmpassword"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!userForm.controls.confirmpassword.valid  && (userForm.controls.confirmpassword.dirty || submitAttempt)">
-      <p style="color:red;">{{ 'DIFFERENT_PASSWORD' | translate }}</p>
-    </ion-item>-->
-
-    <ion-item>
-      <ion-label floating>Rol</ion-label>
+      <ion-label floating>{{ 'ROLE' | translate }}</ion-label>
       <ion-select [(ngModel)]="user.role" formControlName="role">
         <ion-option *ngFor="let role of roles">{{role.rolename}}</ion-option>
       </ion-select>

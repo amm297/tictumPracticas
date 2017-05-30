@@ -13,7 +13,8 @@ export class TablerolesPage {
   search: any;
   displayInput: boolean = false;
   displayButton: string = '';
-  role: { rolename: string } = {rolename: ''};
+  role;
+  oldRolename;
 
 
   constructor(public navCtrl: NavController,
@@ -27,9 +28,12 @@ export class TablerolesPage {
   }
 
   getAllRoles() {
+    let loading = this.rolesService.createLoading('Cargando roles');
+    loading.present();
     this.rolesService.getAllRoles().then((data) => {
       this.roles = data;
       this.search = this.roles;
+      loading.dismiss();
     });
   }
 
@@ -40,18 +44,15 @@ export class TablerolesPage {
   }
 
   closeInput() {
-    this.role = {rolename: ''};
+    this.role.rolename = this.oldRolename;
     this.displayInput = false;
   }
 
   addRole() {
-    const position = this.roles.findIndex((roleCheck: any) => {
-      return roleCheck.rolename == this.role.rolename;
-    })
-    if (position > -1) {
-      this.presentAlert();
-    }
-    else {
+    if (this.roleExists(this.role.rolename, 0)) {
+      let alert = this.createAlert();
+      alert.present();
+    } else {
       if (this.role.rolename !== '') {
         this.rolesService.addRole(this.role).then((data) => {
           this.roles.push(data);
@@ -62,37 +63,28 @@ export class TablerolesPage {
   }
 
   editRole(role) {
-    console.log("estamos editando");
     this.role = role;
+    this.oldRolename = this.role.rolename;
     this.displayButton = 'edit';
     this.displayInput = true;
   }
 
-  presentAlert() {
-    let alert = this.alertCtrl.create({
+  createAlert() {
+    return this.alertCtrl.create({
       title: '¡Cuidado!',
       subTitle: 'Este rol ya existe',
       buttons: ['Ok']
     });
-    alert.present();
   }
 
   updateRole() {
-    let antRoles = this.roles;
-    antRoles = this.roles.filter(role => {
-      return (
-      role.rolename.toLowerCase().indexOf(this.role.rolename.toLowerCase()) > -1)
-    });
-
-    console.log(antRoles);
-    console.log(this.role);
-
-    if (antRoles.length > 1) {
-      this.presentAlert();
+    if (this.roleExists(this.role.rolename, 1)) {
+      let alert = this.createAlert();
+      alert.present();
     } else {
       if (this.role.rolename !== '') {
         this.rolesService.updateRole(this.role).then(() => {
-          this.closeInput();
+          this.displayInput = false;
         });
       }
     }
@@ -128,5 +120,12 @@ export class TablerolesPage {
     } else {
       this.search = this.roles;
     }
+  }
+
+  roleExists(rolename, times) {
+    let found = this.roles.filter((roleCheck: any) => {
+      return roleCheck.rolename == this.role.rolename;
+    })
+    return found.length > times;
   }
 }

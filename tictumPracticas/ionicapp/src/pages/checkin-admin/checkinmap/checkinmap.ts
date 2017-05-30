@@ -1,7 +1,8 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
-import { AdminPage } from "../../admin/admin";
+import {Component, ViewChild, ElementRef} from '@angular/core';
+import {App, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Geolocation} from '@ionic-native/geolocation';
+import {AdminPage} from "../../admin/admin";
+import {Checking} from '../../../providers/checking';
 
 declare var google;
 
@@ -13,19 +14,39 @@ export class CheckinmapPage {
 
   @ViewChild('map') mapElement: ElementRef;
   map: any;
+  users;
+  date = new Date().toISOString();
+  checksDisplay : any[];
+  markers: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private app: App, public geolocation: Geolocation) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private app: App,
+              public geolocation: Geolocation,
+              private checkingService: Checking) {
+    this.users = this.navParams.data;
+     console.log(this.checkingService.userPressed );
 
   }
 
   ionViewDidLoad() {
-    this.loadMap();
+    console.log("Holii");
+    this.loadMap().then(_ =>{
+      if(this.checkingService.userPressed != null) this.checksDisplay.push(this.checkingService.userPressed);
+      this.addMarkers("entrada");
+      if(this.checkingService.userPressed != null) this.map.setCenter(this.checkingService.userPressed.checking.entrada.geolocation);
+    });
+
+  }
+
+  onChangeDate() {
+    this.checksDisplay = this.checkingService.getChecksByDate(this.users, this.date);
+    console.log(this.checksDisplay);
   }
 
   loadMap() {
 
-    this.geolocation.getCurrentPosition().then((position) => {
-
+    return this.geolocation.getCurrentPosition().then((position) => {
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
       let mapOptions = {
@@ -36,26 +57,41 @@ export class CheckinmapPage {
       }
 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
+      
     }, (err) => {
       console.log(err);
     });
 
   }
 
-  addMarker() {
-    // coger geoposicion
-    let marker = new google.maps.Marker({
-      map: this.map,
-      animation: google.maps.Animation.DROP,
-      position: this.map.getCenter()
-    });
-
-    let content = "<h4>Information!</h4>";
-
-    this.addInfoWindow(marker, content);
-
+  clearMarkers(){
+    for(let m of this.markers){
+      m.setMap(null);
+    }
+    this.markers = [];
   }
+
+  addMarkers(elem) {
+    // coger geoposicion
+    this.clearMarkers();
+
+    for(let check of this.checksDisplay){
+      let marker = new google.maps.Marker({
+        map: this.map,
+        animation: google.maps.Animation.DROP,
+        position: check.checking[elem].geolocation
+      });   
+      this.markers.push(marker);
+      let content = "<h4>"+check.name +" " + check.lastname+" </h4>"+
+                    "<p>" +check.checking[elem].calle + "</p>"+
+                    "<p>" +check.checking.date + " " + check.checking[elem].hora+ "</p>";             
+      let infoWindow = new google.maps.InfoWindow({content: content});
+      google.maps.event.addListener(marker, 'click', () => { infoWindow.open(this.map, marker);});
+    }
+  }
+
+
+
 
   addInfoWindow(marker, content) {
 
