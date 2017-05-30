@@ -77,7 +77,7 @@
   "PAG_CHECKINMAP": "----------------------------------------------------",
   "CHECK_IN_MAP":"Control en Mapa",
   "MAP":"Mapa",
-  
+
   "PAGE_MODAL": "-------------------------------------------------------",
   "TITTLE_MODAL":"Detalles del Usuario",
   "DNI" : "DNI",
@@ -88,7 +88,8 @@
   "START_HOLLIDAYS" : "Inicio Vacaciones",
   "END_HOLLIDAYS" : "Final Vacaciones",
   "PERSONAL_DAY" : "Dia personal",
-  "HOLLIDAYS": "Vacaciones"
-
-
+  "HOLLIDAYS": "Vacaciones",
+  "PENDING": "Pendientes",
+  "APROVED": "Aprobadas",
+  "DENIED":"Denegadas"
 }

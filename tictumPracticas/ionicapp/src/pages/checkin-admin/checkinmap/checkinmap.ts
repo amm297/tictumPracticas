@@ -25,24 +25,19 @@ export class CheckinmapPage {
               public geolocation: Geolocation,
               private checkingService: Checking) {
     this.users = this.navParams.data;
-     console.log(this.checkingService.userPressed );
-
   }
 
   ionViewDidLoad() {
-    
 
   }
 
   ionViewWillEnter()  {
     this.loadMap().then(_ =>{
-      
       if(this.checkingService.userPressed != null) this.checksDisplay.push(this.checkingService.userPressed);
       this.addMarkers("entrada");
       if(this.checkingService.userPressed != null) this.map.setCenter(this.checkingService.userPressed.checking.entrada.geolocation);
     });
   }
-
 
   ionViewWillLeave() {
     this.clearMarkers();
@@ -64,11 +59,10 @@ export class CheckinmapPage {
         center: latLng,
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-
       }
 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      
+
     }, (err) => {
       console.log(err);
     });
@@ -91,18 +85,15 @@ export class CheckinmapPage {
         map: this.map,
         animation: google.maps.Animation.DROP,
         position: check.checking[elem].geolocation
-      });   
+      });
       this.markers.push(marker);
       let content = "<h4>"+check.name +" " + check.lastname+" </h4>"+
                     "<p>" +check.checking[elem].calle + "</p>"+
-                    "<p>" +check.checking.date + " " + check.checking[elem].hora+ "</p>";             
+                    "<p>" +check.checking.date + " " + check.checking[elem].hora+ "</p>";
       let infoWindow = new google.maps.InfoWindow({content: content});
       google.maps.event.addListener(marker, 'click', () => { infoWindow.open(this.map, marker);});
     }
   }
-
-
-
 
   addInfoWindow(marker, content) {
 

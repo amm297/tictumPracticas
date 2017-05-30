@@ -21,7 +21,6 @@ export class CheckintablePage {
               private navParams: NavParams,
               private checkingService: Checking) {
     this.users = this.navParams.data;
-
   }
 
   onInput(event) {
@@ -29,7 +28,7 @@ export class CheckintablePage {
     if (input && input.trim() != '') {
       this.search = this.checksDisplay.filter(user => {
         return (
-        user.name.toLowerCase().indexOf(input.toLowerCase()) != -1 ||        
+        user.name.toLowerCase().indexOf(input.toLowerCase()) != -1 ||
         user.lastname.toLowerCase().indexOf(input.toLowerCase()) > -1 )
       });
     } else {
@@ -45,7 +44,7 @@ export class CheckintablePage {
 
   onClickCheckUser(check){
      this.checkingService.onClickCheckUser(check);
-     this.navCtrl.parent.select(1); 
+     this.navCtrl.parent.select(1);
   }
 
   back() {

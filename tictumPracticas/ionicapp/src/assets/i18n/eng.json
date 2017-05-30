@@ -88,5 +88,8 @@
   "START_HOLLIDAYS" : "Start Hollidays",
   "END_HOLLIDAYS" : "End Hollidays",
   "PERSONAL_DAY" : "Personal Day",
-  "HOLLIDAYS" : "Hollidays"
+  "HOLLIDAYS" : "Hollidays",
+  "PENDING": "Pending",
+  "APROVED": "Aproved",
+  "DENIED":"Denied"
 }
