@@ -94,10 +94,10 @@ export class hollidaysPage {
     onTimeSelected(ev) {
         this.currentSelectedDate=ev.selectedTime;
         let check = this.checkDateInHollidays(this.currentSelectedDate);
-        check = (!check) ? this.checkDatePersonalDay(this.currentSelectedDate) : check;
+       // check = this.checkDatePersonalDay(this.currentSelectedDate);
         this.buttonPersonalDaysDisabled=check;
         this.startDateDisabled = check;
-        this.endDateDisabled = check;
+        this.endDateDisabled = this.checkDatePersonalDay(this.currentSelectedDate);
     }
 
     onCurrentDateChanged(event:Date) {
@@ -131,7 +131,8 @@ export class hollidaysPage {
         this.holliday.days = Math.floor((f.getTime()-s.getTime())/(24*60*60*1000));
         this.holliday.days -= 2*Math.floor(this.holliday.days/7);
         this.bookHollidaysDisabled = this.checkHollidayPeriod();
-        if( this.holliday.days+this.total > this.user.daysh ){             
+        if( this.holliday.days+this.total > this.user.daysh ){  
+             this.bookHollidaysDisabled = true;           
              let alert = this.alertCtrl.create({
                  title: 'Vacaciones sobrepasadas',
                  subTitle: 'Vas a coger mas dias de los permitidos',

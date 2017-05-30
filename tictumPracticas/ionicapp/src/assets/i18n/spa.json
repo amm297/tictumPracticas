@@ -87,6 +87,8 @@
   "VACATION": "----------------------------------------------------------",
   "START_HOLLIDAYS" : "Inicio Vacaciones",
   "END_HOLLIDAYS" : "Final Vacaciones",
-  "PERSONAL_DAY" : "Dia personal"
+  "PERSONAL_DAY" : "Dia personal",
+  "HOLLIDAYS": "Vacaciones"
+
 
 }
